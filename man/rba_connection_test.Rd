@@ -4,15 +4,18 @@
 \alias{rba_connection_test}
 \title{Test if the Supported Services Are Responding}
 \usage{
-rba_connection_test(diagnostics = FALSE)
+rba_connection_test(print_output = TRUE, diagnostics = FALSE)
 }
 \arguments{
+\item{print_output}{(Logical) (default = TRUE) Send the tests' output
+to the console?}
+
 \item{diagnostics}{(Logical) (default = FALSE) Show diagnostics and
 detailed messages with internal information.}
 }
 \value{
-NULL, Connection test for the supported servers will be displayed
-  in console
+Connection test for the supported servers will be displayed
+  in console and the results will be invisibly returned as a list.
 }
 \description{
 Run this function to test the internet connectivity of your device and the

@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE,
                       dev = "png",
                       comment = "#>")
 library(rbioapi)
-rba_options(timeout = 600)
+rba_options(timeout = 600, skip_error = TRUE)
 
 ## ----rba_reactome_analysis----------------------------------------------------
 ## 1 We create a simple vector with our genes
@@ -17,26 +17,29 @@ genes <- c("p53", "BRCA1", "cdk2", "Q99835", "CDC42", "CDK1", "KIF23", "PLK1", "
 
 ## 2 We call reactome analysis with the default parameters
 analyzed <- rba_reactome_analysis(input = genes,
-                                 projection = TRUE,
-                                 p_value = 0.01)
+                                  projection = TRUE,
+                                  p_value = 0.01)
 
 ## 3 As always, we use str() to inspect the resutls
 str(analyzed, 1)
 
-## 4 Note that in the summary element:
-### 4.a because we provided a simple vector, the analysis type was: over-representation
+## 4 Note that in the summary element: (analyzed$summary)
+### 4.a because we supplied a simple vector, the analysis type was: over-representation
 ### 4.b You need the token for other rba_reactome_analysis_* functions
-str(analyzed$summary)
 
 ## 5 Analsis results are in the pathways data frame:
 
 ## ----analysis_results, echo=FALSE---------------------------------------------
-DT::datatable(data = jsonlite::flatten(analyzed$pathways),
+if (utils::hasName(analyzed, "pathways")) {
+  DT::datatable(data = jsonlite::flatten(analyzed$pathways),
               options = list(scrollX = TRUE, 
                              paging = TRUE,
                              fixedHeader = TRUE,
                              keys = TRUE,
                              pageLength = 5))
+} else {
+  print("Vignette building failed. It is probably because the web service was down during the building.")
+}
 
 
 ## ----rba_reactome_analysis_pdf/download, eval=FALSE---------------------------
@@ -75,7 +78,7 @@ str(protein, 1)
 
 
 ## ----rba_reactome_xref--------------------------------------------------------
-## 1 We provide HGNC ID to find what is the corresponding database ID in Reactome
+## 1 We Supply HGNC ID to find what is the corresponding database ID in Reactome
 xref_protein <- rba_reactome_xref("CD40")
 ## 2 As always use str() to inspect the output's structure
 str(xref_protein, 1)
@@ -87,12 +90,16 @@ xref_mapping <- rba_reactome_mapping(id = "CD40",
                                     map_to = "pathways")
 
 ## ----xref_mapping_df, echo=FALSE----------------------------------------------
-DT::datatable(data = xref_mapping,
+if (is.data.frame(xref_mapping)) {
+  DT::datatable(data = xref_mapping,
               options = list(scrollX = TRUE, 
                              paging = TRUE,
                              fixedHeader = TRUE,
                              keys = TRUE,
                              pageLength = 10))
+} else {
+  print("Vignette building failed. It is probably because the web service was down during the building.")
+}
 
 ## ----sessionInfo, echo=FALSE--------------------------------------------------
 sessionInfo()

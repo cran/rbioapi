@@ -4,7 +4,7 @@
 \alias{rba_reactome_pathways_events}
 \title{Get Events Contained in an Upstream Events}
 \usage{
-rba_reactome_pathways_events(event_id, attribute_name = NA, ...)
+rba_reactome_pathways_events(event_id, attribute_name = NULL, ...)
 }
 \arguments{
 \item{event_id}{Reactome event's database ID (DbId) or Stable ID (StId).}
@@ -13,18 +13,18 @@ rba_reactome_pathways_events(event_id, attribute_name = NA, ...)
 the whole events. see \href{https://reactome.org/content/schema/Event}{
 Reactome Data Schema: Event} for available options.}
 
-\item{...}{rbioapi option(s). Refer to \code{\link{rba_options}}'s
-arguments documentation for more information on available options.}
+\item{...}{rbioapi option(s). See \code{\link{rba_options}}'s
+arguments manual for more information on available options.}
 }
 \value{
 Data frame where each row is a contained event and columns are
-  event's attributes. If an "attribute_name" argument was provided, a
+  event's attributes. If an "attribute_name" argument was supplied, a
   character vector will be returned.
 }
 \description{
 A Reactome Event could be comprised of other events (meaning, a pathway that
   include other pathways itself). Use this function to recursively return
-  all the events which reside downstream of your provided event ID (or
+  all the events which reside downstream of your supplied event ID (or
   an attribute of that events).
 }
 \details{

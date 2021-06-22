@@ -5,18 +5,18 @@
 \title{Search Proteomics Peptides in UniProt}
 \usage{
 rba_uniprot_proteomics_search(
-  accession = NA,
-  data_source = NA,
-  taxid = NA,
-  upid = NA,
-  peptide = NA,
-  unique = NA,
+  accession = NULL,
+  data_source = NULL,
+  taxid = NULL,
+  upid = NULL,
+  peptide = NULL,
+  unique = NULL,
   ...
 )
 }
 \arguments{
 \item{accession}{\href{https://www.uniprot.org/help/accession_numbers}{
-UniProtKB primary or secondary accession}(s). You can provide up to 100
+UniProtKB primary or secondary accession}(s). You can supply up to 100
 accession numbers.}
 
 \item{data_source}{Proteomics data source. You can choose up to two of:
@@ -28,21 +28,21 @@ accession numbers.}
 }}
 
 \item{taxid}{NIH-NCBI \href{https://www.uniprot.org/taxonomy/}{Taxon ID}.
-You can provide up to 20 taxon IDs.}
+You can supply up to 20 taxon IDs.}
 
 \item{upid}{\href{https://www.uniprot.org/help/proteome_id}{UniProt Proteome
-identifier (UPID)}. You can provide up to 100 UPIDs.}
+identifier (UPID)}. You can supply up to 100 UPIDs.}
 
-\item{peptide}{Peptide sequence(s). You can provide up to 20 sequences.}
+\item{peptide}{Peptide sequence(s). You can supply up to 20 sequences.}
 
 \item{unique}{Logical: Should the results be filtered based on the
 Peptide's uniqueness (the fact that a peptide maps to only 1 protein). If
 TRUE, Only unique peptides will be returned, if FALSE only un-unique
-peptides will be returned; If NA (default) the results will not be
+peptides will be returned; If NULL (default) the results will not be
 filtered based on this.}
 
-\item{...}{rbioapi option(s). Refer to \code{\link{rba_options}}'s
-arguments documentation for more information on available options.}
+\item{...}{rbioapi option(s). See \code{\link{rba_options}}'s
+arguments manual for more information on available options.}
 }
 \value{
 A list Where each element correspond to a UniProt protein and
@@ -52,7 +52,7 @@ A list Where each element correspond to a UniProt protein and
 UniProt maps proteomics peptides from different sources to the proteins'
   sequences. Using this function, you can search for  proteomics
   peptides that has been map to UniProt proteins. You may also refine your
-  search with modifiers such as data_source, peptide etc. refer to
+  search with modifiers such as data_source, peptide etc. See
   "Arguments section" for more information.
 }
 \details{

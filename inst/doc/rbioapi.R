@@ -9,7 +9,14 @@ knitr::opts_chunk$set(echo = TRUE,
                       dev = "png",
                       comment = "#>")
 library(rbioapi)
-rba_options(timeout = 600)
+rba_options(timeout = 600, skip_error = TRUE)
+
+## ----install_cran, eval=FALSE-------------------------------------------------
+#  install.packages("rbioapi")
+
+## ----install_github, eval=FALSE-----------------------------------------------
+#  install.packages("remotes")
+#  remotes::install_github("moosa-r/rbioapi")
 
 ## ----naming_example, echo=TRUE, message=TRUE----------------------------------
 rba_string_version()
@@ -30,21 +37,21 @@ rba_options()
 #  x <- rba_reactome_species(only_main = TRUE,
 #                           save_file = "reactome_species.json", retry_max = 10)
 
-## ----rba_options_ellipsis2, echo=TRUE, message=TRUE---------------------------
-## Run these codes in your own R session to see the difference.
-## show internal diagnostics boring details
-x <- rba_uniprot_proteins_crossref(db_id = "CD40", db_name = "HGNC", diangnostics = TRUE)
-## The next function you call, will still use the default rbioapi options
-x <- rba_uniprot_proteins_crossref(db_id = "CD40", db_name = "HGNC")
+## ----rba_options_ellipsis2, eval=FALSE, echo=TRUE, message=TRUE---------------
+#  ## Run these codes in your own R session to see the difference.
+#  ## show internal diagnostics boring details
+#  x <- rba_uniprot_proteins_crossref(db_id = "CD40", db_name = "HGNC", diagnostics = TRUE)
+#  ## The next function you call, will still use the default rbioapi options
+#  x <- rba_uniprot_proteins_crossref(db_id = "CD40", db_name = "HGNC")
 
 ## ----rba_connection_test, message=TRUE----------------------------------------
-rba_connection_test()
+rba_connection_test(print_output = TRUE)
 
 ## ----rba_pages1, echo=TRUE----------------------------------------------------
 adeno <- rba_uniprot_taxonomy_name(name = "adenovirus",
                                    search_type = "contain",
                                    page_number = 1)
-adeno$pageInfo
+str(adeno, max.level = 2)
 
 ## ----rba_pages2, echo=TRUE----------------------------------------------------
 adeno_pages = rba_pages(quote(rba_uniprot_taxonomy_name(name = "adenovirus",

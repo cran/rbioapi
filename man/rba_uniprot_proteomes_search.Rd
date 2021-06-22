@@ -5,14 +5,14 @@
 \title{Search Proteomes in UniProt}
 \usage{
 rba_uniprot_proteomes_search(
-  name = NA,
-  upid = NA,
-  taxid = NA,
-  keyword = NA,
-  xref = NA,
-  genome_acc = NA,
-  is_ref_proteome = NA,
-  is_redundant = NA,
+  name = NULL,
+  upid = NULL,
+  taxid = NULL,
+  keyword = NULL,
+  xref = NULL,
+  genome_acc = NULL,
+  is_ref_proteome = NULL,
+  is_redundant = NULL,
   ...
 )
 }
@@ -20,33 +20,33 @@ rba_uniprot_proteomes_search(
 \item{name}{a keyword in proteome's name}
 
 \item{upid}{\href{https://www.uniprot.org/help/proteome_id}{UniProt Proteome
-identifier (UPID)}. You can provide up to 100 UPIDs.}
+identifier (UPID)}. You can supply up to 100 UPIDs.}
 
 \item{taxid}{NIH-NCBI \href{https://www.uniprot.org/taxonomy/}{Taxon ID}.
-You can provide up to 20 taxon IDs.}
+You can supply up to 20 taxon IDs.}
 
-\item{keyword}{Limit the search to entries that contain your provided
+\item{keyword}{Limit the search to entries that contain your supplied
 keyword. see: \href{https://www.uniprot.org/keywords/}{UniProt Keywords}}
 
 \item{xref}{Proteome cross-references such as Genome assembly ID or
-Biosample ID. You can provide up to 20 cross-reference IDs.}
+Biosample ID. You can supply up to 20 cross-reference IDs.}
 
 \item{genome_acc}{Genome accession associated with the proteome's components.}
 
 \item{is_ref_proteome}{(logical) If TRUE, only return reference proteomes; If
-FALSE, only returns non-reference proteomes; If NA (default), the results
+FALSE, only returns non-reference proteomes; If NULL (default), the results
 will not be filtered by this criteria see
 \href{https://www.uniprot.org/help/reference_proteome}{'What are reference
 proteomes?'} for more information.}
 
 \item{is_redundant}{(logical) If TRUE, only return redundant proteomes; If
-FALSE, only returns non-redundant proteomes; If NA (default), the results
+FALSE, only returns non-redundant proteomes; If NULL (default), the results
 will not be filtered by redundancy. see
 \href{https://www.uniprot.org/help/proteome_redundancy}{'Reducing proteome
 redundancy'} for more information.}
 
-\item{...}{rbioapi option(s). Refer to \code{\link{rba_options}}'s
-arguments documentation for more information on available options.}
+\item{...}{rbioapi option(s). See \code{\link{rba_options}}'s
+arguments manual for more information on available options.}
 }
 \value{
 A list where each element is a list that corresponds to a single
@@ -57,7 +57,7 @@ UniProt collects and annotates proteomes (Protein sets expressed in an
   organism). Using this function you can search UniProt for available
   proteomes. see \href{https://www.uniprot.org/help/proteome}{What are
   proteomes?} for more information. You may also
-  refine your search with modifiers such as keyword, taxon id etc. refer to
+  refine your search with modifiers such as keyword, taxon id etc. See
   "Arguments section" for more information.
 }
 \details{

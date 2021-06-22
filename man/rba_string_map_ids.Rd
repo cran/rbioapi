@@ -4,7 +4,7 @@
 \alias{rba_string_map_ids}
 \title{Map a Set of Identifiers to STRING Identifiers}
 \usage{
-rba_string_map_ids(ids, species = NA, echo_query = FALSE, limit = NA, ...)
+rba_string_map_ids(ids, species = NULL, echo_query = FALSE, limit = NULL, ...)
 }
 \arguments{
 \item{ids}{Your Common gene/protein Identifier(s) to be mapped.}
@@ -18,8 +18,8 @@ results.}
 \item{limit}{(Numeric, Optional) A limit on the number of matches per input
 ID.}
 
-\item{...}{rbioapi option(s). Refer to \code{\link{rba_options}}'s
-arguments documentation for more information on available options.}
+\item{...}{rbioapi option(s). See \code{\link{rba_options}}'s
+arguments manual for more information on available options.}
 }
 \value{
 A data frame with the mapped STRING IDs and other pertinent

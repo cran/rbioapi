@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE,
                       dev = "png",
                       comment = "#>")
 library(rbioapi)
-rba_options(timeout = 600)
+rba_options(timeout = 600, skip_error = TRUE)
 
 ## ----rba_mieaa_cats, eval=FALSE-----------------------------------------------
 #  ## A list of available enrichment categories for:
@@ -42,13 +42,17 @@ mieaa_kegg <- rba_mieaa_enrich(test_set = mirs,
                              )
 
 ## ----mieaa_kegg_table, echo=FALSE---------------------------------------------
-DT::datatable(data = mieaa_kegg,
+if (is.data.frame(mieaa_kegg)) {
+  DT::datatable(data = mieaa_kegg,
               options = list(scrollX = TRUE, 
                              paging = TRUE,
                              fixedHeader = TRUE,
                              keys = TRUE,
                              pageLength = 10))
 
+} else {
+  print("Vignette building failed. It is probably because the web service was down during the building.")
+}
 
 ## ----rba_meaa_submit/status/results, eval=FALSE-------------------------------
 #  ## 1 Submit enrichment request to miEAA

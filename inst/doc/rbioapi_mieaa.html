@@ -12,9 +12,9 @@
 
 <meta name="author" content="Moosa Rezwani" />
 
-<meta name="date" content="2021-04-29" />
+<meta name="date" content="2021-06-21" />
 
-<title>2.B: miEEA &amp; rbioapi</title>
+<title>2.C: miEEA &amp; rbioapi</title>
 
 <script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
 <link href="data:text/css,%0Aa%2Eanchor%2Dsection%20%7Bmargin%2Dleft%3A%2010px%3B%20visibility%3A%20hidden%3B%20color%3A%20inherit%3B%7D%0Aa%2Eanchor%2Dsection%3A%3Abefore%20%7Bcontent%3A%20%27%23%27%3B%7D%0A%2EhasAnchor%3Ahover%20a%2Eanchor%2Dsection%20%7Bvisibility%3A%20visible%3B%7D%0Aul%20%3E%20li%20%3E%20%2Eanchor%2Dsection%20%7Bdisplay%3A%20none%3B%7D%0A" rel="stylesheet" />
@@ -150,9 +150,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<h1 class="title toc-ignore">2.B: miEEA &amp; rbioapi</h1>
+<h1 class="title toc-ignore">2.C: miEEA &amp; rbioapi</h1>
 <h4 class="author">Moosa Rezwani</h4>
-<h4 class="date">2021-04-29</h4>
+<h4 class="date">2021-06-21</h4>
 
 
 <div id="TOC">
@@ -165,7 +165,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#approach-2-going-step-by-step"><span class="toc-section-number">3.2</span> Approach 2: Going step-by-step</a></li>
 </ul></li>
 <li><a href="#convert-mirna-accessions"><span class="toc-section-number">4</span> Convert miRNA accessions</a></li>
-<li><a href="#session-info"><span class="toc-section-number">5</span> Session info</a></li>
+<li><a href="#links"><span class="toc-section-number">5</span> Links</a></li>
+<li><a href="#session-info"><span class="toc-section-number">6</span> Session info</a></li>
 </ul>
 </div>
 
@@ -206,30 +207,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                             <span class="at">test_type =</span> <span class="st">&quot;ORA&quot;</span>,</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                             <span class="at">species =</span> <span class="dv">9606</span>)</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -- Step 1/3: Submitting Enrichment request:</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; No categories were provided, Requesting enrichment using all of the 28 available categories for species &#39;Homo sapiens&#39;.</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; No categories were supplied, Requesting enrichment using all of the 28 available categories for species &#39;Homo sapiens&#39;.</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Submitting ORA enrichment request for 17 miRNA IDs of species Homo sapiens to miEAA servers.</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -- Step 2/3: Checking for Submitted enrichment job&#39;s status every 5 seconds.</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Your submitted job ID is: ff6f612a-5caf-457c-99f6-9e6813dff6f3</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ..</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -- Step 3/3: Retrieving the results of the finished enrichment job.</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Retrieving results of submitted enrichment request with ID: ff6f612a-5caf-457c-99f6-9e6813dff6f3</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="do">## 2b Or, We can limit the enrichment to certain datasets (enrichment categories)</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>mieaa_kegg <span class="ot">&lt;-</span> <span class="fu">rba_mieaa_enrich</span>(<span class="at">test_set =</span> mirs,</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                              <span class="at">mirna_type =</span> <span class="st">&quot;mature&quot;</span>,</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                              <span class="at">test_type =</span> <span class="st">&quot;ORA&quot;</span>,</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                              <span class="at">species =</span> <span class="dv">9606</span>,</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                              <span class="at">categories =</span> <span class="fu">c</span>(<span class="st">&quot;miRWalk_Diseases_mature&quot;</span>,</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">&quot;miRWalk_Organs_mature&quot;</span>)</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>                             )</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -- Step 1/3: Submitting Enrichment request:</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Submitting ORA enrichment request for 17 miRNA IDs of species Homo sapiens to miEAA servers.</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -- Step 2/3: Checking for Submitted enrichment job&#39;s status every 5 seconds.</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Your submitted job ID is: 43bd6d06-5358-4d5c-9c06-458976fee63a</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; .</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -- Step 3/3: Retrieving the results of the finished enrichment job.</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Retrieving results of submitted enrichment request with ID: 43bd6d06-5358-4d5c-9c06-458976fee63a</span></span></code></pre></div>
-<div id="htmlwidget-a23a27bd99896c6f95d9" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a23a27bd99896c6f95d9">{"x":{"filter":"none","data":[["5","3","4","6","1","2"],["Organs (miRWalk)","Organs (miRWalk)","Organs (miRWalk)","Organs (miRWalk)","Diseases (miRWalk)","Diseases (miRWalk)"],["T-Lymphocytes","Endothelial Cells","Gastrointestinal Tract","X Chromosome","Choriocarcinoma","Leukemia T-Cell"],["over-represented","over-represented","over-represented","over-represented","over-represented","over-represented"],[1.40287e-05,0.000703018,0.000411587,0.000806102,0.000513149,0.0013928],[0.0010942,0.015719,0.015719,0.015719,0.0364336,0.049443],[0.0010942,0.015719,0.015719,0.015719,0.0364336,0.049443],[1.16732,1.40078,0.194553,0.233463,1.26518,0.268371],[7,6,3,3,6,3],["hsa-miR-20b-5p; hsa-miR-20a-5p; hsa-miR-222-3p; hsa-miR-106a-5p; hsa-miR-93-5p; hsa-miR-126-3p; hsa-miR-148a-3p","hsa-miR-17-5p; hsa-miR-20a-5p; hsa-miR-222-3p; hsa-miR-93-5p; hsa-miR-126-3p; hsa-miR-18a-5p","hsa-miR-20b-5p; hsa-miR-17-5p; hsa-miR-20a-5p","hsa-miR-20b-5p; hsa-miR-222-3p; hsa-miR-106a-5p","hsa-miR-20b-5p; hsa-miR-17-5p; hsa-miR-20a-5p; hsa-miR-106a-5p; hsa-miR-93-5p; hsa-miR-363-3p","hsa-miR-20b-5p; hsa-miR-106a-5p; hsa-miR-93-5p"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>category<\/th>\n      <th>subcategory<\/th>\n      <th>enrichment<\/th>\n      <th>p_value<\/th>\n      <th>p_adjusted<\/th>\n      <th>q_value<\/th>\n      <th>expected<\/th>\n      <th>observed<\/th>\n      <th>mirnas/precursors<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":true,"keys":true,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[4,5,6,7,8]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -- Step 2/3: Checking for Submitted enrichment job&#39;s status every 5 seconds.</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Your submitted job ID is: 5da939d0-c679-449c-8d66-7d5afd72880c</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ....</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -- Step 3/3: Retrieving the results of the finished enrichment job.</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Retrieving results of submitted enrichment request with ID: 5da939d0-c679-449c-8d66-7d5afd72880c</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="do">## 2b Or, We can limit the enrichment to certain datasets (enrichment categories)</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>mieaa_kegg <span class="ot">&lt;-</span> <span class="fu">rba_mieaa_enrich</span>(<span class="at">test_set =</span> mirs,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                              <span class="at">mirna_type =</span> <span class="st">&quot;mature&quot;</span>,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                              <span class="at">test_type =</span> <span class="st">&quot;ORA&quot;</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>                              <span class="at">species =</span> <span class="dv">9606</span>,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>                              <span class="at">categories =</span> <span class="fu">c</span>(<span class="st">&quot;miRWalk_Diseases_mature&quot;</span>,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">&quot;miRWalk_Organs_mature&quot;</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>                             )</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -- Step 1/3: Submitting Enrichment request:</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Submitting ORA enrichment request for 17 miRNA IDs of species Homo sapiens to miEAA servers.</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -- Step 2/3: Checking for Submitted enrichment job&#39;s status every 5 seconds.</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Your submitted job ID is: 70ab0ce1-fa7e-49e2-ac9e-a76410f020e8</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; .</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -- Step 3/3: Retrieving the results of the finished enrichment job.</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Retrieving results of submitted enrichment request with ID: 70ab0ce1-fa7e-49e2-ac9e-a76410f020e8</span></span></code></pre></div>
+<div id="htmlwidget-f57820998580bc8d8571" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f57820998580bc8d8571">{"x":{"filter":"none","data":[["1","2","3","4","5","6"],["Organs (miRWalk)","Organs (miRWalk)","Organs (miRWalk)","Organs (miRWalk)","Diseases (miRWalk)","Diseases (miRWalk)"],["Endothelial Cells","Gastrointestinal Tract","T-Lymphocytes","X Chromosome","Choriocarcinoma","Leukemia T-Cell"],["over-represented","over-represented","over-represented","over-represented","over-represented","over-represented"],["0.000703018","0.000411587","1.40287e-05","0.000806102","0.000513149","0.0013928"],["0.0157190","0.0157190","0.0010942","0.0157190","0.0364336","0.0494430"],["0.0157190","0.0157190","0.0010942","0.0157190","0.0364336","0.0494430"],["1.40078","0.194553","1.16732","0.233463","1.26518","0.268371"],["6","3","7","3","6","3"],["hsa-miR-17-5p; hsa-miR-20a-5p; hsa-miR-222-3p; hsa-miR-93-5p; hsa-miR-126-3p; hsa-miR-18a-5p","hsa-miR-20b-5p; hsa-miR-17-5p; hsa-miR-20a-5p","hsa-miR-20b-5p; hsa-miR-20a-5p; hsa-miR-222-3p; hsa-miR-106a-5p; hsa-miR-93-5p; hsa-miR-126-3p; hsa-miR-148a-3p","hsa-miR-20b-5p; hsa-miR-222-3p; hsa-miR-106a-5p","hsa-miR-20b-5p; hsa-miR-17-5p; hsa-miR-20a-5p; hsa-miR-106a-5p; hsa-miR-93-5p; hsa-miR-363-3p","hsa-miR-20b-5p; hsa-miR-106a-5p; hsa-miR-93-5p"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>X1<\/th>\n      <th>X2<\/th>\n      <th>X3<\/th>\n      <th>X4<\/th>\n      <th>X5<\/th>\n      <th>X6<\/th>\n      <th>X7<\/th>\n      <th>X8<\/th>\n      <th>X9<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":true,"keys":true,"pageLength":10,"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="approach-2-going-step-by-step" class="section level2 heading3" number="3.2">
 <h2 class="heading3" number="3.2"><span class="header-section-number">3.2</span> Approach 2: Going step-by-step</h2>
@@ -255,9 +260,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>miEAA only recognizes miRBASE version 22 accessions. You can use <code>rba_mieaa_convert_version()</code> to convert miRNA accession between different miRBASE versions. Also, as stated before, miEAA differentiate between precursor and mature miRNA accessions, to convert between these 2 accession types, use <code>rba_mieaa_convert_type()</code>.</p>
 <hr />
 </div>
-<div id="session-info" class="section level1 heading2" number="5">
-<h1 class="heading2" number="5"><span class="header-section-number">5</span> Session info</h1>
-<pre><code>#&gt; R version 4.0.5 (2021-03-31)
+<div id="links" class="section level1 heading2" number="5">
+<h1 class="heading2" number="5"><span class="header-section-number">5</span> Links</h1>
+<ul>
+<li><p><a href="https://rbioapi.moosa-r.com/articles/rbioapi_mieaa.html" title="2.B: miEEA &amp; rbioapi">This article in pkgdown website</a></p></li>
+<li><p><a href="https://rbioapi.moosa-r.com/reference/index.html#section-mieaa-rba-mieaa-" title="rbioapi reference">Functions references in pkgdown website</a></p></li>
+<li><p><a href="rbioapi.html" title="rbioapi: User-Friendly R Interface to Biologic Web Services&#39; API">rbioapi vignette index</a></p></li>
+</ul>
+<hr />
+</div>
+<div id="session-info" class="section level1 heading2" number="6">
+<h1 class="heading2" number="6"><span class="header-section-number">6</span> Session info</h1>
+<pre><code>#&gt; R version 4.1.0 (2021-05-18)
 #&gt; Platform: x86_64-w64-mingw32/x64 (64-bit)
 #&gt; Running under: Windows 10 x64 (build 19043)
 #&gt; 
@@ -275,18 +289,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #&gt; 
 #&gt; other attached packages:
-#&gt; [1] rbioapi_0.7.0
+#&gt; [1] rbioapi_0.7.4
 #&gt; 
 #&gt; loaded via a namespace (and not attached):
-#&gt;  [1] Rcpp_1.0.6        knitr_1.33        magrittr_2.0.1    xtable_1.8-4     
-#&gt;  [5] R6_2.5.0          rlang_0.4.10      fastmap_1.1.0     stringr_1.4.0    
-#&gt;  [9] httr_1.4.2        tools_4.0.5       DT_0.18           xfun_0.22        
-#&gt; [13] jquerylib_0.1.4   ellipsis_0.3.2    htmltools_0.5.1.1 crosstalk_1.1.1  
-#&gt; [17] yaml_2.2.1        digest_0.6.27     lifecycle_1.0.0   shiny_1.6.0      
-#&gt; [21] later_1.2.0       promises_1.2.0.1  sass_0.3.1        htmlwidgets_1.5.3
-#&gt; [25] curl_4.3          mime_0.10         evaluate_0.14     rmarkdown_2.7    
-#&gt; [29] stringi_1.5.3     compiler_4.0.5    bslib_0.2.4       jsonlite_1.7.2   
-#&gt; [33] httpuv_1.6.0</code></pre>
+#&gt;  [1] digest_0.6.27     R6_2.5.0          jsonlite_1.7.2    magrittr_2.0.1   
+#&gt;  [5] evaluate_0.14     httr_1.4.2        rlang_0.4.11      stringi_1.6.1    
+#&gt;  [9] curl_4.3.1        jquerylib_0.1.4   DT_0.18           bslib_0.2.5.1    
+#&gt; [13] rmarkdown_2.9     tools_4.1.0       stringr_1.4.0     htmlwidgets_1.5.3
+#&gt; [17] crosstalk_1.1.1   xfun_0.23         yaml_2.2.1        compiler_4.1.0   
+#&gt; [21] htmltools_0.5.1.1 knitr_1.33        sass_0.4.0</code></pre>
 </div>
 
 

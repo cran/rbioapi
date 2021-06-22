@@ -2,7 +2,7 @@
 #'
 #' Use this function to search genomic coordinates of UniProt entries.
 #'   You may also refine your search with modifiers such as chromosome, taxon
-#'   id etc. refer to "Arguments section" for more information.
+#'   id etc. See "Arguments section" for more information.
 #'
 #'   Note that this is a search function. Thus, you are not required to fill
 #'   every argument; You may use whatever combinations of arguments you see
@@ -18,21 +18,21 @@
 #'  "GET https://ebi.ac.uk/proteins/api/coordinates"
 #'
 #' @param accession \href{https://www.uniprot.org/help/accession_numbers}{
-#'   UniProtKB primary or secondary accession}(s). You can provide up to 100
+#'   UniProtKB primary or secondary accession}(s). You can supply up to 100
 #'   accession numbers.
 #' @param chromosome chromosome name, such as "X", "Y", 1, 20, etc. You can
-#' provide up to 20 values.
+#' supply up to 20 values.
 #' @param ensembl_id Ensembl Stable gene ID, transcript ID or translation ID.
-#' You can provide up to 20 IDs.
+#' You can supply up to 20 IDs.
 #' @param gene \href{https://www.uniprot.org/help/gene_name}{UniProt gene
-#'   name(s)}. You can provide up to 20 gene names.
+#'   name(s)}. You can supply up to 20 gene names.
 #' @param protein \href{https://www.uniprot.org/help/protein_names}{UniProt
 #'   protein name}
 #' @param taxid NIH-NCBI \href{https://www.uniprot.org/taxonomy/}{Taxon ID}.
-#'   You can provide up to 20 taxon IDs.
+#'   You can supply up to 20 taxon IDs.
 #' @param location Genome location range such as "58205437-58219305"
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @return List where each element corresponds to one UniProt entity returned
 #'   by your search query. The element itself is a sub-list containing that
@@ -55,13 +55,13 @@
 #'
 #' @family "UniProt - Coordinates"
 #' @export
-rba_uniprot_coordinates_search <- function(accession = NA,
-                                           chromosome = NA,
-                                           ensembl_id = NA,
-                                           gene = NA,
-                                           protein = NA,
-                                           taxid = NA,
-                                           location = NA,
+rba_uniprot_coordinates_search <- function(accession = NULL,
+                                           chromosome = NULL,
+                                           ensembl_id = NULL,
+                                           gene = NULL,
+                                           protein = NULL,
+                                           taxid = NULL,
+                                           location = NULL,
                                            ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -87,34 +87,34 @@ rba_uniprot_coordinates_search <- function(accession = NA,
                         list(arg = "location",
                              class = "character")))
 
-  .msg("Searching UniProt and retrieving Coordinates of proteins that match your provided inputs.")
+  .msg("Searching UniProt and retrieving Coordinates of proteins that match your supplied inputs.")
   ## Build GET API Request's query
   call_query <- .rba_query(init = list("size" = "-1"),
                            list("accession",
-                                any(!is.na(accession)),
+                                !is.null(accession),
                                 paste0(accession,
                                        collapse = ",")),
                            list("chromosome",
-                                any(!is.na(chromosome)),
+                                !is.null(chromosome),
                                 paste0(chromosome,
                                        collapse = ",")),
                            list("ensembl_id",
-                                any(!is.na(ensembl_id)),
+                                !is.null(ensembl_id),
                                 paste0(ensembl_id,
                                        collapse = ",")),
                            list("gene",
-                                any(!is.na(gene)),
+                                !is.null(gene),
                                 paste0(gene,
                                        collapse = ",")),
                            list("protein",
-                                !is.na(protein),
+                                !is.null(protein),
                                 protein),
                            list("taxid",
-                                any(!is.na(taxid)),
+                                !is.null(taxid),
                                 paste0(taxid,
                                        collapse = ",")),
                            list("location",
-                                !is.na(location),
+                                !is.null(location),
                                 location))
   ## Build Function-Specific Call
   parser_input <- list("json->list",
@@ -138,7 +138,7 @@ rba_uniprot_coordinates_search <- function(accession = NA,
 #'
 #' Using this function you can retrieve genome coordinates of a given UniProt
 #'   protein by providing protein position or position range. You can either
-#'   provide 'p_position' alone or provide 'p_start' and 'p_end' together.
+#'   supply 'p_position' alone or supply 'p_start' and 'p_end' together.
 #'
 #'  For more information about how UniProt imports and calculates genomic
 #'   coordinates data, see:
@@ -156,10 +156,10 @@ rba_uniprot_coordinates_search <- function(accession = NA,
 #' @param p_position (numeric) Protein sequence position
 #' @param p_start (numeric) Protein sequence position start
 #' @param p_end (numeric) Protein sequence position end
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
-#' @return Genome coordinates of your provided proteins.
+#' @return Genome coordinates of your supplied proteins.
 #'
 #' @references \itemize{
 #'   \item Andrew Nightingale, Ricardo Antunes, Emanuele Alpi, Borisas
@@ -183,9 +183,9 @@ rba_uniprot_coordinates_search <- function(accession = NA,
 #' @family "UniProt - Coordinates"
 #' @export
 rba_uniprot_coordinates_sequence <- function(accession,
-                                             p_position = NA,
-                                             p_start = NA,
-                                             p_end = NA,
+                                             p_position = NULL,
+                                             p_start = NULL,
+                                             p_end = NULL,
                                              ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -198,22 +198,22 @@ rba_uniprot_coordinates_sequence <- function(accession,
                              class = "numeric"),
                         list(arg = "p_end",
                              class = "numeric")),
-            cond = list(list(quote(any(sum(!is.na(p_position), !is.na(p_start), !is.na(p_end)) == 3,
-                                       sum(!is.na(p_position), !is.na(p_start), !is.na(p_end)) == 0,
-                                       sum(!is.na(p_start), !is.na(p_end)) == 1)),
-                             "You should provide either 'p_position' alone or 'p_start' and 'p_end' together.")
+            cond = list(list(quote(any(sum(!is.null(p_position), !is.null(p_start), !is.null(p_end)) == 3,
+                                       sum(!is.null(p_position), !is.null(p_start), !is.null(p_end)) == 0,
+                                       sum(!is.null(p_start), !is.null(p_end)) == 1)),
+                             "You should supply either 'p_position' alone or 'p_start' and 'p_end' together.")
             ))
 
   .msg("Retrieving genome coordinates of protein %s in sequence position %s.",
        accession,
-       ifelse(is.na(p_position),
+       ifelse(is.null(p_position),
               yes = paste(p_start, p_end, sep = " to "), no = p_position))
 
   ## Build Function-Specific Call
   path_input <- sprintf("%scoordinates/location/%s:%s",
                         .rba_stg("uniprot", "pth"),
                         accession,
-                        ifelse(!is.na(p_position),
+                        ifelse(!is.null(p_position),
                                yes = p_position,
                                no = paste0(p_start, "-", p_end)))
 
@@ -234,7 +234,7 @@ rba_uniprot_coordinates_sequence <- function(accession,
 #' Using this function you can retrieve genomic Coordinates of a Protein by
 #'   either providing the protein's UniProt accession or it's ID in a
 #'   cross-reference database (Ensembl, CCDC, HGNC or RefSeq). You should
-#'   provide either 'accession' alone or 'db_type' and 'db_id' together.
+#'   supply either 'accession' alone or 'db_type' and 'db_id' together.
 #'
 #'  For more information about how UniProt imports and calculates genomic
 #'   coordinates data, see:
@@ -252,10 +252,10 @@ rba_uniprot_coordinates_sequence <- function(accession,
 #' @param db_type cross-reference database name, Should be one of:
 #'   "Ensembl", "CCDC", "HGNC" or "RefSeq".
 #' @param db_id Protein's ID in the cross-reference database
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
-#' @return A list with genome coordinates of your provided protein.
+#' @return A list with genome coordinates of your supplied protein.
 #'
 #' @references \itemize{
 #'   \item Andrew Nightingale, Ricardo Antunes, Emanuele Alpi, Borisas
@@ -277,9 +277,9 @@ rba_uniprot_coordinates_sequence <- function(accession,
 #'
 #' @family "UniProt - Coordinates"
 #' @export
-rba_uniprot_coordinates <- function(accession = NA,
-                                    db_type = NA,
-                                    db_id = NA,
+rba_uniprot_coordinates <- function(accession = NULL,
+                                    db_type = NULL,
+                                    db_id = NULL,
                                     ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -294,14 +294,14 @@ rba_uniprot_coordinates <- function(accession = NA,
                                      "RefSeq")),
                         list(arg = "db_id",
                              class = "character")),
-            cond = list(list(quote(any(sum(!is.na(accession), !is.na(db_type), !is.na(db_id)) == 3,
-                                       sum(!is.na(accession), !is.na(db_type), !is.na(db_id)) == 0,
-                                       sum(!is.na(db_type), !is.na(db_id)) == 1)),
-                             "You should provide either 'accession' alone or 'db_type' and 'db_id' together.")
+            cond = list(list(quote(any(sum(!is.null(accession), !is.null(db_type), !is.null(db_id)) == 3,
+                                       sum(!is.null(accession), !is.null(db_type), !is.null(db_id)) == 0,
+                                       sum(!is.null(db_type), !is.null(db_id)) == 1)),
+                             "You should supply either 'accession' alone or 'db_type' and 'db_id' together.")
             ))
 
   .msg("Retrieving genome coordinates of protein with ID: %s",
-       ifelse(is.na(accession),
+       ifelse(is.null(accession),
               yes = sprintf("%s in %s database", db_id, db_type),
               no = accession))
   ## Build GET API Request's query
@@ -309,7 +309,7 @@ rba_uniprot_coordinates <- function(accession = NA,
   ## Build Function-Specific Call
   path_input <- sprintf("%scoordinates/%s",
                         .rba_stg("uniprot", "pth"),
-                        ifelse(!is.na(accession),
+                        ifelse(!is.null(accession),
                                yes = accession,
                                no = paste0(db_type, ":", db_id)))
 
@@ -345,10 +345,10 @@ rba_uniprot_coordinates <- function(accession = NA,
 #'  as any chromosome (e.g. "1-10000").
 #' @param in_range Only return proteins that are in range.
 #' @param feature (logical) Get features?
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
-#' @return a list containing UniProt proteins which match the provided genomic
+#' @return a list containing UniProt proteins which match the supplied genomic
 #'   location and taxonomy ID.
 #'
 #' @references \itemize{

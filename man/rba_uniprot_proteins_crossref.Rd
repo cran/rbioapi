@@ -4,7 +4,13 @@
 \alias{rba_uniprot_proteins_crossref}
 \title{Get UniProt Entry by UniProt Cross-Reference Database and ID}
 \usage{
-rba_uniprot_proteins_crossref(db_id, db_name, reviewed = NA, isoform = NA, ...)
+rba_uniprot_proteins_crossref(
+  db_id,
+  db_name,
+  reviewed = NULL,
+  isoform = NULL,
+  ...
+)
 }
 \arguments{
 \item{db_id}{The protein ID in the cross-reference (external) database.}
@@ -22,12 +28,12 @@ rba_uniprot_proteins_crossref(db_id, db_name, reviewed = NA, isoform = NA, ...)
 see: \href{https://www.uniprot.org/help/alternative_products}{Alternative
 products}}
 
-\item{...}{rbioapi option(s). Refer to \code{\link{rba_options}}'s
-arguments documentation for more information on available options.}
+\item{...}{rbioapi option(s). See \code{\link{rba_options}}'s
+arguments manual for more information on available options.}
 }
 \value{
 List which each element is a UniProt entity that correspond to
-  your provided cross-reference database name and ID.
+  your supplied cross-reference database name and ID.
 }
 \description{
 \href{https://www.uniprot.org/database/}{UniProt Cross-Reference} links

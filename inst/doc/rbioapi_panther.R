@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE,
                       dev = "png",
                       comment = "#>")
 library(rbioapi)
-rba_options(timeout = 600)
+rba_options(timeout = 600, skip_error = TRUE)
 
 ## ----rba_panther_enrich, message=TRUE-----------------------------------------
 ## 1 We get the available annotation datasets in PANTHER (we need to select one of them to submit an enrichment request)
@@ -24,12 +24,16 @@ enriched <- rba_panther_enrich(genes = genes,
                                cutoff = 0.05)
 
 ## ----enriched_df, echo=FALSE--------------------------------------------------
-DT::datatable(data = enriched$result,
+if (utils::hasName(enriched, "result")) {
+  DT::datatable(data = enriched$result,
               options = list(scrollX = TRUE, 
                              paging = TRUE,
                              fixedHeader = TRUE,
                              keys = TRUE,
                              pageLength = 10))
+} else {
+  print("Vignette building failed. It is probably because the web service was down during the building.")
+}
 
 ## ----sessionInfo, echo=FALSE--------------------------------------------------
 sessionInfo()

@@ -3,7 +3,7 @@
 #' Use this function to search
 #'   \href{https://www.uniprot.org/help/uniparc}{UniProt Archive (UniParc)}
 #'   entries.You may also refine your search with modifiers such as sequence
-#'   length, taxon id etc. refer to "Arguments section" for more information.
+#'   length, taxon id etc. See "Arguments section" for more information.
 #'
 #'   Note that this is a search function. Thus, you are not required to fill
 #'   every argument; You may use whatever combinations of arguments you see
@@ -12,52 +12,52 @@
 #' @section Corresponding API Resources:
 #'  "GET https://ebi.ac.uk/proteins/api/uniparc"
 #'
-#' @param upi unique UniParc Identifier(s). You can provide up to 100 IDs.
+#' @param upi unique UniParc Identifier(s). You can supply up to 100 IDs.
 #' @param accession \href{https://www.uniprot.org/help/accession_numbers}{
-#'   UniProtKB primary or secondary accession}(s). You can provide up to 100
+#'   UniProtKB primary or secondary accession}(s). You can supply up to 100
 #'   accession numbers.
 #' @param db_type \href{https://www.uniprot.org/database/}{cross-reference}
 #'   (external database) name.
 #' @param db_id Protein ID in the cross-reference (external) database.
-#'   You can provide up to 100 IDs.
+#'   You can supply up to 100 IDs.
 #' @param gene \href{https://www.uniprot.org/help/gene_name}{UniProt gene
-#'   name(s)}. You can provide up to 20 gene names.
+#'   name(s)}. You can supply up to 20 gene names.
 #' @param protein \href{https://www.uniprot.org/help/protein_names}{UniProt
 #'   protein name}.
 #' @param taxid NIH-NCBI \href{https://www.uniprot.org/taxonomy/}{Taxon ID}.
-#'   You can provide up to 20 taxon IDs.
+#'   You can supply up to 20 taxon IDs.
 #' @param organism \href{https://www.uniprot.org/taxonomy/}{Organism name}.
 #' @param sequence_checksum Sequence CRC64 checksum.
 #' @param ipr \href{https://www.ebi.ac.uk/interpro/about/interpro/}{InterPro
-#'   identifier(s)}. You can provide up to 20 IDs.
+#'   identifier(s)}. You can supply up to 20 IDs.
 #' @param signature_db InterPro's
 #'   \href{https://interpro-documentation.readthedocs.io/en/latest/databases.html}{signature
-#'   database}. You can provide up to 13 of the following values:
+#'   database}. You can supply up to 13 of the following values:
 #'   \cr "CATH", "CDD", "HAMAP", "MobiDB Lite", "Panther", "Pfam", "PIRSF",
 #'   "PRINTS", "Prosite", "SFLD", "SMART", "SUPERFAMILY" and/or "TIGRfams"
 #' @param signature_id Signature ID in the InterPro's
 #'   \href{https://interpro-documentation.readthedocs.io/en/latest/databases.html}{signature
-#'   database}. You can provide up to 20 IDs.
+#'   database}. You can supply up to 20 IDs.
 #' @param upid \href{https://www.uniprot.org/help/proteome_id}{UniProt Proteome
-#'   identifier (UPID)}. You can provide up to 100 UPIDs.
+#'   identifier (UPID)}. You can supply up to 100 UPIDs.
 #' @param seq_length An exact sequence length (e.g. 150) or a range of sequence
 #'   lengths (e.g. "130-158").
 #' @param rf_dd_type Filter the content of the each UniParc entry by
 #'   \href{https://www.uniprot.org/database/}{cross-reference} names. You can
-#'   provide multiple values.
+#'   supply multiple values.
 #' @param rf_db_id Filter the content of the each UniParc entry by protein
-#'   identifiers in any cross-reference database. You can provide multiple
+#'   identifiers in any cross-reference database. You can supply multiple
 #'   values.
 #' @param rf_active (logical ) Filter the content of each UniParc entry based on
 #'   active status on source database:\itemize{
-#'   \item NA: don't filter contents based on active status.
+#'   \item NULL: (default) don't filter contents based on active status.
 #'   \item TRUE: only return contents which are still active.
 #'   \item FALSE: Only return contents which are not active.}
 #' @param rf_tax_id (Numeric) Filter the content of each UniParc entry by
 #'   NIH-NCBI \href{https://www.uniprot.org/taxonomy/}{Taxon ID}. You can
-#'   provide multiple values.
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#'   supply multiple values.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @return A List where each element corresponds to one UniParc entry returned
 #'   by your search query. The element itself is a sub-list containing sequence
@@ -89,24 +89,24 @@
 #'
 #' @family "UniProt - UniParc"
 #' @export
-rba_uniprot_uniparc_search <- function(upi = NA,
-                                       accession = NA,
-                                       db_type = NA,
-                                       db_id = NA,
-                                       gene = NA,
-                                       protein = NA,
-                                       taxid = NA,
-                                       organism = NA,
-                                       sequence_checksum= NA,
-                                       ipr = NA,
-                                       signature_db = NA,
-                                       signature_id = NA,
-                                       upid = NA,
-                                       seq_length = NA,
-                                       rf_dd_type = NA,
-                                       rf_db_id = NA,
-                                       rf_active = NA,
-                                       rf_tax_id = NA,
+rba_uniprot_uniparc_search <- function(upi = NULL,
+                                       accession = NULL,
+                                       db_type = NULL,
+                                       db_id = NULL,
+                                       gene = NULL,
+                                       protein = NULL,
+                                       taxid = NULL,
+                                       organism = NULL,
+                                       sequence_checksum = NULL,
+                                       ipr = NULL,
+                                       signature_db = NULL,
+                                       signature_id = NULL,
+                                       upid = NULL,
+                                       seq_length = NULL,
+                                       rf_dd_type = NULL,
+                                       rf_db_id = NULL,
+                                       rf_active = NULL,
+                                       rf_tax_id = NULL,
                                        ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -155,75 +155,75 @@ rba_uniprot_uniparc_search <- function(upi = NA,
                              class = "character"))
   )
 
-  .msg("Searching UniParc and retrieving entries that match your provided inputs.")
+  .msg("Searching UniParc and retrieving entries that match your supplied inputs.")
   ## Build GET API Request's query
   call_query <- .rba_query(init = list("size" = "-1"),
                            list("upi",
-                                any(!is.na(upi)),
+                                !is.null(upi),
                                 paste0(upi,
                                        collapse = ",")),
                            list("accession",
-                                any(!is.na(accession)),
+                                !is.null(accession),
                                 paste0(accession,
                                        collapse = ",")),
                            list("dbtype",
-                                !is.na(db_type),
+                                !is.null(db_type),
                                 db_type),
                            list("dbid",
-                                any(!is.na(db_id)),
+                                !is.null(db_id),
                                 paste0(db_id,
                                        collapse = ",")),
                            list("gene",
-                                any(!is.na(gene)),
+                                !is.null(gene),
                                 paste0(gene,
                                        collapse = ",")),
                            list("protein",
-                                !is.na(protein),
+                                !is.null(protein),
                                 protein),
                            list("taxid",
-                                any(!is.na(taxid)),
+                                !is.null(taxid),
                                 paste0(taxid,
                                        collapse = ",")),
                            list("organism",
-                                !is.na(organism),
+                                !is.null(organism),
                                 organism),
                            list("sequencechecksum",
-                                !is.na(sequence_checksum),
+                                !is.null(sequence_checksum),
                                 sequence_checksum),
                            list("ipr",
-                                any(!is.na(ipr)),
+                                !is.null(ipr),
                                 paste0(ipr,
                                        collapse = ",")),
                            list("signaturetype",
-                                any(!is.na(signature_db)),
+                                !is.null(signature_db),
                                 paste0(signature_db,
                                        collapse = ",")),
                            list("signatureid",
-                                any(!is.na(signature_id)),
+                                !is.null(signature_id),
                                 paste0(signature_id,
                                        collapse = ",")),
                            list("upid",
-                                any(!is.na(upid)),
+                                !is.null(upid),
                                 paste0(upid,
                                        collapse = ",")),
                            list("seqLength",
-                                !is.na(seq_length),
+                                !is.null(seq_length),
                                 seq_length),
                            list("rfDdtype",
-                                any(!is.na(rf_dd_type)),
+                                !is.null(rf_dd_type),
                                 paste0(rf_dd_type,
                                        collapse = ",")),
                            list("rfDbid",
-                                any(!is.na(rf_db_id)),
+                                !is.null(rf_db_id),
                                 paste0(rf_db_id,
                                        collapse = ",")),
                            list("rfActive",
-                                !is.na(rf_active),
+                                !is.null(rf_active),
                                 ifelse(rf_active,
                                        "true",
                                        "false")),
                            list("rfTaxId",
-                                any(!is.na(rf_tax_id)),
+                                !is.null(rf_tax_id),
                                 paste0(rf_tax_id,
                                        collapse = ",")))
   ## Build Function-Specific Call
@@ -262,23 +262,23 @@ rba_uniprot_uniparc_search <- function(upi = NA,
 #'   UniProtKB primary or secondary accession}.
 #' @param db_id Protein ID in the cross-reference (external) database.
 #' @param upid \href{https://www.uniprot.org/help/proteome_id}{UniProt Proteome
-#'   identifier (UPID)}. You can provide up to 100 UPIDs.
+#'   identifier (UPID)}. You can supply up to 100 UPIDs.
 #' @param rf_dd_type Filter the content of the UniParc entry by
 #'   \href{https://www.uniprot.org/database/}{cross-reference} names. You can
-#'   provide multiple values.
+#'   supply multiple values.
 #' @param rf_db_id Filter the content of the UniParc entry by protein
-#'   identifiers in any cross-reference database. You can provide multiple
+#'   identifiers in any cross-reference database. You can supply multiple
 #'   values.
 #' @param rf_active (logical ) Filter the content of UniParc entry based on
 #'   active status on source database:\itemize{
-#'   \item NA: don't filter contents based on active status.
+#'   \item NULL: (default) don't filter contents based on active status.
 #'   \item TRUE: only return contents which are still active.
 #'   \item FALSE: Only return contents which are not active.}
 #' @param rf_tax_id (Numeric) Filter the content of the UniParc entry by
 #'   NIH-NCBI \href{https://www.uniprot.org/taxonomy/}{Taxon ID}. You can
-#'   provide multiple values.
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#'   supply multiple values.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @return A list which correspond to a UniParc entry.
 #'
@@ -305,14 +305,14 @@ rba_uniprot_uniparc_search <- function(upi = NA,
 #'
 #' @family "UniProt - UniParc"
 #' @export
-rba_uniprot_uniparc <- function(upi = NA,
-                                accession = NA,
-                                db_id = NA,
-                                upid = NA,
-                                rf_dd_type = NA,
-                                rf_db_id = NA,
-                                rf_active = NA,
-                                rf_tax_id = NA,
+rba_uniprot_uniparc <- function(upi = NULL,
+                                accession = NULL,
+                                db_id = NULL,
+                                upid = NULL,
+                                rf_dd_type = NULL,
+                                rf_db_id = NULL,
+                                rf_active = NULL,
+                                rf_tax_id = NULL,
                                 ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -333,50 +333,50 @@ rba_uniprot_uniparc <- function(upi = NA,
                              class = "logical"),
                         list(arg = "rf_tax_id",
                              class = "character")),
-            cond = list(list(quote(sum(!is.na(accession), !is.na(db_id), !is.na(upid), !is.na(upi)) != 1),
-                             "Please provide -only- one of the arguments 'accession', 'db_id', 'upid' or 'upi'."))
+            cond = list(list(quote(sum(!is.null(accession), !is.null(db_id), !is.null(upid), !is.null(upi)) != 1),
+                             "Please supply -only- one of the arguments 'accession', 'db_id', 'upid' or 'upi'."))
   )
 
   .msg("Retriving UniParc entry with %s.",
-       if (!is.na(accession)) {paste0("UniProt accession ", accession)
-       } else if (!is.na(db_id)) {
+       if (!is.null(accession)) {paste0("UniProt accession ", accession)
+       } else if (!is.null(db_id)) {
          path_input <- paste0("cross-reference database ID ", accession)
-       } else if (!is.na(upid)) {
+       } else if (!is.null(upid)) {
          path_input <- paste0("UniProt Proteome ID ", accession)
-       } else if (!is.na(upi)) {
+       } else if (!is.null(upi)) {
          path_input <- paste0("UniParc ID ", accession)
        })
 
   ## Build GET API Request's query
   call_query <- .rba_query(init = list("size" = "-1"),
                            list("rfDdtype",
-                                any(!is.na(rf_dd_type)),
+                                !is.null(rf_dd_type),
                                 paste0(rf_dd_type,
                                        collapse = ",")),
                            list("rfDbid",
-                                any(!is.na(rf_db_id)),
+                                !is.null(rf_db_id),
                                 paste0(rf_db_id,
                                        collapse = ",")),
                            list("rfActive",
-                                !is.na(rf_active),
+                                !is.null(rf_active),
                                 ifelse(rf_active,
                                        "true",
                                        "false")),
                            list("rfTaxId",
-                                any(!is.na(rf_tax_id)),
+                                !is.null(rf_tax_id),
                                 paste0(rf_tax_id,
                                        collapse = ",")))
   ## Build Function-Specific Call
-  if (!is.na(accession)) {
+  if (!is.null(accession)) {
     path_input <- paste0(.rba_stg("uniprot", "pth"),
                          "uniparc/accession/", accession)
-  } else if (!is.na(db_id)) {
+  } else if (!is.null(db_id)) {
     path_input <- paste0(.rba_stg("uniprot", "pth"),
                          "uniparc/dbreference/", db_id)
-  } else if (!is.na(upid)) {
+  } else if (!is.null(upid)) {
     path_input <- paste0(.rba_stg("uniprot", "pth"),
                          "uniparc/proteome/", upid)
-  } else if (!is.na(upi)) {
+  } else if (!is.null(upi)) {
     path_input <- paste0(.rba_stg("uniprot", "pth"),
                          "uniparc/upi/", upi)
   }
@@ -406,16 +406,16 @@ rba_uniprot_uniparc <- function(upi = NA,
 #'
 #' @param upi unique UniParc Identifier.
 #' @param accession \href{https://www.uniprot.org/help/accession_numbers}{
-#'   UniProtKB primary or secondary accession}(s). You can provide up to 100
+#'   UniProtKB primary or secondary accession}(s). You can supply up to 100
 #'   accession numbers.
 #' @param db_id Protein ID in the cross-reference (external) database.
-#'   You can provide up to 100 IDs.
+#'   You can supply up to 100 IDs.
 #' @param gene \href{https://www.uniprot.org/help/gene_name}{UniProt gene
-#'   name(s)}. You can provide up to 20 gene names.
+#'   name(s)}. You can supply up to 20 gene names.
 #' @param taxid NIH-NCBI \href{https://www.uniprot.org/taxonomy/}{Taxon ID}.
-#'   You can provide up to 20 taxon IDs.
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#'   You can supply up to 20 taxon IDs.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @return A list where each element correspond to a UniParc entry.
 #'
@@ -436,11 +436,11 @@ rba_uniprot_uniparc <- function(upi = NA,
 #'
 #' @family "UniProt - UniParc"
 #' @export
-rba_uniprot_uniparc_bestguess <- function(upi = NA,
-                                          accession = NA,
-                                          db_id = NA,
-                                          gene = NA,
-                                          taxid = NA,
+rba_uniprot_uniparc_bestguess <- function(upi = NULL,
+                                          accession = NULL,
+                                          db_id = NULL,
+                                          gene = NULL,
+                                          taxid = NULL,
                                           ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -465,23 +465,23 @@ rba_uniprot_uniparc_bestguess <- function(upi = NA,
   ## Build GET API Request's query
   call_query <- .rba_query(init = list("size" = "-1"),
                            list("upi",
-                                any(!is.na(upi)),
+                                !is.null(upi),
                                 paste0(upi,
                                        collapse = ",")),
                            list("accession",
-                                any(!is.na(accession)),
+                                !is.null(accession),
                                 paste0(accession,
                                        collapse = ",")),
                            list("dbid",
-                                any(!is.na(db_id)),
+                                !is.null(db_id),
                                 paste0(db_id,
                                        collapse = ",")),
                            list("gene",
-                                any(!is.na(gene)),
+                                !is.null(gene),
                                 paste0(gene,
                                        collapse = ",")),
                            list("taxid",
-                                any(!is.na(taxid)),
+                                !is.null(taxid),
                                 paste0(taxid,
                                        collapse = ",")))
   ## Build Function-Specific Call
@@ -512,20 +512,20 @@ rba_uniprot_uniparc_bestguess <- function(upi = NA,
 #'   accepted.
 #' @param rf_dd_type Filter the content of the UniParc entry by
 #'   \href{https://www.uniprot.org/database/}{cross-reference} names. You can
-#'   provide multiple values.
+#'   supply multiple values.
 #' @param rf_db_id Filter the content of the UniParc entry by protein
-#'   identifiers in any cross-reference database. You can provide multiple
+#'   identifiers in any cross-reference database. You can supply multiple
 #'   values.
 #' @param rf_active (logical ) Filter the content of UniParc entry based on
 #'   active status on source database:\itemize{
-#'   \item NA: don't filter contents based on active status.
+#'   \item NULL: (default) don't filter contents based on active status.
 #'   \item TRUE: only return contents which are still active.
 #'   \item FALSE: Only return contents which are not active.}
 #' @param rf_tax_id (Numeric) Filter the content of the UniParc entry by
 #'   NIH-NCBI \href{https://www.uniprot.org/taxonomy/}{Taxon ID}. You can
-#'   provide multiple values.
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#'   supply multiple values.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @return A list which correspond to a UniParc entry.
 #'
@@ -547,10 +547,10 @@ rba_uniprot_uniparc_bestguess <- function(upi = NA,
 #' @family "UniProt - UniParc"
 #' @export
 rba_uniprot_uniparc_sequence <- function(sequence,
-                                         rf_dd_type = NA,
-                                         rf_db_id = NA,
-                                         rf_active = NA,
-                                         rf_tax_id = NA,
+                                         rf_dd_type = NULL,
+                                         rf_db_id = NULL,
+                                         rf_active = NULL,
+                                         rf_tax_id = NULL,
                                          ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -568,20 +568,20 @@ rba_uniprot_uniparc_sequence <- function(sequence,
   ## Build GET API Request's query
   call_query <- .rba_query(init = list(),
                            list("rfDdtype",
-                                any(!is.na(rf_dd_type)),
+                                !is.null(rf_dd_type),
                                 paste0(rf_dd_type,
                                        collapse = ",")),
                            list("rfDbid",
-                                any(!is.na(rf_db_id)),
+                                !is.null(rf_db_id),
                                 paste0(rf_db_id,
                                        collapse = ",")),
                            list("rfActive",
-                                !is.na(rf_active),
+                                !is.null(rf_active),
                                 ifelse(rf_active,
                                        "true",
                                        "false")),
                            list("rfTaxId",
-                                any(!is.na(rf_tax_id)),
+                                !is.null(rf_tax_id),
                                 paste0(rf_tax_id,
                                        collapse = ",")))
   ## Build Function-Specific Call

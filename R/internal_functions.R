@@ -20,14 +20,24 @@
   arg <- c(...)
   #possible arguments
   output <- switch(arg[[1]],
-                   db = c("enrichr", "ensembl", "mieaa", "reactome",
+                   db = c("enrichr", "ensembl","jaspar", "mieaa", "reactome",
                           "string", "uniprot"),
                    enrichr = switch(
                      arg[[2]],
                      name = "Enrichr",
                      url = "https://maayanlab.cloud",
-                     pth = "Enrichr/",
-                     ptn = "^(https?://)?(www\\.)?maayanlab\\.cloud/Enrichr/",
+                     pth = switch(match.arg(arg[[3]],
+                                            c("human",
+                                              "fly",
+                                              "yeast",
+                                              "worm",
+                                              "fish")),
+                                  human = "Enrichr/",
+                                  fly = "FlyEnrichr/",
+                                  yeast = "YeastEnrichr/",
+                                  worm = "WormEnrichr/",
+                                  fish = "FishEnrichr/"),
+                     ptn = "^(https?://)?(www\\.)?maayanlab\\.cloud/.*Enrichr/",
                      err_ptn = "^$"
                    ),
                    ensembl = switch(
@@ -38,6 +48,14 @@
                      err_ptn = "^4\\d\\d$",
                      err_prs = list("json->list_simp",
                                     function(x) {x[["error"]][[1]]})
+                   ),
+                   jaspar = switch(
+                     arg[[2]],
+                     name = "JASPAR",
+                     url = "http://jaspar.genereg.net",
+                     pth = "api/v1/",
+                     ptn = "^(https?://)?(www\\.)?jaspar\\.genereg\\.net/api/",
+                     err_ptn = "^$"
                    ),
                    mieaa = switch(
                      arg[[2]],
@@ -103,6 +121,7 @@
                      r = "R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.",
                      enrichr = "https://maayanlab.cloud/Enrichr/help#terms",
                      ensembl = "***ensembl api papeer***",
+                     jaspar = "Fornes O, Castro-Mondragon JA, Khan A, et al. JASPAR 2020: update of the open-access database of transcription factor binding profiles. Nucleic Acids Res. 2019; doi: 10.1093/nar/gkz1001",
                      reactome = "https://reactome.org/cite",
                      string = "Szklarczyk D, Gable AL, Lyon D, Junge A, Wyder S, Huerta-Cepas J, Simonovic M, Doncheva NT, Morris JH, Bork P, Jensen LJ, Mering CV. STRING v11: protein-protein association networks with increased coverage, supporting functional discovery in genome-wide experimental datasets. Nucleic Acids Res. 2019 Jan 8;47(D1):D607-D613. doi: 10.1093/nar/gky1131. PMID: 30476243; PMCID: PMC6323986.",
                      uniprot = "***uniprot api papeer***"),
@@ -110,6 +129,8 @@
                                                    "/Enrichr"),
                                 "Ensembl" = paste0(.rba_stg("ensembl", "url"),
                                                    "/info/ping"),
+                                "JASPAR" = paste0(.rba_stg("jaspar", "url"),
+                                                  "/api/v1/releases/"),
                                 "miEAA" = paste0(.rba_stg("mieaa", "url"),
                                                  "/mieaa2/api/"),
                                 "PANTHER" = paste0(.rba_stg("panther", "url"),
@@ -122,7 +143,9 @@
                                                   "/api/json/version"),
                                 "UniProt" = paste0(.rba_stg("uniprot", "url"),
                                                    "/proteins/api/proteins/P25445")
-                   )
+                   ),
+                   stop("Internal Error; .rba_stg was called with wrong parameters:\n",
+                        paste0(arg, collapse = ", "), call. = TRUE)
   )
   return(output)
 }
@@ -141,6 +164,9 @@
 #' @param verbose logical: Generate informative messages.
 #' @param diagnostics logical: Generate diagnostics and detailed messages with
 #'   internal information.
+#' @param skip_error logical: If TRUE, in case of an error HTTP status other
+#'  than 200, instead of halting the code execution, the error message will be
+#'  returned as the function's output.
 #'
 #' @return TRUE if connected to the internet, a character string if not.
 #' @family internal_internet_connectivity
@@ -148,7 +174,8 @@
 .rba_net_handle <- function(retry_max = 1,
                             retry_wait = 10,
                             verbose = FALSE,
-                            diagnostics = FALSE) {
+                            diagnostics = FALSE,
+                            skip_error = FALSE) {
   if (isTRUE(diagnostics)) {message("Testing the internet connection.")}
   test_call <- quote(
     httr::status_code(httr::HEAD("https://www.google.com/",
@@ -172,11 +199,11 @@
 
   if (net_status == 200) {
     if (isTRUE(diagnostics)) {message("Device is connected to the internet!")}
+    return(TRUE)
   } else {
-    stop("No internet connection; Stopping code execution!",
-         call. = diagnostics)
+    if (isTRUE(diagnostics)) {message("No internet connection!")}
+    return(FALSE)
   } #end of if net_test
-  return(net_status == 200)
 }
 
 #' Translate HTTP Status Code to Human-Readable Explanation
@@ -300,7 +327,7 @@
 #'  will serve as a query input for httr request.
 #'
 #' @param init list: initial default query parameters in the format of named
-#'   list. provide list() if it is empty.
+#'   list. supply list() if it is empty.
 #' @param ... list: Additional queries to evaluate and possibly append to
 #'   the initial parameters. formatted as lists with the following order:
 #'   \enumerate{
@@ -328,10 +355,11 @@
                                 x[[1]],
                                 " has more than one element. Only the first element will be used.",
                                 call. = FALSE)
+                        x[[2]] <- x[[2]][[1]]
                       }
-                      if (isTRUE(x[[2]][[1]])) {
+                      if (isTRUE(x[[2]])) {
                         return(TRUE)
-                      } else if (isFALSE(x[[2]][[1]])) {
+                      } else if (isFALSE(x[[2]])) {
                         return(FALSE)}
                       else {
                         warning("Internal Query Builder:\n The evaluation result of ",
@@ -391,7 +419,7 @@
 #' @noRd
 .rba_httr <- function(httr,
                       url = NULL,
-                      path = NULL,
+                      path = "",
                       ...) {
   ## assign global options
   diagnostics <- get0("diagnostics", envir = parent.frame(1),
@@ -413,7 +441,7 @@
                            "put" = quote(httr::PUT),
                            "delete" = quote(httr::DELETE),
                            "patch" = quote(httr::PATCH),
-                           stop("internal error: what verb to use with httr?",
+                           stop("Internal Error; what verb to use with httr?",
                                 call. = TRUE)),
                     url = utils::URLencode(URL = url, repeated = FALSE),
                     path = utils::URLencode(URL = path, repeated = FALSE),
@@ -466,12 +494,14 @@
       if (utils::hasName(ext_args, "parser")) {
         parser <- ext_args$parser
       } else {
-        parser <- NULL
+        parser <- function(x) {x}
       }
     }
     ### remove extra arguments that you don't want in httr function call
     ext_args <- ext_args[!grepl("^(?:accept|file_accept|obj_accept|save_to|\\w*parser)$",
                                 names(ext_args))]
+  } else {
+    parser <- function(x) {x}
   } #end of if (length(ext_args...
   httr_call <- list(call = as.call(append(httr_call, ext_args)),
                     parser = parser)
@@ -530,24 +560,31 @@
     net_connected <- .rba_net_handle(retry_max = retry_max,
                                      retry_wait = retry_wait,
                                      verbose = verbose,
-                                     diagnostics = diagnostics)
+                                     diagnostics = diagnostics,
+                                     skip_error = skip_error)
     if (isTRUE(net_connected)) {
       ## 2.1.1 net_connection test is passed
       response <- try(eval(input_call, envir = parent.frame(n = 2)),
                       silent = !diagnostics)
-    } else {
-      ## 2.1.2 net_connection test is not passed
-      stop("No internet connection; Stopping code execution!",
-           call. = diagnostics)
     }
   } # end of step 2
 
   ## 3 Decide what to return
   if (!inherits(response, "response")) {
     ## 3.1 errors un-related to server's response
-    error_message <- response
+    error_message <- ifelse(test = net_connected,
+                            yes = as.character(response),
+                            no = "No internet connection. Stopping code execution!")
+
+    if (isFALSE(diagnostics)) {
+      error_message <- gsub(pattern = "(^Error in .*?\\(.*?\\) :\\s*)|(\\s*$)",
+                           replacement = "",
+                           x = error_message,
+                           perl = TRUE)
+    }
+    # stop or return error?
     if (isTRUE(skip_error)) {
-      return(as.character(error_message))
+      return(error_message)
     } else {
       stop(error_message, call. = diagnostics)
     }
@@ -572,7 +609,7 @@
 #'   .rba_response_parser().
 #'
 #' The function will try to use the parser specified in the 'input_call' object,
-#'   but if a parser value was provided with the 'response_parser' argument,
+#'   but if a parser value was supplied with the 'response_parser' argument,
 #'   it will have priority and will overwrite the input_call's parser input.
 #'   \cr diagnostics, verbose, retry_max, retry_wait and skip_error variables
 #'   \cr will be assigned and passed on to the subsequent executed calls.s
@@ -612,30 +649,77 @@
                             verbose = verbose,
                             diagnostics = diagnostics)
   ## 2 Parse the the response if possible
-  # Parser Provided via .rba_skeleton's 'response parser' argument will
-  # override the 'parser' provided in input call
+  # Parser supplied via .rba_skeleton's 'response parser' argument will
+  # override the 'parser' supplied in input call
   if (!is.null(response_parser)) {
     parser_input <- response_parser
   } else {
     parser_input <- input_call$parser
   }
 
-  if (inherits(response, "response") && !is.null(parser_input)) {
-    final_output <- .rba_response_parser(response, parser_input)
-  } else {
-    final_output <- response
-  }
-
   ## 3 Return the output
-  return(final_output)
+  if (inherits(response, "response")) {
+    if (!is.null(parser_input)) {
+      return(.rba_response_parser(response, parser_input))
+    } else {
+      return(invisible(NULL))
+    }
+  } else {
+    return(response)
+  }
 }
 
 #### Check Arguments #######
 
+#' Detect Required arguments
+#'
+#' This function is an internal component of .rba_args(). It will
+#'   check for required arguments (arguments with no default) in the calling
+#'   function of .rba_args() and automatically add no_null = TRUE to
+#'   the corresponding constrains list.
+#'
+#' The goal here is to make the exported functions more concise, contributers
+#'   only need to explicitly add no_null = TRUE to arguments that have
+#'   defaults but a NULL value will break the function. For example
+#'   arguments that is used to build a URL, arguments used to produce message,
+#'   etc.
+#'
+#' @param cons Constrains input of .rba_args()
+#' @param n Number of frames to go back
+#'
+#' @return List: updated cons.
+#'
+#' @family internal_arguments_check
+#' @noRd
+.rba_args_req <- function(cons, n = 2) {
+  # List required arguments *arguments with no default value
+  f_name <- as.character(sys.calls()[[sys.nframe() - n]])[[1]]
+  f_args <- try(names(formals(f_name)),
+                silent = TRUE)
+  if (!inherits(f_args, "try-error")) {
+    f <- paste0(deparse(get(f_name)), collapse = "")
+    req <- regmatches(f,
+                      regexpr("(?<=^function \\().*?(?=\\)\\s{)",
+                              f, perl = TRUE))
+    req <- f_args[!grepl(pattern = "(=)|(\\.\\.\\.)",
+                         x = unlist(strsplit(req, ",")))]
+    # Add `na_null = TRUE` to the required function
+    cons <- lapply(X = cons,
+                   FUN = function(x) {
+                     if (x[["arg"]] %in% req) {
+                       x[["no_null"]] <- TRUE
+                     }
+                     return(x)
+                   })
+  }
+
+  return(cons)
+}
+
 #' Add rbioapi options to user's Arguments Check
 #'
 #' This function is an internal component of .rba_args(). It will
-#'   add user-defiended rbioapi options variables (provided by the "..."
+#'   add user-defiended rbioapi options variables (supplied by the "..."
 #'   arguments in the exported function call) to .rba_args's cond and cons.
 #'
 #' The aim of this function is to eliminate the need
@@ -684,7 +768,7 @@
                      retry_wait = list(arg = "retry_wait",
                                        class = "numeric",
                                        len = 1,
-                                       min_val = 1))
+                                       min_val = 0))
     cons <- append(ext_cons[names(ext_cons) %in% ls(envir = parent.frame(2))],
                    cons)
     return(cons)
@@ -699,7 +783,7 @@
                    cond)
     return(cond)
   } else {
-    stop("Internal error")
+    stop("Internal Error; `what` should be `cons` or `cond.`", call. = TRUE)
   }
 }
 
@@ -710,7 +794,7 @@
 #'
 #' @param cons_i element i from .rba_args()'s cons argument.
 #' @param what what constrain to check? it should be one of the possible cons
-#'  types defined in .rba_args()'s documentations.
+#'  types defined in .rba_args()'s manual.
 #'
 #' @return Logical. TRUE if element i is correct with regard to the constrain
 #'   "what"; FALSE otherwise.
@@ -718,7 +802,7 @@
 #' @family internal_arguments_check
 #' @noRd
 .rba_args_cons_chk <- function(cons_i, what) {
-  if (any(!is.na(cons_i[["evl_arg"]]))) {
+  if (!is.null(cons_i[["evl_arg"]])) {
     output <- all(switch(what,
                          "class" = class(cons_i[["evl_arg"]]) %in% cons_i[["class"]],
                          "val" = all(cons_i[["evl_arg"]] %in% cons_i[["val"]]),
@@ -732,7 +816,8 @@
                          "regex" = grepl(pattern = cons_i[["regex"]],
                                          x = cons_i[["evl_arg"]],
                                          ignore.case = FALSE, perl = TRUE),
-                         stop("internal Error, constrian is not defiend: ", what)))
+                         stop("Internal Error; constrian is not defiend: ",
+                              what, call. = TRUE)))
     return(output)
   } else {
     return(TRUE)
@@ -747,7 +832,7 @@
 #'
 #' @param cons_i element i from .rba_args()'s cons argument.
 #' @param what what constrain produced the error? it should be one of the
-#'  possible cons types defined in .rba_args()'s documentations.
+#'  possible cons types defined in .rba_args()'s manual.
 #'
 #' @return A character string.
 #'
@@ -755,44 +840,48 @@
 #' @noRd
 .rba_args_cons_msg <- function(cons_i, what) {
   switch(what,
-         "class" = sprintf("Invalid Argument; %s should be of class `%s`.\n\t(Your provided argument is \"%s\".)",
+         "no_null" = sprintf("Invalid Argument; `%s` cannot be NULL.",
+                             cons_i[["arg"]]),
+         "class" = sprintf("Invalid Argument; %s should be of class `%s`.\n\t(Your supplied argument is \"%s\".)",
                            cons_i[["arg"]],
                            .paste2(cons_i[["class"]], last = " or ",
                                    quote = "\""),
                            class(cons_i[["evl_arg"]])),
-         "val" = sprintf("Invalid Argument; %s should be either `%s`.\n\t(Your provided argument is `%s`.)",
+         "val" = sprintf("Invalid Argument; %s should be either `%s`.\n\t(Your supplied argument is `%s`.)",
                          cons_i[["arg"]],
                          .paste2(cons_i[["val"]], last = " or ",
                                  quote = "\""),
                          cons_i[["evl_arg"]]),
-         "ran" = sprintf("Invalid Argument; %s should be `from %s to %s`.\n\t(Your provided argument is `%s`.)",
+         "ran" = sprintf("Invalid Argument; %s should be `from %s to %s`.\n\t(Your supplied argument is `%s`.)",
                          cons_i[["arg"]],
                          cons_i[["ran"]][[1]],
                          cons_i[["ran"]][[2]],
                          cons_i[["evl_arg"]]),
-         "len" = sprintf("Invalid Argument; %s should be of length `%s`.\n\t(Your provided argument's length is `%s`.)",
+         "len" = sprintf("Invalid Argument; %s should be of length `%s`.\n\t(Your supplied argument's length is `%s`.)",
                          cons_i[["arg"]],
                          cons_i[["len"]],
                          length(cons_i[["evl_arg"]])),
-         "min_len" = sprintf("Invalid Argument; %s should be of minimum length `%s`.\n\t(Your provided argument's length is `%s`.)",
+         "min_len" = sprintf("Invalid Argument; %s should be of minimum length `%s`.\n\t(Your supplied argument's length is `%s`.)",
                              cons_i[["arg"]],
                              cons_i[["min_len"]],
                              length(cons_i[["evl_arg"]])),
-         "max_len" = sprintf("Invalid Argument: %s should be of maximum length `%s`.\n\t(Your provided argument's length is `%s`.)",
+         "max_len" = sprintf("Invalid Argument: %s should be of maximum length `%s`.\n\t(Your supplied argument's length is `%s`.)",
                              cons_i[["arg"]],
                              cons_i[["max_len"]],
                              length(cons_i[["evl_arg"]])),
-         "min_val" = sprintf("Invalid Argument: %s should be equal to or greater than `%s`.\n\t(Your provided argument is `%s`.)",
+         "min_val" = sprintf("Invalid Argument: %s should be equal to or greater than `%s`.\n\t(Your supplied argument is `%s`.)",
                              cons_i[["arg"]],
                              cons_i[["min_val"]],
                              cons_i[["evl_arg"]]),
-         "max_val" = sprintf("Invalid Argument: %s should be equal to or less than `%s`.\n\t(Your provided argument is `%s`.)",
+         "max_val" = sprintf("Invalid Argument: %s should be equal to or less than `%s`.\n\t(Your supplied argument is `%s`.)",
                              cons_i[["arg"]],
                              cons_i[["max_val"]],
                              cons_i[["evl_arg"]]),
          "regex" = sprintf("Invalid Argument: %s do not have a valid format.\n\t(It should match regex pattern: %s ).",
                            cons_i[["arg"]],
-                           cons_i[["regex"]])
+                           cons_i[["regex"]]),
+         stop("Internal Error; constrian message is not defiend: ",
+              what, call. = TRUE)
   )
 }
 
@@ -809,18 +898,33 @@
 #' @family internal_arguments_check
 #' @noRd
 .rba_args_cons_wrp <- function(cons_i) {
-  all_cons <- setdiff(names(cons_i), c("arg", "class", "evl_arg"))
-  cons_i_errs <- lapply(all_cons,
-                        function(x){
-                          if (.rba_args_cons_chk(cons_i = cons_i, what = x)) {
-                            return(NA)
-                          } else {
-                            return(.rba_args_cons_msg(cons_i = cons_i, what = x))
-                          }
-                        })
+  if (is.null(cons_i[["evl_arg"]])) {
+    # check if the NULL argument is required or optional
+    if (isTRUE(cons_i[["no_null"]])) {
+      #it is not optional!
+      return(.rba_args_cons_msg(cons_i = cons_i, what = "no_null"))
+    } else {
+      # It is optional, don't run the arguments check.
+      return(NA)
+    }
+  } else {
+    #  argument is not NULL (user supplied something)
+    all_cons <- setdiff(names(cons_i), c("arg", "class", "evl_arg", "no_null"))
+    cons_i_errs <- lapply(all_cons,
+                          function(x){
+                            if (.rba_args_cons_chk(cons_i = cons_i, what = x)) {
+                              return(NA)
+                            } else {
+                              return(.rba_args_cons_msg(cons_i = cons_i, what = x))
+                            }
+                          })
 
-  cons_i_errs <- unlist(cons_i_errs[which(!is.na(cons_i_errs))])
-  return(cons_i_errs)
+    if (any(!is.na(cons_i_errs))) {
+      return(unlist(cons_i_errs[which(!is.na(cons_i_errs))]))
+    } else {
+      return(NA)
+    } #end of any(!is.na(cons_i_errs))
+  } #end of if (is.null(cons_i[["evl_arg"]]))
 }
 
 
@@ -846,7 +950,7 @@
   } else if (is.character(cond_i[[1]])) {
     cond_i_1 <- eval(parse(text = cond_i[[1]]), envir = parent.frame(3))
   } else {
-    stop("Internal error, the first element in the condition sublist",
+    stop("Internal Error; the first element in the condition sublist",
          "should be either a charachter or quoted call!", call. = TRUE)
   }
   ## Create an Error message
@@ -866,8 +970,8 @@
                       "1" = list(msg = sprintf("Argument's conditions are not satisfied; `%s` is TRUE.",
                                                as.character(enquote(cond_i[[1]]))[[2]]),
                                  warn = FALSE),
-                      stop("Internal error, invalid condition: ",
-                           enquote(cond_i[[1]])[[2]], call. = FALSE)
+                      stop("Internal Error; invalid condition: ",
+                           enquote(cond_i[[1]])[[2]], call. = TRUE)
     )
     return(err_obj)
   } else {
@@ -876,7 +980,7 @@
 
 #' Internal user's Arguments Check
 #'
-#' This function provide a flexible, yet powerful and vigorous arguments check
+#' This function supply a flexible, yet powerful and vigorous arguments check
 #'   mechanisms. It can check many properties of input variables and also,
 #'   check if a condition holds TRUE.
 #'
@@ -902,8 +1006,11 @@
 #'   }
 #'
 #' @param cons Define Constrains for input arguments. Currently they may be:
-#'   \cr 'class', 'val', 'ran', 'min_val', 'max_val', 'len', 'min_len',
+#'   \cr "no_null', class', 'val', 'ran', 'min_val', 'max_val', 'len', 'min_len',
 #'   'max_len' and/or 'regex'.
+#'   \cr note no_null automatically will be added to the function's argument
+#'   with no default value. so you do not need to add no_null for such
+#'   arguments.
 #' @param cond Expression which will be evaluated to TRUE or FALSE.
 #' @param cond_warning Should the function produce warning instead of stopping
 #'   code execution? alternatively, you could include an element to
@@ -929,7 +1036,7 @@
 
   ### 2 Check Arguments
   errors <- c()
-  ## 2.1 check if the provided object can be evaluated
+  ## 2.1 check if the supplied object can be evaluated
   cons <- lapply(X = cons,
                  FUN = function(cons_i){
                    cons_i[["evl_arg"]] <- try(expr = get(x = cons_i[["arg"]],
@@ -971,14 +1078,20 @@
     cons <- cons[is.na(class_errs)] # remove elements with wrong class
   }
   ## 2.3 check other constrains if their class is correct
+  ### Add no_null for arguments with no default value
+  cons <- .rba_args_req(cons = cons, n = 2)
+
+  ### Check
   other_errs <- lapply(cons, .rba_args_cons_wrp)
-  if (any(!is.na(other_errs))) {errors <- append(errors, unlist(other_errs))}
+  if (any(!is.na(other_errs))) {
+    errors <- append(errors, other_errs[!is.na(other_errs)])
+  }
   ## 2.4 Take actions for the errors
   if (length(errors) == 1) {
     stop(errors, call. = diagnostics)
   } else if (length(errors) > 1) {
     error_message <- paste0("\n", seq_along(errors), "- ", errors)
-    stop(sprintf("The following `%s Errors` was raised during your provided arguments check:",
+    stop(sprintf("The following `%s Errors` was raised during your supplied arguments check:",
                  length(errors)),
          error_message,
          call. = diagnostics)
@@ -1002,7 +1115,7 @@
                                   },
                                   FUN.VALUE = character(1)),
                            collapse = "")
-        cond_msg <- sprintf("The following `%s Conditional issues` were found during your provided arguments check:%s",
+        cond_msg <- sprintf("The following `%s Conditional issues` were found during your supplied arguments check:%s",
                             length(cond_msg),
                             cond_msg)
       }
@@ -1025,7 +1138,7 @@
 
 #' Parse API Response
 #'
-#' Using the input provided as 'parser' argument, this function will parse the
+#' Using the input supplied as 'parser' argument, this function will parse the
 #'   response from a REST API into appropriate R objects.
 #'
 #' The function will be called within .rba_skeleton subsequent of a
@@ -1035,7 +1148,7 @@
 #'   to a proper function:
 #'   "json->df", "json->df_no_flat", "json->list_simp", "json->list",
 #'   "json->chr", text->chr", "text->df", "tsv->df".
-#'   \cr if you provide more than one parser, the parsers will be sequentially
+#'   \cr if you supply more than one parser, the parsers will be sequentially
 #'   applied to the response (i.e. response %>% parser1 %>% parser2 %>% ...)
 #'
 #' @param response An httr response object.
@@ -1050,7 +1163,7 @@
   if (!is.vector(parsers)) { parsers <- list(parsers)}
   parsers <- sapply(X = parsers,
                     FUN = function(parser){
-                      #create a parser if not provided
+                      #create a parser if not supplied
                       if (!is.function(parser)) {
                         parser <- switch(
                           parser,
@@ -1103,7 +1216,7 @@
                                                        as = "text",
                                                        encoding = "UTF-8"))
                           },
-                          stop("Internal Error: Specify a valid parser name or provide a function!",
+                          stop("Internal Error; Specify a valid parser name or supply a function!",
                                call. = TRUE)
                         )
                       }
@@ -1202,12 +1315,14 @@
 .msg <- function(fmt, ..., sprintf = TRUE, cond = "verbose",
                  sep = "", collapse = NULL) {
   if (isTRUE(get0(cond, envir = parent.frame(1), ifnotfound = FALSE))) {
-    message(ifelse(isTRUE(sprintf) &&
-                     is.character(fmt) &&
-                     grepl("%s", fmt, fixed = TRUE),
-                   yes = sprintf(fmt, ...),
-                   no = paste(fmt, ..., sep = sep, collapse = collapse)),
-            appendLF = TRUE)
+    m <- ifelse(isTRUE(sprintf) &&
+                  is.character(fmt) &&
+                  grepl("%s", fmt, fixed = TRUE),
+                yes = sprintf(fmt, ...),
+                no = paste(fmt, ..., sep = sep, collapse = collapse))
+    if (!is.na(m)) {
+      message(m, appendLF = TRUE)
+    }
   }
   invisible()
 }
@@ -1229,10 +1344,10 @@
 #' @noRd
 .paste2 <- function(...,
                     last = " and ", sep = ", ",
-                    quote = NA, quote_all = NA) {
+                    quote = NULL, quote_all = NULL) {
   input <- c(...)
   len <- length(input)
-  if (!is.na(quote)) {
+  if (!is.null(quote)) {
     input <- sprintf("%s%s%s", quote, input, quote)
   }
   if (len > 1) {
@@ -1240,22 +1355,22 @@
                    input[len],
                    sep = last)
   }
-  if (!is.na(quote_all)) {
+  if (!is.null(quote_all)) {
     input <- sprintf("%s%s%s", quote_all, input, quote_all)
   }
   return(input)
 }
 
-#' Validate the Provided File Path or Create One
+#' Validate the supplied File Path or Create One
 #'
 #' Based on the 'save_to' argument, this function will handle different
-#'   scenarios for the provided file path. see details for more information.
+#'   scenarios for the supplied file path. see details for more information.
 #'
 #' 1- If 'save_to = FALSE': the function will return "FALSE" and no path will be
 #'   generated.
 #'   \cr 2- If 'save_to = character string': The function will validate the
 #'   input, if it is a valid file path, the content of 'save_to' will be
-#'   returned. Otherwise, if the provided input is not valid, scenario 3 will be
+#'   returned. Otherwise, if the supplied input is not valid, scenario 3 will be
 #'   executed.
 #'   \cr 3- If 'save_to = TRUE': A file path will be generated and returned
 #'   based on 'dir_name' and 'file' inputs.
@@ -1277,13 +1392,15 @@
 #' @family internal_misc
 #' @noRd
 .rba_file <- function(file,
-                      save_to = NA,
-                      dir_name = NA) {
-  if (is.na(save_to)) {
+                      save_to = NULL,
+                      dir_name = NULL) {
+  if (is.null(save_to)) {
     save_to <- get0(x = "save_file",
                     ifnotfound = FALSE,
                     envir = parent.frame(1))
-    }
+    if (is.na(save_to)) {save_to <- FALSE}
+  }
+
   if (!isFALSE(save_to)) {
     ## 1 file path will be generated unless save_to == FALSE
     # set values
@@ -1299,7 +1416,7 @@
                                         file, perl = TRUE))
     ## File path is in "save_to", if not in "file = file_name.file_ext"
     if (is.character(save_to)) {
-      # 2a the user provided a file path, just check if it is valid
+      # 2a the user supplied a file path, just check if it is valid
       if (!grepl("^[a-zA-z]:|^\\\\\\w|^/|^\\w+\\.\\w+$", save_to)) {
         ## 2a.1 not a valid file path!
         warning(sprintf("\"%s\" is not a valid file path. Ignored that.",
@@ -1307,7 +1424,7 @@
                 call. = diagnostics)
         save_to <- TRUE
       } else {
-        ## 2a.2 the provided file path is valid
+        ## 2a.2 the supplied file path is valid
         ## 2a.2.1 Does the path end to a directory or file?
         if (!grepl("/$", save_to, perl = TRUE) &&
             grepl("\\S+\\.\\S*", basename(save_to), perl = TRUE)) {
@@ -1322,7 +1439,7 @@
                                           basename(save_to), perl = TRUE))
           # 2a.3 Check if the path and extension agree
           if (!grepl(def_file_ext, file_ext, ignore.case = TRUE)) {
-            warning(sprintf("The Response file's type (\"%s\") does not match the extension of your provided file path(\"%s\").",
+            warning(sprintf("The Response file's type (\"%s\") does not match the extension of your supplied file path(\"%s\").",
                             def_file_ext, basename(save_to)),
                     call. = diagnostics)
           }
@@ -1338,13 +1455,13 @@
       }
     }
     if (isTRUE(save_to)) {
-      ## 2b User didn't provide a file path, use defaults
+      ## 2b User didn't supply a file path, use defaults
       overwrite <- FALSE
       ## 2b.1 extract the default file name and extension
       file_ext <- def_file_ext
       file_name <- def_file_name
       ## 2b.2 set directory name
-      dir_name <- ifelse(is.na(dir_name),
+      dir_name <- ifelse(is.null(dir_name),
                          yes = get0("dir_name", envir = parent.frame(1),
                                     ifnotfound = getOption("rba_dir_name")),
                          no = dir_name)
@@ -1396,7 +1513,7 @@
 #'   \cr Also the function will ignore any arguments which is not standard and
 #'   issues an informative warning for the user.
 #'
-#' @param ... Extra arguments that were provided in the endpoints functions.
+#' @param ... Extra arguments that were supplied in the endpoints functions.
 #' @param ignore_save if the function has a dedicated file saving argument,
 #'   set this to TRUE.
 #'
@@ -1408,24 +1525,33 @@
 .rba_ext_args <- function(..., ignore_save = FALSE) {
   ext_args <- list(...)
   rba_opts <- getOption("rba_user_options") #available options for the end-users
-  if (length(ext_args) > 0) { #user provided something in ...
-    unnamed_args <- which(names(ext_args) == "" | is.na(names(ext_args)))
-    invalid_args <- setdiff(names(ext_args[-unnamed_args]), rba_opts)
+  if (length(ext_args) > 0) { #user supplied something in ...
+    ext_arg_names <- names(ext_args)
+
+    if (is.null(ext_arg_names)) {
+      unnamed_args <- seq_along(ext_args)
+    } else {
+      unnamed_args <- which(ext_arg_names == "" | is.na(ext_arg_names))
+    }
+    invalid_args <- which(!ext_arg_names %in% c(rba_opts, ""))
+
     if (length(c(unnamed_args, invalid_args)) > 0) {
       warning(sprintf("invalid rbioapi options were ignored:%s%s",
                       ifelse(length(unnamed_args) != 0,
-                             yes = sprintf("\n- %s unnamed argument(s).",
-                                           length(unnamed_args)),
+                             yes = sprintf("\n- unnamed argument(s): %s",
+                                           .paste2(ext_args[unnamed_args],
+                                                   quote = "`")),
                              no = ""),
                       ifelse(length(invalid_args) != 0,
                              yes = sprintf("\n- %s",
-                                           .paste2(invalid_args,
+                                           .paste2(sprintf("%s = %s",
+                                                           ext_arg_names[invalid_args],
+                                                           ext_args[invalid_args]),
                                                    last = " and ",
-                                                   quote = "\"")),
+                                                   quote = "`")),
                              no = "")
       ), call. = FALSE)
-      ext_args <- ext_args[-c(unnamed_args,
-                              which(names(ext_args) %in% invalid_args))]
+      ext_args <- ext_args[-c(unnamed_args, invalid_args)]
     }
     if (isTRUE(ignore_save) && utils::hasName(ext_args, "save_file")) {
       warning("This function has a dedicated file-saving argument, ",
@@ -1437,9 +1563,9 @@
   # create option variables
   for (opt in rba_opts) {
     assign(x = opt,
-           value = ifelse(utils::hasName(ext_args, opt),
-                          yes = ext_args[[opt]],
-                          no = getOption(paste0("rba_", opt))),
+           value = ifelse(is.null(ext_args[[opt]]) || is.na(ext_args[[opt]]),
+                          yes = getOption(paste0("rba_", opt)),
+                          no = ext_args[[opt]]),
            envir = parent.frame(1))
   }
 

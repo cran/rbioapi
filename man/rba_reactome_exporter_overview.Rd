@@ -7,24 +7,24 @@
 rba_reactome_exporter_overview(
   species,
   output_format = "png",
-  save_to = NA,
+  save_to = NULL,
   image_quality = 5,
-  flag_element = NA,
+  flag_element = NULL,
   flg_interactors = TRUE,
-  sel = NA,
+  sel = NULL,
   title = TRUE,
   margin = 15,
   diagram_profile = "Copper",
-  token = NA,
+  token = NULL,
   resource = "TOTAL",
-  exp_column = NA,
+  exp_column = NULL,
   coverage = FALSE,
   ...
 )
 }
 \arguments{
 \item{species}{Numeric or Character: NCBI Taxonomy identifier (Human Taxonomy
-ID is 9606.) or species name (e.g. "Homo sapiens"). Refer to
+ID is 9606.) or species name (e.g. "Homo sapiens"). See
 \code{\link{rba_reactome_species}} or
 \href{https://reactome.org/content/schema/objects/Species}{Reactome
 Data Schema: Entries: Species}.}
@@ -32,8 +32,8 @@ Data Schema: Entries: Species}.}
 \item{output_format}{Images format, Can be one of: png (default), jpeg,
 svg or gif.}
 
-\item{save_to}{NA or Character:\itemize{
-\item NA: Save the file to an automatically-generated path.
+\item{save_to}{NULL or Character:\itemize{
+\item NULL: Save the file to an automatically-generated path.
 \item Character string: A valid file path to save the file to.}}
 
 \item{image_quality}{Numeric: A number  ranging from 1 to 10. 1 is the
@@ -63,20 +63,20 @@ top of the given pathways overview. see:
 \item{resource}{The analysis resource for which the results will be
 overlaid on top of the given pathways overview.}
 
-\item{exp_column}{numeric: (only if token is provided) Specify the
+\item{exp_column}{numeric: (only if token is supplied) Specify the
 expression column for the overlay.}
 
 \item{coverage}{Logical: Should the analysis coverage values be overlaid?
 (default = FALSE)}
 
-\item{...}{rbioapi option(s). Refer to \code{\link{rba_options}}'s
-arguments documentation for more information on available options.}
+\item{...}{rbioapi option(s). See \code{\link{rba_options}}'s
+arguments manual for more information on available options.}
 }
 \value{
 NULL, Based to the inputs, an image file will be saved to disk.
 }
 \description{
-This function will Save a Pathway Overview of the provided specie
+This function will Save a Pathway Overview of the supplied specie
   as an image file.
 }
 \section{Corresponding API Resources}{

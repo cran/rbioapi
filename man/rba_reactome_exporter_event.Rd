@@ -4,26 +4,26 @@
 \alias{rba_reactome_exporter_event}
 \title{Exports A Reactome Event to SBGN or SBML}
 \usage{
-rba_reactome_exporter_event(event_id, output_format, save_to = NA, ...)
+rba_reactome_exporter_event(event_id, output_format, save_to = NULL, ...)
 }
 \arguments{
 \item{event_id}{Reactome event's database IDs (DbId) or Stable IDs (StId).}
 
 \item{output_format}{Either "sbgn" or "sbml".}
 
-\item{save_to}{NA or Character:\itemize{
-\item NA: Save the file to an automatically-generated path.
+\item{save_to}{NULL or Character:\itemize{
+\item NULL: Save the file to an automatically-generated path.
 \item Character string: A valid file path to save the file to.}}
 
-\item{...}{rbioapi option(s). Refer to \code{\link{rba_options}}'s
-arguments documentation for more information on available options.}
+\item{...}{rbioapi option(s). See \code{\link{rba_options}}'s
+arguments manual for more information on available options.}
 }
 \value{
 NULL, According to the inputs, a SBGN or SBML file will be saved to
   disk.
 }
 \description{
-This function will export a provided Reactome Event (Pathway or Reaction)
+This function will export a supplied Reactome Event (Pathway or Reaction)
   to a SBGN (Systems Biology Graphical Notation) or SBML (Systems Biology
   Markup Language)
 }

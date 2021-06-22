@@ -1,11 +1,11 @@
 #' Handle Species argument input for miEAA endpoints
 #'
-#' This internal function will make it possible for the users to provide
+#' This internal function will make it possible for the users to supply
 #'   variety of specie's name type or if they have entered a wrongly-formatted
 #'   or not supported species, to produce an informative error message
 #'
 #' @param sp specie input.
-#' @param to_name (logical) (default = FALSE) to convert a provided species
+#' @param to_name (logical) (default = FALSE) to convert a supplied species
 #'   abbreviation to specie's scientific name.
 #'
 #' @return If to_name = FALSE, a three-lettered character string of
@@ -83,14 +83,14 @@
 #'   \item "Danio rerio", "dre" or 7955
 #'   \item "Gallus gallus", "gga" or 9031
 #'   \item "Sus scrofa", "ssc" or  9823}
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @section Corresponding API Resources:
 #'  "GET  "https://ccb-compute2.cs.uni-saarland.de/mieaa2/api/v1/enrichment_categories/{species}/{mirna_type}/"
 #'
 #' @return a named character vector with the supported categories for
-#'   your provided input combination.
+#'   your supplied input combination.
 #'
 #' @references \itemize{
 #'   \item Fabian Kern, Tobias Fehlmann, Jeffrey Solomon, Louisa Schwed,
@@ -163,17 +163,17 @@ rba_mieaa_cats <- function(mirna_type, species, ...) {
 #'   versions.
 #'
 #' @param mirna A vector of miRNA accessions to be converted.
-#' @param mirna_type Type of your provided miRNA accession. either "mature"
+#' @param mirna_type Type of your supplied miRNA accession. either "mature"
 #'   or "precursor".
-#' @param input_version (numeric) miRBase version of your provided miRNA
+#' @param input_version (numeric) miRBase version of your supplied miRNA
 #'   accessions.
 #' @param output_version (numeric) To what version should your miRNA accessions
 #'   be converted?
 #' @param simple_output (logical) If FALSE (default), the result will be a
 #'   two-columned data frame with your input and output accessions. Otherwise,
 #'   if TRUE, only the output miRNA accessions will be returned.
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @section Corresponding API Resources:
 #'  "POST https://ccb-compute2.cs.uni-saarland.de/mieaa2/api/v1/mirbase_converter/"
@@ -271,7 +271,7 @@ rba_mieaa_convert_version <- function(mirna,
 #'   corresponding miRNA accessions or vice versa.
 #'
 #' @param mirna A vector of miRNA accessions to be converted.
-#' @param input_type Type of your provided miRNA accession. either "mature"
+#' @param input_type Type of your supplied miRNA accession. either "mature"
 #'   or "precursor".
 #' @param only_unique (logical) miRBase precursor and mature miRNA accessions
 #'   are not uniquely mapped. (i.e. you may get more than one results for
@@ -280,8 +280,8 @@ rba_mieaa_convert_version <- function(mirna,
 #' @param simple_output (logical) If FALSE (default), the result will be a
 #'   two-columned data frame with your input and output accessions. Otherwise,
 #'   if TRUE, only the output miRNA accessions will be returned.
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @section Corresponding API Resources:
 #'  "POST https://ccb-compute2.cs.uni-saarland.de/mieaa2/api/v1/mirna_precursor_converter/"
@@ -391,7 +391,7 @@ rba_mieaa_convert_type <- function(mirna,
 #'   \item Your list should be entirely consisted of either mature or
 #'   precursor miRNA accession. A mixture of both is not accepted.
 #'   }
-#' @param mirna_type Type of your provided miRNA accession. either "mature"
+#' @param mirna_type Type of your supplied miRNA accession. either "mature"
 #'   or "precursor".
 #' @param test_type The analysis to perform. can be either "ORA" for 'Over
 #'   Representation Analysis' or "GSEA" for miRNA (Gene)
@@ -413,10 +413,10 @@ rba_mieaa_convert_type <- function(mirna,
 #' @param categories one or multiple Category names to be used for miRNA set
 #'   enrichment analysis. Note that \itemize{
 #'   \item Available categories varies based on your chosen specie and if
-#'    your provided miRNA type is mature or precursor. Use
+#'    your supplied miRNA type is mature or precursor. Use
 #'    \code{\link{rba_mieaa_cats}} to retrieve a list of available category
 #'    names for a given specie and miRNA type.
-#'   \item If you provide NA, the analysis will be performed on all of the
+#'   \item If you supply NULL, the analysis will be performed on all of the
 #'    available categories.}
 #' @param p_adj_method P-value adjustment method to be used. Should be one of:
 #'   "none", "fdr" (default), "bonferroni", "BY", "hochberg", "holm" or "hommel"
@@ -428,12 +428,12 @@ rba_mieaa_convert_type <- function(mirna,
 #'   values equal to or greater than this threshold will be dropped from the
 #'   results.
 #' @param min_hits (numeric) How many miRNA should a sub-category have from
-#'   your provided test-list to be included in the results? (default is 2)
+#'   your supplied test-list to be included in the results? (default is 2)
 #' @param ref_set (Optional) Only applicable when test_type is "ORA".
 #'   This character vector will be used as your reference (background or
 #'   universe) set for p-value calculations.
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @section Corresponding API Resources:
 #'  "POST https://ccb-compute2.cs.uni-saarland.de/mieaa2/api/v1/enrichment_analysis/{species}/{type}/{test}/"
@@ -460,7 +460,7 @@ rba_mieaa_convert_type <- function(mirna,
 #'     mirna_type = "mature",
 #'     test_type = "GSEA",
 #'     species = 9606,
-#'     categories = NA)
+#'     categories = NULL)
 #' }
 #'
 #' @family "miEAA"
@@ -469,12 +469,12 @@ rba_mieaa_enrich_submit <- function(test_set,
                                     mirna_type,
                                     test_type,
                                     species = "hsa",
-                                    categories = NA,
+                                    categories = NULL,
                                     p_adj_method = "fdr",
                                     independent_p_adj = TRUE,
                                     sig_level = 0.05,
                                     min_hits = 2,
-                                    ref_set = NA,
+                                    ref_set = NULL,
                                     ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -484,14 +484,17 @@ rba_mieaa_enrich_submit <- function(test_set,
                              val = c("GSEA",
                                      "ORA")),
                         list(arg = "test_set",
-                             class = "character"),
+                             class = "character",
+                             no_null = TRUE),
                         list(arg = "mirna_type",
                              class = "character",
+                             no_null = TRUE,
                              val = c("mature",
                                      "precursor")),
                         list(arg = "species",
                              class = c("character",
                                        "numeric"),
+                             no_null = TRUE,
                              len = 1),
                         list(arg = "categories",
                              class = "character"),
@@ -519,16 +522,23 @@ rba_mieaa_enrich_submit <- function(test_set,
   all_cats <- rba_mieaa_cats(mirna_type = mirna_type,
                              species = species,
                              verbose = FALSE)
-  if (all(is.na(categories))) {
+  if (is.null(categories)) {
     categories <- all_cats
-    .msg("No categories were provided, Requesting enrichment using all of the %s available categories for species '%s'.",
+    .msg("No categories were supplied, Requesting enrichment using all of the %s available categories for species '%s'.",
          length(categories),
          .rba_mieaa_species(species, to_name = TRUE))
   } else {
     cats_dif <- setdiff(categories, all_cats)
     if (length(cats_dif) != 0) {
-      stop("Invalid categories! The following requested categories do not match your provided specie and miRNA type:\n",
-           .paste2(cats_dif, last = " and "))
+      invalid_cats_msg <- sprintf("Invalid categories! The following requested categories do not match your supplied specie and miRNA type:\n%s",
+                                  .paste2(cats_dif, last = " and "))
+      if (isTRUE(get("skip_error"))) {
+        return(invalid_cats_msg)
+      } else {
+        stop(invalid_cats_msg,
+             call. = FALSE)
+      }
+
     }
   }
   names(categories) <- rep("categories", length(categories))
@@ -545,7 +555,7 @@ rba_mieaa_enrich_submit <- function(test_set,
                                       significance_level = sig_level,
                                       threshold_level = min_hits),
                           list("reference_set",
-                               test_type == "ORA" && !is.na(ref_set),
+                               test_type == "ORA" && !is.null(ref_set),
                                paste(ref_set, collapse = "\n")))
   call_body <- append(call_body, categories)
 
@@ -583,14 +593,14 @@ rba_mieaa_enrich_submit <- function(test_set,
 #'
 #' @param job_id The job-id (a character string) of a submitted enrichment
 #'   analysis.
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @section Corresponding API Resources:
 #'  "GET https://ccb-compute2.cs.uni-saarland.de/mieaa2/api/v1/job_status/{job_id}"
 #'
 #' @return A list containing the status value for a analysis that corresponds
-#'   to your provided job-id.
+#'   to your supplied job-id.
 #'
 #' @references \itemize{
 #'   \item Fabian Kern, Tobias Fehlmann, Jeffrey Solomon, Louisa Schwed,
@@ -655,8 +665,8 @@ rba_mieaa_enrich_status <- function(job_id, ...) {
 #'   "q_value" or "observed" .
 #' @param sort_asc (logical) If TRUE, the results will be sorted in ascending
 #'   order. If FALSE, the results will be sorted in descending order.
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @section Corresponding API Resources:
 #'  "GET https://ccb-compute2.cs.uni-saarland.de/mieaa2/api/v1/results/{job_id}"
@@ -694,6 +704,7 @@ rba_mieaa_enrich_results <- function(job_id,
                              len = 1),
                         list(arg = "sort_by",
                              class = "character",
+                             no_null = TRUE,
                              val = c("category",
                                      "subcategory",
                                      "enrichment",
@@ -706,33 +717,13 @@ rba_mieaa_enrich_results <- function(job_id,
        job_id)
 
   ## Build Function-Specific Call
-  parser_input <- list("json->df",
-                       function(x) {
-                         colnames(x) <- switch(as.character(ncol(x)),
-                                               "8" = c("category", "subcategory", "enrichment",
-                                                       "p_value", "p_adjusted", "q_value",
-                                                       "observed", "mirnas/precursors"),
-                                               "9" = c("category", "subcategory", "enrichment",
-                                                       "p_value", "p_adjusted", "q_value",
-                                                       "expected",
-                                                       "observed", "mirnas/precursors"))
-                         x$p_value <- as.numeric(x$p_value)
-                         x$p_adjusted <- as.numeric(x$p_adjusted)
-                         x$q_value <- as.numeric(x$q_value)
-                         x$observed <- as.numeric(x$observed)
-                         if (utils::hasName(x, "expected")) {
-                           x$expected <- as.numeric(x$expected)
-                         }
-                         x <- x[order(x[[sort_by]], decreasing = !sort_asc), ]
-                         return(x)
-                       })
   input_call <- .rba_httr(httr = "get",
                           url = .rba_stg("mieaa", "url"),
                           path = sprintf("%s/enrichment_analysis/results/%s/",
                                          .rba_stg("mieaa", "pth"),
                                          job_id),
                           accept = "application/json",
-                          parser = parser_input,
+                          parser = "json->df",
                           save_to = .rba_file("rba_mieaa_info.json"))
 
   ## Call API
@@ -750,7 +741,7 @@ rba_mieaa_enrich_results <- function(job_id,
 #'   order:
 #'   \enumerate{
 #'   \item Call \code{\link{rba_mieaa_enrich_submit}} to Submit an enrichment
-#'     analysis request to miEAA servers, using your provided miRNA lists and
+#'     analysis request to miEAA servers, using your supplied miRNA lists and
 #'     other arguments.
 #'   \item Once your job was successfully submitted, it will call
 #'     \code{\link{rba_mieaa_enrich_status}} every 5 seconds, to check the
@@ -759,7 +750,7 @@ rba_mieaa_enrich_results <- function(job_id,
 #'   \item Call \code{\link{rba_mieaa_enrich_results}} to retrieve the results
 #'     of your enrichment analysis.
 #'   }
-#'   See each function's documentation for more details.
+#'   See each function's manual for more details.
 #'
 #' @inheritParams rba_mieaa_enrich_submit
 #' @inheritParams rba_mieaa_enrich_results
@@ -787,7 +778,7 @@ rba_mieaa_enrich_results <- function(job_id,
 #'      mirna_type = "mature",
 #'      test_type = "GSEA",
 #'      species = 9606,
-#'      categories = NA)
+#'      categories = NULL)
 #' }
 #'
 #' @family "miEAA"
@@ -796,12 +787,12 @@ rba_mieaa_enrich <- function(test_set,
                              mirna_type,
                              test_type,
                              species,
-                             categories = NA,
+                             categories = NULL,
                              p_adj_method = "fdr",
                              independent_p_adj = TRUE,
                              sig_level = 0.05,
                              min_hits = 2,
-                             ref_set = NA,
+                             ref_set = NULL,
                              sort_by = "p_adjusted",
                              sort_asc = TRUE,
                              ...) {
@@ -819,19 +810,31 @@ rba_mieaa_enrich <- function(test_set,
                                    min_hits = min_hits,
                                    ref_set = ref_set,
                                    ...)
-  .msg(" -- Step 2/3: Checking for Submitted enrichment job's status every 5 seconds.\n",
-       "    Your submitted job ID is: ", step1$job_id)
-  step2 <- 0L
-  while (step2 != 100L) {
-    if (isTRUE(get("verbose"))) { cat(".") }
-    Sys.sleep(5)
-    step2 <- rba_mieaa_enrich_status(job_id = step1$job_id,
-                                     verbose = FALSE, ...)[["status"]]
+  if (utils::hasName(step1, "job_id")) {
+    .msg("\n -- Step 2/3: Checking for Submitted enrichment job's status every 5 seconds.\n",
+         "    Your submitted job ID is: ", step1$job_id)
+    step2 <- 0L
+    while (step2 != 100L) {
+      if (isTRUE(get("verbose"))) { cat(".") }
+      Sys.sleep(5)
+      step2 <- rba_mieaa_enrich_status(job_id = step1$job_id,
+                                       verbose = FALSE, ...)[["status"]]
+    }
+    .msg("\n -- Step 3/3: Retrieving the results of the finished enrichment job.")
+    step3 <- rba_mieaa_enrich_results(job_id = step1$job_id,
+                                      sort_by = sort_by,
+                                      sort_asc = sort_asc,
+                                      ...)
+    return(step3)
+  } else {
+    if (isTRUE(get("skip_error"))) {
+      return(step1)
+    } else {
+      stop("Step 1 returned invalid results, ",
+           "maybe skip_error is TRUE and the connection encontered errors.",
+           "\n Please run this function again or run the steps manually.",
+           call. = get("diagnostics"))
+    }
   }
-  .msg(" -- Step 3/3: Retrieving the results of the finished enrichment job.")
-  step3 <- rba_mieaa_enrich_results(job_id = step1$job_id,
-                                    sort_by = sort_by,
-                                    sort_asc = sort_asc,
-                                    ...)
-  return(step3)
+
 }

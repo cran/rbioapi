@@ -24,8 +24,8 @@
 #'
 #' Using this function, you can search and retrieve UniProt Knowledge-base
 #'   (UniProtKB) protein entries using variety of options. You may also
-#'   refine your search with modifiers such as sequence length, reviews status
-#'   etc. refer to "Arguments" section" for more information.
+#'   refine your search with modifiers such as sequence length, review status
+#'   etc. See "Arguments" section" for more information.
 #'
 #'   Note that this is a search function. Thus, you are not required to fill
 #'   every argument; You may use whatever combinations of arguments you see
@@ -40,7 +40,7 @@
 #'  "GET https://www.ebi.ac.uk/proteins/api/proteins"
 #'
 #' @param accession \href{https://www.uniprot.org/help/accession_numbers}{
-#'   UniProtKB primary or secondary accession}(s). You can provide up to 100
+#'   UniProtKB primary or secondary accession}(s). You can supply up to 100
 #'   accession numbers.
 #' @param reviewed Logical: If TRUE, only return
 #'   "UniProtKB/Swiss-Prot" (reviewed) entries; If FALSE, only return TrEMBL
@@ -51,34 +51,34 @@
 #'   \item 2: Return both.}
 #'   see: \href{https://www.uniprot.org/help/alternative_products}{Alternative
 #'   products}
-#' @param go_term Limit the search to entries associated with your provided GO
+#' @param go_term Limit the search to entries associated with your supplied GO
 #'   (\href{https://www.uniprot.org/help/gene_ontology}{Gene Ontology}) term.
-#'   You can provide Either GO ID or a character string -partially or fully-
+#'   You can supply Either GO ID or a character string -partially or fully-
 #'   matching the term. e.g. "GO:0001776" or "leukocyte homeostasis". if You
-#'   provide "leukocyte", any term containing that word will be included,
+#'   supply "leukocyte", any term containing that word will be included,
 #'   e.g "leukocyte chemotaxis", "leukocyte activation".
-#' @param keyword Limit the search to entries that contain your provided
+#' @param keyword Limit the search to entries that contain your supplied
 #'   keyword. see: \href{https://www.uniprot.org/keywords/}{UniProt Keywords}
 #' @param ec \href{https://enzyme.expasy.org/}{EC (Enzyme Commission) number(s)}.
-#'   You can provide up to 20 EC numbers.
+#'   You can supply up to 20 EC numbers.
 #' @param gene \href{https://www.uniprot.org/help/gene_name}{UniProt gene
-#'   name(s)}. You can provide up to 20 gene names. e.g. if you provide
+#'   name(s)}. You can supply up to 20 gene names. e.g. if you supply
 #'   "CD40", "CD40 ligand" will also be included.
 #' @param exact_gene \href{https://www.uniprot.org/help/gene_name}{UniProt
-#'   exact gene name(s)}. You can provide up to 20 exact gene names. e.g.
-#'   if you provide "CD40", "CD40 ligand" will not be included in the results.
+#'   exact gene name(s)}. You can supply up to 20 exact gene names. e.g.
+#'   if you supply "CD40", "CD40 ligand" will not be included in the results.
 #' @param protein \href{https://www.uniprot.org/help/protein_names}{UniProt
 #'   protein name}
 #' @param organism \href{https://www.uniprot.org/taxonomy/}{Organism name}.
 #' @param taxid NIH-NCBI \href{https://www.uniprot.org/taxonomy/}{Taxon ID}.
-#'   You can provide up to 20 taxon IDs.
+#'   You can supply up to 20 taxon IDs.
 #' @param pubmed Entries which \href{https://www.uniprot.org/citations/}{cite
-#'   to} the article with your provided PubMed ID.
+#'   to} the article with your supplied PubMed ID.
 #' @param seq_length An exact sequence length (e.g. 150) or a range of sequence
 #'   lengths (e.g. "130-158").
 #' @param md5 Sequence md5 value.
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @return A List where each element corresponds to one UniProt entity returned
 #'   by your search query. The element itself is a sub-list containing all
@@ -119,20 +119,20 @@
 #'
 #' @family "UniProt - Proteins"
 #' @export
-rba_uniprot_proteins_search <- function(accession = NA,
-                                        reviewed = NA,
-                                        isoform = NA,
-                                        go_term = NA,
-                                        keyword = NA,
-                                        ec = NA,
-                                        gene = NA,
-                                        exact_gene = NA,
-                                        protein = NA,
-                                        organism = NA,
-                                        taxid = NA,
-                                        pubmed = NA,
-                                        seq_length = NA,
-                                        md5 = NA,
+rba_uniprot_proteins_search <- function(accession = NULL,
+                                        reviewed = NULL,
+                                        isoform = NULL,
+                                        go_term = NULL,
+                                        keyword = NULL,
+                                        ec = NULL,
+                                        gene = NULL,
+                                        exact_gene = NULL,
+                                        protein = NULL,
+                                        organism = NULL,
+                                        taxid = NULL,
+                                        pubmed = NULL,
+                                        seq_length = NULL,
+                                        md5 = NULL,
                                         ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -174,58 +174,58 @@ rba_uniprot_proteins_search <- function(accession = NA,
                         list(arg = "md5",
                              class = "character")))
 
-  .msg("Searching UniProt and retrieving proteins that match your provided inputs.")
+  .msg("Searching UniProt and retrieving proteins that match your supplied inputs.")
   ## Build GET API Request's query
   call_query <- .rba_query(init = list("size" = "-1"),
                            list("accession",
-                                any(!is.na(accession)),
+                                !is.null(accession),
                                 paste0(accession,
                                        collapse = ",")),
                            list("reviewed",
-                                !is.na(reviewed),
+                                !is.null(reviewed),
                                 ifelse(reviewed,
                                        "true",
                                        "false")),
                            list("isoform",
-                                !is.na(isoform),
+                                !is.null(isoform),
                                 isoform),
                            list("goterms",
-                                !is.na(go_term),
+                                !is.null(go_term),
                                 go_term),
                            list("keywords",
-                                !is.na(keyword),
+                                !is.null(keyword),
                                 keyword),
                            list("ec",
-                                any(!is.na(ec)),
+                                !is.null(ec),
                                 paste0(ec,
                                        collapse = ",")),
                            list("gene",
-                                any(!is.na(gene)),
+                                !is.null(gene),
                                 paste0(gene,
                                        collapse = ",")),
                            list("exact_gene",
-                                any(!is.na(exact_gene)),
+                                !is.null(exact_gene),
                                 paste0(exact_gene,
                                        collapse = ",")),
                            list("protein",
-                                !is.na(protein),
+                                !is.null(protein),
                                 protein),
                            list("organism",
-                                !is.na(organism),
+                                !is.null(organism),
                                 organism),
                            list("taxid",
-                                any(!is.na(taxid)),
+                                !is.null(taxid),
                                 paste0(taxid,
                                        collapse = ",")),
                            list("pubmed",
-                                any(!is.na(pubmed)),
+                                !is.null(pubmed),
                                 paste0(pubmed,
                                        collapse = ",")),
                            list("seq_length",
-                                !is.na(seq_length),
+                                !is.null(seq_length),
                                 seq_length),
                            list("md5",
-                                !is.na(md5),
+                                !is.null(md5),
                                 md5))
   ## Build Function-Specific Call
   parser_input <- list("json->list",
@@ -262,15 +262,15 @@ rba_uniprot_proteins_search <- function(accession = NA,
 #'   UniProtKB primary or secondary accession}.
 #' @param interaction Logical: (default = FALSE) Only retrieve
 #'   \href{https://www.uniprot.org/help/interaction_section}{interaction}
-#'   information of your provided UniProt entity?
+#'   information of your supplied UniProt entity?
 #' @param isoforms Logical: (default = FALSE) Only retrieve
 #'   \href{https://www.uniprot.org/help/alternative_products}{isoforms} of your
-#'   provided UniProt entity?
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#'   supplied UniProt entity?
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @return A list that contains UniProt protein informations with your
-#'   provided accession.
+#'   supplied accession.
 #'
 #' @references \itemize{
 #'   \item Andrew Nightingale, Ricardo Antunes, Emanuele Alpi, Borisas
@@ -363,11 +363,11 @@ rba_uniprot_proteins <- function(accession,
 #'   \item 1: Return isoforms only.}
 #'   see: \href{https://www.uniprot.org/help/alternative_products}{Alternative
 #'   products}
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @return List which each element is a UniProt entity that correspond to
-#'   your provided cross-reference database name and ID.
+#'   your supplied cross-reference database name and ID.
 #'
 #' @references \itemize{
 #'   \item Andrew Nightingale, Ricardo Antunes, Emanuele Alpi, Borisas
@@ -394,8 +394,8 @@ rba_uniprot_proteins <- function(accession,
 #' @export
 rba_uniprot_proteins_crossref <- function(db_id,
                                           db_name,
-                                          reviewed = NA,
-                                          isoform = NA,
+                                          reviewed = NULL,
+                                          isoform = NULL,
                                           ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -414,12 +414,12 @@ rba_uniprot_proteins_crossref <- function(db_id,
   ## Build GET API Request's query
   call_query <- .rba_query(init = list("size" = "-1"),
                            list("reviewed",
-                                !is.na(reviewed),
+                                !is.null(reviewed),
                                 ifelse(reviewed,
                                        "true",
                                        "false")),
                            list("isoform",
-                                !is.na(isoform),
+                                !is.null(isoform),
                                 isoform))
   ## Build Function-Specific Call
   input_call <- .rba_httr(httr = "get",
@@ -458,14 +458,14 @@ rba_uniprot_proteins_crossref <- function(db_id,
 #'  "GET https://www.ebi.ac.uk/proteins/api/features"
 #'
 #' @param accession \href{https://www.uniprot.org/help/accession_numbers}{
-#'   UniProtKB primary or secondary accession}(s). You can provide up to 100
+#'   UniProtKB primary or secondary accession}(s). You can supply up to 100
 #'   accession numbers.
 #' @param gene \href{https://www.uniprot.org/help/gene_name}{UniProt gene
-#'   name(s)}. You can provide up to 20 gene names. e.g. if you provide
+#'   name(s)}. You can supply up to 20 gene names. e.g. if you supply
 #'   "CD40", "CD40 ligand" will also be included.
 #' @param exact_gene \href{https://www.uniprot.org/help/gene_name}{UniProt
-#'   exact gene name(s)}. You can provide up to 20 exact gene names. e.g.
-#'   if you provide "CD40", "CD40 ligand" will not be included in the results.
+#'   exact gene name(s)}. You can supply up to 20 exact gene names. e.g.
+#'   if you supply "CD40", "CD40 ligand" will not be included in the results.
 #' @param protein \href{https://www.uniprot.org/help/protein_names}{UniProt
 #'   protein name}
 #' @param reviewed Logical: If TRUE, only return
@@ -473,12 +473,12 @@ rba_uniprot_proteins_crossref <- function(db_id,
 #'   (un-reviewed) entries.
 #' @param organism \href{https://www.uniprot.org/taxonomy/}{Organism name}.
 #' @param taxid NIH-NCBI \href{https://www.uniprot.org/taxonomy/}{Taxon ID}.
-#'   You can provide up to 20 taxon IDs.
+#'   You can supply up to 20 taxon IDs.
 #' @param categories \href{https://www.uniprot.org/help/sequence_annotation}{
 #'   Sequence annotation (Features)} categories (subsection). accepted values
 #'   are: "MOLECULE_PROCESSING", "TOPOLOGY", "SEQUENCE_INFORMATION",
 #'   "STRUCTURAL", "DOMAINS_AND_SITES", "PTM", "VARIANTS" and/or "MUTAGENESIS".
-#'   You can provide up to 8 categories.
+#'   You can supply up to 8 categories.
 #' @param types \href{https://www.uniprot.org/help/sequence_annotation}{
 #'   Sequence annotation (Features)} types. accepted values
 #'   are: "INIT_MET", "SIGNAL", "PROPEP", "TRANSIT", "CHAIN", "PEPTIDE",
@@ -487,9 +487,9 @@ rba_uniprot_proteins_crossref <- function(db_id,
 #'   "ACT_SITE", "METAL", "BINDING", "SITE", "NON_STD", "MOD_RES", "LIPID",
 #'   "CARBOHYD", "DISULFID", "CROSSLNK", "VAR_SEQ", "VARIANT", "MUTAGEN",
 #'   "UNSURE", "CONFLICT", "NON_CONS", "NON_TER", "HELIX", "TURN", "STRAND"
-#'   and/or "INTRAMEM". You can provide up to 20 types.
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#'   and/or "INTRAMEM". You can supply up to 20 types.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @return List where each element corresponds to one UniProt entity returned
 #'   by your search query. The element itself is a sub-list containing all
@@ -528,15 +528,15 @@ rba_uniprot_proteins_crossref <- function(db_id,
 #'
 #' @family "UniProt - Features"
 #' @export
-rba_uniprot_features_search <- function(accession = NA,
-                                        gene = NA,
-                                        exact_gene = NA,
-                                        protein = NA,
-                                        reviewed = NA,
-                                        organism = NA,
-                                        taxid = NA,
-                                        categories = NA,
-                                        types = NA,
+rba_uniprot_features_search <- function(accession = NULL,
+                                        gene = NULL,
+                                        exact_gene = NULL,
+                                        protein = NULL,
+                                        reviewed = NULL,
+                                        organism = NULL,
+                                        taxid = NULL,
+                                        categories = NULL,
+                                        types = NULL,
                                         ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -615,42 +615,42 @@ rba_uniprot_features_search <- function(accession = NA,
                         ))
   )
 
-  .msg("Searching UniProt and retrieving sequence annotations (features) of proteins that match your provided inputs.")
+  .msg("Searching UniProt and retrieving sequence annotations (features) of proteins that match your supplied inputs.")
   ## Build GET API Request's query
   call_query <- .rba_query(init = list("size" = "-1"),
                            list("accession",
-                                any(!is.na(accession)),
+                                !is.null(accession),
                                 paste0(accession,
                                        collapse = ",")),
                            list("gene",
-                                any(!is.na(gene)),
+                                !is.null(gene),
                                 paste0(gene,
                                        collapse = ",")),
                            list("exact_gene",
-                                any(!is.na(exact_gene)),
+                                !is.null(exact_gene),
                                 paste0(exact_gene,
                                        collapse = ",")),
                            list("protein",
-                                !is.na(protein),
+                                !is.null(protein),
                                 protein),
                            list("reviewed",
-                                !is.na(reviewed),
+                                !is.null(reviewed),
                                 ifelse(reviewed,
                                        "true",
                                        "false")),
                            list("organism",
-                                !is.na(organism),
+                                !is.null(organism),
                                 organism),
                            list("taxid",
-                                any(!is.na(taxid)),
+                                !is.null(taxid),
                                 paste0(taxid,
                                        collapse = ",")),
                            list("categories",
-                                any(!is.na(categories)),
+                                !is.null(categories),
                                 paste0(categories,
                                        collapse = ",")),
                            list("types",
-                                any(!is.na(types)),
+                                !is.null(types),
                                 paste0(types,
                                        collapse = ",")))
   ## Build Function-Specific Call
@@ -683,8 +683,8 @@ rba_uniprot_features_search <- function(accession = NA,
 # #' @param terms
 # #' @param type
 # #' @param categories
-# #' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-# #'   arguments documentation for more information on available options.
+# #' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+# #'   arguments manual for more information on available options.
 # #'
 # #' @return
 # #'
@@ -704,7 +704,7 @@ rba_uniprot_features_search <- function(accession = NA,
 # #' @export
 # rba_uniprot_features_type <- function(terms,
 #                                      type,
-#                                      categories = NA,
+#                                      categories = NULL,
 #                                      ...) {
 #   ## Load Global Options
 #   .rba_ext_args(...)
@@ -772,11 +772,11 @@ rba_uniprot_features_search <- function(accession = NA,
 #   ## Build GET API Request's query
 #   call_query <- .rba_query(init = list("size" = "-1"),
 #                             list("categories",
-#                                  any(!is.na(categories)),
+#                                  !is.null(categories),
 #                                  paste0(categories,
 #                                         collapse = ",")),
 #                             list("terms",
-#                                  any(!is.na(terms)),
+#                                  !is.null(terms),
 #                                  paste0(terms,
 #                                         collapse = ",")))
 #   ## Build Function-Specific Call
@@ -814,14 +814,14 @@ rba_uniprot_features_search <- function(accession = NA,
 #'   "ACT_SITE", "METAL", "BINDING", "SITE", "NON_STD", "MOD_RES", "LIPID",
 #'   "CARBOHYD", "DISULFID", "CROSSLNK", "VAR_SEQ", "VARIANT", "MUTAGEN",
 #'   "UNSURE", "CONFLICT", "NON_CONS", "NON_TER", "HELIX", "TURN", "STRAND"
-#'   and/or "INTRAMEM". You can provide up to 20 types.
+#'   and/or "INTRAMEM". You can supply up to 20 types.
 #' @param categories \href{https://www.uniprot.org/help/sequence_annotation}{
 #'   Sequence annotation (Features)} categories (subsection). accepted values
 #'   are: "MOLECULE_PROCESSING", "TOPOLOGY", "SEQUENCE_INFORMATION",
 #'   "STRUCTURAL", "DOMAINS_AND_SITES", "PTM", "VARIANTS" and/or "MUTAGENESIS".
-#'   You can provide up to 8 categories.
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#'   You can supply up to 8 categories.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @return A list in which you can find all of your given protein's sequence
 #'   annotations in a sub-list named "features".
@@ -847,8 +847,8 @@ rba_uniprot_features_search <- function(accession = NA,
 #' @family "UniProt - Features"
 #' @export
 rba_uniprot_features <- function(accession,
-                                 types = NA,
-                                 categories = NA,
+                                 types = NULL,
+                                 categories = NULL,
                                  ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -915,11 +915,11 @@ rba_uniprot_features <- function(accession,
   ## Build GET API Request's query
   call_query <- .rba_query(init = list("size" = "-1"),
                            list("categories",
-                                any(!is.na(categories)),
+                                !is.null(categories),
                                 paste0(categories,
                                        collapse = ",")),
                            list("types",
-                                any(!is.na(types)),
+                                !is.null(types),
                                 paste0(types,
                                        collapse = ",")))
   ## Build Function-Specific Call
@@ -945,7 +945,7 @@ rba_uniprot_features <- function(accession,
 #' Using this function, you can search and retrieve
 #'   \href{https://www.uniprot.org/help/variant}{Natural variant(s)} that
 #'   has been annotated in the protein's sequences. You may also refine your
-#'   search with modifiers such as source type, disease etc. refer to
+#'   search with modifiers such as source type, disease etc. See
 #'   "Arguments section" for more information.
 #'
 #'   Note that this is a search function. Thus, you are not required to fill
@@ -956,7 +956,7 @@ rba_uniprot_features <- function(accession,
 #'  "GET https://www.ebi.ac.uk/proteins/api/variation"
 #'
 #' @param accession \href{https://www.uniprot.org/help/accession_numbers}{
-#'   UniProtKB primary or secondary accession}(s). You can provide up to 100
+#'   UniProtKB primary or secondary accession}(s). You can supply up to 100
 #'   accession numbers.
 #' @param source_type Variation's source type. You can choose up to two of:
 #'   "UniProt", "large scale study" and/or "mixed".
@@ -964,25 +964,25 @@ rba_uniprot_features <- function(accession,
 #'   two of: "missense", "stop gained" or "stop lost".
 #' @param wild_type Wild type amino acid. Accepted values are IUPAC
 #'   single-letter amino acid (e.g. D for	Aspartic acid) and "*" for stop
-#'   codon. You can provide up to 20 values.
+#'   codon. You can supply up to 20 values.
 #' @param alternative_sequence Alternative amino acid. Accepted values are IUPAC
 #'   single-letter amino acid (e.g. D for	Aspartic acid) and "*" for stop codon
-#'   and "-" for deletion. You can provide up to 20 values.
+#'   and "-" for deletion. You can supply up to 20 values.
 #' @param location A valid amino acid range (e.g. 10-25) within the sequence
-#'   range where the variation occurs. You can provide up to 20 values.
+#'   range where the variation occurs. You can supply up to 20 values.
 #' @param disease \href{https://www.uniprot.org/diseases/}{Human disease}
 #'   that are associated with a sequence variation. Accepted values are
 #'   disease name (e.g. Alzheimer disease 18), partial disease name
-#'   (Alzheimer) and/or disease acronym (e.g. AD). You can provide up to
+#'   (Alzheimer) and/or disease acronym (e.g. AD). You can supply up to
 #'   20 values.
 #' @param omim \href{https://www.ncbi.nlm.nih.gov/omim}{OMIM} ID that is
-#'   associated with a variation. You can provide up to 20 values.
+#'   associated with a variation. You can supply up to 20 values.
 #' @param evidence Pubmed ID of the variation's
-#'   \href{https://www.uniprot.org/citations/}{citation} You can provide up
+#'   \href{https://www.uniprot.org/citations/}{citation} You can supply up
 #'   to 20 values.
 #' @param taxid NIH-NCBI \href{https://www.uniprot.org/taxonomy/}{Taxon ID}.
-#'   You can provide up to 20 taxon IDs.
-#' @param db_type cross-reference database of the variation. You can provide
+#'   You can supply up to 20 taxon IDs.
+#' @param db_type cross-reference database of the variation. You can supply
 #'   up to two of the following:\itemize{
 #'   \item "dbSNP": \href{https://www.ncbi.nlm.nih.gov/snp/}{NIH-NCBI dbSNP
 #'   database}.
@@ -992,13 +992,13 @@ rba_uniprot_features <- function(accession,
 #'   ClinVar}
 #'   }
 #' @param db_id The variation ID in a Cross-reference (external) database.
-#'    You can provide up to 20 values.
+#'    You can supply up to 20 values.
 #' @param save_peff Logical or Character:\itemize{
 #'   \item FALSE: (default) Do not save PEFF file, just return as a list object.
 #'   \item TRUE: Save as PEFF file to an automatically-generated path.
 #'   \item Character string: A valid file path to save the PEFF file.}
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @return List where each element corresponds to one UniProt entity returned
 #'   by your search query. The element itself is a sub-list containing all
@@ -1028,18 +1028,18 @@ rba_uniprot_features <- function(accession,
 #'
 #' @family "UniProt - Variation"
 #' @export
-rba_uniprot_variation_search <- function(accession = NA,
-                                         source_type = NA,
-                                         consequence_type = NA,
-                                         wild_type = NA,
-                                         alternative_sequence = NA,
-                                         location = NA,
-                                         disease = NA,
-                                         omim = NA,
-                                         evidence = NA,
-                                         taxid = NA,
-                                         db_type = NA,
-                                         db_id = NA,
+rba_uniprot_variation_search <- function(accession = NULL,
+                                         source_type = NULL,
+                                         consequence_type = NULL,
+                                         wild_type = NULL,
+                                         alternative_sequence = NULL,
+                                         location = NULL,
+                                         disease = NULL,
+                                         omim = NULL,
+                                         evidence = NULL,
+                                         taxid = NULL,
+                                         db_type = NULL,
+                                         db_id = NULL,
                                          save_peff = FALSE,
                                          ...) {
   ## Load Global Options
@@ -1087,60 +1087,60 @@ rba_uniprot_variation_search <- function(accession = NA,
                         list(arg = "save_peff",
                              class = c("logical",
                                        "character"))),
-            cond = list(list(quote(all(is.na(accession), is.na(disease),
-                                       is.na(omim), is.na(evidence),
-                                       is.na(taxid), is.na(db_type),
-                                       is.na(db_id))),
-                             "You should provide at least one of: accession, disease, omim, evidence, taxid, db_type or db_id"))
+            cond = list(list(quote(all(is.null(accession), is.null(disease),
+                                       is.null(omim), is.null(evidence),
+                                       is.null(taxid), is.null(db_type),
+                                       is.null(db_id))),
+                             "You should supply at least one of: accession, disease, omim, evidence, taxid, db_type or db_id"))
   )
 
-  .msg("Searching UniProt and retrieving natural variations of proteins that match your provided inputs.")
+  .msg("Searching UniProt and retrieving natural variations of proteins that match your supplied inputs.")
   ## Build GET API Request's query
   call_query <- .rba_query(init = list("size" = "-1"),
                            list("accession",
-                                any(!is.na(accession)),
+                                !is.null(accession),
                                 paste0(accession,
                                        collapse = ",")),
                            list("sourcetype",
-                                any(!is.na(source_type)),
+                                !is.null(source_type),
                                 paste0(source_type,
                                        collapse = ",")),
                            list("consequencetype",
-                                any(!is.na(consequence_type)),
+                                !is.null(consequence_type),
                                 paste0(consequence_type,
                                        collapse = ",")),
                            list("wildtype",
-                                any(!is.na(wild_type)),
+                                !is.null(wild_type),
                                 paste0(wild_type,
                                        collapse = ",")),
                            list("alternativesequence",
-                                any(!is.na(alternative_sequence)),
+                                !is.null(alternative_sequence),
                                 paste0(alternative_sequence,
                                        collapse = ",")),
                            list("location",
-                                !is.na(location),
+                                !is.null(location),
                                 location),
                            list("disease",
-                                !is.na(disease),
+                                !is.null(disease),
                                 disease),
                            list("omim",
-                                any(!is.na(omim)),
+                                !is.null(omim),
                                 paste0(omim,
                                        collapse = ",")),
                            list("evidence",
-                                any(!is.na(evidence)),
+                                !is.null(evidence),
                                 paste0(evidence,
                                        collapse = ",")),
                            list("taxid",
-                                any(!is.na(taxid)),
+                                !is.null(taxid),
                                 paste0(taxid,
                                        collapse = ",")),
                            list("dbtype",
-                                any(!is.na(db_type)),
+                                !is.null(db_type),
                                 paste0(db_type,
                                        collapse = ",")),
                            list("dbid",
-                                any(!is.na(db_id)),
+                                !is.null(db_id),
                                 paste0(db_type,
                                        collapse = ",")))
   ## Build Function-Specific Call
@@ -1181,7 +1181,7 @@ rba_uniprot_variation_search <- function(accession = NA,
 #'   secondary accession}, NIH-NCBI dbSNP ID or HGVS expression.
 #'   \href{https://www.ncbi.nlm.nih.gov/snp/}{NIH-NCBI dbSNP id} or
 #'   \href{https://www.ncbi.nlm.nih.gov/variation/hgvs/}{HGVS Expression}.
-#' @param id_type The type of provided ID argument, one of:
+#' @param id_type The type of supplied ID argument, one of:
 #'   \href{https://www.uniprot.org/help/accession_numbers}{"uniprot"},
 #'   \href{https://www.ncbi.nlm.nih.gov/snp/}{"dbsnp"} or
 #'   \href{https://www.ncbi.nlm.nih.gov/variation/hgvs/}{"hgvs"}
@@ -1191,18 +1191,18 @@ rba_uniprot_variation_search <- function(accession = NA,
 #'   two of: "missense", "stop gained" or "stop lost".
 #' @param wild_type Wild type amino acid. Accepted values are IUPAC
 #'   single-letter amino acid (e.g. D for	Aspartic acid) and "*" for stop
-#'   codon. You can provide up to 20 values.
+#'   codon. You can supply up to 20 values.
 #' @param alternative_sequence Alternative amino acid. Accepted values are IUPAC
 #'   single-letter amino acid (e.g. D for	Aspartic acid) and "*" for stop codon
-#'   and "-" for deletion. You can provide up to 20 values.
+#'   and "-" for deletion. You can supply up to 20 values.
 #' @param location A valid amino acid range (e.g. 10-25) within the sequence
-#'   range where the variation occurs. You can provide up to 20 values.
+#'   range where the variation occurs. You can supply up to 20 values.
 #' @param save_peff Logical or Character:\itemize{
 #'   \item FALSE: (default) Do not save PEFF file, just return as a list object.
 #'   \item TRUE: Save as PEFF file to an automatically-generated path.
 #'   \item Character string: A valid file path to save the PEFF file.}
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @return A list where each element is a list that corresponds to a UniProt
 #'   protein entry.
@@ -1232,11 +1232,11 @@ rba_uniprot_variation_search <- function(accession = NA,
 #' @export
 rba_uniprot_variation <- function(id,
                                   id_type,
-                                  source_type = NA,
-                                  consequence_type = NA,
-                                  wild_type = NA,
-                                  alternative_sequence = NA,
-                                  location = NA,
+                                  source_type = NULL,
+                                  consequence_type = NULL,
+                                  wild_type = NULL,
+                                  alternative_sequence = NULL,
+                                  location = NULL,
                                   save_peff = FALSE,
                                   ...) {
   ## Load Global Options
@@ -1280,23 +1280,23 @@ rba_uniprot_variation <- function(id,
   ## Build GET API Request's query
   call_query <- .rba_query(init = list("size" = "-1"),
                            list("sourcetype",
-                                any(!is.na(source_type)),
+                                !is.null(source_type),
                                 paste0(source_type,
                                        collapse = ",")),
                            list("consequencetype",
-                                any(!is.na(consequence_type)),
+                                !is.null(consequence_type),
                                 paste0(consequence_type,
                                        collapse = ",")),
                            list("wildtype",
-                                any(!is.na(wild_type)),
+                                !is.null(wild_type),
                                 paste0(wild_type,
                                        collapse = ",")),
                            list("alternativesequence",
-                                any(!is.na(alternative_sequence)),
+                                !is.null(alternative_sequence),
                                 paste0(alternative_sequence,
                                        collapse = ",")),
                            list("location",
-                                !is.na(location),
+                                !is.null(location),
                                 location))
   ## Build Function-Specific Call
   file_name <- sprintf("uniprot_variation_%s.%s",
@@ -1335,7 +1335,7 @@ rba_uniprot_variation <- function(id,
 #' UniProt maps proteomics peptides from different sources to the proteins'
 #'   sequences. Using this function, you can search for  proteomics
 #'   peptides that has been map to UniProt proteins. You may also refine your
-#'   search with modifiers such as data_source, peptide etc. refer to
+#'   search with modifiers such as data_source, peptide etc. See
 #'   "Arguments section" for more information.
 #'
 #'   Note that this is a search function. Thus, you are not required to fill
@@ -1348,7 +1348,7 @@ rba_uniprot_variation <- function(id,
 #'  "GET https://www.ebi.ac.uk/proteins/api/proteomics"
 #'
 #' @param accession \href{https://www.uniprot.org/help/accession_numbers}{
-#'   UniProtKB primary or secondary accession}(s). You can provide up to 100
+#'   UniProtKB primary or secondary accession}(s). You can supply up to 100
 #'   accession numbers.
 #' @param data_source  Proteomics data source. You can choose up to two of:
 #'   \itemize{
@@ -1358,17 +1358,17 @@ rba_uniprot_variation <- function(id,
 #'   \item \href{https://www.uniprot.org/database/DB-0229}{"ProteomicsDB"}
 #'   }
 #' @param taxid NIH-NCBI \href{https://www.uniprot.org/taxonomy/}{Taxon ID}.
-#'   You can provide up to 20 taxon IDs.
+#'   You can supply up to 20 taxon IDs.
 #' @param upid \href{https://www.uniprot.org/help/proteome_id}{UniProt Proteome
-#'   identifier (UPID)}. You can provide up to 100 UPIDs.
-#' @param peptide Peptide sequence(s). You can provide up to 20 sequences.
+#'   identifier (UPID)}. You can supply up to 100 UPIDs.
+#' @param peptide Peptide sequence(s). You can supply up to 20 sequences.
 #' @param unique Logical: Should the results be filtered based on the
 #'   Peptide's uniqueness (the fact that a peptide maps to only 1 protein). If
 #'   TRUE, Only unique peptides will be returned, if FALSE only un-unique
-#'   peptides will be returned; If NA (default) the results will not be
+#'   peptides will be returned; If NULL (default) the results will not be
 #'   filtered based on this.
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @return A list Where each element correspond to a UniProt protein and
 #'   proteomics peptides are organized under the "features" sub-list.
@@ -1399,12 +1399,12 @@ rba_uniprot_variation <- function(id,
 #'
 #' @family "UniProt - Proteomics"
 #' @export
-rba_uniprot_proteomics_search <- function(accession = NA,
-                                          data_source = NA,
-                                          taxid = NA,
-                                          upid = NA,
-                                          peptide = NA,
-                                          unique = NA,
+rba_uniprot_proteomics_search <- function(accession = NULL,
+                                          data_source = NULL,
+                                          taxid = NULL,
+                                          upid = NULL,
+                                          peptide = NULL,
+                                          unique = NULL,
                                           ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -1432,31 +1432,31 @@ rba_uniprot_proteomics_search <- function(accession = NA,
                              class = "logical"))
   )
 
-  .msg("Searching UniProt and retrieving proteomics peptides features of proteins that match your provided inputs.")
+  .msg("Searching UniProt and retrieving proteomics peptides features of proteins that match your supplied inputs.")
   ## Build GET API Request's query
   call_query <- .rba_query(init = list("size" = "-1"),
                            list("accession",
-                                any(!is.na(accession)),
+                                !is.null(accession),
                                 paste0(accession,
                                        collapse = ",")),
                            list("taxid",
-                                any(!is.na(taxid)),
+                                !is.null(taxid),
                                 paste0(taxid,
                                        collapse = ",")),
                            list("upid",
-                                any(!is.na(upid)),
+                                !is.null(upid),
                                 paste0(upid,
                                        collapse = ",")),
                            list("data_source",
-                                any(!is.na(data_source)),
+                                !is.null(data_source),
                                 paste0(data_source,
                                        collapse = ",")),
                            list("peptide",
-                                any(!is.na(peptide)),
+                                !is.null(peptide),
                                 paste0(peptide,
                                        collapse = ",")),
                            list("unique",
-                                !is.na(unique),
+                                !is.null(unique),
                                 ifelse(unique, "true", "false")))
   ## Build Function-Specific Call
   parser_input <- list("json->list",
@@ -1486,10 +1486,10 @@ rba_uniprot_proteomics_search <- function(accession = NA,
 #'
 #' @param accession \href{https://www.uniprot.org/help/accession_numbers}{
 #'   UniProtKB primary or secondary accession}.
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
-#' @return A list containing the proteomics peptides features of your provided
+#' @return A list containing the proteomics peptides features of your supplied
 #'   UniProt protein's sequence.
 #'
 #' @references \itemize{
@@ -1543,7 +1543,7 @@ rba_uniprot_proteomics <- function(accession,
 #' UniProt maps Antigenic (Antibody-binding) features from different sources
 #'   to the proteins' sequences. Using this function, you can search for
 #'   Antigenic sequences that has been map to UniProt proteins. You may also
-#'   refine your search with modifiers such as score etc. refer to
+#'   refine your search with modifiers such as score etc. See
 #'   "Arguments section" for more information.
 #'
 #'   Note that this is a search function. Thus, you are not required to fill
@@ -1554,17 +1554,17 @@ rba_uniprot_proteomics <- function(accession,
 #'  "GET https://www.ebi.ac.uk/proteins/api/antigen"
 #'
 #' @param accession \href{https://www.uniprot.org/help/accession_numbers}{
-#'   UniProtKB primary or secondary accession}(s). You can provide up to 100
+#'   UniProtKB primary or secondary accession}(s). You can supply up to 100
 #'   accession numbers.
 #' @param antigen_sequence Protein sequence in the antigenic site.
-#' @param antigen_id Human Protein Atlas (HPA) antigen ID. You can provide up to
+#' @param antigen_id Human Protein Atlas (HPA) antigen ID. You can supply up to
 #'   20 IDs.
-#' @param ensembl_id Ensembl Stable Transcript ID. You can provide up to
+#' @param ensembl_id Ensembl Stable Transcript ID. You can supply up to
 #'   20 IDs.
 #' @param match_score (Numeric) Minimum alignment score for the antigen
 #'   sequence and the target protein sequence.
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @return A list Where each element correspond to a UniProt protein (search
 #'  hit) and Antigenic features are organized under the "features" sub-list.
@@ -1586,11 +1586,11 @@ rba_uniprot_proteomics <- function(accession,
 #'
 #' @family "UniProt - Antigen"
 #' @export
-rba_uniprot_antigens_search <- function(accession = NA,
-                                        antigen_sequence = NA,
-                                        antigen_id = NA,
-                                        ensembl_id = NA,
-                                        match_score = NA,
+rba_uniprot_antigens_search <- function(accession = NULL,
+                                        antigen_sequence = NULL,
+                                        antigen_id = NULL,
+                                        ensembl_id = NULL,
+                                        match_score = NULL,
                                         ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -1610,26 +1610,26 @@ rba_uniprot_antigens_search <- function(accession = NA,
                              class = "numeric"))
   )
 
-  .msg("Searching UniProt and retrieving antigenic features of proteins that match your provided inputs.")
+  .msg("Searching UniProt and retrieving antigenic features of proteins that match your supplied inputs.")
   ## Build GET API Request's query
   call_query <- .rba_query(init = list("size" = "-1"),
                            list("accession",
-                                any(!is.na(accession)),
+                                !is.null(accession),
                                 paste0(accession,
                                        collapse = ",")),
                            list("antigen_sequence",
-                                !is.na(antigen_sequence),
+                                !is.null(antigen_sequence),
                                 antigen_sequence),
                            list("antigen_id",
-                                any(!is.na(antigen_id)),
+                                !is.null(antigen_id),
                                 paste0(antigen_id,
                                        collapse = ",")),
                            list("ensembl_id",
-                                any(!is.na(ensembl_id)),
+                                !is.null(ensembl_id),
                                 paste0(ensembl_id,
                                        collapse = ",")),
                            list("match_score",
-                                !is.na(match_score),
+                                !is.null(match_score),
                                 match_score))
   ## Build Function-Specific Call
   parser_input <- list("json->list",
@@ -1660,10 +1660,10 @@ rba_uniprot_antigens_search <- function(accession = NA,
 #'
 #' @param accession \href{https://www.uniprot.org/help/accession_numbers}{
 #'   UniProtKB primary or secondary accession}(s).
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
-#' @return A list containing the Antigenic features of your provided
+#' @return A list containing the Antigenic features of your supplied
 #'   UniProt protein's sequence.
 #'
 #' @references \itemize{

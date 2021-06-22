@@ -9,12 +9,12 @@ rba_mieaa_enrich_submit(
   mirna_type,
   test_type,
   species = "hsa",
-  categories = NA,
+  categories = NULL,
   p_adj_method = "fdr",
   independent_p_adj = TRUE,
   sig_level = 0.05,
   min_hits = 2,
-  ref_set = NA,
+  ref_set = NULL,
   ...
 )
 }
@@ -28,7 +28,7 @@ miRBase v22.
 precursor miRNA accession. A mixture of both is not accepted.
 }}
 
-\item{mirna_type}{Type of your provided miRNA accession. either "mature"
+\item{mirna_type}{Type of your supplied miRNA accession. either "mature"
 or "precursor".}
 
 \item{test_type}{The analysis to perform. can be either "ORA" for 'Over
@@ -53,10 +53,10 @@ or NCBI taxon ID of one of the following species: \enumerate{
 \item{categories}{one or multiple Category names to be used for miRNA set
 enrichment analysis. Note that \itemize{
 \item Available categories varies based on your chosen specie and if
- your provided miRNA type is mature or precursor. Use
+ your supplied miRNA type is mature or precursor. Use
  \code{\link{rba_mieaa_cats}} to retrieve a list of available category
  names for a given specie and miRNA type.
-\item If you provide NA, the analysis will be performed on all of the
+\item If you supply NULL, the analysis will be performed on all of the
  available categories.}}
 
 \item{p_adj_method}{P-value adjustment method to be used. Should be one of:
@@ -72,14 +72,14 @@ values equal to or greater than this threshold will be dropped from the
 results.}
 
 \item{min_hits}{(numeric) How many miRNA should a sub-category have from
-your provided test-list to be included in the results? (default is 2)}
+your supplied test-list to be included in the results? (default is 2)}
 
 \item{ref_set}{(Optional) Only applicable when test_type is "ORA".
 This character vector will be used as your reference (background or
 universe) set for p-value calculations.}
 
-\item{...}{rbioapi option(s). Refer to \code{\link{rba_options}}'s
-arguments documentation for more information on available options.}
+\item{...}{rbioapi option(s). See \code{\link{rba_options}}'s
+arguments manual for more information on available options.}
 }
 \value{
 A list that contains your submitted job's ID and a URL to
@@ -107,7 +107,7 @@ rba_mieaa_enrich_submit(test_set = c("hsa-miR-20b-5p", "hsa-miR-144-5p"),
     mirna_type = "mature",
     test_type = "GSEA",
     species = 9606,
-    categories = NA)
+    categories = NULL)
 }
 
 }

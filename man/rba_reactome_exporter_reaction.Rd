@@ -6,17 +6,17 @@
 \usage{
 rba_reactome_exporter_reaction(
   event_id,
-  save_to = NA,
+  save_to = NULL,
   output_format = "png",
   resource = "TOTAL",
   diagram_profile = "Modern",
   analysis_profile = "Standard",
-  token = NA,
-  exp_column = NA,
+  token = NULL,
+  exp_column = NULL,
   image_quality = 5,
-  flag_element = NA,
+  flag_element = NULL,
   flg_interactors = TRUE,
-  sel = NA,
+  sel = NULL,
   title = TRUE,
   margin = 15,
   ...
@@ -27,8 +27,8 @@ rba_reactome_exporter_reaction(
 \href{https://reactome.org/content/schema/ReactionLikeEvent}{Reaction-like
 event}'s identifier.}
 
-\item{save_to}{NA or Character:\itemize{
-\item NA: Save the file to an automatically-generated path.
+\item{save_to}{NULL or Character:\itemize{
+\item NULL: Save the file to an automatically-generated path.
 \item Character string: A valid file path to save the file to.}}
 
 \item{output_format}{Images format, Can be one of: png (default), jpeg,
@@ -47,7 +47,7 @@ overlaid on top of the given pathways overview.}
 top of the given pathways overview. see:
 \code{\link{rba_reactome_analysis}}.}
 
-\item{exp_column}{numeric: (only if token is provided) Specify the
+\item{exp_column}{numeric: (only if token is supplied) Specify the
 expression column for the overlay.}
 
 \item{image_quality}{Numeric: A number  ranging from 1 to 10. 1 is the
@@ -67,8 +67,8 @@ flagging a diagram element? (default = TRUE)}
 \item{margin}{Numeric: A number ranging from 0 to 20 to set as the image's
 margin. (default = 15)}
 
-\item{...}{rbioapi option(s). Refer to \code{\link{rba_options}}'s
-arguments documentation for more information on available options.}
+\item{...}{rbioapi option(s). See \code{\link{rba_options}}'s
+arguments manual for more information on available options.}
 }
 \value{
 NULL, Based to the inputs, an image file will be saved to disk.

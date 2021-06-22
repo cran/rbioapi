@@ -4,20 +4,20 @@
 \alias{rba_reactome_analysis_import}
 \title{Import Saved Analysis JSON to Reactome}
 \usage{
-rba_reactome_analysis_import(input, input_format = NA, ...)
+rba_reactome_analysis_import(input, input_format = NULL, ...)
 }
 \arguments{
 \item{input}{A local file path or URL that points to your -optionally
 gzipped- JSON file.}
 
 \item{input_format}{(Optional) This function will automatically identify
-your provided input's format. But in case of unexpected issues or if you
+your supplied input's format. But in case of unexpected issues or if you
 want to be explicit, set this argument to one of:\itemize{
-\item "file": If you provided a local file path pointing to the JSON file.
-\item "url": If you provided a URL pointing to the JSON file.}}
+\item "file": If you supplied a local file path pointing to the JSON file.
+\item "url": If you supplied a URL pointing to the JSON file.}}
 
-\item{...}{rbioapi option(s). Refer to \code{\link{rba_options}}'s
-arguments documentation for more information on available options.}
+\item{...}{rbioapi option(s). See \code{\link{rba_options}}'s
+arguments manual for more information on available options.}
 }
 \value{
 A list containing the new token and other information of your

@@ -5,7 +5,7 @@
 #'   organism). Using this function you can search UniProt for available
 #'   proteomes. see \href{https://www.uniprot.org/help/proteome}{What are
 #'   proteomes?} for more information. You may also
-#'   refine your search with modifiers such as keyword, taxon id etc. refer to
+#'   refine your search with modifiers such as keyword, taxon id etc. See
 #'   "Arguments section" for more information.
 #'
 #'   Note that this is a search function. Thus, you are not required to fill
@@ -17,26 +17,26 @@
 #'
 #' @param name a keyword in proteome's name
 #' @param upid \href{https://www.uniprot.org/help/proteome_id}{UniProt Proteome
-#'   identifier (UPID)}. You can provide up to 100 UPIDs.
+#'   identifier (UPID)}. You can supply up to 100 UPIDs.
 #' @param taxid NIH-NCBI \href{https://www.uniprot.org/taxonomy/}{Taxon ID}.
-#'   You can provide up to 20 taxon IDs.
-#' @param keyword Limit the search to entries that contain your provided
+#'   You can supply up to 20 taxon IDs.
+#' @param keyword Limit the search to entries that contain your supplied
 #'   keyword. see: \href{https://www.uniprot.org/keywords/}{UniProt Keywords}
 #' @param xref Proteome cross-references such as Genome assembly ID or
-#'   Biosample ID. You can provide up to 20 cross-reference IDs.
+#'   Biosample ID. You can supply up to 20 cross-reference IDs.
 #' @param genome_acc Genome accession associated with the proteome's components.
 #' @param is_ref_proteome (logical) If TRUE, only return reference proteomes; If
-#'   FALSE, only returns non-reference proteomes; If NA (default), the results
+#'   FALSE, only returns non-reference proteomes; If NULL (default), the results
 #'   will not be filtered by this criteria see
 #'   \href{https://www.uniprot.org/help/reference_proteome}{'What are reference
 #'   proteomes?'} for more information.
 #' @param is_redundant (logical) If TRUE, only return redundant proteomes; If
-#'   FALSE, only returns non-redundant proteomes; If NA (default), the results
+#'   FALSE, only returns non-redundant proteomes; If NULL (default), the results
 #'   will not be filtered by redundancy. see
 #'   \href{https://www.uniprot.org/help/proteome_redundancy}{'Reducing proteome
 #'   redundancy'} for more information.
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @return A list where each element is a list that corresponds to a single
 #'   proteome (search hit) and contains informations pertinent to that proteome.
@@ -67,14 +67,14 @@
 #'
 #' @family "UniProt - Proteomes"
 #' @export
-rba_uniprot_proteomes_search <- function(name = NA,
-                                         upid = NA,
-                                         taxid = NA,
-                                         keyword = NA,
-                                         xref = NA,
-                                         genome_acc = NA,
-                                         is_ref_proteome = NA,
-                                         is_redundant = NA,
+rba_uniprot_proteomes_search <- function(name = NULL,
+                                         upid = NULL,
+                                         taxid = NULL,
+                                         keyword = NULL,
+                                         xref = NULL,
+                                         genome_acc = NULL,
+                                         is_ref_proteome = NULL,
+                                         is_redundant = NULL,
                                          ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -101,38 +101,38 @@ rba_uniprot_proteomes_search <- function(name = NA,
                              class = "logical"))
   )
 
-  .msg("Searching UniProt and retrieving proteoms that match your provided inputs.")
+  .msg("Searching UniProt and retrieving proteoms that match your supplied inputs.")
   ## Build GET API Request's query
   call_query <- .rba_query(init = list("size" = "-1"),
                            list("name",
-                                !is.na(name),
+                                !is.null(name),
                                 name),
                            list("upid",
-                                any(!is.na(upid)),
+                                !is.null(upid),
                                 paste0(upid,
                                        collapse = ",")),
                            list("taxid",
-                                any(!is.na(taxid)),
+                                !is.null(taxid),
                                 paste0(taxid,
                                        collapse = ",")),
                            list("keyword",
-                                !is.na(keyword),
+                                !is.null(keyword),
                                 keyword),
                            list("xref",
-                                any(!is.na(xref)),
+                                !is.null(xref),
                                 paste0(xref,
                                        collapse = ",")),
                            list("genome_acc",
-                                any(!is.na(genome_acc)),
+                                !is.null(genome_acc),
                                 paste0(genome_acc,
                                        collapse = ",")),
                            list("is_ref_proteome",
-                                !is.na(is_ref_proteome),
+                                !is.null(is_ref_proteome),
                                 ifelse(is_ref_proteome,
                                        "true",
                                        "false")),
                            list("is_redundant",
-                                !is.na(is_redundant),
+                                !is.null(is_redundant),
                                 ifelse(is_redundant,
                                        "true",
                                        "false")))
@@ -173,18 +173,18 @@ rba_uniprot_proteomes_search <- function(name = NA,
 #'  \cr "GET https://ebi.ac.uk/proteins/api/proteomes/{upid}"
 #'
 #' @param upid \href{https://www.uniprot.org/help/proteome_id}{UniProt Proteome
-#'   identifier (UPID)}. You can provide up to 100 UPIDs.
+#'   identifier (UPID)}. You can supply up to 100 UPIDs.
 #' @param get_proteins logical: set FALSE (default) to only return information
-#'   of the proteome with provided UPID, set TRUE to also return the proteins
-#'    of the provided proteome UPID.
+#'   of the proteome with supplied UPID, set TRUE to also return the proteins
+#'    of the supplied proteome UPID.
 #' @param reviewed Logical:  Only considered when get_proteins is TRUE.
 #'   If TRUE, only return "UniProtKB/Swiss-Prot" (reviewed) proteins;
-#'   If FALSE, only return TrEMBL (un-reviewed) entries. leave it as NA if you
+#'   If FALSE, only return TrEMBL (un-reviewed) entries. leave it as NULL if you
 #'   do not want to filter proteins based on their review status.
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
-#' @return a list containing information of the proteome with your provided
+#' @return a list containing information of the proteome with your supplied
 #'   UPID that can contain the proteomes protein entries based on the value of
 #'   get_proteins argument.
 #'
@@ -210,7 +210,7 @@ rba_uniprot_proteomes_search <- function(name = NA,
 #' @export
 rba_uniprot_proteomes <- function(upid,
                                   get_proteins = FALSE,
-                                  reviewed = NA,
+                                  reviewed = NULL,
                                   ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -221,26 +221,27 @@ rba_uniprot_proteomes <- function(upid,
                              class = "logical"),
                         list(arg = "reviewed",
                              class = "logical")),
-            cond = list(list(quote(isFALSE(get_proteins) && !is.na(reviewed)),
-                             "'reviewed' argument is ignored because you provided 'get_proteins' as FALSE.")),
+            cond = list(list(quote(isFALSE(get_proteins) && !is.null(reviewed)),
+                             "'reviewed' argument is ignored because you supplied 'get_proteins' as FALSE.")),
             cond_warning = TRUE
   )
 
   .msg("Retrieving proteome %s (%s).",
        upid,
        ifelse(isTRUE(get_proteins),
-              yes = sprintf("With %sproteins",
-                            switch(as.character(reviewed),
-                                   "TRUE" = " - Only UniProtKB/Swiss-Prot",
-                                   "FALSE" = " - Only TrEMBL",
-                                   "NA" = "")),
+              yes = sprintf("With %s proteins",
+                            ifelse(test = is.null(reviewed),
+                                   yes = "",
+                                   no = ifelse(test = reviewed,
+                                               yes = "only UniProtKB/Swiss-Prot",
+                                               no =  "only TrEMBL"))),
               no = "Excluding proteins"))
   ## Build Function-Specific Call
   if (isTRUE(get_proteins)) {
     ## Build GET API Request's query
     call_query <- .rba_query(init = list(),
                              list("reviewed",
-                                  !is.na(reviewed),
+                                  !is.null(reviewed),
                                   ifelse(reviewed,
                                          "true",
                                          "false")))
@@ -277,7 +278,7 @@ rba_uniprot_proteomes <- function(upid,
 #'   \href{https://www.uniprot.org/help/gene_centric_isoform_mapping}{Automatic
 #'   gene-centric isoform mapping for eukaryotic reference proteome entries.}
 #'   You may also refine your search with modifiers upid, accession and gene.
-#'   refer to "Arguments section" for more information.
+#'   See "Arguments section" for more information.
 #'
 #'   Note that this is a search function. Thus, you are not required to fill
 #'   every argument; You may use whatever combinations of arguments you see
@@ -287,17 +288,17 @@ rba_uniprot_proteomes <- function(upid,
 #'  "GET https://ebi.ac.uk/proteins/api/genecentric"
 #'
 #' @param upid \href{https://www.uniprot.org/help/proteome_id}{UniProt Proteome
-#'   identifier (UPID)}. You can provide up to 100 UPIDs.
+#'   identifier (UPID)}. You can supply up to 100 UPIDs.
 #' @param accession \href{https://www.uniprot.org/help/accession_numbers}{
-#'   UniProtKB primary or secondary accession}(s). You can provide up to 100
+#'   UniProtKB primary or secondary accession}(s). You can supply up to 100
 #'   accession numbers.
 #' @param gene unique gene identifier(s) found in MOD,
 #'   \href{https://www.ensembl.org/info/genome/genebuild/gene_names.html}{Ensembl},
 #'   Ensembl Genomes, \href{https://www.uniprot.org/help/gene_name}{OLN},
 #'   \href{https://www.uniprot.org/help/gene_name}{ORF} or
 #'   \href{https://www.uniprot.org/help/gene_name}{UniProt Gene Name}.
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @return a list containing gene-centric proteins search hits.
 #'
@@ -324,9 +325,9 @@ rba_uniprot_proteomes <- function(upid,
 #'
 #' @family "UniProt - Proteomes"
 #' @export
-rba_uniprot_genecentric_search <- function(upid = NA,
-                                           accession = NA,
-                                           gene = NA,
+rba_uniprot_genecentric_search <- function(upid = NULL,
+                                           accession = NULL,
+                                           gene = NULL,
                                            ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -342,19 +343,19 @@ rba_uniprot_genecentric_search <- function(upid = NA,
                              max_len = 20))
   )
 
-  .msg("Searching UniProt and retrieving Gene-Centric Proteins that match your provided inputs.")
+  .msg("Searching UniProt and retrieving Gene-Centric Proteins that match your supplied inputs.")
   ## Build GET API Request's query
   call_query <- .rba_query(init = list("size" = "-1"),
                            list("upid",
-                                any(!is.na(upid)),
+                                !is.null(upid),
                                 paste0(upid,
                                        collapse = ",")),
                            list("accession",
-                                any(!is.na(accession)),
+                                !is.null(accession),
                                 paste0(accession,
                                        collapse = ",")),
                            list("gene",
-                                any(!is.na(gene)),
+                                !is.null(gene),
                                 paste0(gene,
                                        collapse = ",")))
   ## Build Function-Specific Call
@@ -385,8 +386,8 @@ rba_uniprot_genecentric_search <- function(upid = NA,
 #'
 #' @param accession \href{https://www.uniprot.org/help/accession_numbers}{
 #'   UniProtKB primary or secondary accession}.
-#' @param ... rbioapi option(s). Refer to \code{\link{rba_options}}'s
-#'   arguments documentation for more information on available options.
+#' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
+#'   arguments manual for more information on available options.
 #'
 #' @return A list containing information of Gene-Centric proteins.
 #'

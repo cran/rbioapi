@@ -6,19 +6,19 @@
 \usage{
 rba_reactome_exporter_diagram(
   event_id,
-  save_to = NA,
+  save_to = NULL,
   create_document = FALSE,
   resource = "TOTAL",
   diagram_profile = "Modern",
   analysis_profile = "Standard",
-  token = NA,
-  exp_column = NA,
+  token = NULL,
+  exp_column = NULL,
   document_level = 1,
   output_format = "png",
   image_quality = 5,
-  flag_element = NA,
+  flag_element = NULL,
   flg_interactors = TRUE,
-  sel = NA,
+  sel = NULL,
   title = TRUE,
   margin = 15,
   ehld = FALSE,
@@ -28,8 +28,8 @@ rba_reactome_exporter_diagram(
 \arguments{
 \item{event_id}{Reactome event's identifier.}
 
-\item{save_to}{NA or Character:\itemize{
-\item NA: Save the file to an automatically-generated path.
+\item{save_to}{NULL or Character:\itemize{
+\item NULL: Save the file to an automatically-generated path.
 \item Character string: A valid file path to save the file to.}}
 
 \item{create_document}{logical: Create PDF document instead of image? (
@@ -48,7 +48,7 @@ overlaid on top of the given pathways overview,}
 top of the given pathways overview. see:
 \code{\link{rba_reactome_analysis}}.}
 
-\item{exp_column}{numeric: (only if token is provided) Specify the
+\item{exp_column}{numeric: (only if token is supplied) Specify the
 expression column for the overlay.}
 
 \item{document_level}{numeric: (Only if "create_document" is TRUE) if 0
@@ -81,8 +81,8 @@ from 0 to 20 to set as the image's margin. (default = 15)}
 \item{ehld}{logical: (Only if "create_document" is FALSE) Should
 "Enhanced High Level Diagram" be considered?}
 
-\item{...}{rbioapi option(s). Refer to \code{\link{rba_options}}'s
-arguments documentation for more information on available options.}
+\item{...}{rbioapi option(s). See \code{\link{rba_options}}'s
+arguments manual for more information on available options.}
 }
 \value{
 NULL, Based to the inputs, an image or PDF file will be saved to
@@ -98,9 +98,9 @@ This function could be called in two scenarios: \enumerate{
 }
 \details{
 If the function is called with create_document = FALSE:
-  \cr The result will be an image with the format provided in "output_format"
-  argument. If the provided event ID refers to a pathway, the image's
-  content will be the that pathways diagram. If the provided event ID refers
+  \cr The result will be an image with the format supplied in "output_format"
+  argument. If the supplied event ID refers to a pathway, the image's
+  content will be the that pathways diagram. If the supplied event ID refers
   to a sub-pathway or reaction event, the parent pathway's diagram will be
   exported, with that reaction or sub-pathway's events highlighted.
   \cr Note that to export an image of reaction-like event separately, you
@@ -110,7 +110,7 @@ If the function is called with create_document = FALSE:
   following information of that events: Summation, Literature references,
   Edit history type, location, compartments and diseases.
   note that if you call the function with "document level = 1", information
-  of your provided event's children will also be included.
+  of your supplied event's children will also be included.
 }
 \section{Corresponding API Resources}{
 

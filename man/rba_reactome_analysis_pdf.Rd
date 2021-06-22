@@ -7,7 +7,7 @@
 rba_reactome_analysis_pdf(
   token,
   species,
-  save_to = NA,
+  save_to = NULL,
   number = 25,
   resource = "TOTAL",
   diagram_profile = "Modern",
@@ -20,13 +20,13 @@ rba_reactome_analysis_pdf(
 \item{token}{A token associated to your previous Reactome analysis.}
 
 \item{species}{Numeric or Character: NCBI Taxonomy identifier (Human Taxonomy
-ID is 9606.) or species name (e.g. "Homo sapiens"). Refer to
+ID is 9606.) or species name (e.g. "Homo sapiens"). See
 \code{\link{rba_reactome_species}} or
 \href{https://reactome.org/content/schema/objects/Species}{Reactome
 Data Schema: Entries: Species}.}
 
-\item{save_to}{NA or Character:\itemize{
-\item NA: Save the file to an automatically-generated path.
+\item{save_to}{NULL or Character:\itemize{
+\item NULL: Save the file to an automatically-generated path.
 \item Character string: A valid file path to save the file to.}}
 
 \item{number}{Numeric: Maximum number of the reported pathways. Cannot not
@@ -46,8 +46,8 @@ available choices are: "TOTAL", "UNIPROT", "ENSEMBL", "CHEBI", "IUPHAR",
 \item{fireworks_profile}{Color profile of overview diagram, should be one of:
 "Copper", "Copper Plus", "Barium Lithium" or "calcium salts".}
 
-\item{...}{rbioapi option(s). Refer to \code{\link{rba_options}}'s
-arguments documentation for more information on available options.}
+\item{...}{rbioapi option(s). See \code{\link{rba_options}}'s
+arguments manual for more information on available options.}
 }
 \value{
 NULL, a PDF file will be saved to disk.
@@ -55,7 +55,7 @@ NULL, a PDF file will be saved to disk.
 \description{
 Use this function to save a detailed report of your previous analysis (That
   you have done with \code{\link{rba_reactome_analysis}}). You need
-  to provide a 'token' associated to your previous analysis.
+  to supply a 'token' associated to your previous analysis.
 }
 \details{
 Token is associated to each Reactome analysis results and kept by Reactome
