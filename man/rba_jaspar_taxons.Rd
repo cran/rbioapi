@@ -4,11 +4,11 @@
 \alias{rba_jaspar_taxons}
 \title{List available taxonomic groups in JASPAR}
 \usage{
-rba_jaspar_taxons(release = 2020, ...)
+rba_jaspar_taxons(release = 2022, ...)
 }
 \arguments{
-\item{release}{Numeric: (default = 2020) Which JASPAR database release
-to use? Available options are: 2014, 2016, 2018, and 2020.}
+\item{release}{Numeric: (default = 2022) Which JASPAR database release
+to use? Available options are: 2014, 2016, 2018, 2020, and 2022.}
 
 \item{...}{rbioapi option(s). See \code{\link{rba_options}}'s
 arguments manual for more information on available options.}
@@ -23,28 +23,31 @@ JASPAR organizes matrix profiles from multiple species
 }
 \section{Corresponding API Resources}{
 
- "GET "http://jaspar.genereg.net/api/v1/taxon/"
+ "GET "https://jaspar.genereg.net/api/v1/taxon/"
 }
 
 \examples{
 \donttest{
-rba_jaspar_taxons(release = 2020)
+rba_jaspar_taxons(release = 2022)
 }
 
 }
 \references{
 \itemize{
-  \item Fornes O, Castro-Mondragon JA, Khan A, et al. JASPAR 2020: update
-    of the open-access database of transcription factor binding profiles.
-    Nucleic Acids Res. 2019; doi: 10.1093/nar/gkz1001
-  \item Khan, A. and Mathelier, A. JASPAR RESTful API: accessing JASPAR
-    data from any programming language. Bioinformatics, 2017, doi:
-    10.1093/bioinformatics/btx804
-  \item Khan, A. et al. JASPAR 2018: update of the open-access database
-    of transcription factor binding profiles and its web framework.
-    Nucleic Acids Res. 2018; 46:D260–D266, doi: 10.1093/nar/gkx1126
+  \item Jaime A Castro-Mondragon, Rafael Riudavets-Puig, Ieva
+  Rauluseviciute, Roza Berhanu Lemma, Laura Turchi, Romain Blanc-Mathieu,
+  Jeremy Lucas, Paul Boddie, Aziz Khan, Nicolás Manosalva Pérez, Oriol
+  Fornes, Tiffany Y Leung, Alejandro Aguirre, Fayrouz Hammal, Daniel
+  Schmelter, Damir Baranasic, Benoit Ballester, Albin Sandelin, Boris
+  Lenhard, Klaas Vandepoele, Wyeth W Wasserman, François Parcy,
+  Anthony Mathelier, JASPAR 2022: the 9th release of the open-access
+  database of transcription factor binding profiles, Nucleic Acids
+  Research, Volume 50, Issue D1, 7 January 2022, Pages D165–D173,
+  https://doi.org/10.1093/nar/gkab1113
   \item
-  \href{http://jaspar.genereg.net/api/v1/docs/}{JASPAR API Documentation}
+  \href{https://jaspar.genereg.net/api/v1/docs/}{JASPAR API Documentation}
+  \item \href{https://jaspar.genereg.net/faq/}{Citations note
+  on JASPAR website}
   }
 }
 \seealso{

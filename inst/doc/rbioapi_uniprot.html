@@ -12,13 +12,14 @@
 
 <meta name="author" content="Moosa Rezwani" />
 
-<meta name="date" content="2021-06-21" />
+<meta name="date" content="2022-04-05" />
 
 <title>2.G: UniProt &amp; rbioapi</title>
 
 <script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
-<link href="data:text/css,%0Aa%2Eanchor%2Dsection%20%7Bmargin%2Dleft%3A%2010px%3B%20visibility%3A%20hidden%3B%20color%3A%20inherit%3B%7D%0Aa%2Eanchor%2Dsection%3A%3Abefore%20%7Bcontent%3A%20%27%23%27%3B%7D%0A%2EhasAnchor%3Ahover%20a%2Eanchor%2Dsection%20%7Bvisibility%3A%20visible%3B%7D%0Aul%20%3E%20li%20%3E%20%2Eanchor%2Dsection%20%7Bdisplay%3A%20none%3B%7D%0A" rel="stylesheet" />
-<script src="data:application/javascript;base64,Ly8gQW5jaG9yIHNlY3Rpb25zIHYxLjAgd3JpdHRlbiBieSBBdHN1c2hpIFlhc3Vtb3RvIG9uIE9jdCAzcmQsIDIwMjAuCmRvY3VtZW50LmFkZEV2ZW50TGlzdGVuZXIoJ0RPTUNvbnRlbnRMb2FkZWQnLCBmdW5jdGlvbigpIHsKICAvLyBEbyBub3RoaW5nIGlmIEFuY2hvckpTIGlzIHVzZWQKICBpZiAodHlwZW9mIHdpbmRvdy5hbmNob3JzID09PSAnb2JqZWN0JyAmJiBhbmNob3JzLmhhc093blByb3BlcnR5KCdoYXNBbmNob3JKU0xpbmsnKSkgewogICAgcmV0dXJuOwogIH0KCiAgY29uc3QgaCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJ2gxLCBoMiwgaDMsIGg0LCBoNSwgaDYnKTsKCiAgLy8gRG8gbm90aGluZyBpZiBzZWN0aW9ucyBhcmUgYWxyZWFkeSBhbmNob3JlZAogIGlmIChBcnJheS5mcm9tKGgpLnNvbWUoeCA9PiB4LmNsYXNzTGlzdC5jb250YWlucygnaGFzQW5jaG9yJykpKSB7CiAgICByZXR1cm4gbnVsbDsKICB9CgogIC8vIFVzZSBzZWN0aW9uIGlkIHdoZW4gcGFuZG9jIHJ1bnMgd2l0aCAtLXNlY3Rpb24tZGl2cwogIGNvbnN0IHNlY3Rpb25faWQgPSBmdW5jdGlvbih4KSB7CiAgICByZXR1cm4gKCh4LmNsYXNzTGlzdC5jb250YWlucygnc2VjdGlvbicpIHx8ICh4LnRhZ05hbWUgPT09ICdTRUNUSU9OJykpCiAgICAgICAgICAgID8geC5pZCA6ICcnKTsKICB9OwoKICAvLyBBZGQgYW5jaG9ycwogIGguZm9yRWFjaChmdW5jdGlvbih4KSB7CiAgICBjb25zdCBpZCA9IHguaWQgfHwgc2VjdGlvbl9pZCh4LnBhcmVudEVsZW1lbnQpOwogICAgaWYgKGlkID09PSAnJyB8fCB4Lm1hdGNoZXMoJzplbXB0eScpKSB7CiAgICAgIHJldHVybiBudWxsOwogICAgfQogICAgbGV0IGFuY2hvciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2EnKTsKICAgIGFuY2hvci5ocmVmID0gJyMnICsgaWQ7CiAgICBhbmNob3IuY2xhc3NMaXN0ID0gWydhbmNob3Itc2VjdGlvbiddOwogICAgeC5jbGFzc0xpc3QuYWRkKCdoYXNBbmNob3InKTsKICAgIHguYXBwZW5kQ2hpbGQoYW5jaG9yKTsKICB9KTsKfSk7Cg=="></script>
+<link href="data:text/css,%0Aa%2Eanchor%2Dsection%20%7Bmargin%2Dleft%3A%2010px%3B%20visibility%3A%20hidden%3B%20color%3A%20inherit%3B%7D%0A%2EhasAnchor%3Ahover%20a%2Eanchor%2Dsection%20%7Bvisibility%3A%20visible%3B%7D%0Aul%20%3E%20li%20%3E%20%2Eanchor%2Dsection%20%7Bdisplay%3A%20none%3B%7D%0A" rel="stylesheet" />
+<link href="data:text/css,%0Aa%2Eanchor%2Dsection%3A%3Abefore%20%7Bcontent%3A%20%27%23%27%3Bfont%2Dsize%3A%2080%25%3B%7D%0A" rel="stylesheet" />
+<script src="data:application/javascript;base64,ZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uICgpIHsKICAvLyBJZiBzZWN0aW9uIGRpdnMgaXMgdXNlZCwgd2UgbmVlZCB0byBwdXQgdGhlIGFuY2hvciBpbiB0aGUgY2hpbGQgaGVhZGVyCiAgY29uc3QgaGVhZGVycyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoImRpdi5oYXNBbmNob3Iuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKQoKICBoZWFkZXJzLmZvckVhY2goZnVuY3Rpb24gKHgpIHsKICAgIC8vIEFkZCB0byB0aGUgaGVhZGVyIG5vZGUKICAgIGlmICgheC5jbGFzc0xpc3QuY29udGFpbnMoJ2hhc0FuY2hvcicpKSB4LmNsYXNzTGlzdC5hZGQoJ2hhc0FuY2hvcicpCiAgICAvLyBSZW1vdmUgZnJvbSB0aGUgc2VjdGlvbiBvciBkaXYgY3JlYXRlZCBieSBQYW5kb2MKICAgIHgucGFyZW50RWxlbWVudC5jbGFzc0xpc3QucmVtb3ZlKCdoYXNBbmNob3InKQogIH0pCn0pCg=="></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -28,6 +29,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 <style type="text/css">
@@ -143,39 +145,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <h1 class="title toc-ignore">2.G: UniProt &amp; rbioapi</h1>
 <h4 class="author">Moosa Rezwani</h4>
-<h4 class="date">2021-06-21</h4>
+<h4 class="date">2022-04-05</h4>
 
 
 <div id="TOC">
 <ul>
-<li><a href="#introduction"><span class="toc-section-number">1</span> Introduction</a></li>
-<li><a href="#note-about-species-argument"><span class="toc-section-number">2</span> Search vs Retrieve</a>
+<li><a href="#introduction"><span class="toc-section-number">1</span> Introduction<span></span></a></li>
+<li><a href="#note-about-species-argument"><span class="toc-section-number">2</span> Search vs Retrieve<span></span></a>
 <ul>
-<li><a href="#functions-with-_search-variant"><span class="toc-section-number">2.1</span> Functions with <code>*_search</code> variant</a></li>
+<li><a href="#functions-with-_search-variant"><span class="toc-section-number">2.1</span> Functions with <code>*_search</code> variant<span></span></a></li>
 </ul></li>
-<li><a href="#uniprot-functions-categories"><span class="toc-section-number">3</span> UniProt functions categories</a>
+<li><a href="#uniprot-functions-categories"><span class="toc-section-number">3</span> UniProt functions categories<span></span></a>
 <ul>
-<li><a href="#proteins"><span class="toc-section-number">3.1</span> Proteins</a>
+<li><a href="#proteins"><span class="toc-section-number">3.1</span> Proteins<span></span></a>
 <ul>
-<li><a href="#proteins-1"><span class="toc-section-number">3.1.1</span> Proteins:</a></li>
-<li><a href="#features"><span class="toc-section-number">3.1.2</span> Features</a></li>
-<li><a href="#variation"><span class="toc-section-number">3.1.3</span> Variation</a></li>
-<li><a href="#proteomics"><span class="toc-section-number">3.1.4</span> Proteomics</a></li>
-<li><a href="#antigens"><span class="toc-section-number">3.1.5</span> Antigens</a></li>
+<li><a href="#proteins-1"><span class="toc-section-number">3.1.1</span> Proteins:<span></span></a></li>
+<li><a href="#features"><span class="toc-section-number">3.1.2</span> Features<span></span></a></li>
+<li><a href="#variation"><span class="toc-section-number">3.1.3</span> Variation<span></span></a></li>
+<li><a href="#proteomics"><span class="toc-section-number">3.1.4</span> Proteomics<span></span></a></li>
+<li><a href="#post-translational-modification-ptm"><span class="toc-section-number">3.1.5</span> Post-Translational Modification (PTM)<span></span></a></li>
+<li><a href="#antigens"><span class="toc-section-number">3.1.6</span> Antigens<span></span></a></li>
+<li><a href="#mutagenesis"><span class="toc-section-number">3.1.7</span> Mutagenesis<span></span></a></li>
 </ul></li>
-<li><a href="#proteomes"><span class="toc-section-number">3.2</span> Proteomes</a></li>
-<li><a href="#taxonomy"><span class="toc-section-number">3.3</span> Taxonomy</a></li>
-<li><a href="#coordinates"><span class="toc-section-number">3.4</span> Coordinates</a></li>
-<li><a href="#uniparc"><span class="toc-section-number">3.5</span> UniParc</a></li>
+<li><a href="#proteomes"><span class="toc-section-number">3.2</span> Proteomes<span></span></a></li>
+<li><a href="#taxonomy"><span class="toc-section-number">3.3</span> Taxonomy<span></span></a></li>
+<li><a href="#coordinates"><span class="toc-section-number">3.4</span> Coordinates<span></span></a></li>
+<li><a href="#uniparc"><span class="toc-section-number">3.5</span> UniParc<span></span></a></li>
 </ul></li>
-<li><a href="#links"><span class="toc-section-number">4</span> Links</a></li>
-<li><a href="#session-info"><span class="toc-section-number">5</span> Session info</a></li>
+<li><a href="#Citations"><span class="toc-section-number">4</span> How to Cite?<span></span></a></li>
+<li><a href="#links"><span class="toc-section-number">5</span> Links<span></span></a></li>
+<li><a href="#session-info"><span class="toc-section-number">6</span> Session info<span></span></a></li>
 </ul>
 </div>
 
 <hr />
-<div id="introduction" class="section level1 heading2" number="1">
-<h1 class="heading2" number="1"><span class="header-section-number">1</span> Introduction</h1>
+<div id="introduction" class="section level1 heading2 hasAnchor" number="1">
+<h1 class="heading2 hasAnchor"><span class="header-section-number">1</span> Introduction<a href="#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Directly quoting from <a href="https://www.uniprot.org" title="Universal Protein Resource (UniProt)">UniProt</a>:</p>
 <blockquote>
 <p>The Universal Protein Resource (UniProt) is a comprehensive resource for protein sequence and annotation data. The UniProt databases are the <a href="https://www.uniprot.org/help/uniprotkb">UniProt Knowledgebase (UniProtKB)</a>, the <a href="https://www.uniprot.org/help/uniref">UniProt Reference Clusters (UniRef)</a>, and the <a href="https://www.uniprot.org/help/uniparc">UniProt Archive (UniParc)</a>. The UniProt consortium and host institutions EMBL-EBI, SIB and PIR are committed to the long-term preservation of the UniProt databases.</p>
@@ -183,8 +188,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <hr />
 </div>
-<div id="note-about-species-argument" class="section level1 heading2" number="2">
-<h1 class="heading2" number="2"><span class="header-section-number">2</span> Search vs Retrieve</h1>
+<div id="note-about-species-argument" class="section level1 heading2 hasAnchor" number="2">
+<h1 class="heading2 hasAnchor"><span class="header-section-number">2</span> Search vs Retrieve<a href="#note-about-species-argument" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Most of rbioapi UniProt functions have two variants. one to retrieve data using a proper accession, and the second one (which have a <code>_search</code> suffix) is to search using any combination of arguments. We first demonstrate this using an example, then provide a list of such functions in rbioapi.</p>
 <p>Suppose we are interested in Human CD40 ligand protein, and we know that it’s UniProt accession is “P29965”. We can simply do as the following:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 We can retrieve CD40 protein&#39;s information by qurying it&#39;s UniProt accession:</span></span>
@@ -265,28 +270,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P04637:List of 14</span></span>
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q9HCN2:List of 14</span></span>
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ A1A5B4:List of 14</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q9Y2B4:List of 13</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q8IXH6:List of 14</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q53FA7:List of 14</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q9NS56:List of 14</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q9NS56:List of 14</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q9Y2B4:List of 13</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q8IXH6:List of 14</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q53FA7:List of 14</span></span>
 <span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q96A56:List of 14</span></span>
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ O14683:List of 14</span></span>
 <span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q96S44:List of 14</span></span>
 <span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q8NBR0:List of 14</span></span>
 <span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q13625:List of 14</span></span>
 <span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q7L0Q8:List of 14</span></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q9UKI2:List of 14</span></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q6NZY7:List of 14</span></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q6DT37:List of 14</span></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q5VT25:List of 14</span></span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q00587:List of 14</span></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ O14613:List of 14</span></span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q9Y5S2:List of 14</span></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P60953:List of 14</span></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q9H3Q1:List of 14</span></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q07960:List of 14</span></span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q9NRR8:List of 14</span></span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q9NRR3:List of 14</span></span></code></pre></div>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q5VT25:List of 14</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q00587:List of 14</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ O14613:List of 14</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q6DT37:List of 14</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q9UKI2:List of 14</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q6NZY7:List of 14</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q9H3Q1:List of 14</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q07960:List of 14</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q9Y5S2:List of 14</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q9NRR8:List of 14</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Q9NRR3:List of 14</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P60953:List of 14</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 Search for every proteins with chemokines keyword</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>multi_prs3 <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_proteins_search</span>(<span class="at">keyword =</span> <span class="st">&quot;chemokines&quot;</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -312,24 +317,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(multi_prs4, <span class="dv">1</span>)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; List of 16</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTD2:List of 14</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTG0:List of 13</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC7:List of 14</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC2:List of 14</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTD8:List of 14</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTD3:List of 14</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC6:List of 14</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTD1:List of 14</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC1:List of 13</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC8:List of 14</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC4:List of 14</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTF1:List of 13</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC9:List of 14</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC5:List of 14</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC3:List of 14</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTD3:List of 14</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC6:List of 14</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTG0:List of 13</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC7:List of 14</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC2:List of 14</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC8:List of 14</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC4:List of 14</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC9:List of 14</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC5:List of 14</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC3:List of 14</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTD8:List of 14</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTD2:List of 14</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTF1:List of 13</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTD1:List of 14</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC1:List of 13</span></span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ P0DTG1:List of 13</span></span></code></pre></div>
-<div id="functions-with-_search-variant" class="section level2" number="2.1">
-<h2 number="2.1"><span class="header-section-number">2.1</span> Functions with <code>*_search</code> variant</h2>
+<div id="functions-with-_search-variant" class="section level2 hasAnchor" number="2.1">
+<h2 class="hasAnchor"><span class="header-section-number">2.1</span> Functions with <code>*_search</code> variant<a href="#functions-with-_search-variant" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The search variants are not limited to the above. Here is a list of the function that have both a retrieve and search variants. See their manuals for detailed guides and examples.</p>
 <ol style="list-style-type: decimal">
 <li><p><code>rba_uniprot_proteins()</code> &amp; <code>rba_uniprot_proteins_search()</code></p></li>
@@ -337,55 +342,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>rba_uniprot_variation()</code> &amp; <code>rba_uniprot_variation_search()</code></p></li>
 <li><p><code>rba_uniprot_proteomics()</code> &amp; <code>rba_uniprot_proteomics_search()</code></p></li>
 <li><p><code>rba_uniprot_antigens()</code> &amp; <code>rba_uniprot_antigens_search()</code></p></li>
-<li><p><code>rba_uniprot_proteomes()</code> &amp; <code>rba_uniprot_proteomes_search</code></p></li>
+<li><p><code>rba_uniprot_proteomes()</code> &amp; <code>rba_uniprot_proteomes_search()</code></p></li>
+<li><p><code>rba_uniprot_ptm()</code> &amp; <code>rba_uniprot_ptm_search()</code></p></li>
+<li><p><code>rba_uniprot_mutagenesis()</code> &amp; <code>rba_uniprot_mutagenesis_search()</code></p></li>
 <li><p><code>rba_uniprot_genecentric()</code> &amp; <code>rba_uniprot_genecentric_search()</code></p></li>
 <li><p><code>rba_uniprot_uniparc()</code> &amp; <code>rba_uniprot_uniparc_search()</code></p></li>
 </ol>
 <hr />
 </div>
 </div>
-<div id="uniprot-functions-categories" class="section level1" number="3">
-<h1 number="3"><span class="header-section-number">3</span> UniProt functions categories</h1>
-<p>In UniProt RESTful API documentation, the endpoints are organized into 5 group. Here are those categories and rbioapi functions that correspond to each one. See the functions’ manuals for more details.</p>
-<div id="proteins" class="section level2" number="3.1">
-<h2 number="3.1"><span class="header-section-number">3.1</span> Proteins</h2>
-<div id="proteins-1" class="section level3" number="3.1.1">
-<h3 number="3.1.1"><span class="header-section-number">3.1.1</span> Proteins:</h3>
+<div id="uniprot-functions-categories" class="section level1 hasAnchor" number="3">
+<h1 class="hasAnchor"><span class="header-section-number">3</span> UniProt functions categories<a href="#uniprot-functions-categories" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The UniProt API endpoints are organized into 5 group. Here are those categories and rbioapi functions that correspond to each one. See the functions’ manuals for more details.</p>
+<div id="proteins" class="section level2 hasAnchor" number="3.1">
+<h2 class="hasAnchor"><span class="header-section-number">3.1</span> Proteins<a href="#proteins" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="proteins-1" class="section level3 hasAnchor" number="3.1.1">
+<h3 class="hasAnchor"><span class="header-section-number">3.1.1</span> Proteins:<a href="#proteins-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p><code>rba_uniprot_proteins()</code></p></li>
 <li><p><code>rba_uniprot_proteins_search()</code></p></li>
 <li><p><code>rba_uniprot_proteins_crossref()</code></p></li>
 </ul>
 </div>
-<div id="features" class="section level3" number="3.1.2">
-<h3 number="3.1.2"><span class="header-section-number">3.1.2</span> Features</h3>
+<div id="features" class="section level3 hasAnchor" number="3.1.2">
+<h3 class="hasAnchor"><span class="header-section-number">3.1.2</span> Features<a href="#features" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p><code>rba_uniprot_features()</code></p></li>
 <li><p><code>rba_uniprot_features_search()</code></p></li>
 </ul>
 </div>
-<div id="variation" class="section level3" number="3.1.3">
-<h3 number="3.1.3"><span class="header-section-number">3.1.3</span> Variation</h3>
+<div id="variation" class="section level3 hasAnchor" number="3.1.3">
+<h3 class="hasAnchor"><span class="header-section-number">3.1.3</span> Variation<a href="#variation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>rba_uniprot_variation()</code></p>
 <p><code>rba_uniprot_variation_search()</code></p>
 </div>
-<div id="proteomics" class="section level3" number="3.1.4">
-<h3 number="3.1.4"><span class="header-section-number">3.1.4</span> Proteomics</h3>
+<div id="proteomics" class="section level3 hasAnchor" number="3.1.4">
+<h3 class="hasAnchor"><span class="header-section-number">3.1.4</span> Proteomics<a href="#proteomics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p><code>rba_uniprot_proteomics()</code></p></li>
 <li><p><code>rba_uniprot_proteomics_search()</code></p></li>
 </ul>
 </div>
-<div id="antigens" class="section level3" number="3.1.5">
-<h3 number="3.1.5"><span class="header-section-number">3.1.5</span> Antigens</h3>
+<div id="post-translational-modification-ptm" class="section level3 hasAnchor" number="3.1.5">
+<h3 class="hasAnchor"><span class="header-section-number">3.1.5</span> Post-Translational Modification (PTM)<a href="#post-translational-modification-ptm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p><code>rba_uniprot_ptm()</code></p></li>
+<li><p><code>rba_uniprot_ptm_search()</code></p></li>
+</ul>
+</div>
+<div id="antigens" class="section level3 hasAnchor" number="3.1.6">
+<h3 class="hasAnchor"><span class="header-section-number">3.1.6</span> Antigens<a href="#antigens" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p><code>rba_uniprot_antigens()</code></p></li>
 <li><p><code>rba_uniprot_antigens_search()</code></p></li>
 </ul>
 </div>
+<div id="mutagenesis" class="section level3 hasAnchor" number="3.1.7">
+<h3 class="hasAnchor"><span class="header-section-number">3.1.7</span> Mutagenesis<a href="#mutagenesis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p><code>rba_uniprot_mutagenesis()</code></p></li>
+<li><p><code>rba_uniprot_mutagenesis_search()</code></p></li>
+</ul>
 </div>
-<div id="proteomes" class="section level2" number="3.2">
-<h2 number="3.2"><span class="header-section-number">3.2</span> Proteomes</h2>
+</div>
+<div id="proteomes" class="section level2 hasAnchor" number="3.2">
+<h2 class="hasAnchor"><span class="header-section-number">3.2</span> Proteomes<a href="#proteomes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p><code>rba_uniprot_proteomes()</code></p></li>
 <li><p><code>rba_uniprot_proteomes_search()</code></p></li>
@@ -393,8 +414,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>rba_uniprot_genecentric_search()</code></p></li>
 </ul>
 </div>
-<div id="taxonomy" class="section level2" number="3.3">
-<h2 number="3.3"><span class="header-section-number">3.3</span> Taxonomy</h2>
+<div id="taxonomy" class="section level2 hasAnchor" number="3.3">
+<h2 class="hasAnchor"><span class="header-section-number">3.3</span> Taxonomy<a href="#taxonomy" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p><code>rba_uniprot_taxonomy()</code></p></li>
 <li><p><code>rba_uniprot_taxonomy_lca()</code></p></li>
@@ -404,8 +425,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>rba_uniprot_taxonomy_relationship()</code></p></li>
 </ul>
 </div>
-<div id="coordinates" class="section level2" number="3.4">
-<h2 number="3.4"><span class="header-section-number">3.4</span> Coordinates</h2>
+<div id="coordinates" class="section level2 hasAnchor" number="3.4">
+<h2 class="hasAnchor"><span class="header-section-number">3.4</span> Coordinates<a href="#coordinates" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p><code>rba_uniprot_coordinates()</code></p></li>
 <li><p><code>rba_uniprot_coordinates_search()</code></p></li>
@@ -413,8 +434,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>rba_uniprot_coordinates_sequence()</code></p></li>
 </ul>
 </div>
-<div id="uniparc" class="section level2" number="3.5">
-<h2 number="3.5"><span class="header-section-number">3.5</span> UniParc</h2>
+<div id="uniparc" class="section level2 hasAnchor" number="3.5">
+<h2 class="hasAnchor"><span class="header-section-number">3.5</span> UniParc<a href="#uniparc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p><code>rba_uniprot_uniparc()</code></p></li>
 <li><p><code>rba_uniprot_uniparc_search()</code></p></li>
@@ -424,20 +445,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 </div>
 </div>
-<div id="links" class="section level1 heading2" number="4">
-<h1 class="heading2" number="4"><span class="header-section-number">4</span> Links</h1>
+<div id="Citations" class="section level1 hasAnchor" number="4">
+<h1 class="hasAnchor"><span class="header-section-number">4</span> How to Cite?<a href="#Citations" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>To cite UniProt (Please see <a href="https://www.uniprot.org/help/publications" class="uri">https://www.uniprot.org/help/publications</a>):</p>
 <ul>
-<li><p><a href="https://rbioapi.moosa-r.com/articles/rbioapi_uniprot.html" title="2.F: UniProt &amp; rbioapi">This article in pkgdown website</a></p></li>
-<li><p><a href="https://rbioapi.moosa-r.com/reference/index.html#section-uniprot-rba-uniprot-" title="rbioapi reference">Functions references in pkgdown website</a></p></li>
+<li>The UniProt Consortium, UniProt: the universal protein knowledgebase in 2021, <em>Nucleic Acids Research</em>, Volume 49, Issue D1, 8 January 2021, Pages D480–D489, <a href="https://doi.org/10.1093/nar/gkaa1100" class="uri">https://doi.org/10.1093/nar/gkaa1100</a></li>
+<li>Andrew Nightingale, Ricardo Antunes, Emanuele Alpi, Borisas Bursteinas, Leonardo Gonzales, Wudong Liu, Jie Luo, Guoying Qi, Edd Turner, Maria Martin, The Proteins API: accessing key integrated protein and genome information, <em>Nucleic Acids Research</em>, Volume 45, Issue W1, 3 July 2017, Pages W539–W544, <a href="https://doi.org/10.1093/nar/gkx237" class="uri">https://doi.org/10.1093/nar/gkx237</a></li>
+</ul>
+<p>To cite rbioapi:</p>
+<ul>
+<li>Moosa Rezwani, Ali Akbar Pourfathollah, Farshid Noorbakhsh, rbioapi: User-Friendly R Interface to Biologic Web Services’ API, <em>Bioinformatics</em>, 2022;, btac172, <a href="https://doi.org/10.1093/bioinformatics/btac172" class="uri">https://doi.org/10.1093/bioinformatics/btac172</a></li>
+</ul>
+<hr />
+</div>
+<div id="links" class="section level1 heading2 hasAnchor" number="5">
+<h1 class="heading2 hasAnchor"><span class="header-section-number">5</span> Links<a href="#links" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<ul>
+<li><p><a href="https://rbioapi.moosa-r.com/articles/rbioapi_uniprot.html" title="2.F: UniProt &amp; rbioapi">This article in rbioapi documentation site</a></p></li>
+<li><p><a href="https://rbioapi.moosa-r.com/reference/index.html#section-uniprot-rba-uniprot-" title="rbioapi reference">Functions references in rbioapi documentation site</a></p></li>
 <li><p><a href="rbioapi.html" title="rbioapi: User-Friendly R Interface to Biologic Web Services&#39; API">rbioapi vignette index</a></p></li>
 </ul>
 <hr />
 </div>
-<div id="session-info" class="section level1 heading2" number="5">
-<h1 class="heading2" number="5"><span class="header-section-number">5</span> Session info</h1>
-<pre><code>#&gt; R version 4.1.0 (2021-05-18)
+<div id="session-info" class="section level1 heading2 hasAnchor" number="6">
+<h1 class="heading2 hasAnchor"><span class="header-section-number">6</span> Session info<a href="#session-info" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<pre><code>#&gt; R version 4.1.2 (2021-11-01)
 #&gt; Platform: x86_64-w64-mingw32/x64 (64-bit)
-#&gt; Running under: Windows 10 x64 (build 19043)
+#&gt; Running under: Windows 10 x64 (build 19044)
 #&gt; 
 #&gt; Matrix products: default
 #&gt; 
@@ -453,16 +487,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #&gt; 
 #&gt; other attached packages:
-#&gt; [1] rbioapi_0.7.4
+#&gt; [1] rbioapi_0.7.6
 #&gt; 
 #&gt; loaded via a namespace (and not attached):
-#&gt;  [1] png_0.1-7         digest_0.6.27     grid_4.1.0        R6_2.5.0         
-#&gt;  [5] jsonlite_1.7.2    magrittr_2.0.1    evaluate_0.14     highr_0.9        
-#&gt;  [9] httr_1.4.2        rlang_0.4.11      stringi_1.6.1     curl_4.3.1       
-#&gt; [13] jquerylib_0.1.4   DT_0.18           bslib_0.2.5.1     rmarkdown_2.9    
-#&gt; [17] tools_4.1.0       stringr_1.4.0     htmlwidgets_1.5.3 crosstalk_1.1.1  
-#&gt; [21] xfun_0.23         yaml_2.2.1        compiler_4.1.0    htmltools_0.5.1.1
-#&gt; [25] knitr_1.33        sass_0.4.0</code></pre>
+#&gt;  [1] rstudioapi_0.13   knitr_1.37        magrittr_2.0.2    R6_2.5.1         
+#&gt;  [5] rlang_1.0.2       fastmap_1.1.0     highr_0.9         stringr_1.4.0    
+#&gt;  [9] httr_1.4.2        tools_4.1.2       DT_0.21           grid_4.1.2       
+#&gt; [13] xfun_0.30         png_0.1-7         cli_3.2.0         jquerylib_0.1.4  
+#&gt; [17] htmltools_0.5.2   crosstalk_1.2.0   yaml_2.3.5        digest_0.6.29    
+#&gt; [21] sass_0.4.0        htmlwidgets_1.5.4 curl_4.3.2        evaluate_0.15    
+#&gt; [25] rmarkdown_2.13    stringi_1.7.6     compiler_4.1.2    bslib_0.3.1      
+#&gt; [29] jsonlite_1.8.0</code></pre>
 </div>
 
 

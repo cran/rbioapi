@@ -159,7 +159,7 @@
 #'   is 9606), species name (e.g. "Homo sapiens") or Reactome DbId (e.g
 #'   Homo sapiens is 48887). See
 #'    \code{\link{rba_reactome_species}} or
-#'    \href{https://reactome.org/content/schema/objects/Species}{Reactome
+#'    \href{https://reactome.org/content/schema/objects/Species/}{Reactome
 #'    Data Schema: Entries: Species}.
 #' @param projection Logical (default = FALSE) Should non-human identifiers
 #'   be projected to their human equivalents? (using Reactome orthology data)
@@ -192,13 +192,23 @@
 #'   in other Reactome analysis functions.
 #'
 #' @references \itemize{
-#'   \item Fabregat A, Sidiropoulos K, Viteri G, Forner O, Marin-Garcia P,
-#'   Arnau V, D'Eustachio P, Stein L, Hermjakob H. Reactome pathway analysis:
-#'   a high-performance in-memory approach. BMC bioinformatics. 2017 Mar;18(1)
-#'   142. doi: 10.1186/s12859-017-1559-2. PubMed PMID: 28249561.
-#'   PubMed Central PMCID: PMC5333408.
+#'   \item Marc Gillespie, Bijay Jassal, Ralf Stephan, Marija Milacic, Karen
+#'   Rothfels, Andrea Senff-Ribeiro, Johannes Griss, Cristoffer Sevilla, Lisa
+#'   Matthews, Chuqiao Gong, Chuan Deng, Thawfeek Varusai, Eliot Ragueneau,
+#'   Yusra Haider, Bruce May, Veronica Shamovsky, Joel Weiser, Timothy Brunson,
+#'   Nasim Sanati, Liam Beckman, Xiang Shao, Antonio Fabregat, Konstantinos
+#'   Sidiropoulos, Julieth Murillo, Guilherme Viteri, Justin Cook, Solomon
+#'   Shorser, Gary Bader, Emek Demir, Chris Sander, Robin Haw, Guanming Wu,
+#'   Lincoln Stein, Henning Hermjakob, Peter D’Eustachio, The reactome
+#'   pathway knowledgebase 2022, Nucleic Acids Research, 2021;, kab1028,
+#'   https://doi.org/10.1093/nar/gkab1028
+#'   \item Griss J, Viteri G, Sidiropoulos K, Nguyen V, Fabregat A,
+#'   Hermjakob H. ReactomeGSA - Efficient Multi-Omics Comparative Pathway
+#'   Analysis. Mol Cell Proteomics. 2020 Sep 9. doi: 10.1074/mcp. PubMed
+#'   PMID: 32907876.
 #'   \item \href{https://reactome.org/AnalysisService/}{Reactome Analysis
 #'   Services API Documentation}
+#'   \item \href{https://reactome.org/cite}{Citations note on Reactome website}
 #'   }
 #'
 #' @examples
@@ -340,7 +350,7 @@ rba_reactome_analysis <- function(input,
                           query = call_query,
                           httr::content_type("text/plain"),
                           accept = "application/json",
-                          parser = "json->list_simp",
+                          parser = "json->list_simp_flt_df",
                           save_to = .rba_file("reactome_analysis.json"))
   ## Call API
   final_output <- .rba_skeleton(input_call)
@@ -375,7 +385,7 @@ rba_reactome_analysis <- function(input,
 #' @param species Numeric or Character: NCBI Taxonomy identifier (Human Taxonomy
 #'    ID is 9606.) or species name (e.g. "Homo sapiens"). See
 #'    \code{\link{rba_reactome_species}} or
-#'    \href{https://reactome.org/content/schema/objects/Species}{Reactome
+#'    \href{https://reactome.org/content/schema/objects/Species/}{Reactome
 #'    Data Schema: Entries: Species}.
 #' @param save_to NULL or Character:\itemize{
 #'   \item NULL: Save the file to an automatically-generated path.
@@ -398,13 +408,23 @@ rba_reactome_analysis <- function(input,
 #' @return NULL, a PDF file will be saved to disk.
 #'
 #' @references \itemize{
-#'   \item Fabregat A, Sidiropoulos K, Viteri G, Forner O, Marin-Garcia P,
-#'   Arnau V, D'Eustachio P, Stein L, Hermjakob H. Reactome pathway analysis:
-#'   a high-performance in-memory approach. BMC bioinformatics. 2017 Mar;18(1)
-#'   142. doi: 10.1186/s12859-017-1559-2. PubMed PMID: 28249561.
-#'   PubMed Central PMCID: PMC5333408.
+#'   \item Marc Gillespie, Bijay Jassal, Ralf Stephan, Marija Milacic, Karen
+#'   Rothfels, Andrea Senff-Ribeiro, Johannes Griss, Cristoffer Sevilla, Lisa
+#'   Matthews, Chuqiao Gong, Chuan Deng, Thawfeek Varusai, Eliot Ragueneau,
+#'   Yusra Haider, Bruce May, Veronica Shamovsky, Joel Weiser, Timothy Brunson,
+#'   Nasim Sanati, Liam Beckman, Xiang Shao, Antonio Fabregat, Konstantinos
+#'   Sidiropoulos, Julieth Murillo, Guilherme Viteri, Justin Cook, Solomon
+#'   Shorser, Gary Bader, Emek Demir, Chris Sander, Robin Haw, Guanming Wu,
+#'   Lincoln Stein, Henning Hermjakob, Peter D’Eustachio, The reactome
+#'   pathway knowledgebase 2022, Nucleic Acids Research, 2021;, kab1028,
+#'   https://doi.org/10.1093/nar/gkab1028
+#'   \item Griss J, Viteri G, Sidiropoulos K, Nguyen V, Fabregat A,
+#'   Hermjakob H. ReactomeGSA - Efficient Multi-Omics Comparative Pathway
+#'   Analysis. Mol Cell Proteomics. 2020 Sep 9. doi: 10.1074/mcp. PubMed
+#'   PMID: 32907876.
 #'   \item \href{https://reactome.org/AnalysisService/}{Reactome Analysis
 #'   Services API Documentation}
+#'   \item \href{https://reactome.org/cite}{Citations note on Reactome website}
 #'   }
 #'
 #' @examples
@@ -564,13 +584,23 @@ rba_reactome_analysis_pdf <- function(token,
 #'   based on your input.
 #'
 #' @references \itemize{
-#'   \item Fabregat A, Sidiropoulos K, Viteri G, Forner O, Marin-Garcia P,
-#'   Arnau V, D'Eustachio P, Stein L, Hermjakob H. Reactome pathway analysis:
-#'   a high-performance in-memory approach. BMC bioinformatics. 2017 Mar;18(1)
-#'   142. doi: 10.1186/s12859-017-1559-2. PubMed PMID: 28249561.
-#'   PubMed Central PMCID: PMC5333408.
+#'   \item Marc Gillespie, Bijay Jassal, Ralf Stephan, Marija Milacic, Karen
+#'   Rothfels, Andrea Senff-Ribeiro, Johannes Griss, Cristoffer Sevilla, Lisa
+#'   Matthews, Chuqiao Gong, Chuan Deng, Thawfeek Varusai, Eliot Ragueneau,
+#'   Yusra Haider, Bruce May, Veronica Shamovsky, Joel Weiser, Timothy Brunson,
+#'   Nasim Sanati, Liam Beckman, Xiang Shao, Antonio Fabregat, Konstantinos
+#'   Sidiropoulos, Julieth Murillo, Guilherme Viteri, Justin Cook, Solomon
+#'   Shorser, Gary Bader, Emek Demir, Chris Sander, Robin Haw, Guanming Wu,
+#'   Lincoln Stein, Henning Hermjakob, Peter D’Eustachio, The reactome
+#'   pathway knowledgebase 2022, Nucleic Acids Research, 2021;, kab1028,
+#'   https://doi.org/10.1093/nar/gkab1028
+#'   \item Griss J, Viteri G, Sidiropoulos K, Nguyen V, Fabregat A,
+#'   Hermjakob H. ReactomeGSA - Efficient Multi-Omics Comparative Pathway
+#'   Analysis. Mol Cell Proteomics. 2020 Sep 9. doi: 10.1074/mcp. PubMed
+#'   PMID: 32907876.
 #'   \item \href{https://reactome.org/AnalysisService/}{Reactome Analysis
 #'   Services API Documentation}
+#'   \item \href{https://reactome.org/cite}{Citations note on Reactome website}
 #'   }
 #'
 #' @examples
@@ -698,13 +728,23 @@ rba_reactome_analysis_download <- function(token,
 #'   imported results.
 #'
 #' @references \itemize{
-#'   \item Fabregat A, Sidiropoulos K, Viteri G, Forner O, Marin-Garcia P,
-#'   Arnau V, D'Eustachio P, Stein L, Hermjakob H. Reactome pathway analysis:
-#'   a high-performance in-memory approach. BMC bioinformatics. 2017 Mar;18(1)
-#'   142. doi: 10.1186/s12859-017-1559-2. PubMed PMID: 28249561.
-#'   PubMed Central PMCID: PMC5333408.
+#'   \item Marc Gillespie, Bijay Jassal, Ralf Stephan, Marija Milacic, Karen
+#'   Rothfels, Andrea Senff-Ribeiro, Johannes Griss, Cristoffer Sevilla, Lisa
+#'   Matthews, Chuqiao Gong, Chuan Deng, Thawfeek Varusai, Eliot Ragueneau,
+#'   Yusra Haider, Bruce May, Veronica Shamovsky, Joel Weiser, Timothy Brunson,
+#'   Nasim Sanati, Liam Beckman, Xiang Shao, Antonio Fabregat, Konstantinos
+#'   Sidiropoulos, Julieth Murillo, Guilherme Viteri, Justin Cook, Solomon
+#'   Shorser, Gary Bader, Emek Demir, Chris Sander, Robin Haw, Guanming Wu,
+#'   Lincoln Stein, Henning Hermjakob, Peter D’Eustachio, The reactome
+#'   pathway knowledgebase 2022, Nucleic Acids Research, 2021;, kab1028,
+#'   https://doi.org/10.1093/nar/gkab1028
+#'   \item Griss J, Viteri G, Sidiropoulos K, Nguyen V, Fabregat A,
+#'   Hermjakob H. ReactomeGSA - Efficient Multi-Omics Comparative Pathway
+#'   Analysis. Mol Cell Proteomics. 2020 Sep 9. doi: 10.1074/mcp. PubMed
+#'   PMID: 32907876.
 #'   \item \href{https://reactome.org/AnalysisService/}{Reactome Analysis
 #'   Services API Documentation}
+#'   \item \href{https://reactome.org/cite}{Citations note on Reactome website}
 #'   }
 #'
 #' @examples
@@ -796,13 +836,23 @@ rba_reactome_analysis_import <- function(input,
 #'   are mapped to.
 #'
 #' @references \itemize{
-#'   \item Fabregat A, Sidiropoulos K, Viteri G, Forner O, Marin-Garcia P,
-#'   Arnau V, D'Eustachio P, Stein L, Hermjakob H. Reactome pathway analysis:
-#'   a high-performance in-memory approach. BMC bioinformatics. 2017 Mar;18(1)
-#'   142. doi: 10.1186/s12859-017-1559-2. PubMed PMID: 28249561.
-#'   PubMed Central PMCID: PMC5333408.
+#'   \item Marc Gillespie, Bijay Jassal, Ralf Stephan, Marija Milacic, Karen
+#'   Rothfels, Andrea Senff-Ribeiro, Johannes Griss, Cristoffer Sevilla, Lisa
+#'   Matthews, Chuqiao Gong, Chuan Deng, Thawfeek Varusai, Eliot Ragueneau,
+#'   Yusra Haider, Bruce May, Veronica Shamovsky, Joel Weiser, Timothy Brunson,
+#'   Nasim Sanati, Liam Beckman, Xiang Shao, Antonio Fabregat, Konstantinos
+#'   Sidiropoulos, Julieth Murillo, Guilherme Viteri, Justin Cook, Solomon
+#'   Shorser, Gary Bader, Emek Demir, Chris Sander, Robin Haw, Guanming Wu,
+#'   Lincoln Stein, Henning Hermjakob, Peter D’Eustachio, The reactome
+#'   pathway knowledgebase 2022, Nucleic Acids Research, 2021;, kab1028,
+#'   https://doi.org/10.1093/nar/gkab1028
+#'   \item Griss J, Viteri G, Sidiropoulos K, Nguyen V, Fabregat A,
+#'   Hermjakob H. ReactomeGSA - Efficient Multi-Omics Comparative Pathway
+#'   Analysis. Mol Cell Proteomics. 2020 Sep 9. doi: 10.1074/mcp. PubMed
+#'   PMID: 32907876.
 #'   \item \href{https://reactome.org/AnalysisService/}{Reactome Analysis
 #'   Services API Documentation}
+#'   \item \href{https://reactome.org/cite}{Citations note on Reactome website}
 #'   }
 #'
 #' @examples
@@ -883,7 +933,7 @@ rba_reactome_analysis_mapping <- function(input,
 #' \cr In version 73 (11 June 2020), using an orthology-based approach,
 #'   Homo sapiens events was projected to 18,654 orthologous pathways (with
 #'   81,835 orthologous proteins) in 15 non-human species.
-#'   See \href{https://reactome.org/documentation/inferred-events}{
+#'   See \href{https://reactome.org/documentation/inferred-events/}{
 #'   Reactome Computationally Inferred Events} for more information.
 #'
 #' @section Corresponding API Resources:
@@ -892,7 +942,7 @@ rba_reactome_analysis_mapping <- function(input,
 #' @param species_dbid Numeric: Reactome DbId (e.g  Mus musculus is 48892) of
 #'   the species you want to compare with Homo sapiens. See
 #'    \code{\link{rba_reactome_species}} or
-#'    \href{https://reactome.org/content/schema/objects/Species}{Reactome
+#'    \href{https://reactome.org/content/schema/objects/Species/}{Reactome
 #'    Data Schema: Entries: Species}.
 #' @param sort_by Sort the result based on what column? available choices
 #'   are: "NAME", "TOTAL_ENTITIES", "TOTAL_INTERACTORS", "TOTAL_REACTIONS",
@@ -916,13 +966,23 @@ rba_reactome_analysis_mapping <- function(input,
 #' @return List with the results of the comparison.
 #'
 #' @references \itemize{
-#'   \item Fabregat A, Sidiropoulos K, Viteri G, Forner O, Marin-Garcia P,
-#'   Arnau V, D'Eustachio P, Stein L, Hermjakob H. Reactome pathway analysis:
-#'   a high-performance in-memory approach. BMC bioinformatics. 2017 Mar;18(1)
-#'   142. doi: 10.1186/s12859-017-1559-2. PubMed PMID: 28249561.
-#'   PubMed Central PMCID: PMC5333408.
+#'   \item Marc Gillespie, Bijay Jassal, Ralf Stephan, Marija Milacic, Karen
+#'   Rothfels, Andrea Senff-Ribeiro, Johannes Griss, Cristoffer Sevilla, Lisa
+#'   Matthews, Chuqiao Gong, Chuan Deng, Thawfeek Varusai, Eliot Ragueneau,
+#'   Yusra Haider, Bruce May, Veronica Shamovsky, Joel Weiser, Timothy Brunson,
+#'   Nasim Sanati, Liam Beckman, Xiang Shao, Antonio Fabregat, Konstantinos
+#'   Sidiropoulos, Julieth Murillo, Guilherme Viteri, Justin Cook, Solomon
+#'   Shorser, Gary Bader, Emek Demir, Chris Sander, Robin Haw, Guanming Wu,
+#'   Lincoln Stein, Henning Hermjakob, Peter D’Eustachio, The reactome
+#'   pathway knowledgebase 2022, Nucleic Acids Research, 2021;, kab1028,
+#'   https://doi.org/10.1093/nar/gkab1028
+#'   \item Griss J, Viteri G, Sidiropoulos K, Nguyen V, Fabregat A,
+#'   Hermjakob H. ReactomeGSA - Efficient Multi-Omics Comparative Pathway
+#'   Analysis. Mol Cell Proteomics. 2020 Sep 9. doi: 10.1074/mcp. PubMed
+#'   PMID: 32907876.
 #'   \item \href{https://reactome.org/AnalysisService/}{Reactome Analysis
 #'   Services API Documentation}
+#'   \item \href{https://reactome.org/cite}{Citations note on Reactome website}
 #'   }
 #'
 #' @examples
@@ -1039,7 +1099,7 @@ rba_reactome_analysis_species <- function(species_dbid,
 #'   is 9606), species name (e.g. "Homo sapiens") or Reactome DbId (e.g
 #'   Homo sapiens is 48887). See
 #'    \code{\link{rba_reactome_species}} or
-#'    \href{https://reactome.org/content/schema/objects/Species}{Reactome
+#'    \href{https://reactome.org/content/schema/objects/Species/}{Reactome
 #'    Data Schema: Entries: Species}.
 #' @param sort_by Sort the result based on what column? available choices
 #'   are: "NAME", "TOTAL_ENTITIES", "TOTAL_INTERACTORS", "TOTAL_REACTIONS",
@@ -1065,13 +1125,23 @@ rba_reactome_analysis_species <- function(species_dbid,
 #' @return List containing the results and information of your analysis.
 #'
 #' @references \itemize{
-#'   \item Fabregat A, Sidiropoulos K, Viteri G, Forner O, Marin-Garcia P,
-#'   Arnau V, D'Eustachio P, Stein L, Hermjakob H. Reactome pathway analysis:
-#'   a high-performance in-memory approach. BMC bioinformatics. 2017 Mar;18(1)
-#'   142. doi: 10.1186/s12859-017-1559-2. PubMed PMID: 28249561.
-#'   PubMed Central PMCID: PMC5333408.
+#'   \item Marc Gillespie, Bijay Jassal, Ralf Stephan, Marija Milacic, Karen
+#'   Rothfels, Andrea Senff-Ribeiro, Johannes Griss, Cristoffer Sevilla, Lisa
+#'   Matthews, Chuqiao Gong, Chuan Deng, Thawfeek Varusai, Eliot Ragueneau,
+#'   Yusra Haider, Bruce May, Veronica Shamovsky, Joel Weiser, Timothy Brunson,
+#'   Nasim Sanati, Liam Beckman, Xiang Shao, Antonio Fabregat, Konstantinos
+#'   Sidiropoulos, Julieth Murillo, Guilherme Viteri, Justin Cook, Solomon
+#'   Shorser, Gary Bader, Emek Demir, Chris Sander, Robin Haw, Guanming Wu,
+#'   Lincoln Stein, Henning Hermjakob, Peter D’Eustachio, The reactome
+#'   pathway knowledgebase 2022, Nucleic Acids Research, 2021;, kab1028,
+#'   https://doi.org/10.1093/nar/gkab1028
+#'   \item Griss J, Viteri G, Sidiropoulos K, Nguyen V, Fabregat A,
+#'   Hermjakob H. ReactomeGSA - Efficient Multi-Omics Comparative Pathway
+#'   Analysis. Mol Cell Proteomics. 2020 Sep 9. doi: 10.1074/mcp. PubMed
+#'   PMID: 32907876.
 #'   \item \href{https://reactome.org/AnalysisService/}{Reactome Analysis
 #'   Services API Documentation}
+#'   \item \href{https://reactome.org/cite}{Citations note on Reactome website}
 #'   }
 #'
 #' @examples

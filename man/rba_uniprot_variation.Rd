@@ -21,12 +21,12 @@ rba_uniprot_variation(
 \href{https://www.uniprot.org/help/accession_numbers}{UniProt primary or
 secondary accession}, NIH-NCBI dbSNP ID or HGVS expression.
 \href{https://www.ncbi.nlm.nih.gov/snp/}{NIH-NCBI dbSNP id} or
-\href{https://www.ncbi.nlm.nih.gov/variation/hgvs/}{HGVS Expression}.}
+\href{https://varnomen.hgvs.org/}{HGVS Expression}.}
 
 \item{id_type}{The type of supplied ID argument, one of:
 \href{https://www.uniprot.org/help/accession_numbers}{"uniprot"},
 \href{https://www.ncbi.nlm.nih.gov/snp/}{"dbsnp"} or
-\href{https://www.ncbi.nlm.nih.gov/variation/hgvs/}{"hgvs"}}
+\href{https://varnomen.hgvs.org/}{"hgvs"}}
 
 \item{source_type}{Variation's source type. You can choose up to two of:
 "UniProt", "large scale study" and/or "mixed".}
@@ -82,6 +82,9 @@ rba_uniprot_variation(id = "O43593", id_type = "uniprot")
 }
 \references{
 \itemize{
+  \item The UniProt Consortium, UniProt: the universal protein
+  knowledgebase in 2021, Nucleic Acids Research, Volume 49, Issue D1,
+  8 January 2021, Pages D480–D489, https://doi.org/10.1093/nar/gkaa1100
   \item Andrew Nightingale, Ricardo Antunes, Emanuele Alpi, Borisas
   Bursteinas, Leonardo Gonzales, Wudong Liu, Jie Luo, Guoying Qi, Edd
   Turner, Maria Martin, The Proteins API: accessing key integrated protein
@@ -89,6 +92,8 @@ rba_uniprot_variation(id = "O43593", id_type = "uniprot")
   3 July 2017, Pages W539–W544, https://doi.org/10.1093/nar/gkx237
   \item \href{https://www.ebi.ac.uk/proteins/api/doc/}{Proteins API
   Documentation}
+  \item \href{https://www.uniprot.org/help/publications}{Citations note
+  on UniProt website}
   }
 }
 \seealso{

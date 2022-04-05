@@ -35,7 +35,7 @@ rba_options(timeout = 600, skip_error = TRUE)
 
 # Introduction {#introduction .heading2}
 
-[Enrichr](https://maayanlab.cloud/Enrichr) is a gene-set enrichment analysis tool developed in the [Ma'ayan lab](https://icahn.mssm.edu/research/labs/maayan-laboratory).
+[Enrichr](https://maayanlab.cloud/Enrichr/) is a gene-set enrichment analysis tool developed in the [Ma'ayan lab](https://icahn.mssm.edu/research/labs/maayan-laboratory/).
 
 # Gene set library concept in Enrichr {#gene-set-library-concept-in-enrichr .heading2}
 
@@ -124,6 +124,8 @@ enriched <- rba_enrichr_enrich(user_list_id = list_id$userListId,
 str(enriched, 1)
 ```
 
+**Please Note:** Other services supported by rbioapi also provide Over-representation analysis tools. Please see the vignette article [Do with rbioapi: Over-Representation (Enrichment) Analysis](rbioapi_do_enrich.html) ([link to the documentation site](https://rbioapi.moosa-r.com/articles/rbioapi_do_enrich.html)) for an in-depth review.
+
 # See also in Functions' manuals {#see-also-in-functions-manuals .heading2}
 
 Some rbioapi Enrichr functions were not covered in this vignette, be sure to check their manuals:
@@ -134,11 +136,27 @@ Some rbioapi Enrichr functions were not covered in this vignette, be sure to che
 
 ------------------------------------------------------------------------
 
+# How to Cite? {#Citations}
+
+To cite Enrichr (Please see <https://maayanlab.cloud/Enrichr/help#terms>):
+
+-   Chen, E.Y., Tan, C.M., Kou, Y. *et al.* Enrichr: interactive and collaborative HTML5 gene list enrichment analysis tool. *Bioinformatics* **14,** 128 (2013). <https://doi.org/10.1186/1471-2105-14-128>
+
+-   Maxim V. Kuleshov, Matthew R. Jones, Andrew D. Rouillard, Nicolas F. Fernandez, Qiaonan Duan, Zichen Wang, Simon Koplev, Sherry L. Jenkins, Kathleen M. Jagodnik, Alexander Lachmann, Michael G. McDermott, Caroline D. Monteiro, Gregory W. Gundersen, Avi Ma'ayan, Enrichr: a comprehensive gene set enrichment analysis web server 2016 update, *Nucleic Acids Research*, Volume 44, Issue W1, 8 July 2016, Pages W90--W97, <https://doi.org/10.1093/nar/gkw377>
+
+-   Xie, Z., Bailey, A., Kuleshov, M. V., Clarke, D. J. B., Evangelista, J. E., Jenkins, S. L., Lachmann, A., Wojciechowicz, M. L., Kropiwnicki, E., Jagodnik, K. M., Jeon, M., & Ma'ayan, A. (2021). Gene set knowledge discovery with Enrichr. *Current Protocols*, 1, e90. doi: <https://doi.org/10.1002/cpz1.90>
+
+To cite rbioapi:
+
+-   Moosa Rezwani, Ali Akbar Pourfathollah, Farshid Noorbakhsh, rbioapi: User-Friendly R Interface to Biologic Web Services' API, *Bioinformatics*, 2022;, btac172, <https://doi.org/10.1093/bioinformatics/btac172>
+
+------------------------------------------------------------------------
+
 # Links {.heading2}
 
--   [This article in pkgdown website](https://rbioapi.moosa-r.com/articles/rbioapi_enrichr.html "https://rbioapi.moosa-r.com/articles/rbioapi_enrichr.html")
+-   [This article in rbioapi documentation site](https://rbioapi.moosa-r.com/articles/rbioapi_enrichr.html "https://rbioapi.moosa-r.com/articles/rbioapi_enrichr.html")
 
--   [Functions references in pkgdown website](https://rbioapi.moosa-r.com/reference/index.html#section-enrichr-rba-enrichr- "rbioapi reference")
+-   [Functions references in rbioapi documentation site](https://rbioapi.moosa-r.com/reference/index.html#section-enrichr-rba-enrichr- "rbioapi reference")
 
 -   [rbioapi vignette index](rbioapi.html "rbioapi: User-Friendly R Interface to Biologic Web Services' API")
 

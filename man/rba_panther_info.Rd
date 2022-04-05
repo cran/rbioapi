@@ -11,6 +11,7 @@ rba_panther_info(what, organism_chr_loc = FALSE, families_page = 1, ...)
 \item "organisms": Retrieve supported organisms in PANTHER.
 \item "datasets": Retrieve available annotation datasets.
 \item "families" Retrieve available family IDs.
+\item "species_tree" Retrieve the PANThER's species tree.
 \item "pathways" Retrieve available pathway IDs.}}
 
 \item{organism_chr_loc}{(Logical) (only when 'what = "organisms"')
@@ -25,8 +26,8 @@ argument to define the page to retrieve.}
 arguments manual for more information on available options.}
 }
 \value{
-For families, a list and otherwise a data frame with pertinent
-  information.
+For families and species tree, a list and otherwise a data frame
+  with pertinent information.
 }
 \description{
 Using this function you can retrieve a list of available organisms,
@@ -39,6 +40,7 @@ Using this function you can retrieve a list of available organisms,
  \cr "GET http://www.pantherdb.org/services/oai/pantherdb/supportedannotdatasets"
  \cr "GET http://www.pantherdb.org/services/oai/pantherdb/supportedpantherfamilies"
  \cr "GET http://www.pantherdb.org/services/oai/pantherdb/supportedpantherpathways"
+ \cr "GET http://pantherdb.org/services/oai/pantherdb/speciestree"
 }
 
 \examples{
@@ -52,16 +54,17 @@ rba_panther_info(what = "families", families_page = 4)
 }
 \references{
 \itemize{
-  \item Mi, H., Muruganujan, A., Ebert, D., Huang, X., & Thomas, P. D.
-  (2019). PANTHER version 14: more genomes, a new PANTHER GO-slim and
-  improvements in enrichment analysis tools. Nucleic acids research, 47(D1),
-  D419-D426.
-  \item Mi, H., Muruganujan, A., Huang, X., Ebert, D., Mills, C., Guo, X.,
-  & Thomas, P. D. (2019). Protocol Update for large-scale genome and gene
-  function analysis with the PANTHER classification system (v. 14.0).
-  Nature protocols, 14(3), 703-721.
+  \item Huaiyu Mi, Dustin Ebert, Anushya Muruganujan, Caitlin Mills,
+  Laurent-Philippe Albou, Tremayne Mushayamaha, Paul D Thomas, PANTHER
+  version 16: a revised family classification, tree-based classification
+  tool, enhancer regions and extensive API, Nucleic Acids Research,
+  Volume 49, Issue D1, 8 January 2021, Pages D394–D403,
+  https://doi.org/10.1093/nar/gkaa1106
   \item \href{http://www.pantherdb.org/services/details.jsp}{PANTHER
   Services Details}
+  \item
+  \href{http://www.pantherdb.org/publications.jsp#HowToCitePANTHER}{Citations
+  note on PANTHER website}
   }
 }
 \seealso{

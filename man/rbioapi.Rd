@@ -6,14 +6,7 @@
 \alias{rbioapi-package}
 \title{rbioapi: User-Friendly R Interface to Biologic Web Services' API}
 \description{
-Currently fully supports Enrichr, JASPAR, miEAA, PANTHER,
-    Reactome, STRING, and UniProt! The goal of rbioapi is to provide a
-    user-friendly and consistent interface to biological databases and
-    services: In a way that insulates the user from technicalities of
-    using web services API and creates a unified and easy-to-use interface
-    to biological and medical web services. This an ongoing project; New
-    databases and services will be added periodically. Feel free to
-    suggest any databases or services you often use.
+Currently fully supports Enrichr, JASPAR, miEAA, PANTHER, Reactome, STRING, and UniProt! The goal of rbioapi is to provide a user-friendly and consistent interface to biological databases and services: In a way that insulates the user from technicalities of using web services API and creates a unified and easy-to-use interface to biological and medical web services. This an ongoing project; New databases and services will be added periodically. Feel free to suggest any databases or services you often use.
 }
 \section{Supported Database/Services}{
 
@@ -38,7 +31,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Moosa Rezwani \email{moosa.rezwani@gmail.com} [copyright holder]
+\strong{Maintainer}: Moosa Rezwani \email{moosa.rezwani@gmail.com} (\href{https://orcid.org/0000-0001-6325-4444}{ORCID})
 
 }
 \keyword{internal}

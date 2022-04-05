@@ -78,7 +78,7 @@ genes <- c("p53", "BRCA1", "cdk2", "Q99835", "CDC42","CDK1","KIF23","PLK1",
 ## 3 Now we can submit the enrichment request.
 enriched <- rba_panther_enrich(genes = genes,
                                organism = 9606,
-                               annot_dataset = "ANNOT_TYPE_ID_PANTHER_GO_SLIM_BP",
+                               annot_dataset = "ANNOT_TYPE_ID_PANTHER_PATHWAY",
                                cutoff = 0.05)
 ```
 
@@ -95,17 +95,31 @@ if (utils::hasName(enriched, "result")) {
 }
 ```
 
+**Please Note:** Other services supported by rbioapi also provide Over-representation analysis tools. Please see the vignette article [Do with rbioapi: Over-Representation (Enrichment) Analysis](rbioapi_do_enrich.html) ([link to the documentation site](https://rbioapi.moosa-r.com/articles/rbioapi_do_enrich.html)) for an in-depth review.
+
 ## Tree grafter {#tree-grafter .heading2}
 
 `rba_panther_tree_grafter()` is an equivalent to the "[Graft sequence into PANTHER library of trees](http://www.pantherdb.org/tools/sequenceSearchForm.jsp)" tool.
 
 ------------------------------------------------------------------------
 
+# How to Cite? {#Citations}
+
+To cite PANTHER (Please see <http://www.pantherdb.org/publications.jsp#HowToCitePANTHER>):
+
+-   Huaiyu Mi, Dustin Ebert, Anushya Muruganujan, Caitlin Mills, Laurent-Philippe Albou, Tremayne Mushayamaha, Paul D Thomas, PANTHER version 16: a revised family classification, tree-based classification tool, enhancer regions and extensive API, *Nucleic Acids Research*, Volume 49, Issue D1, 8 January 2021, Pages D394--D403, <https://doi.org/10.1093/nar/gkaa1106>
+
+To cite rbioapi:
+
+-   Moosa Rezwani, Ali Akbar Pourfathollah, Farshid Noorbakhsh, rbioapi: User-Friendly R Interface to Biologic Web Services' API, *Bioinformatics*, 2022;, btac172, <https://doi.org/10.1093/bioinformatics/btac172>
+
+------------------------------------------------------------------------
+
 # Links {.heading2}
 
--   [This article in pkgdown website](https://rbioapi.moosa-r.com/articles/rbioapi_panther.html "2.C: PANTHER & rbioapi")
+-   [This article in rbioapi documentation site](https://rbioapi.moosa-r.com/articles/rbioapi_panther.html "2.C: PANTHER & rbioapi")
 
--   [Functions references in pkgdown website](https://rbioapi.moosa-r.com/reference/index.html#section-enrichr-rba-enrichr- "rbioapi reference")
+-   [Functions references in rbioapi documentation site](https://rbioapi.moosa-r.com/reference/index.html#section-enrichr-rba-enrichr- "rbioapi reference")
 
 -   [rbioapi vignette index](rbioapi.html "rbioapi: User-Friendly R Interface to Biologic Web Services' API")
 
@@ -116,3 +130,4 @@ if (utils::hasName(enriched, "result")) {
 ```{r sessionInfo, echo=FALSE}
 sessionInfo()
 ```
+

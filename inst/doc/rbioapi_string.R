@@ -87,12 +87,12 @@ if (is.array(graph_1)) {
 ## ----rba_string_network_image_ex2, fig.show='hide'----------------------------
 ## Example 2:
 graph_2 <- rba_string_network_image(ids = proteins_mapped,
-                                   image_format = "image",
-                                   species = 9606,
-                                   save_image = FALSE,
-                                   required_score = 500,
-                                   add_color_nodes = 5,
-                                   add_white_nodes = 5,
+                                    image_format = "image",
+                                    species = 9606,
+                                    save_image = FALSE,
+                                    required_score = 500,
+                                    add_color_nodes = 5,
+                                    add_white_nodes = 5,
                                    network_flavor = "actions")
 
 ## ----rba_string_network_image_ex2_image, echo=FALSE, fig.cap="Network images - Example 2", fig.align='center'----
@@ -104,11 +104,14 @@ if (is.array(graph_2)) {
 
 ## ----rba_string_enrichment----------------------------------------------------
 enriched <- rba_string_enrichment(ids = proteins_mapped,
-                                 species = 9606)
+                                  species = 9606, )
+
+## ----rba_string_enrichment_str------------------------------------------------
+str(enriched, max.level = 1)
 
 ## ----rba_string_enrichment_restults, echo=FALSE-------------------------------
-if (is.data.frame(enriched)) {
-  DT::datatable(data = enriched,
+if (is.data.frame(enriched$DISEASES)) {
+  DT::datatable(data = enriched$DISEASES,
               options = list(scrollX = TRUE, 
                              paging = TRUE,
                              fixedHeader = TRUE,

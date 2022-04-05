@@ -21,16 +21,17 @@
 #'   pertinent information.
 #'
 #' @references \itemize{
-#'   \item Mi, H., Muruganujan, A., Ebert, D., Huang, X., & Thomas, P. D.
-#'   (2019). PANTHER version 14: more genomes, a new PANTHER GO-slim and
-#'   improvements in enrichment analysis tools. Nucleic acids research, 47(D1),
-#'   D419-D426.
-#'   \item Mi, H., Muruganujan, A., Huang, X., Ebert, D., Mills, C., Guo, X.,
-#'   & Thomas, P. D. (2019). Protocol Update for large-scale genome and gene
-#'   function analysis with the PANTHER classification system (v. 14.0).
-#'   Nature protocols, 14(3), 703-721.
+#'   \item Huaiyu Mi, Dustin Ebert, Anushya Muruganujan, Caitlin Mills,
+#'   Laurent-Philippe Albou, Tremayne Mushayamaha, Paul D Thomas, PANTHER
+#'   version 16: a revised family classification, tree-based classification
+#'   tool, enhancer regions and extensive API, Nucleic Acids Research,
+#'   Volume 49, Issue D1, 8 January 2021, Pages D394–D403,
+#'   https://doi.org/10.1093/nar/gkaa1106
 #'   \item \href{http://www.pantherdb.org/services/details.jsp}{PANTHER
 #'   Services Details}
+#'   \item
+#'   \href{http://www.pantherdb.org/publications.jsp#HowToCitePANTHER}{Citations
+#'   note on PANTHER website}
 #'   }
 #'
 #' @examples
@@ -121,16 +122,17 @@ rba_panther_mapping <- function(genes,
 #' @return A list with the prov
 #'
 #' @references \itemize{
-#'   \item Mi, H., Muruganujan, A., Ebert, D., Huang, X., & Thomas, P. D.
-#'   (2019). PANTHER version 14: more genomes, a new PANTHER GO-slim and
-#'   improvements in enrichment analysis tools. Nucleic acids research, 47(D1),
-#'   D419-D426.
-#'   \item Mi, H., Muruganujan, A., Huang, X., Ebert, D., Mills, C., Guo, X.,
-#'   & Thomas, P. D. (2019). Protocol Update for large-scale genome and gene
-#'   function analysis with the PANTHER classification system (v. 14.0).
-#'   Nature protocols, 14(3), 703-721.
+#'   \item Huaiyu Mi, Dustin Ebert, Anushya Muruganujan, Caitlin Mills,
+#'   Laurent-Philippe Albou, Tremayne Mushayamaha, Paul D Thomas, PANTHER
+#'   version 16: a revised family classification, tree-based classification
+#'   tool, enhancer regions and extensive API, Nucleic Acids Research,
+#'   Volume 49, Issue D1, 8 January 2021, Pages D394–D403,
+#'   https://doi.org/10.1093/nar/gkaa1106
 #'   \item \href{http://www.pantherdb.org/services/details.jsp}{PANTHER
 #'   Services Details}
+#'   \item
+#'   \href{http://www.pantherdb.org/publications.jsp#HowToCitePANTHER}{Citations
+#'   note on PANTHER website}
 #'   }
 #'
 #' @examples
@@ -208,25 +210,18 @@ rba_panther_enrich <- function(genes,
   parser_input <- list("json->list_simp",
                        function(x) {
                          x <- x$results
-                         x$result$term_label <- x$result$term[, 1]
-                         x$result$term <- x$result$term[, 2]
+                         x$result <- jsonlite::flatten(x$result)
+
+                         if (!is.null(cutoff)) {
+                           if (correction == "FDR") {
+                             x$result <- x$result[x$result$fdr <= cutoff, ]
+                           } else {
+                             x$result <- x$result[x$result$pValue <= cutoff, ]
+                           }
+                         }
+
                          return(x)
                        })
-  if (!is.null(cutoff)) {
-    if (correction == "FDR") {
-      parser_input <- append(parser_input,
-                             list(function(x) {
-                               x$result <- x$result[which(x$result$fdr <= cutoff), ]
-                               return(x)
-                             }))
-    } else {
-      parser_input <- append(parser_input,
-                             list(function(x) {
-                               x$result <- x$result[which(x$result$pValue <= cutoff), ]
-                               return(x)
-                             }))
-    }
-  }
 
   input_call <- .rba_httr(httr = "post",
                           url = .rba_stg("panther", "url"),
@@ -253,6 +248,7 @@ rba_panther_enrich <- function(genes,
 #' \item "organisms": Retrieve supported organisms in PANTHER.
 #' \item "datasets": Retrieve available annotation datasets.
 #' \item "families" Retrieve available family IDs.
+#' \item "species_tree" Retrieve the PANThER's species tree.
 #' \item "pathways" Retrieve available pathway IDs.}
 #' @param organism_chr_loc (Logical) (only when 'what = "organisms"')
 #'   If TRUE, only organisms with chromosome location will be returned.
@@ -268,21 +264,23 @@ rba_panther_enrich <- function(genes,
 #'  \cr "GET http://www.pantherdb.org/services/oai/pantherdb/supportedannotdatasets"
 #'  \cr "GET http://www.pantherdb.org/services/oai/pantherdb/supportedpantherfamilies"
 #'  \cr "GET http://www.pantherdb.org/services/oai/pantherdb/supportedpantherpathways"
+#'  \cr "GET http://pantherdb.org/services/oai/pantherdb/speciestree"
 #'
-#' @return For families, a list and otherwise a data frame with pertinent
-#'   information.
+#' @return For families and species tree, a list and otherwise a data frame
+#'   with pertinent information.
 #'
 #' @references \itemize{
-#'   \item Mi, H., Muruganujan, A., Ebert, D., Huang, X., & Thomas, P. D.
-#'   (2019). PANTHER version 14: more genomes, a new PANTHER GO-slim and
-#'   improvements in enrichment analysis tools. Nucleic acids research, 47(D1),
-#'   D419-D426.
-#'   \item Mi, H., Muruganujan, A., Huang, X., Ebert, D., Mills, C., Guo, X.,
-#'   & Thomas, P. D. (2019). Protocol Update for large-scale genome and gene
-#'   function analysis with the PANTHER classification system (v. 14.0).
-#'   Nature protocols, 14(3), 703-721.
+#'   \item Huaiyu Mi, Dustin Ebert, Anushya Muruganujan, Caitlin Mills,
+#'   Laurent-Philippe Albou, Tremayne Mushayamaha, Paul D Thomas, PANTHER
+#'   version 16: a revised family classification, tree-based classification
+#'   tool, enhancer regions and extensive API, Nucleic Acids Research,
+#'   Volume 49, Issue D1, 8 January 2021, Pages D394–D403,
+#'   https://doi.org/10.1093/nar/gkaa1106
 #'   \item \href{http://www.pantherdb.org/services/details.jsp}{PANTHER
 #'   Services Details}
+#'   \item
+#'   \href{http://www.pantherdb.org/publications.jsp#HowToCitePANTHER}{Citations
+#'   note on PANTHER website}
 #'   }
 #'
 #' @examples
@@ -307,6 +305,7 @@ rba_panther_info <- function(what,
                              val = c("organisms",
                                      "datasets",
                                      "families",
+                                     "species_tree",
                                      "pathways")),
                         list(arg = "organism_chr_loc",
                              class = "logical",
@@ -325,6 +324,7 @@ rba_panther_info <- function(what,
               "organisms" = "supported organisms in PANTHER",
               "datasets" = "available annotation datasets",
               "families" = "available family IDs",
+              "species_tree" = "phylogenetic tree of PANTHER species",
               "pathways" = "available pathway IDs"),
        ifelse(what == "families",
               yes = sprintf(" (page %s)", families_page),
@@ -360,6 +360,11 @@ rba_panther_info <- function(what,
                                             pages_count = x$search$number_of_families %/% 1000
                                   )
                                 })
+         },
+         "species_tree" = {
+           path_input <- "speciestree"
+           parser_input <- list("json->list",
+                                function(x) {x$species_tree})
          },
          "pathways" = {
            path_input <- "supportedpantherpathways"
@@ -418,16 +423,17 @@ rba_panther_info <- function(what,
 #' @return A data frame with Orthologs information.
 #'
 #' @references \itemize{
-#'   \item Mi, H., Muruganujan, A., Ebert, D., Huang, X., & Thomas, P. D.
-#'   (2019). PANTHER version 14: more genomes, a new PANTHER GO-slim and
-#'   improvements in enrichment analysis tools. Nucleic acids research, 47(D1),
-#'   D419-D426.
-#'   \item Mi, H., Muruganujan, A., Huang, X., Ebert, D., Mills, C., Guo, X.,
-#'   & Thomas, P. D. (2019). Protocol Update for large-scale genome and gene
-#'   function analysis with the PANTHER classification system (v. 14.0).
-#'   Nature protocols, 14(3), 703-721.
+#'   \item Huaiyu Mi, Dustin Ebert, Anushya Muruganujan, Caitlin Mills,
+#'   Laurent-Philippe Albou, Tremayne Mushayamaha, Paul D Thomas, PANTHER
+#'   version 16: a revised family classification, tree-based classification
+#'   tool, enhancer regions and extensive API, Nucleic Acids Research,
+#'   Volume 49, Issue D1, 8 January 2021, Pages D394–D403,
+#'   https://doi.org/10.1093/nar/gkaa1106
 #'   \item \href{http://www.pantherdb.org/services/details.jsp}{PANTHER
 #'   Services Details}
+#'   \item
+#'   \href{http://www.pantherdb.org/publications.jsp#HowToCitePANTHER}{Citations
+#'   note on PANTHER website}
 #'   }
 #'
 #' @examples
@@ -549,16 +555,17 @@ rba_panther_ortholog <- function(genes,
 #' @return A dataframe with homologs information.
 #'
 #' @references \itemize{
-#'   \item Mi, H., Muruganujan, A., Ebert, D., Huang, X., & Thomas, P. D.
-#'   (2019). PANTHER version 14: more genomes, a new PANTHER GO-slim and
-#'   improvements in enrichment analysis tools. Nucleic acids research, 47(D1),
-#'   D419-D426.
-#'   \item Mi, H., Muruganujan, A., Huang, X., Ebert, D., Mills, C., Guo, X.,
-#'   & Thomas, P. D. (2019). Protocol Update for large-scale genome and gene
-#'   function analysis with the PANTHER classification system (v. 14.0).
-#'   Nature protocols, 14(3), 703-721.
+#'   \item Huaiyu Mi, Dustin Ebert, Anushya Muruganujan, Caitlin Mills,
+#'   Laurent-Philippe Albou, Tremayne Mushayamaha, Paul D Thomas, PANTHER
+#'   version 16: a revised family classification, tree-based classification
+#'   tool, enhancer regions and extensive API, Nucleic Acids Research,
+#'   Volume 49, Issue D1, 8 January 2021, Pages D394–D403,
+#'   https://doi.org/10.1093/nar/gkaa1106
 #'   \item \href{http://www.pantherdb.org/services/details.jsp}{PANTHER
 #'   Services Details}
+#'   \item
+#'   \href{http://www.pantherdb.org/publications.jsp#HowToCitePANTHER}{Citations
+#'   note on PANTHER website}
 #'   }
 #'
 #' @examples
@@ -656,16 +663,17 @@ rba_panther_homolog <- function(genes,
 #'   family's information.
 #'
 #' @references \itemize{
-#'   \item Mi, H., Muruganujan, A., Ebert, D., Huang, X., & Thomas, P. D.
-#'   (2019). PANTHER version 14: more genomes, a new PANTHER GO-slim and
-#'   improvements in enrichment analysis tools. Nucleic acids research, 47(D1),
-#'   D419-D426.
-#'   \item Mi, H., Muruganujan, A., Huang, X., Ebert, D., Mills, C., Guo, X.,
-#'   & Thomas, P. D. (2019). Protocol Update for large-scale genome and gene
-#'   function analysis with the PANTHER classification system (v. 14.0).
-#'   Nature protocols, 14(3), 703-721.
+#'   \item Huaiyu Mi, Dustin Ebert, Anushya Muruganujan, Caitlin Mills,
+#'   Laurent-Philippe Albou, Tremayne Mushayamaha, Paul D Thomas, PANTHER
+#'   version 16: a revised family classification, tree-based classification
+#'   tool, enhancer regions and extensive API, Nucleic Acids Research,
+#'   Volume 49, Issue D1, 8 January 2021, Pages D394–D403,
+#'   https://doi.org/10.1093/nar/gkaa1106
 #'   \item \href{http://www.pantherdb.org/services/details.jsp}{PANTHER
 #'   Services Details}
+#'   \item
+#'   \href{http://www.pantherdb.org/publications.jsp#HowToCitePANTHER}{Citations
+#'   note on PANTHER website}
 #'   }
 #'
 #' @examples
@@ -757,16 +765,17 @@ rba_panther_family <- function(id,
 #' @return A list containing PANTHER tree topology information.
 #'
 #' @references \itemize{
-#'   \item Mi, H., Muruganujan, A., Ebert, D., Huang, X., & Thomas, P. D.
-#'   (2019). PANTHER version 14: more genomes, a new PANTHER GO-slim and
-#'   improvements in enrichment analysis tools. Nucleic acids research, 47(D1),
-#'   D419-D426.
-#'   \item Mi, H., Muruganujan, A., Huang, X., Ebert, D., Mills, C., Guo, X.,
-#'   & Thomas, P. D. (2019). Protocol Update for large-scale genome and gene
-#'   function analysis with the PANTHER classification system (v. 14.0).
-#'   Nature protocols, 14(3), 703-721.
+#'   \item Huaiyu Mi, Dustin Ebert, Anushya Muruganujan, Caitlin Mills,
+#'   Laurent-Philippe Albou, Tremayne Mushayamaha, Paul D Thomas, PANTHER
+#'   version 16: a revised family classification, tree-based classification
+#'   tool, enhancer regions and extensive API, Nucleic Acids Research,
+#'   Volume 49, Issue D1, 8 January 2021, Pages D394–D403,
+#'   https://doi.org/10.1093/nar/gkaa1106
 #'   \item \href{http://www.pantherdb.org/services/details.jsp}{PANTHER
 #'   Services Details}
+#'   \item
+#'   \href{http://www.pantherdb.org/publications.jsp#HowToCitePANTHER}{Citations
+#'   note on PANTHER website}
 #'   }
 #'
 #' @examples

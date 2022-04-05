@@ -102,6 +102,8 @@
 #'   \item
 #'   \href{https://ccb-compute2.cs.uni-saarland.de/mieaa2/tutorial/api/}{miEAA
 #'   browsable API tutorial}
+#'   \item \href{https://ccb-compute2.cs.uni-saarland.de/mieaa2/}{Citations note
+#'   on miEAA website}
 #'   }
 #'
 #' @examples
@@ -191,6 +193,8 @@ rba_mieaa_cats <- function(mirna_type, species, ...) {
 #'   \item
 #'   \href{https://ccb-compute2.cs.uni-saarland.de/mieaa2/tutorial/api/}{miEAA
 #'   browsable API tutorial}
+#'   \item \href{https://ccb-compute2.cs.uni-saarland.de/mieaa2/}{Citations note
+#'   on miEAA website}
 #'   }
 #'
 #' @examples
@@ -266,7 +270,7 @@ rba_mieaa_convert_version <- function(mirna,
 #' Convert Between Mature and precursor miRNA Accession
 #'
 #' miRBase miRNA accession could refer to either mature or precursor miRNAs.
-#'   (see: \href{http://www.mirbase.org/help/nomenclature.shtml}{miRNA naming
+#'   (see: \href{https://mirbase.org/help/nomenclature.shtml}{miRNA naming
 #'   conventions}). Use this function to mature miRNA accession to
 #'   corresponding miRNA accessions or vice versa.
 #'
@@ -299,6 +303,8 @@ rba_mieaa_convert_version <- function(mirna,
 #'   \item
 #'   \href{https://ccb-compute2.cs.uni-saarland.de/mieaa2/tutorial/api/}{miEAA
 #'   browsable API tutorial}
+#'   \item \href{https://ccb-compute2.cs.uni-saarland.de/mieaa2/}{Citations note
+#'   on miEAA website}
 #'   }
 #'
 #' @examples
@@ -451,6 +457,8 @@ rba_mieaa_convert_type <- function(mirna,
 #'   \item
 #'   \href{https://ccb-compute2.cs.uni-saarland.de/mieaa2/tutorial/api/}{miEAA
 #'   browsable API tutorial}
+#'   \item \href{https://ccb-compute2.cs.uni-saarland.de/mieaa2/}{Citations note
+#'   on miEAA website}
 #'   }
 #'
 #' @examples
@@ -612,6 +620,8 @@ rba_mieaa_enrich_submit <- function(test_set,
 #'   \item
 #'   \href{https://ccb-compute2.cs.uni-saarland.de/mieaa2/tutorial/api/}{miEAA
 #'   browsable API tutorial}
+#'   \item \href{https://ccb-compute2.cs.uni-saarland.de/mieaa2/}{Citations note
+#'   on miEAA website}
 #'   }
 #'
 #' @examples
@@ -683,6 +693,8 @@ rba_mieaa_enrich_status <- function(job_id, ...) {
 #'   \item
 #'   \href{https://ccb-compute2.cs.uni-saarland.de/mieaa2/tutorial/api/}{miEAA
 #'   browsable API tutorial}
+#'   \item \href{https://ccb-compute2.cs.uni-saarland.de/mieaa2/}{Citations note
+#'   on miEAA website}
 #'   }
 #'
 #' @examples
@@ -717,13 +729,33 @@ rba_mieaa_enrich_results <- function(job_id,
        job_id)
 
   ## Build Function-Specific Call
+  parser_input <- list("json->df",
+                       function(x) {
+                         if (ncol(x) == 9) {
+                           colnames(x) <- c("Category", "Subcategory",
+                                            "Enrichment", "P-value",
+                                            "P-adjusted", "Q-value",
+                                            "Expected", "Observed",
+                                            "miRNAs/precursors")
+                         }
+                         if (ncol(x) == 8) {
+                           colnames(x) <- c("Category", "Subcategory",
+                                            "Enrichment", "P-value",
+                                            "P-adjusted", "Q-value",
+                                            "Observed", "miRNAs/precursors")
+
+                         }
+                         return(x)
+                       }
+  )
+
   input_call <- .rba_httr(httr = "get",
                           url = .rba_stg("mieaa", "url"),
                           path = sprintf("%s/enrichment_analysis/results/%s/",
                                          .rba_stg("mieaa", "pth"),
                                          job_id),
                           accept = "application/json",
-                          parser = "json->df",
+                          parser = parser_input,
                           save_to = .rba_file("rba_mieaa_info.json"))
 
   ## Call API
@@ -770,6 +802,8 @@ rba_mieaa_enrich_results <- function(job_id,
 #'   \item
 #'   \href{https://ccb-compute2.cs.uni-saarland.de/mieaa2/tutorial/api/}{miEAA
 #'   browsable API tutorial}
+#'   \item \href{https://ccb-compute2.cs.uni-saarland.de/mieaa2/}{Citations note
+#'   on miEAA website}
 #'   }
 #'
 #' @examples

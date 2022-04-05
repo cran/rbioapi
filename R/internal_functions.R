@@ -52,7 +52,7 @@
                    jaspar = switch(
                      arg[[2]],
                      name = "JASPAR",
-                     url = "http://jaspar.genereg.net",
+                     url = "https://jaspar.genereg.net",
                      pth = "api/v1/",
                      ptn = "^(https?://)?(www\\.)?jaspar\\.genereg\\.net/api/",
                      err_ptn = "^$"
@@ -93,7 +93,7 @@
                    string = switch(
                      arg[[2]],
                      name = "STRING",
-                     url = "https://version-11-0.string-db.org",
+                     url = "https://version-11-5.string-db.org",
                      pth = "api/",
                      ptn = "^(http.?://).*string-db\\.org/api/",
                      err_ptn = "^4\\d\\d$",
@@ -1147,7 +1147,7 @@
 #'   one of the following character strings that will be internally converted
 #'   to a proper function:
 #'   "json->df", "json->df_no_flat", "json->list_simp", "json->list",
-#'   "json->chr", text->chr", "text->df", "tsv->df".
+#'   "json->list_simp_flt_df", "json->chr", text->chr", "text->df", "tsv->df".
 #'   \cr if you supply more than one parser, the parsers will be sequentially
 #'   applied to the response (i.e. response %>% parser1 %>% parser2 %>% ...)
 #'
@@ -1186,6 +1186,20 @@
                                                                      as = "text",
                                                                      encoding = "UTF-8"),
                                                        simplifyVector = TRUE))
+                          },
+                          "json->list_simp_flt_df" = function(x) {
+                            sapply(X = as.list(jsonlite::fromJSON(httr::content(x,
+                                                                                as = "text",
+                                                                                encoding = "UTF-8"),
+                                                                  simplifyVector = TRUE)),
+                                   FUN = function(y){
+                                     if (is.data.frame(y)) {
+                                       jsonlite::flatten(y)
+                                     } else {
+                                       y
+                                     }
+                                   })
+
                           },
                           "json->list" = function(x) {
                             as.list(jsonlite::fromJSON(httr::content(x,

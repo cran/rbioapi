@@ -24,13 +24,17 @@
 #'   information.
 #'
 #' @references \itemize{
-#'   \item Szklarczyk D, Gable AL, Lyon D, Junge A, Wyder S, Huerta-Cepas J,
-#'   Simonovic M, Doncheva NT, Morris JH, Bork P, Jensen LJ, Mering CV.
-#'   STRING v11: protein-protein association networks with increased coverage,
-#'   supporting functional discovery in genome-wide experimental datasets.
-#'   Nucleic Acids Res. 2019 Jan 8;47(D1):D607-D613. doi: 10.1093/nar/gky1131.
-#'   PMID: 30476243; PMCID: PMC6323986.
+#'   \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
+#'   Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
+#'   Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
+#'   2021: customizable protein–protein networks, and functional
+#'   characterization of user-uploaded gene/measurement sets, Nucleic Acids
+#'   Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
+#'   https://doi.org/10.1093/nar/gkaa1074
 #'   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
+#'   \item
+#'   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{
+#'   Citations note on STRING website}
 #'   }
 #'
 #' @examples
@@ -148,13 +152,17 @@ rba_string_map_ids <- function(ids,
 #' @return A network images which can be PNG or SVG depending on the inputs.
 #'
 #' @references \itemize{
-#'   \item Szklarczyk D, Gable AL, Lyon D, Junge A, Wyder S, Huerta-Cepas J,
-#'   Simonovic M, Doncheva NT, Morris JH, Bork P, Jensen LJ, Mering CV.
-#'   STRING v11: protein-protein association networks with increased coverage,
-#'   supporting functional discovery in genome-wide experimental datasets.
-#'   Nucleic Acids Res. 2019 Jan 8;47(D1):D607-D613. doi: 10.1093/nar/gky1131.
-#'   PMID: 30476243; PMCID: PMC6323986.
+#'   \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
+#'   Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
+#'   Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
+#'   2021: customizable protein–protein networks, and functional
+#'   characterization of user-uploaded gene/measurement sets, Nucleic Acids
+#'   Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
+#'   https://doi.org/10.1093/nar/gkaa1074
 #'   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
+#'   \item
+#'   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{
+#'   Citations note on STRING website}
 #'   }
 #'
 #' @examples
@@ -349,13 +357,17 @@ rba_string_network_image <- function(ids,
 #'   \item tscore: textmining score}
 #'
 #' @references \itemize{
-#'   \item Szklarczyk D, Gable AL, Lyon D, Junge A, Wyder S, Huerta-Cepas J,
-#'   Simonovic M, Doncheva NT, Morris JH, Bork P, Jensen LJ, Mering CV.
-#'   STRING v11: protein-protein association networks with increased coverage,
-#'   supporting functional discovery in genome-wide experimental datasets.
-#'   Nucleic Acids Res. 2019 Jan 8;47(D1):D607-D613. doi: 10.1093/nar/gky1131.
-#'   PMID: 30476243; PMCID: PMC6323986.
+#'   \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
+#'   Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
+#'   Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
+#'   2021: customizable protein–protein networks, and functional
+#'   characterization of user-uploaded gene/measurement sets, Nucleic Acids
+#'   Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
+#'   https://doi.org/10.1093/nar/gkaa1074
 #'   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
+#'   \item
+#'   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{
+#'   Citations note on STRING website}
 #'   }
 #'
 #' @examples
@@ -480,13 +492,17 @@ rba_string_interactions_network <- function(ids,
 #'   columns contains interactor information and interaction scores.
 #'
 #' @references \itemize{
-#'   \item Szklarczyk D, Gable AL, Lyon D, Junge A, Wyder S, Huerta-Cepas J,
-#'   Simonovic M, Doncheva NT, Morris JH, Bork P, Jensen LJ, Mering CV.
-#'   STRING v11: protein-protein association networks with increased coverage,
-#'   supporting functional discovery in genome-wide experimental datasets.
-#'   Nucleic Acids Res. 2019 Jan 8;47(D1):D607-D613. doi: 10.1093/nar/gky1131.
-#'   PMID: 30476243; PMCID: PMC6323986.
+#'   \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
+#'   Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
+#'   Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
+#'   2021: customizable protein–protein networks, and functional
+#'   characterization of user-uploaded gene/measurement sets, Nucleic Acids
+#'   Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
+#'   https://doi.org/10.1093/nar/gkaa1074
 #'   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
+#'   \item
+#'   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{
+#'   Citations note on STRING website}
 #'   }
 #'
 #' @examples
@@ -602,13 +618,17 @@ rba_string_interaction_partners <- function(ids,
 #'   similarity matrix is symmetrical.
 #'
 #' @references \itemize{
-#'   \item Szklarczyk D, Gable AL, Lyon D, Junge A, Wyder S, Huerta-Cepas J,
-#'   Simonovic M, Doncheva NT, Morris JH, Bork P, Jensen LJ, Mering CV.
-#'   STRING v11: protein-protein association networks with increased coverage,
-#'   supporting functional discovery in genome-wide experimental datasets.
-#'   Nucleic Acids Res. 2019 Jan 8;47(D1):D607-D613. doi: 10.1093/nar/gky1131.
-#'   PMID: 30476243; PMCID: PMC6323986.
+#'   \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
+#'   Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
+#'   Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
+#'   2021: customizable protein–protein networks, and functional
+#'   characterization of user-uploaded gene/measurement sets, Nucleic Acids
+#'   Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
+#'   https://doi.org/10.1093/nar/gkaa1074
 #'   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
+#'   \item
+#'   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{
+#'   Citations note on STRING website}
 #'   }
 #'
 #' @examples
@@ -697,20 +717,24 @@ rba_string_homology_intra <- function(ids,
 #'   proteins among all other (or a defined) STRING species.
 #'
 #' @references \itemize{
-#'   \item Szklarczyk D, Gable AL, Lyon D, Junge A, Wyder S, Huerta-Cepas J,
-#'   Simonovic M, Doncheva NT, Morris JH, Bork P, Jensen LJ, Mering CV.
-#'   STRING v11: protein-protein association networks with increased coverage,
-#'   supporting functional discovery in genome-wide experimental datasets.
-#'   Nucleic Acids Res. 2019 Jan 8;47(D1):D607-D613. doi: 10.1093/nar/gky1131.
-#'   PMID: 30476243; PMCID: PMC6323986.
+#'   \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
+#'   Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
+#'   Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
+#'   2021: customizable protein–protein networks, and functional
+#'   characterization of user-uploaded gene/measurement sets, Nucleic Acids
+#'   Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
+#'   https://doi.org/10.1093/nar/gkaa1074
 #'   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
+#'   \item
+#'   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{
+#'   Citations note on STRING website}
 #'   }
 #'
 #' @examples
 #' \donttest{
 #' rba_string_homology_inter(ids = "p53",
 #'     species = 9606,
-#'     species_b = c(6087, 7070))
+#'     species_b = 7070)
 #' }
 #' \donttest{
 #' rba_string_homology_inter(ids = "ENSP00000269305", species = 9606)
@@ -796,24 +820,28 @@ rba_string_homology_inter <- function(ids,
 #'   to be used as the statistical background (or universe) when computing
 #'   P-value for the terms. Only STRING IDs are acceptable. (See
 #'   \code{\link{rba_string_map_ids}} to map your IDs.)
-#' @param split_df (logical, default = FALSE), If TRUE, instead of one
+#' @param split_df (logical, default = TRUE), If TRUE, instead of one
 #'   data frame, results from different categories will be split into
 #'   multiple data frames based on their 'category'.
 #' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
 #'   arguments manual for more information on available options.
 #'
-#' @return A data frame which every row is an enriched terms with p-value
-#'   smaller than 0.1 and the columns are the terms category, decription,
+#' @return A list of data frames which every row is an enriched terms with p-value
+#'   smaller than 0.1 and the columns are the terms category, description,
 #'   number of genes, p-value, fdr and other pertinent information.
 #'
 #' @references \itemize{
-#'   \item Szklarczyk D, Gable AL, Lyon D, Junge A, Wyder S, Huerta-Cepas J,
-#'   Simonovic M, Doncheva NT, Morris JH, Bork P, Jensen LJ, Mering CV.
-#'   STRING v11: protein-protein association networks with increased coverage,
-#'   supporting functional discovery in genome-wide experimental datasets.
-#'   Nucleic Acids Res. 2019 Jan 8;47(D1):D607-D613. doi: 10.1093/nar/gky1131.
-#'   PMID: 30476243; PMCID: PMC6323986.
+#'   \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
+#'   Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
+#'   Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
+#'   2021: customizable protein–protein networks, and functional
+#'   characterization of user-uploaded gene/measurement sets, Nucleic Acids
+#'   Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
+#'   https://doi.org/10.1093/nar/gkaa1074
 #'   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
+#'   \item
+#'   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{
+#'   Citations note on STRING website}
 #'   }
 #'
 #' @examples
@@ -828,7 +856,7 @@ rba_string_homology_inter <- function(ids,
 rba_string_enrichment <- function(ids,
                                   species = NULL,
                                   background = NULL,
-                                  split_df = FALSE,
+                                  split_df = TRUE,
                                   ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -838,7 +866,9 @@ rba_string_enrichment <- function(ids,
                         list(arg = "species",
                              class = "numeric"),
                         list(arg = "background",
-                             class = "character")),
+                             class = "character"),
+                        list(arg = "split_df",
+                             class = "logical")),
             cond = list(list(quote(length(ids) > 100 && is.null(species)),
                              sprintf("You supplied %s IDs. Please Specify the species (Homo Sapiens NCBI taxonomy ID is 9606).",
                                      length(ids)))
@@ -908,6 +938,9 @@ rba_string_enrichment <- function(ids,
 #'   large number of reference publications to each protein. In order to reduce
 #'   the output size, PubMed's results will be excluded from the results,
 #'   unless stated otherwise (By setting this argument to TRUE).
+#' @param split_df (logical, default = TRUE), If TRUE, instead of one
+#'   data frame, results from different categories will be split into
+#'   multiple data frames based on their 'category'.
 #' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
 #'   arguments manual for more information on available options.
 #'
@@ -916,13 +949,17 @@ rba_string_enrichment <- function(ids,
 #'   information.
 #'
 #' @references \itemize{
-#'   \item Szklarczyk D, Gable AL, Lyon D, Junge A, Wyder S, Huerta-Cepas J,
-#'   Simonovic M, Doncheva NT, Morris JH, Bork P, Jensen LJ, Mering CV.
-#'   STRING v11: protein-protein association networks with increased coverage,
-#'   supporting functional discovery in genome-wide experimental datasets.
-#'   Nucleic Acids Res. 2019 Jan 8;47(D1):D607-D613. doi: 10.1093/nar/gky1131.
-#'   PMID: 30476243; PMCID: PMC6323986.
+#'   \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
+#'   Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
+#'   Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
+#'   2021: customizable protein–protein networks, and functional
+#'   characterization of user-uploaded gene/measurement sets, Nucleic Acids
+#'   Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
+#'   https://doi.org/10.1093/nar/gkaa1074
 #'   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
+#'   \item
+#'   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{
+#'   Citations note on STRING website}
 #'   }
 #'
 #' @examples
@@ -937,6 +974,7 @@ rba_string_enrichment <- function(ids,
 rba_string_annotations <- function(ids,
                                    species = NULL,
                                    allow_pubmed = FALSE,
+                                   split_df = TRUE,
                                    ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -946,6 +984,8 @@ rba_string_annotations <- function(ids,
                         list(arg = "species",
                              class = "numeric"),
                         list(arg = "allow_pubmed",
+                             class = "logical"),
+                        list(arg = "split_df",
                              class = "logical")),
             cond = list(list(quote(length(ids) > 100 && is.null(species)),
                              sprintf("You supplied %s IDs. Please Specify the species (Homo Sapiens NCBI taxonomy ID is 9606).",
@@ -967,6 +1007,13 @@ rba_string_annotations <- function(ids,
                                1))
 
   ## Build Function-Specific Call
+  if (isTRUE(split_df)) {
+    parser_input <- list("json->df",
+                         function(x) { split(x, x$category) })
+  } else {
+    parser_input <- "json->df"
+  }
+
   input_call <- .rba_httr(httr = "post",
                           url = .rba_stg("string", "url"),
                           path = paste0(.rba_stg("string", "pth"),
@@ -974,7 +1021,7 @@ rba_string_annotations <- function(ids,
                           body = call_body,
                           encode = "form",
                           accept = "application/json",
-                          parser = "json->df",
+                          parser = parser_input,
                           save_to = .rba_file("string_functional_annotation.json"))
 
   ## Call API
@@ -1002,19 +1049,26 @@ rba_string_annotations <- function(ids,
 #'   interaction to be included in the image. if not supplied, the threshold
 #'   will be applied by STRING Based in the network. (low Confidence = 150,
 #'   Medium Confidence = 400, High Confidence = 700, Highest confidence = 900)
+#' @param background character vector: A set of STRING protein IDs
+#'   to be used as the background proteome. Only STRING IDs are acceptable.
+#'   (See \code{\link{rba_string_map_ids}} to map your IDs.)
 #' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
 #'   arguments manual for more information on available options.
 #'
 #' @return A list with protein-protein interaction enrichment results.
 #'
 #' @references \itemize{
-#'   \item Szklarczyk D, Gable AL, Lyon D, Junge A, Wyder S, Huerta-Cepas J,
-#'   Simonovic M, Doncheva NT, Morris JH, Bork P, Jensen LJ, Mering CV.
-#'   STRING v11: protein-protein association networks with increased coverage,
-#'   supporting functional discovery in genome-wide experimental datasets.
-#'   Nucleic Acids Res. 2019 Jan 8;47(D1):D607-D613. doi: 10.1093/nar/gky1131.
-#'   PMID: 30476243; PMCID: PMC6323986.
+#'   \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
+#'   Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
+#'   Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
+#'   2021: customizable protein–protein networks, and functional
+#'   characterization of user-uploaded gene/measurement sets, Nucleic Acids
+#'   Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
+#'   https://doi.org/10.1093/nar/gkaa1074
 #'   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
+#'   \item
+#'   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{
+#'   Citations note on STRING website}
 #'   }
 #'
 #' @examples
@@ -1030,6 +1084,7 @@ rba_string_annotations <- function(ids,
 rba_string_enrichment_ppi <- function(ids,
                                       species = NULL,
                                       required_score = NULL,
+                                      background = NULL,
                                       ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -1041,7 +1096,9 @@ rba_string_enrichment_ppi <- function(ids,
                         list(arg = "required_score",
                              class = "numeric",
                              min_val = 0,
-                             max_val = 1000)),
+                             max_val = 1000),
+                        list(arg = "background",
+                             class = "character")),
             cond = list(list(quote(length(ids) > 100 && is.null(species)),
                              sprintf("You supplied %s IDs. Please Specify the species (Homo Sapiens NCBI taxonomy ID is 9606).",
                                      length(ids)))
@@ -1059,7 +1116,11 @@ rba_string_enrichment_ppi <- function(ids,
                                species),
                           list("required_score",
                                !is.null(required_score),
-                               required_score))
+                               required_score),
+                          list("background_string_identifiers",
+                               !is.null(background),
+                               paste(unique(background),
+                                     collapse = "%0d")))
 
   ## Build Function-Specific Call
   input_call <- .rba_httr(httr = "post",
@@ -1095,13 +1156,17 @@ rba_string_enrichment_ppi <- function(ids,
 #' @return A list with STRING version and stable address.
 #'
 #' @references \itemize{
-#'   \item Szklarczyk D, Gable AL, Lyon D, Junge A, Wyder S, Huerta-Cepas J,
-#'   Simonovic M, Doncheva NT, Morris JH, Bork P, Jensen LJ, Mering CV.
-#'   STRING v11: protein-protein association networks with increased coverage,
-#'   supporting functional discovery in genome-wide experimental datasets.
-#'   Nucleic Acids Res. 2019 Jan 8;47(D1):D607-D613. doi: 10.1093/nar/gky1131.
-#'   PMID: 30476243; PMCID: PMC6323986.
+#'   \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
+#'   Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
+#'   Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
+#'   2021: customizable protein–protein networks, and functional
+#'   characterization of user-uploaded gene/measurement sets, Nucleic Acids
+#'   Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
+#'   https://doi.org/10.1093/nar/gkaa1074
 #'   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
+#'   \item
+#'   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{
+#'   Citations note on STRING website}
 #'   }
 #'
 #' @examples

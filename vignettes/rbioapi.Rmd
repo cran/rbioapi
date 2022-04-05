@@ -31,11 +31,9 @@ library(rbioapi)
 rba_options(timeout = 600, skip_error = TRUE)
 ```
 
-------------------------------------------------------------------------
-
 # What does rbioapi do? {#what-does-rbioapi-do .heading2}
 
-Currently fully supports Enrichr, JASPAR, miEAA, PANTHER, Reactome, STRING, and UniProt!
+Currently fully supports **Enrichr**, **JASPAR**, **miEAA**, **PANTHER**, **Reactome**, **STRING**, and **UniProt**!
 
 The goal of rbioapi is to provide a user-friendly and consistent interface to biological databases and services: In a way that insulates the user from technicalities of using web services API and creates a unified and easy-to-use interface to biological and medical web services.
 
@@ -45,12 +43,12 @@ With rbioapi, you do not need to have technical knowledge about web services API
 
 # What is Supported by rbioapi? {#what-is-supported-by-rbioapi .heading2}
 
-rbioapi is dedicated to **Biological or Medical** databases and web services. Currently, rbioapi supports and covers every API resources in the following services: (in alphabetical order!):
+rbioapi is dedicated to **Biological or Medical** databases and web services. Currently, rbioapi supports and covers every API resources in the following services: (in alphabetical order):
 
 On CRAN (Stable) version: (<https://cran.r-project.org/package=rbioapi>)
 
 1.  [Enrichr](https://maayanlab.cloud/Enrichr/ "Enrichr") ([rbioapi vignette article](rbioapi_enrichr.html "rbioapi & Enrichr vignette article")) ^(new)^
-2.  [JASPAR](http://jaspar.genereg.net/ "JASPAR - A database of transcription factor binding profiles") ([rbioapi vignette article](rbioapi_jaspar.html "rbioapi & Enrichr vignette article")) ^(new)^
+2.  [JASPAR](https://jaspar.genereg.net/ "JASPAR - A database of transcription factor binding profiles") ([rbioapi vignette article](rbioapi_jaspar.html "rbioapi & Enrichr vignette article")) ^(new)^
 3.  [miEAA](https://ccb-compute2.cs.uni-saarland.de/mieaa2 "miRNA Enrichment Analysis and Annotation Tool (miEAA)") ([rbioapi vignette article](rbioapi_mieaa.html "rbioapi & miEAA vignette article"))
 4.  [PANTHER](http://www.pantherdb.org "Protein Analysis THrough Evolutionary Relationships (PANTHER)") ([rbioapi vignette article](rbioapi_panther.html "rbioapi & PANTHER vignette article"))
 5.  [Reactome](https://reactome.org/) ([rbioapi vignette article](rbioapi_reactome.html "rbioapi & Reactome vignette article"))
@@ -86,17 +84,19 @@ remotes::install_github("moosa-r/rbioapi")
 
 # Design philosophy of rbioapi {#design-philosophy-of-rbioapi .heading2}
 
--   The functions' structure should be **consistent** across all databases and services. Meaning that there should not be any learning effort when using functions communicating with dif-ferent web services.
+-   The structure of functions should be consistent across all data-bases and services. This means that, using functions to communicate with different web services should not require new learning and/or training.
 
--   The package's interface should be a simple **plugging of values** in a function's arguments and running the code.
+-   Using the package should entail simple plugging of values into a function's arguments and running the code.
 
 -   No function should explicitly demand the user to run another function beforehand.
 
--   The functions' names and arguments should be as **faithful** as possible to the original API resources. This is to ensure that the users could conveniently establish links between rbioapi and the web service. rbioapi should be an interface to the API service, nothing more or less.
+-   The functions' organization, names, and arguments should be as faithful as possible to the original API resources.
 
--   The package should be easy to **expand and contribute**. To this goal, exported functions should have a template-based structure and the internal functions should have a hierarchical organization with only a subset of them needed by the contributors.
+-   The package should be scalable and easy to collaborate. To this end, exported functions should have a template-based structure and the internal functions should have a hierarchical organization with only a subset of them needed by the contributors.
 
--   **Beginner users** should conveniently use rbioapi and they should be completely insulated from any technicalities. To name a few examples: To prevent errors, user-input argu-ments should be vigorously checked. Informative messages, warnings, and errors should be produced. If a server returns an error in a particular format, the server's error response should be parsed. The package should internally and grace-fully handle failure events such as connection loss. Saving files such as raw server's response should be easy, yet moni-tored by the package. Altering the package options should be readily accessible.
+-   Beginner users should be able to conveniently use rbioapi and be completely insulated from any technicalities.
+
+-   The functions' documentations should be extensive, self-contained, with working examples, and integrated with the corresponding web services in terms such as citing information or links to guides. In addition to the main vignette article, each supported database or web service should have its own vignette articles.
 
 ------------------------------------------------------------------------
 
@@ -104,7 +104,7 @@ remotes::install_github("moosa-r/rbioapi")
 
 To make the namespace more organized, functions has been named with the following pattern:
 
-> rba\_[service_name]\_[resource_name]
+    rba_[service_name]_[resource_name]
 
 For example, `rba_string_version()` will call [STRING](https://string-db.org/ "STRING: Protein-Protein Interaction Networks Functional Enrichment Analysis")'s version resource.
 
@@ -210,9 +210,27 @@ As you can see, what we have done was:
 
 ------------------------------------------------------------------------
 
-# How and what to cite? {#how-to-cite .heading2}
+# How and what to cite? {#how-to-cite}
 
 rbioapi is an interface between you and other databases and services. Thus, if you have used rbioapi in published research, kindly **in addition to citing rbioapi, [*make sure to fully and properly cite the databases/services you have used*]{.ul}**. Suggested citations have been added in the functions' manuals, under the "references" section; Nevertheless, it is the user's responsibility to check for proper citations and to properly cite the database/services that they have used.
+
+-   **How to cite rbioapi**:
+
+    Moosa Rezwani, Ali Akbar Pourfathollah, Farshid Noorbakhsh, rbioapi: User-Friendly R Interface to Biologic Web Services' API, *Bioinformatics*, 2022;, btac172, <https://doi.org/10.1093/bioinformatics/btac172>
+
+-   [How to cite Enrichr](rbioapi_enrichr.html#Citations "How to cite Enrichr"). (See on [Enrichr website](https://maayanlab.cloud/Enrichr/help#terms))
+
+-   [How to cite JASPAR](rbioapi_jaspar.html#Citations "How to cite JASPAR"). (See on [JASPAR website](https://jaspar.genereg.net/faq/))
+
+-   [How to cite miEAA](rbioapi_mieaa.html#Citations "How to cite miEAA"). (See on [miEAA website](https://ccb-compute2.cs.uni-saarland.de/mieaa2))
+
+-   [How to cite PANTHER](rbioapi_panther.html#Citations "How to cite PANTHER"). (See on [PANTHER website](http://www.pantherdb.org/publications.jsp#HowToCitePANTHER))
+
+-   [How to cite Reactome](rbioapi_reactome.html#Citations "How to cite Reactome"). (See on [Reactome website](https://reactome.org/cite))
+
+-   [How to cite STRING](rbioapi_string.html#Citations "How to cite STRING"). (See on [STRING website](https://string-db.org/cgi/about?footer_active_subpage=references))
+
+-   [How to cite UniProt](rbioapi_uniprot.html#Citations "How to cite UniProt"). (See on [UniProt website](https://www.uniprot.org/help/publications))
 
 ------------------------------------------------------------------------
 
@@ -226,19 +244,25 @@ When using rbioapi, remember that you are querying data from web services; So pl
 
 Each supported service has a dedicated vignette article. Make sure to check those too.
 
-1.  [Enrichr](rbioapi_enrichr.html "rbioapi & Enrichr vignette") ^([pkgdown website](https://rbioapi.moosa-r.com/articles/rbioapi_enrichr.html "rbioapi & Enrichr vignette"))^
-2.  [JASPAR](rbioapi_jaspar.html "rbioapi & JASPAR vignette article") ^([pkgdown website](https://rbioapi.moosa-r.com/articles/rbioapi_jaspar.html "rbioapi & JASPAR vignette article"))^
-3.  [miEAA](rbioapi_mieaa.html "rbioapi & miEAA vignette article") ^([pkgdown website](https://rbioapi.moosa-r.com/articles/rbioapi_mieaa.html "rbioapi & miEAA vignette article"))^
-4.  [PANTHER](rbioapi_panther.html "rbioapi & PANTHER vignette article") ^([pkgdown website](https://rbioapi.moosa-r.com/articles/rbioapi_panther.html "rbioapi & PANTHER vignette article"))^
-5.  [Reactome](rbioapi_reactome.html "rbioapi & Reactome vignette article") ^([pkgdown website](https://rbioapi.moosa-r.com/articles/rbioapi_reactome.html "rbioapi & Reactome vignette article"))^
-6.  [STRING](rbioapi_string.html "rbioapi & STRING vignette article") ^([pkgdown website](https://rbioapi.moosa-r.com/articles/rbioapi_string.html "rbioapi & STRING vignette article"))^
-7.  [UniProt](rbioapi_uniprot.html "rbioapi & UniProt vignette article") ^([pkgdown website](https://rbioapi.moosa-r.com/articles/rbioapi_uniprot.html "rbioapi & UniProt vignette article"))^
+1.  [Enrichr](rbioapi_enrichr.html "rbioapi & Enrichr vignette") ^([Documentation site](https://rbioapi.moosa-r.com/articles/rbioapi_enrichr.html "rbioapi & Enrichr vignette"))^
+2.  [JASPAR](rbioapi_jaspar.html "rbioapi & JASPAR vignette article") ^([Documentation site](https://rbioapi.moosa-r.com/articles/rbioapi_jaspar.html "rbioapi & JASPAR vignette article"))^
+3.  [miEAA](rbioapi_mieaa.html "rbioapi & miEAA vignette article") ^([Documentation site](https://rbioapi.moosa-r.com/articles/rbioapi_mieaa.html "rbioapi & miEAA vignette article"))^
+4.  [PANTHER](rbioapi_panther.html "rbioapi & PANTHER vignette article") ^([Documentation site](https://rbioapi.moosa-r.com/articles/rbioapi_panther.html "rbioapi & PANTHER vignette article"))^
+5.  [Reactome](rbioapi_reactome.html "rbioapi & Reactome vignette article") ^([Documentation site](https://rbioapi.moosa-r.com/articles/rbioapi_reactome.html "rbioapi & Reactome vignette article"))^
+6.  [STRING](rbioapi_string.html "rbioapi & STRING vignette article") ^([Documentation site](https://rbioapi.moosa-r.com/articles/rbioapi_string.html "rbioapi & STRING vignette article"))^
+7.  [UniProt](rbioapi_uniprot.html "rbioapi & UniProt vignette article") ^([Documentation site](https://rbioapi.moosa-r.com/articles/rbioapi_uniprot.html "rbioapi & UniProt vignette article"))^
+
+We are also adding vignette articles focusing on tasks and workflows:
+
+1.  [Do with rbioapi: Over-Representation (Enrichment) Analysis](rbioapi_do_enrich.html "Do with rbioapi: Over-Representation (Enrichment) Analysis") ^([documentation site](https://rbioapi.moosa-r.com/articles/rbioapi_do_enrich.html "rbioapi & UniProt vignette article"))^
+
+------------------------------------------------------------------------
 
 # Links {#links .heading2}
 
--   [This article in pkgdown website](https://rbioapi.moosa-r.com/articles/rbioapi.html "rbioapi: User-Friendly R Interface to Biologic Web Services' API")
+-   [This article in rbioapi documentation site](https://rbioapi.moosa-r.com/articles/rbioapi.html "rbioapi: User-Friendly R Interface to Biologic Web Services' API")
 
--   [Functions references in pkgdown website](https://rbioapi.moosa-r.com/reference/index.html "rbioapi reference")
+-   [Functions references in rbioapi documentation site](https://rbioapi.moosa-r.com/reference/index.html "rbioapi reference")
 
 ------------------------------------------------------------------------
 
