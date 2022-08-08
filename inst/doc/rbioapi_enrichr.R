@@ -31,14 +31,14 @@ if (is.data.frame(enrichr_libs)) {
 genes <- c("p53", "BRCA1", "cdk2", "Q99835", "CDC42","CDK1","KIF23","PLK1",
            "RAC2","RACGAP1","RHOA","RHOB", "PHF14", "RBM3", "MSL1")
 
-# 2.a Enrich your genes using "MSigDB_Hallmark_2020" library
+# 2.a Do enrichment analysis on your genes using "MSigDB_Hallmark_2020" library
 enrichr_msig_hallmark <- rba_enrichr(gene_list = genes,
                                      gene_set_library = "MSigDB_Hallmark_2020")
-# 2.b Maybe you want to enrich using every library that contains the word "msig":
+# 2.b Maybe you want to perform enrichment analysis using every library that contains the word "msig":
 enrichr_msig <- rba_enrichr(gene_list = genes,
                             gene_set_library = "msig",
                             regex_library_name = TRUE)
-# 2.c Or maybe you want to enrich using every library available at Enrichr:
+# 2.c Or maybe you want to perform enrichment analysis using every library available at Enrichr:
 # enrichr_all <- rba_enrichr(gene_list = genes,
 #                            gene_set_library = "all")
 

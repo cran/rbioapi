@@ -110,7 +110,7 @@ enriched <- rba_string_enrichment(ids = proteins_mapped,
 str(enriched, max.level = 1)
 
 ## ----rba_string_enrichment_restults, echo=FALSE-------------------------------
-if (is.data.frame(enriched$DISEASES)) {
+if (utils::hasName(enriched, "DISEASES") && is.data.frame(enriched$DISEASES)) {
   DT::datatable(data = enriched$DISEASES,
               options = list(scrollX = TRUE, 
                              paging = TRUE,

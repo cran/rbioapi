@@ -30,7 +30,7 @@ str(analyzed, 1)
 ## 5 Analsis results are in the pathways data frame:
 
 ## ----analysis_results, echo=FALSE---------------------------------------------
-if (utils::hasName(analyzed, "pathways")) {
+if (utils::hasName(analyzed, "pathways") && is.data.frame(analyzed$pathways)) {
   DT::datatable(data = jsonlite::flatten(analyzed$pathways),
               options = list(scrollX = TRUE, 
                              paging = TRUE,

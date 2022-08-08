@@ -27,7 +27,7 @@ mirs <- c("hsa-miR-20b-5p", "hsa-miR-144-5p", "hsa-miR-17-5p", "hsa-miR-20a-5p",
          "hsa-miR-363-3p", "hsa-miR-302c-3p", "hsa-miR-374b-5p", "hsa-miR-18a-5p",
          "hsa-miR-548d-3p", "hsa-miR-135a-3p", "hsa-miR-558", "hsa-miR-130b-5p",
          "hsa-miR-148a-3p")
-## 2a We can enrich our miRNA set without limiting the enrichment to any categories
+## 2a We can perform enrichment analysis on our miRNA set without limiting the analysis to any categories
 mieaa_all <- rba_mieaa_enrich(test_set = mirs,
                              mirna_type = "mature",
                              test_type = "ORA",

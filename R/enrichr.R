@@ -44,7 +44,7 @@
 #'   Evangelista, J. E., Jenkins, S. L., Lachmann, A., Wojciechowicz, M. L.,
 #'   Kropiwnicki, E., Jagodnik, K. M., Jeon, M., & Ma’ayan, A. (2021). Gene
 #'   set knowledge discovery with Enrichr. Current Protocols, 1, e90.
-#'   doi: https://doi.org/10.1002/cpz1.90
+#'   doi: 10.1002/cpz1.90
 #'   \item \href{https://maayanlab.cloud/Enrichr/help#api}{Enrichr API
 #'   Documentation}
 #'   \item \href{https://maayanlab.cloud/Enrichr/help#terms}{Citations note
@@ -103,8 +103,8 @@ rba_enrichr_libs <- function(store_in_options = FALSE,
 #'   and retrieve a 'user list ID'.
 #'
 #'  Note that using \code{\link{rba_enrichr}} is a more convenient way to
-#'    automatically perform this and other required function calls to enrich
-#'    your input gene-set.
+#'    automatically perform this and other required function calls to
+#'    perform enrichment analysis on your input gene-set.
 #'
 #' @section Corresponding API Resources:
 #'  "POST https://maayanlab.cloud/Enrichr/addList"
@@ -136,7 +136,7 @@ rba_enrichr_libs <- function(store_in_options = FALSE,
 #'   Evangelista, J. E., Jenkins, S. L., Lachmann, A., Wojciechowicz, M. L.,
 #'   Kropiwnicki, E., Jagodnik, K. M., Jeon, M., & Ma’ayan, A. (2021). Gene
 #'   set knowledge discovery with Enrichr. Current Protocols, 1, e90.
-#'   doi: https://doi.org/10.1002/cpz1.90
+#'   doi: 10.1002/cpz1.90
 #'   \item \href{https://maayanlab.cloud/Enrichr/help#api}{Enrichr API
 #'   Documentation}
 #'   \item \href{https://maayanlab.cloud/Enrichr/help#terms}{Citations note
@@ -229,7 +229,7 @@ rba_enrichr_add_list <- function(gene_list,
 #'   Evangelista, J. E., Jenkins, S. L., Lachmann, A., Wojciechowicz, M. L.,
 #'   Kropiwnicki, E., Jagodnik, K. M., Jeon, M., & Ma’ayan, A. (2021). Gene
 #'   set knowledge discovery with Enrichr. Current Protocols, 1, e90.
-#'   doi: https://doi.org/10.1002/cpz1.90
+#'   doi: 10.1002/cpz1.90
 #'   \item \href{https://maayanlab.cloud/Enrichr/help#api}{Enrichr API
 #'   Documentation}
 #'   \item \href{https://maayanlab.cloud/Enrichr/help#terms}{Citations note
@@ -321,7 +321,7 @@ rba_enrichr_view_list <- function(user_list_id,
 #'   Evangelista, J. E., Jenkins, S. L., Lachmann, A., Wojciechowicz, M. L.,
 #'   Kropiwnicki, E., Jagodnik, K. M., Jeon, M., & Ma’ayan, A. (2021). Gene
 #'   set knowledge discovery with Enrichr. Current Protocols, 1, e90.
-#'   doi: https://doi.org/10.1002/cpz1.90
+#'   doi: 10.1002/cpz1.90
 #'   \item \href{https://maayanlab.cloud/Enrichr/help#api}{Enrichr API
 #'   Documentation}
 #'   \item \href{https://maayanlab.cloud/Enrichr/help#terms}{Citations note
@@ -371,8 +371,8 @@ rba_enrichr_view_list <- function(user_list_id,
 #'   supplied gene-list id against one or multiple Enrichr libraries.
 #'
 #' Note that using \code{\link{rba_enrichr}} is a more convenient way to
-#'   automatically perform this and other required function calls to enrich
-#'   your input gene-set.
+#'   automatically perform this and other required function calls to
+#'   perform enrichment analysis on your input gene-set.
 #'
 #' @section Corresponding API Resources:
 #'  "GET https://maayanlab.cloud/Enrichr/enrich"
@@ -417,7 +417,7 @@ rba_enrichr_view_list <- function(user_list_id,
 #'   Evangelista, J. E., Jenkins, S. L., Lachmann, A., Wojciechowicz, M. L.,
 #'   Kropiwnicki, E., Jagodnik, K. M., Jeon, M., & Ma’ayan, A. (2021). Gene
 #'   set knowledge discovery with Enrichr. Current Protocols, 1, e90.
-#'   doi: https://doi.org/10.1002/cpz1.90
+#'   doi: 10.1002/cpz1.90
 #'   \item \href{https://maayanlab.cloud/Enrichr/help#api}{Enrichr API
 #'   Documentation}
 #'   \item \href{https://maayanlab.cloud/Enrichr/help#terms}{Citations note
@@ -508,7 +508,7 @@ rba_enrichr_enrich <- function(user_list_id,
   ))
   ## call Enrichr API
   if (run_mode == "single") {
-    .msg("Enriching gene-list %s against Enrichr %s library: %s.",
+    .msg("Performing enrichment analysis on gene-list %s against Enrichr %s library: %s.",
          user_list_id, organism, gene_set_library)
     final_output <- .rba_enrichr_enrich_internal(user_list_id = user_list_id,
                                                  gene_set_library = gene_set_library,
@@ -519,7 +519,7 @@ rba_enrichr_enrich <- function(user_list_id,
     return(final_output)
 
   } else {
-    .msg("Enriching gene-list %s using multiple Enrichr %s libraries.",
+    .msg("Performing enrichment analysis on gene-list %s using multiple Enrichr %s libraries.",
          user_list_id, organism)
     .msg(paste0("Note: You have selected '%s' Enrichr %s libraries. Note that for ",
                 "each library, a separate call should be sent to Enrichr server. ",
@@ -587,7 +587,7 @@ rba_enrichr_enrich <- function(user_list_id,
 #'   Evangelista, J. E., Jenkins, S. L., Lachmann, A., Wojciechowicz, M. L.,
 #'   Kropiwnicki, E., Jagodnik, K. M., Jeon, M., & Ma’ayan, A. (2021). Gene
 #'   set knowledge discovery with Enrichr. Current Protocols, 1, e90.
-#'   doi: https://doi.org/10.1002/cpz1.90
+#'   doi: 10.1002/cpz1.90
 #'   \item \href{https://maayanlab.cloud/Enrichr/help#api}{Enrichr API
 #'   Documentation}
 #'   \item \href{https://maayanlab.cloud/Enrichr/help#terms}{Citations note
@@ -648,8 +648,8 @@ rba_enrichr_gene_map <- function(gene,
 #' A One-step Wrapper for Gene-list Enrichment Using Enrichr
 #'
 #' This function is an easy-to-use wrapper for the multiple function calls
-#'   necessary to enrich a given gene-list using Enrichr. see details section
-#'   for more information.
+#'   necessary to perform enrichment analysis on a given gene-list using Enrichr.
+#'   see details section for more information.
 #'
 #' This function will call other rba_enrichr_*** functions with the following
 #'   order:
@@ -658,8 +658,8 @@ rba_enrichr_gene_map <- function(gene,
 #'     of available libraries in Enrichr.
 #'   \item Call \code{\link{rba_enrichr_add_list}} to upload your gene-list
 #'     and obtain a 'user list ID'.
-#'   \item Call \code{\link{rba_enrichr_enrich}} to enrich the gene-list
-#'     against one or multiple Enrichr libraries
+#'   \item Call \code{\link{rba_enrichr_enrich}} to perform enrichment analysis
+#'     on the gene-list against one or multiple Enrichr libraries
 #'   }
 #' @section Corresponding API Resources:
 #'  "GET https://maayanlab.cloud/Enrichr/datasetStatistics"
@@ -687,7 +687,7 @@ rba_enrichr_gene_map <- function(gene,
 #'   Evangelista, J. E., Jenkins, S. L., Lachmann, A., Wojciechowicz, M. L.,
 #'   Kropiwnicki, E., Jagodnik, K. M., Jeon, M., & Ma’ayan, A. (2021). Gene
 #'   set knowledge discovery with Enrichr. Current Protocols, 1, e90.
-#'   doi: https://doi.org/10.1002/cpz1.90
+#'   doi: 10.1002/cpz1.90
 #'   \item \href{https://maayanlab.cloud/Enrichr/help#api}{Enrichr API
 #'   Documentation}
 #'   \item \href{https://maayanlab.cloud/Enrichr/help#terms}{Citations note
@@ -695,7 +695,7 @@ rba_enrichr_gene_map <- function(gene,
 #'   }
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' rba_enrichr(gene_list = c("TP53", "TNF", "EGFR"))
 #' }
 #' \donttest{

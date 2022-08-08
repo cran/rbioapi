@@ -50,8 +50,8 @@ A list containing data frames of the enrichment results of your
 }
 \description{
 This function is an easy-to-use wrapper for the multiple function calls
-  necessary to enrich a given gene-list using Enrichr. see details section
-  for more information.
+  necessary to perform enrichment analysis on a given gene-list using Enrichr.
+  see details section for more information.
 }
 \details{
 This function will call other rba_enrichr_*** functions with the following
@@ -61,8 +61,8 @@ This function will call other rba_enrichr_*** functions with the following
     of available libraries in Enrichr.
   \item Call \code{\link{rba_enrichr_add_list}} to upload your gene-list
     and obtain a 'user list ID'.
-  \item Call \code{\link{rba_enrichr_enrich}} to enrich the gene-list
-    against one or multiple Enrichr libraries
+  \item Call \code{\link{rba_enrichr_enrich}} to perform enrichment analysis
+    on the gene-list against one or multiple Enrichr libraries
   }
 }
 \section{Corresponding API Resources}{
@@ -73,7 +73,7 @@ This function will call other rba_enrichr_*** functions with the following
 }
 
 \examples{
-\donttest{
+\dontrun{
 rba_enrichr(gene_list = c("TP53", "TNF", "EGFR"))
 }
 \donttest{
@@ -104,7 +104,7 @@ rba_enrichr(gene_list = c("TP53", "TNF", "EGFR"),
   Evangelista, J. E., Jenkins, S. L., Lachmann, A., Wojciechowicz, M. L.,
   Kropiwnicki, E., Jagodnik, K. M., Jeon, M., & Ma’ayan, A. (2021). Gene
   set knowledge discovery with Enrichr. Current Protocols, 1, e90.
-  doi: https://doi.org/10.1002/cpz1.90
+  doi: 10.1002/cpz1.90
   \item \href{https://maayanlab.cloud/Enrichr/help#api}{Enrichr API
   Documentation}
   \item \href{https://maayanlab.cloud/Enrichr/help#terms}{Citations note

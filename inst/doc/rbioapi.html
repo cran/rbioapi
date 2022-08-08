@@ -12,14 +12,43 @@
 
 <meta name="author" content="Moosa Rezwani" />
 
-<meta name="date" content="2022-04-05" />
+<meta name="date" content="2022-08-06" />
 
 <title>1: rbioapi: User-Friendly R Interface to Biologic Web Services’ API</title>
 
-<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
-<link href="data:text/css,%0Aa%2Eanchor%2Dsection%20%7Bmargin%2Dleft%3A%2010px%3B%20visibility%3A%20hidden%3B%20color%3A%20inherit%3B%7D%0A%2EhasAnchor%3Ahover%20a%2Eanchor%2Dsection%20%7Bvisibility%3A%20visible%3B%7D%0Aul%20%3E%20li%20%3E%20%2Eanchor%2Dsection%20%7Bdisplay%3A%20none%3B%7D%0A" rel="stylesheet" />
-<link href="data:text/css,%0Aa%2Eanchor%2Dsection%3A%3Abefore%20%7Bcontent%3A%20%27%23%27%3Bfont%2Dsize%3A%2080%25%3B%7D%0A" rel="stylesheet" />
-<script src="data:application/javascript;base64,ZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uICgpIHsKICAvLyBJZiBzZWN0aW9uIGRpdnMgaXMgdXNlZCwgd2UgbmVlZCB0byBwdXQgdGhlIGFuY2hvciBpbiB0aGUgY2hpbGQgaGVhZGVyCiAgY29uc3QgaGVhZGVycyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoImRpdi5oYXNBbmNob3Iuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKQoKICBoZWFkZXJzLmZvckVhY2goZnVuY3Rpb24gKHgpIHsKICAgIC8vIEFkZCB0byB0aGUgaGVhZGVyIG5vZGUKICAgIGlmICgheC5jbGFzc0xpc3QuY29udGFpbnMoJ2hhc0FuY2hvcicpKSB4LmNsYXNzTGlzdC5hZGQoJ2hhc0FuY2hvcicpCiAgICAvLyBSZW1vdmUgZnJvbSB0aGUgc2VjdGlvbiBvciBkaXYgY3JlYXRlZCBieSBQYW5kb2MKICAgIHgucGFyZW50RWxlbWVudC5jbGFzc0xpc3QucmVtb3ZlKCdoYXNBbmNob3InKQogIH0pCn0pCg=="></script>
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+<style type="text/css">
+a.anchor-section {margin-left: 10px; visibility: hidden; color: inherit;}
+.hasAnchor:hover a.anchor-section {visibility: visible;}
+ul > li > .anchor-section {display: none;}
+</style>
+<style type="text/css">
+a.anchor-section::before {content: '#';font-size: 80%;}
+</style>
+<script>document.addEventListener('DOMContentLoaded', function () {
+  // If section divs is used, we need to put the anchor in the child header
+  const headers = document.querySelectorAll("div.hasAnchor.section[class*='level'] > :first-child")
+
+  headers.forEach(function (x) {
+    // Add to the header node
+    if (!x.classList.contains('hasAnchor')) x.classList.add('hasAnchor')
+    // Remove from the section or div created by Pandoc
+    x.parentElement.classList.remove('hasAnchor')
+  })
+})
+</script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -131,7 +160,187 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
 
 
 
@@ -143,66 +352,114 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<h1 class="title toc-ignore">1: rbioapi: User-Friendly R Interface to Biologic Web Services’ API</h1>
+<h1 class="title toc-ignore">1: rbioapi: User-Friendly R Interface to
+Biologic Web Services’ API</h1>
 <h4 class="author">Moosa Rezwani</h4>
-<h4 class="date">2022-04-05</h4>
+<h4 class="date">2022-08-06</h4>
 
 
 <div id="TOC">
 <ul>
-<li><a href="#what-does-rbioapi-do"><span class="toc-section-number">1</span> What does rbioapi do?<span></span></a></li>
-<li><a href="#what-is-supported-by-rbioapi"><span class="toc-section-number">2</span> What is Supported by rbioapi?<span></span></a></li>
-<li><a href="#how-to-install"><span class="toc-section-number">3</span> How to install?<span></span></a></li>
-<li><a href="#design-philosophy-of-rbioapi"><span class="toc-section-number">4</span> Design philosophy of rbioapi<span></span></a></li>
-<li><a href="#naming-conventions"><span class="toc-section-number">5</span> Naming conventions<span></span></a></li>
-<li><a href="#changing-the-options"><span class="toc-section-number">6</span> Changing the options<span></span></a>
+<li><a href="#what-does-rbioapi-do" id="toc-what-does-rbioapi-do"><span class="toc-section-number">1</span> What does rbioapi
+do?<span></span></a></li>
+<li><a href="#what-is-supported-by-rbioapi" id="toc-what-is-supported-by-rbioapi"><span class="toc-section-number">2</span> What is Supported by
+rbioapi?<span></span></a></li>
+<li><a href="#How-to-install" id="toc-How-to-install"><span class="toc-section-number">3</span> How to
+install?<span></span></a></li>
+<li><a href="#design-philosophy-of-rbioapi" id="toc-design-philosophy-of-rbioapi"><span class="toc-section-number">4</span> Design philosophy of
+rbioapi<span></span></a></li>
+<li><a href="#naming-conventions" id="toc-naming-conventions"><span class="toc-section-number">5</span> Naming
+conventions<span></span></a></li>
+<li><a href="#changing-the-options" id="toc-changing-the-options"><span class="toc-section-number">6</span> Changing the
+options<span></span></a>
 <ul>
-<li><a href="#changing-the-options-change-the-option-globally"><span class="toc-section-number">6.1</span> Change the option globally<span></span></a></li>
-<li><a href="#changing-the-options-change-the-option-only-within-a-function-call"><span class="toc-section-number">6.2</span> Change the option only within a function call<span></span></a></li>
+<li><a href="#changing-the-options-change-the-option-globally" id="toc-changing-the-options-change-the-option-globally"><span class="toc-section-number">6.1</span> Change the option
+globally<span></span></a></li>
+<li><a href="#changing-the-options-change-the-option-only-within-a-function-call" id="toc-changing-the-options-change-the-option-only-within-a-function-call"><span class="toc-section-number">6.2</span> Change the option only within a
+function call<span></span></a></li>
 </ul></li>
-<li><a href="#connection-test"><span class="toc-section-number">7</span> Connection test<span></span></a></li>
-<li><a href="#multi-pages"><span class="toc-section-number">8</span> Iterating over paginated results<span></span></a></li>
-<li><a href="#how-to-cite"><span class="toc-section-number">9</span> How and what to cite?<span></span></a></li>
-<li><a href="#code-of-conduct"><span class="toc-section-number">10</span> Code of conduct<span></span></a></li>
-<li><a href="#what-next"><span class="toc-section-number">11</span> What next?<span></span></a></li>
-<li><a href="#links"><span class="toc-section-number">12</span> Links<span></span></a></li>
-<li><a href="#session-info"><span class="toc-section-number">13</span> Session info<span></span></a></li>
+<li><a href="#connection-test" id="toc-connection-test"><span class="toc-section-number">7</span> Connection
+test<span></span></a></li>
+<li><a href="#multi-pages" id="toc-multi-pages"><span class="toc-section-number">8</span> Iterating over paginated
+results<span></span></a></li>
+<li><a href="#how-to-cite" id="toc-how-to-cite"><span class="toc-section-number">9</span> How and what to
+cite?<span></span></a></li>
+<li><a href="#code-of-conduct" id="toc-code-of-conduct"><span class="toc-section-number">10</span> Code of
+conduct<span></span></a></li>
+<li><a href="#what-next" id="toc-what-next"><span class="toc-section-number">11</span> What next?<span></span></a></li>
+<li><a href="#links" id="toc-links"><span class="toc-section-number">12</span> Links<span></span></a></li>
+<li><a href="#session-info" id="toc-session-info"><span class="toc-section-number">13</span> Session info<span></span></a></li>
 </ul>
 </div>
 
 <div id="what-does-rbioapi-do" class="section level1 heading2 hasAnchor" number="1">
 <h1 class="heading2 hasAnchor"><span class="header-section-number">1</span> What does rbioapi do?<a href="#what-does-rbioapi-do" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Currently fully supports <strong>Enrichr</strong>, <strong>JASPAR</strong>, <strong>miEAA</strong>, <strong>PANTHER</strong>, <strong>Reactome</strong>, <strong>STRING</strong>, and <strong>UniProt</strong>!</p>
-<p>The goal of rbioapi is to provide a user-friendly and consistent interface to biological databases and services: In a way that insulates the user from technicalities of using web services API and creates a unified and easy-to-use interface to biological and medical web services.</p>
-<p>With rbioapi, you do not need to have technical knowledge about web services API or learn how to work with a new package for every biologic service or database. This an ongoing project; New databases and services will be added periodically. Feel free to <a href="https://github.com/moosa-r/rbioapi/issues" title="Issue section in rbioapi GitHub repository">suggest</a> any databases or services you often use.</p>
+<p>Currently fully supports <strong>Enrichr</strong>,
+<strong>JASPAR</strong>, <strong>miEAA</strong>,
+<strong>PANTHER</strong>, <strong>Reactome</strong>,
+<strong>STRING</strong>, and <strong>UniProt</strong>!</p>
+<p>The goal of rbioapi is to provide a user-friendly and consistent
+interface to biological databases and services: In a way that insulates
+the user from technicalities of using web services API and creates a
+unified and easy-to-use interface to biological and medical web
+services.</p>
+<p>With rbioapi, you do not need to have technical knowledge about web
+services API or learn how to work with a new package for every biologic
+service or database. This an ongoing project; New databases and services
+will be added periodically. Feel free to <a href="https://github.com/moosa-r/rbioapi/issues" title="Issue section in rbioapi GitHub repository">suggest</a> any
+databases or services you often use.</p>
 <hr />
 </div>
 <div id="what-is-supported-by-rbioapi" class="section level1 heading2 hasAnchor" number="2">
 <h1 class="heading2 hasAnchor"><span class="header-section-number">2</span> What is Supported by rbioapi?<a href="#what-is-supported-by-rbioapi" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>rbioapi is dedicated to <strong>Biological or Medical</strong> databases and web services. Currently, rbioapi supports and covers every API resources in the following services: (in alphabetical order):</p>
+<p>rbioapi is dedicated to <strong>Biological or Medical</strong>
+databases and web services. Currently, rbioapi supports and covers every
+API resources in the following services: (in alphabetical order):</p>
 <p>On CRAN (Stable) version: (<a href="https://cran.r-project.org/package=rbioapi" class="uri">https://cran.r-project.org/package=rbioapi</a>)</p>
 <ol style="list-style-type: decimal">
-<li><a href="https://maayanlab.cloud/Enrichr/" title="Enrichr">Enrichr</a> (<a href="rbioapi_enrichr.html" title="rbioapi &amp; Enrichr vignette article">rbioapi vignette article</a>) <sup>(new)</sup></li>
-<li><a href="https://jaspar.genereg.net/" title="JASPAR - A database of transcription factor binding profiles">JASPAR</a> (<a href="rbioapi_jaspar.html" title="rbioapi &amp; Enrichr vignette article">rbioapi vignette article</a>) <sup>(new)</sup></li>
-<li><a href="https://ccb-compute2.cs.uni-saarland.de/mieaa2" title="miRNA Enrichment Analysis and Annotation Tool (miEAA)">miEAA</a> (<a href="rbioapi_mieaa.html" title="rbioapi &amp; miEAA vignette article">rbioapi vignette article</a>)</li>
-<li><a href="http://www.pantherdb.org" title="Protein Analysis THrough Evolutionary Relationships (PANTHER)">PANTHER</a> (<a href="rbioapi_panther.html" title="rbioapi &amp; PANTHER vignette article">rbioapi vignette article</a>)</li>
-<li><a href="https://reactome.org/">Reactome</a> (<a href="rbioapi_reactome.html" title="rbioapi &amp; Reactome vignette article">rbioapi vignette article</a>)</li>
-<li><a href="https://string-db.org/" title="STRING: Protein-Protein Interaction Networks Functional Enrichment Analysis">STRING</a> (<a href="rbioapi_string.html" title="rbioapi &amp; STRING vignette article">rbioapi vignette article</a>)</li>
-<li><a href="https://www.uniprot.org" title="Universal Protein Resource (UniProt)">UniProt</a> (<a href="rbioapi_uniprot.html" title="rbioapi &amp; UniProt vignette article">rbioapi vignette article</a>)</li>
+<li><a href="https://maayanlab.cloud/Enrichr/" title="Enrichr">Enrichr</a> (<a href="rbioapi_enrichr.html" title="rbioapi &amp; Enrichr vignette article">rbioapi vignette
+article</a>) <sup>(new)</sup></li>
+<li><a href="https://jaspar.genereg.net/" title="JASPAR - A database of transcription factor binding profiles">JASPAR</a>
+(<a href="rbioapi_jaspar.html" title="rbioapi &amp; Enrichr vignette article">rbioapi vignette
+article</a>) <sup>(new)</sup></li>
+<li><a href="https://ccb-compute2.cs.uni-saarland.de/mieaa2" title="miRNA Enrichment Analysis and Annotation Tool (miEAA)">miEAA</a>
+(<a href="rbioapi_mieaa.html" title="rbioapi &amp; miEAA vignette article">rbioapi vignette
+article</a>)</li>
+<li><a href="http://www.pantherdb.org" title="Protein Analysis THrough Evolutionary Relationships (PANTHER)">PANTHER</a>
+(<a href="rbioapi_panther.html" title="rbioapi &amp; PANTHER vignette article">rbioapi vignette
+article</a>)</li>
+<li><a href="https://reactome.org/">Reactome</a> (<a href="rbioapi_reactome.html" title="rbioapi &amp; Reactome vignette article">rbioapi vignette
+article</a>)</li>
+<li><a href="https://string-db.org/" title="STRING: Protein-Protein Interaction Networks Functional Enrichment Analysis">STRING</a>
+(<a href="rbioapi_string.html" title="rbioapi &amp; STRING vignette article">rbioapi vignette
+article</a>)</li>
+<li><a href="https://www.uniprot.org" title="Universal Protein Resource (UniProt)">UniProt</a> (<a href="rbioapi_uniprot.html" title="rbioapi &amp; UniProt vignette article">rbioapi vignette
+article</a>)</li>
 </ol>
 <p>Only on Github (Developmental) version: (<a href="https://github.com/moosa-r/rbioapi/" class="uri">https://github.com/moosa-r/rbioapi/</a>):</p>
 <ol style="list-style-type: decimal">
 <li>currently none</li>
 </ol>
-<p>Each of the services has its dedicated vignette article. However, In this article, I will write about the general framework of rbioapi. Make sure to check the vignette article of each service to learn more about how to use them.</p>
-<p><strong>Note That:</strong> rbioapi is an ongoing project. New databases and services will be implemented periodically in order to gradually make the package as comprehensive as possible. Do you see yourself often using a certain database/service? Feel free to suggest any database/service by creating an issue on our GitHub <a href="https://github.com/moosa-r/" title="rbioapi GitHub repositry">repository</a>. I will appreciate any suggestions.</p>
+<p>Each of the services has its dedicated vignette article. However, In
+this article, I will write about the general framework of rbioapi. Make
+sure to check the vignette article of each service to learn more about
+how to use them.</p>
+<p><strong>Note That:</strong> rbioapi is an ongoing project. New
+databases and services will be implemented periodically in order to
+gradually make the package as comprehensive as possible. Do you see
+yourself often using a certain database/service? Feel free to suggest
+any database/service by creating an issue on our GitHub <a href="https://github.com/moosa-r/" title="rbioapi GitHub repositry">repository</a>. I will appreciate any
+suggestions.</p>
 <hr />
 </div>
-<div id="how-to-install" class="section level1 hasAnchor" number="3">
-<h1 class="hasAnchor"><span class="header-section-number">3</span> How to install?<a href="#how-to-install" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>You can install the stable released version of rbioapi from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<div id="How-to-install" class="section level1 heading2 hasAnchor" number="3">
+<h1 class="heading2 hasAnchor"><span class="header-section-number">3</span> How to install?<a href="#How-to-install" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>You can install the stable release version of <a href="rbioapi.html" title="rbioapi: User-Friendly R Interface to Biologic Web Services&#39; API">rbioapi</a>
+from <a href="https://cran.r-project.org/package=rbioapi" title="rbioapi page on CRAN (The Comprehensive R Archive Network)">CRAN</a>
+with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rbioapi&quot;</span>)</span></code></pre></div>
-<p>However, the CRAN version is released at most once every 1-2 months, You can install the development version from <a href="https://github.com/">GitHub</a> with:</p>
+<p>However, the CRAN version is released at most once every 1-2 months,
+You can install the most recent (development) version from <a href="https://github.com/moosa-r/rbioapi/" title="rbioapi repository on GitHub">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;moosa-r/rbioapi&quot;</span>)</span></code></pre></div>
 <hr />
@@ -210,21 +467,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="design-philosophy-of-rbioapi" class="section level1 heading2 hasAnchor" number="4">
 <h1 class="heading2 hasAnchor"><span class="header-section-number">4</span> Design philosophy of rbioapi<a href="#design-philosophy-of-rbioapi" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <ul>
-<li><p>The structure of functions should be consistent across all data-bases and services. This means that, using functions to communicate with different web services should not require new learning and/or training.</p></li>
-<li><p>Using the package should entail simple plugging of values into a function’s arguments and running the code.</p></li>
-<li><p>No function should explicitly demand the user to run another function beforehand.</p></li>
-<li><p>The functions’ organization, names, and arguments should be as faithful as possible to the original API resources.</p></li>
-<li><p>The package should be scalable and easy to collaborate. To this end, exported functions should have a template-based structure and the internal functions should have a hierarchical organization with only a subset of them needed by the contributors.</p></li>
-<li><p>Beginner users should be able to conveniently use rbioapi and be completely insulated from any technicalities.</p></li>
-<li><p>The functions’ documentations should be extensive, self-contained, with working examples, and integrated with the corresponding web services in terms such as citing information or links to guides. In addition to the main vignette article, each supported database or web service should have its own vignette articles.</p></li>
+<li><p>The structure of functions should be consistent across all
+data-bases and services. This means that, using functions to communicate
+with different web services should not require new learning and/or
+training.</p></li>
+<li><p>Using the package should entail simple plugging of values into a
+function’s arguments and running the code.</p></li>
+<li><p>No function should explicitly demand the user to run another
+function beforehand.</p></li>
+<li><p>The functions’ organization, names, and arguments should be as
+faithful as possible to the original API resources.</p></li>
+<li><p>The package should be scalable and easy to collaborate. To this
+end, exported functions should have a template-based structure and the
+internal functions should have a hierarchical organization with only a
+subset of them needed by the contributors.</p></li>
+<li><p>Beginner users should be able to conveniently use rbioapi and be
+completely insulated from any technicalities.</p></li>
+<li><p>The functions’ documentations should be extensive,
+self-contained, with working examples, and integrated with the
+corresponding web services in terms such as citing information or links
+to guides. In addition to the main vignette article, each supported
+database or web service should have its own vignette articles.</p></li>
 </ul>
 <hr />
 </div>
 <div id="naming-conventions" class="section level1 heading2 hasAnchor" number="5">
 <h1 class="heading2 hasAnchor"><span class="header-section-number">5</span> Naming conventions<a href="#naming-conventions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>To make the namespace more organized, functions has been named with the following pattern:</p>
+<p>To make the namespace more organized, functions has been named with
+the following pattern:</p>
 <pre><code>rba_[service_name]_[resource_name]</code></pre>
-<p>For example, <code>rba_string_version()</code> will call <a href="https://string-db.org/" title="STRING: Protein-Protein Interaction Networks Functional Enrichment Analysis">STRING</a>’s version resource.</p>
+<p>For example, <code>rba_string_version()</code> will call <a href="https://string-db.org/" title="STRING: Protein-Protein Interaction Networks Functional Enrichment Analysis">STRING</a>’s
+version resource.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rba_string_version</span>()</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Retrieving the STRING database version and address used by rbioapi.</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $string_version</span></span>
@@ -232,7 +505,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $stable_address</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;https://version-11-5.string-db.org&quot;</span></span></code></pre></div>
-<p>Thus, to this version, rbioapi function will have one of the following naming schema:</p>
+<p>Thus, to this version, rbioapi function will have one of the
+following naming schema:</p>
 <ol style="list-style-type: decimal">
 <li>rba_enrichr_*</li>
 <li>rba_jaspar_*</li>
@@ -242,12 +516,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>rba_string_*</li>
 <li>rba_uniprot_*</li>
 </ol>
-<p>There are three exceptions: <code>rba_options()</code>, <code>rba_connection_test()</code>, and <code>rba_pages()</code>; these are helper functions. More on that later.</p>
+<p>There are three exceptions: <code>rba_options()</code>,
+<code>rba_connection_test()</code>, and <code>rba_pages()</code>; these
+are helper functions. More on that later.</p>
 <hr />
 </div>
 <div id="changing-the-options" class="section level1 heading2 hasAnchor" number="6">
 <h1 class="heading2 hasAnchor"><span class="header-section-number">6</span> Changing the options<a href="#changing-the-options" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>To provide more control, multiple options have been implemented. See the manual of <code>rba_options()</code> function for a full description of available options. In short, some of the options will govern rbioapi’s connection with servers (e.g. timeout, retry) and some of the options will modify your experience with rbioapi (e.g. verbose, diagnostics, save_file). There are two ways that you may use to change any option. Also, you can get table of available rbioapi options and their current values by calling <code>rba_options()</code>without any argument:</p>
+<p>To provide more control, multiple options have been implemented. See
+the manual of <code>rba_options()</code> function for a full description
+of available options. In short, some of the options will govern
+rbioapi’s connection with servers (e.g. timeout, retry) and some of the
+options will modify your experience with rbioapi (e.g. verbose,
+diagnostics, save_file). There are two ways that you may use to change
+any option. Also, you can get table of available rbioapi options and
+their current values by calling <code>rba_options()</code>without any
+argument:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rba_options</span>()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   rbioapi_option current_value            allowed_value</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1    diagnostics         FALSE     Logical (TRUE/FALSE)</span></span>
@@ -262,15 +546,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now, let us consider the ways in which we can alter the settings:</p>
 <div id="changing-the-options-change-the-option-globally" class="section level2 heading3 hasAnchor" number="6.1">
 <h2 class="heading3 hasAnchor"><span class="header-section-number">6.1</span> Change the option globally<a href="#changing-the-options-change-the-option-globally" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Changing an option globally means that for the rest of your R session, any rbioapi function will respect the changed option. To do this, use <code>rba_options().</code> Each argument in this function corresponds to a certain option; Thus by running this function with your desired new values, you could globally alter that rbioapi option. for example:</p>
+<p>Changing an option globally means that for the rest of your R
+session, any rbioapi function will respect the changed option. To do
+this, use <code>rba_options().</code> Each argument in this function
+corresponds to a certain option; Thus by running this function with your
+desired new values, you could globally alter that rbioapi option. for
+example:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rba_options</span>(<span class="at">save_file =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## From now on, the raw file of server&#39;s response will be saved to your working directory.</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rba_options</span>(<span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="do">## From now on, the package will be quiet.</span></span></code></pre></div>
 </div>
 <div id="changing-the-options-change-the-option-only-within-a-function-call" class="section level2 heading3 hasAnchor" number="6.2">
-<h2 class="heading3 hasAnchor"><span class="header-section-number">6.2</span> Change the option only within a function call<a href="#changing-the-options-change-the-option-only-within-a-function-call" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>You can pass additional arguments to any rbioapi function using “ellipsis” (the familiar <code>…</code> or dot dot dot!). Meaning that you can call any function with additional arguments where each is ‘option = value’ pair. This way, any changes in options will be confined within that particular function call. For example:</p>
+<h2 class="heading3 hasAnchor"><span class="header-section-number">6.2</span> Change the option only within a
+function call<a href="#changing-the-options-change-the-option-only-within-a-function-call" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You can pass additional arguments to any rbioapi function using
+“ellipsis” (the familiar <code>…</code> or dot dot dot!). Meaning that
+you can call any function with additional arguments where each is
+‘option = value’ pair. This way, any changes in options will be confined
+within that particular function call. For example:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Save the server&#39;s raw response file:</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rba_reactome_species</span>(<span class="at">only_main =</span> <span class="cn">TRUE</span>, <span class="at">save_file =</span> <span class="st">&quot;reactome_species.json&quot;</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Also, in the case of connection failure, retry up to 10 times:</span></span>
@@ -286,7 +580,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="connection-test" class="section level1 heading2 hasAnchor" number="7">
 <h1 class="heading2 hasAnchor"><span class="header-section-number">7</span> Connection test<a href="#connection-test" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>The second exception in functions’ naming schema is <code>rba_connection_test()</code>. Run this simple function to check your connection with the supported services/databases. If you encounter errors when using rbioapi, kindly run this function to make sure that your internet connection or the servers are fine.</p>
+<p>The second exception in functions’ naming schema is
+<code>rba_connection_test()</code>. Run this simple function to check
+your connection with the supported services/databases. If you encounter
+errors when using rbioapi, kindly run this function to make sure that
+your internet connection or the servers are fine.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rba_connection_test</span>(<span class="at">print_output =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Checking Your connection to the Databases currently supported by rbioapi:</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---&gt;&gt;&gt; Internet :</span></span>
@@ -311,10 +609,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; +++ The server is responding.</span></span></code></pre></div>
 <hr />
 </div>
-<div id="multi-pages" class="section level1 hasAnchor" number="8">
-<h1 class="hasAnchor"><span class="header-section-number">8</span> Iterating over paginated results<a href="#multi-pages" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Some API resources will return paginated responses. This is particularly common in API resources which return potentially very large responses. In rbioapi, for these cases, there are arguments such as “page_number” (with default value of 1) and -if the API resource allows- “page_size”. To save your time, you may use <code>rba_pages()</code>. This function will iterate over the pages you have specified.</p>
-<p>Take rba_uniprot_taxonomy_name as an example. This function allows you to search taxonomic nodes in <a href="https://www.uniprot.org" title="Universal Protein Resource (UniProt)">UniProt</a>. The response can potentially have a huge size, so <a href="https://www.uniprot.org" title="Universal Protein Resource (UniProt)">UniProt</a> returns a paginated response. For example, if we search for nodes that contain “adenovirus”, there is a large number of hits:</p>
+<div id="multi-pages" class="section level1 heading2 hasAnchor" number="8">
+<h1 class="heading2 hasAnchor"><span class="header-section-number">8</span> Iterating over paginated
+results<a href="#multi-pages" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Some API resources will return paginated responses. This is
+particularly common in API resources which return potentially very large
+responses. In rbioapi, for these cases, there are arguments such as
+“page_number” (with default value of 1) and -if the API resource allows-
+“page_size”. To save your time, you may use <code>rba_pages()</code>.
+This function will iterate over the pages you have specified.</p>
+<p>Take rba_uniprot_taxonomy_name as an example. This function allows
+you to search taxonomic nodes in <a href="https://www.uniprot.org" title="Universal Protein Resource (UniProt)">UniProt</a>. The response
+can potentially have a huge size, so <a href="https://www.uniprot.org" title="Universal Protein Resource (UniProt)">UniProt</a> returns a
+paginated response. For example, if we search for nodes that contain
+“adenovirus”, there is a large number of hits:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>adeno <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_taxonomy_name</span>(<span class="at">name =</span> <span class="st">&quot;adenovirus&quot;</span>,</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">search_type =</span> <span class="st">&quot;contain&quot;</span>,</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">page_number =</span> <span class="dv">1</span>)</span>
@@ -332,8 +640,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ pageInfo  :List of 3</span></span>
 <span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ resultsPerPage: int 200</span></span>
 <span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ currentPage   : int 1</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ totalRecords  : int 951</span></span></code></pre></div>
-<p>As you can see, the server has returned the first page of the response, to retrieve the other pages, you should make separate calls and change the “page_number” argument within each call, or simply use <code>rba_pages()</code> as demonstrated below:</p>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ totalRecords  : int 963</span></span></code></pre></div>
+<p>As you can see, the server has returned the first page of the
+response, to retrieve the other pages, you should make separate calls
+and change the “page_number” argument within each call, or simply use
+<code>rba_pages()</code> as demonstrated below:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>adeno_pages <span class="ot">=</span> <span class="fu">rba_pages</span>(<span class="fu">quote</span>(<span class="fu">rba_uniprot_taxonomy_name</span>(<span class="at">name =</span> <span class="st">&quot;adenovirus&quot;</span>,</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">search_type =</span> <span class="st">&quot;contain&quot;</span>,</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">page_number =</span> <span class="st">&quot;pages:1:3&quot;</span>)))</span>
@@ -351,35 +662,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ pageInfo  :List of 3</span></span></code></pre></div>
 <p>As you can see, what we have done was:</p>
 <ol style="list-style-type: decimal">
-<li><p>Wrap the function call in <code>qoute()</code> and enter that as the input for <code>rba_pages()</code>.</p></li>
-<li><p>Replace the argument we want to iterate over it, with a string in this format: “pages:start:end”. For example, we supplied page_number = “pages:1:3” to get the responses of pages 1 to 3.</p></li>
+<li><p>Wrap the function call in <code>qoute()</code> and enter that as
+the input for <code>rba_pages()</code>.</p></li>
+<li><p>Replace the argument we want to iterate over it, with a string in
+this format: “pages:start:end”. For example, we supplied page_number =
+“pages:1:3” to get the responses of pages 1 to 3.</p></li>
 </ol>
 <hr />
 </div>
-<div id="how-to-cite" class="section level1 hasAnchor" number="9">
-<h1 class="hasAnchor"><span class="header-section-number">9</span> How and what to cite?<a href="#how-to-cite" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>rbioapi is an interface between you and other databases and services. Thus, if you have used rbioapi in published research, kindly <strong>in addition to citing rbioapi, <u><em>make sure to fully and properly cite the databases/services you have used</em></u></strong>. Suggested citations have been added in the functions’ manuals, under the “references” section; Nevertheless, it is the user’s responsibility to check for proper citations and to properly cite the database/services that they have used.</p>
+<div id="how-to-cite" class="section level1 heading2 hasAnchor" number="9">
+<h1 class="heading2 hasAnchor"><span class="header-section-number">9</span> How and what to cite?<a href="#how-to-cite" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>rbioapi is an interface between you and other databases and services.
+Thus, if you have used rbioapi in published research, kindly <strong>in
+addition to citing rbioapi, <u><em>make sure to fully and properly cite
+the databases/services you have used</em></u></strong>. Suggested
+citations have been added in the functions’ manuals, under the
+“references” section; Nevertheless, it is the user’s responsibility to
+check for proper citations and to properly cite the database/services
+that they have used.</p>
 <ul>
-<li><p><strong>How to cite rbioapi</strong>:</p>
-<p>Moosa Rezwani, Ali Akbar Pourfathollah, Farshid Noorbakhsh, rbioapi: User-Friendly R Interface to Biologic Web Services’ API, <em>Bioinformatics</em>, 2022;, btac172, <a href="https://doi.org/10.1093/bioinformatics/btac172" class="uri">https://doi.org/10.1093/bioinformatics/btac172</a></p></li>
-<li><p><a href="rbioapi_enrichr.html#Citations" title="How to cite Enrichr">How to cite Enrichr</a>. (See on <a href="https://maayanlab.cloud/Enrichr/help#terms">Enrichr website</a>)</p></li>
-<li><p><a href="rbioapi_jaspar.html#Citations" title="How to cite JASPAR">How to cite JASPAR</a>. (See on <a href="https://jaspar.genereg.net/faq/">JASPAR website</a>)</p></li>
-<li><p><a href="rbioapi_mieaa.html#Citations" title="How to cite miEAA">How to cite miEAA</a>. (See on <a href="https://ccb-compute2.cs.uni-saarland.de/mieaa2">miEAA website</a>)</p></li>
-<li><p><a href="rbioapi_panther.html#Citations" title="How to cite PANTHER">How to cite PANTHER</a>. (See on <a href="http://www.pantherdb.org/publications.jsp#HowToCitePANTHER">PANTHER website</a>)</p></li>
-<li><p><a href="rbioapi_reactome.html#Citations" title="How to cite Reactome">How to cite Reactome</a>. (See on <a href="https://reactome.org/cite">Reactome website</a>)</p></li>
-<li><p><a href="rbioapi_string.html#Citations" title="How to cite STRING">How to cite STRING</a>. (See on <a href="https://string-db.org/cgi/about?footer_active_subpage=references">STRING website</a>)</p></li>
-<li><p><a href="rbioapi_uniprot.html#Citations" title="How to cite UniProt">How to cite UniProt</a>. (See on <a href="https://www.uniprot.org/help/publications">UniProt website</a>)</p></li>
+<li><p><strong>How to cite rbioapi</strong>: (<a href="https://academic.oup.com/bioinformatics/article/38/10/2952/6585406?guestAccessKey=1a858639-9e21-4791-8bd9-9f093a4c8b45" title="OUP Bioinformatics, rbioapi: user-friendly R interface to biologic web services’ API">Free
+access link to the article</a>)</p>
+<p>Moosa Rezwani, Ali Akbar Pourfathollah, Farshid Noorbakhsh, rbioapi:
+user-friendly R interface to biologic web services’ API, Bioinformatics,
+Volume 38, Issue 10, 15 May 2022, Pages 2952–2953, <a href="https://doi.org/10.1093/bioinformatics/btac172" class="uri">https://doi.org/10.1093/bioinformatics/btac172</a></p></li>
+<li><p><a href="rbioapi_enrichr.html#citations" title="How to cite Enrichr">How to cite Enrichr</a>. (See on <a href="https://maayanlab.cloud/Enrichr/help#terms">Enrichr
+website</a>)</p></li>
+<li><p><a href="rbioapi_jaspar.html#citations" title="How to cite JASPAR">How to cite JASPAR</a>. (See on <a href="https://jaspar.genereg.net/faq/">JASPAR website</a>)</p></li>
+<li><p><a href="rbioapi_mieaa.html#citations" title="How to cite miEAA">How to cite miEAA</a>. (See on <a href="https://ccb-compute2.cs.uni-saarland.de/mieaa2">miEAA
+website</a>)</p></li>
+<li><p><a href="rbioapi_panther.html#citations" title="How to cite PANTHER">How to cite PANTHER</a>. (See on <a href="http://www.pantherdb.org/publications.jsp#HowToCitePANTHER">PANTHER
+website</a>)</p></li>
+<li><p><a href="rbioapi_reactome.html#citations" title="How to cite Reactome">How to cite Reactome</a>. (See on <a href="https://reactome.org/cite">Reactome website</a>)</p></li>
+<li><p><a href="rbioapi_string.html#citations" title="How to cite STRING">How to cite STRING</a>. (See on <a href="https://string-db.org/cgi/about?footer_active_subpage=references">STRING
+website</a>)</p></li>
+<li><p><a href="rbioapi_uniprot.html#citations" title="How to cite UniProt">How to cite UniProt</a>. (See on <a href="https://www.uniprot.org/help/publications">UniProt
+website</a>)</p></li>
 </ul>
 <hr />
 </div>
 <div id="code-of-conduct" class="section level1 heading2 hasAnchor" number="10">
 <h1 class="heading2 hasAnchor"><span class="header-section-number">10</span> Code of conduct<a href="#code-of-conduct" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>When using rbioapi, remember that you are querying data from web services; So please be considerate. Never flood a server with requests, if you need to download <em>unreasonably</em> large volumes of data, directly downloading the databases supplied in those services may be a better alternative. If you see yourself being rate-limited from any server (HTTP <strong>429 Too Many Requests</strong> response status code), know that you are sending more requests than what the server interprets as normal behavior, so please seek other methods or use <code>Sys.sleep()</code> between your requests.</p>
+<p>When using rbioapi, remember that you are querying data from web
+services; So please be considerate. Never flood a server with requests,
+if you need to download <em>unreasonably</em> large volumes of data,
+directly downloading the databases supplied in those services may be a
+better alternative. If you see yourself being rate-limited from any
+server (HTTP <strong>429 Too Many Requests</strong> response status
+code), know that you are sending more requests than what the server
+interprets as normal behavior, so please seek other methods or use
+<code>Sys.sleep()</code> between your requests.</p>
 <hr />
 </div>
 <div id="what-next" class="section level1 heading2 hasAnchor" number="11">
 <h1 class="heading2 hasAnchor"><span class="header-section-number">11</span> What next?<a href="#what-next" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Each supported service has a dedicated vignette article. Make sure to check those too.</p>
+<p>Each supported service has a dedicated vignette article. Make sure to
+check those too.</p>
 <ol style="list-style-type: decimal">
 <li><a href="rbioapi_enrichr.html" title="rbioapi &amp; Enrichr vignette">Enrichr</a> <sup>(<a href="https://rbioapi.moosa-r.com/articles/rbioapi_enrichr.html" title="rbioapi &amp; Enrichr vignette">Documentation site</a>)</sup></li>
 <li><a href="rbioapi_jaspar.html" title="rbioapi &amp; JASPAR vignette article">JASPAR</a> <sup>(<a href="https://rbioapi.moosa-r.com/articles/rbioapi_jaspar.html" title="rbioapi &amp; JASPAR vignette article">Documentation site</a>)</sup></li>
@@ -389,23 +727,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="rbioapi_string.html" title="rbioapi &amp; STRING vignette article">STRING</a> <sup>(<a href="https://rbioapi.moosa-r.com/articles/rbioapi_string.html" title="rbioapi &amp; STRING vignette article">Documentation site</a>)</sup></li>
 <li><a href="rbioapi_uniprot.html" title="rbioapi &amp; UniProt vignette article">UniProt</a> <sup>(<a href="https://rbioapi.moosa-r.com/articles/rbioapi_uniprot.html" title="rbioapi &amp; UniProt vignette article">Documentation site</a>)</sup></li>
 </ol>
-<p>We are also adding vignette articles focusing on tasks and workflows:</p>
+<p>We are also adding vignette articles focusing on tasks and
+workflows:</p>
 <ol style="list-style-type: decimal">
-<li><a href="rbioapi_do_enrich.html" title="Do with rbioapi: Over-Representation (Enrichment) Analysis">Do with rbioapi: Over-Representation (Enrichment) Analysis</a> <sup>(<a href="https://rbioapi.moosa-r.com/articles/rbioapi_do_enrich.html" title="rbioapi &amp; UniProt vignette article">documentation site</a>)</sup></li>
+<li><a href="rbioapi_do_enrich.html" title="Do with rbioapi: Enrichment (Over-Representation) Analysis in R">Do
+with rbioapi: Enrichment (Over-Representation) Analysis in R</a>
+<sup>(<a href="https://rbioapi.moosa-r.com/articles/rbioapi_do_enrich.html" title="rbioapi &amp; UniProt vignette article">documentation site</a>)</sup></li>
 </ol>
 <hr />
 </div>
 <div id="links" class="section level1 heading2 hasAnchor" number="12">
 <h1 class="heading2 hasAnchor"><span class="header-section-number">12</span> Links<a href="#links" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <ul>
-<li><p><a href="https://rbioapi.moosa-r.com/articles/rbioapi.html" title="rbioapi: User-Friendly R Interface to Biologic Web Services&#39; API">This article in rbioapi documentation site</a></p></li>
-<li><p><a href="https://rbioapi.moosa-r.com/reference/index.html" title="rbioapi reference">Functions references in rbioapi documentation site</a></p></li>
+<li><p><a href="https://rbioapi.moosa-r.com/articles/rbioapi.html" title="rbioapi: User-Friendly R Interface to Biologic Web Services&#39; API">This
+article in rbioapi documentation site</a></p></li>
+<li><p><a href="https://rbioapi.moosa-r.com/reference/index.html" title="rbioapi reference">Functions references in rbioapi documentation
+site</a></p></li>
 </ul>
 <hr />
 </div>
 <div id="session-info" class="section level1 heading2 hasAnchor" number="13">
 <h1 class="heading2 hasAnchor"><span class="header-section-number">13</span> Session info<a href="#session-info" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<pre><code>#&gt; R version 4.1.2 (2021-11-01)
+<pre><code>#&gt; R version 4.2.1 (2022-06-23 ucrt)
 #&gt; Platform: x86_64-w64-mingw32/x64 (64-bit)
 #&gt; Running under: Windows 10 x64 (build 19044)
 #&gt; 
@@ -413,25 +756,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; 
 #&gt; locale:
 #&gt; [1] LC_COLLATE=C                          
-#&gt; [2] LC_CTYPE=English_United States.1252   
-#&gt; [3] LC_MONETARY=English_United States.1252
+#&gt; [2] LC_CTYPE=English_United States.utf8   
+#&gt; [3] LC_MONETARY=English_United States.utf8
 #&gt; [4] LC_NUMERIC=C                          
-#&gt; [5] LC_TIME=English_United States.1252    
-#&gt; system code page: 1256
+#&gt; [5] LC_TIME=English_United States.utf8    
 #&gt; 
 #&gt; attached base packages:
 #&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #&gt; 
 #&gt; other attached packages:
-#&gt; [1] rbioapi_0.7.6
+#&gt; [1] rbioapi_0.7.7
 #&gt; 
 #&gt; loaded via a namespace (and not attached):
-#&gt;  [1] digest_0.6.29   R6_2.5.1        jsonlite_1.8.0  magrittr_2.0.2 
-#&gt;  [5] evaluate_0.15   httr_1.4.2      stringi_1.7.6   rlang_1.0.2    
-#&gt;  [9] cli_3.2.0       curl_4.3.2      rstudioapi_0.13 jquerylib_0.1.4
-#&gt; [13] bslib_0.3.1     rmarkdown_2.13  tools_4.1.2     stringr_1.4.0  
-#&gt; [17] xfun_0.30       yaml_2.3.5      fastmap_1.1.0   compiler_4.1.2 
-#&gt; [21] htmltools_0.5.2 knitr_1.37      sass_0.4.0</code></pre>
+#&gt;  [1] digest_0.6.29   R6_2.5.1        jsonlite_1.8.0  magrittr_2.0.3 
+#&gt;  [5] evaluate_0.15   httr_1.4.3      stringi_1.7.8   cachem_1.0.6   
+#&gt;  [9] rlang_1.0.4     cli_3.3.0       curl_4.3.2      rstudioapi_0.13
+#&gt; [13] jquerylib_0.1.4 bslib_0.4.0     rmarkdown_2.14  tools_4.2.1    
+#&gt; [17] stringr_1.4.0   xfun_0.31       yaml_2.3.5      fastmap_1.1.0  
+#&gt; [21] compiler_4.2.1  htmltools_0.5.3 knitr_1.39      sass_0.4.2</code></pre>
 </div>
 
 

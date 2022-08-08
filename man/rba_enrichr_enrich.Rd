@@ -51,8 +51,8 @@ This function which will retrieve the enrichment results of your
 }
 \details{
 Note that using \code{\link{rba_enrichr}} is a more convenient way to
-  automatically perform this and other required function calls to enrich
-  your input gene-set.
+  automatically perform this and other required function calls to
+  perform enrichment analysis on your input gene-set.
 }
 \section{Corresponding API Resources}{
 
@@ -91,7 +91,7 @@ rba_enrichr_enrich(user_list_id = "11111",
   Evangelista, J. E., Jenkins, S. L., Lachmann, A., Wojciechowicz, M. L.,
   Kropiwnicki, E., Jagodnik, K. M., Jeon, M., & Ma’ayan, A. (2021). Gene
   set knowledge discovery with Enrichr. Current Protocols, 1, e90.
-  doi: https://doi.org/10.1002/cpz1.90
+  doi: 10.1002/cpz1.90
   \item \href{https://maayanlab.cloud/Enrichr/help#api}{Enrichr API
   Documentation}
   \item \href{https://maayanlab.cloud/Enrichr/help#terms}{Citations note
