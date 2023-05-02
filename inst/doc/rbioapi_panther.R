@@ -14,6 +14,7 @@ rba_options(timeout = 600, skip_error = TRUE)
 ## ----rba_panther_enrich, message=TRUE-----------------------------------------
 ## 1 We get the available annotation datasets in PANTHER (we need to select one of them to submit an enrichment request)
 annots <- rba_panther_info(what = "datasets")
+# Note that you should enter the "id" of the datasets, not its label (e.g. entering "biological_process" is incorrect, you should rather enter "GO:0008150").
 ## 2 We create a variable with our genes' IDs
 genes <- c("p53", "BRCA1", "cdk2", "Q99835", "CDC42","CDK1","KIF23","PLK1",
            "RAC2","RACGAP1","RHOA","RHOB", "PHF14", "RBM3", "MSL1")

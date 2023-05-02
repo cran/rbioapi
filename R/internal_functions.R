@@ -98,7 +98,9 @@
                      ptn = "^(http.?://).*string-db\\.org/api/",
                      err_ptn = "^4\\d\\d$",
                      err_prs = list("json->list_simp",
-                                    function(x) {paste(x, collapse = "\n")})
+                                    function(x) {paste(x, collapse = "\n")},
+                                    function(x) {gsub("<.+?>|&nbsp;", "\n", x)},
+                                    function(x) {gsub("(\n)+", "\n", x)})
                    ),
                    uniprot = switch(
                      arg[[2]],
@@ -668,6 +670,8 @@
 
       if (!inherits(parsed_response, "try-error")) {
         return(parsed_response)
+      } else if (identical(httr::content(response, as = "text", encoding = "UTF-8"), "")) {
+        return(NULL)
       } else {
         parse_error_msg <- paste("Internal Error:",
                                  "Failed to parse the server's response.",

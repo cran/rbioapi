@@ -8,8 +8,6 @@ knitr::opts_chunk$set(echo = TRUE,
                       cache = FALSE,
                       dev = "png",
                       comment = "#>")
-library(rbioapi)
-rba_options(timeout = 600, skip_error = TRUE)
 
 ## ----install_cran, eval=FALSE-------------------------------------------------
 #  install.packages("rbioapi")
@@ -17,6 +15,12 @@ rba_options(timeout = 600, skip_error = TRUE)
 ## ----install_github, eval=FALSE-----------------------------------------------
 #  install.packages("remotes")
 #  remotes::install_github("moosa-r/rbioapi")
+
+## ----load_rbioapi, echo=TRUE--------------------------------------------------
+library(rbioapi)
+
+## ----prevent_vignette_errors, message=FALSE, warning=FALSE, include=FALSE-----
+rba_options(timeout = 600, skip_error = TRUE)
 
 ## ----naming_example, echo=TRUE, message=TRUE----------------------------------
 rba_string_version()
