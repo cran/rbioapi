@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE,
                       dev = "png",
                       comment = "#>")
 library(rbioapi)
-rba_options(timeout = 600, skip_error = TRUE)
+rba_options(timeout = 30, skip_error = TRUE)
 
 ## ----rba_string_map_ids-------------------------------------------------------
 ## 1 We create a variable with our genes' NCBI IDs

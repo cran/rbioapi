@@ -117,16 +117,6 @@
                      "1" = options()[grep("^rba_",
                                           names(options()))],
                      getOption(arg[[2]])),
-                   citations = switch(
-                     arg[[2]],
-                     rbioapi = "** rbio api****",
-                     r = "R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.",
-                     enrichr = "https://maayanlab.cloud/Enrichr/help#terms",
-                     ensembl = "***ensembl api papeer***",
-                     jaspar = "Fornes O, Castro-Mondragon JA, Khan A, et al. JASPAR 2020: update of the open-access database of transcription factor binding profiles. Nucleic Acids Res. 2019; doi: 10.1093/nar/gkz1001",
-                     reactome = "https://reactome.org/cite",
-                     string = "Szklarczyk D, Gable AL, Lyon D, Junge A, Wyder S, Huerta-Cepas J, Simonovic M, Doncheva NT, Morris JH, Bork P, Jensen LJ, Mering CV. STRING v11: protein-protein association networks with increased coverage, supporting functional discovery in genome-wide experimental datasets. Nucleic Acids Res. 2019 Jan 8;47(D1):D607-D613. doi: 10.1093/nar/gky1131. PMID: 30476243; PMCID: PMC6323986.",
-                     uniprot = "***uniprot api papeer***"),
                    tests = list("Enrichr" = paste0(.rba_stg("enrichr", "url"),
                                                    "/Enrichr"),
                                 "Ensembl" = paste0(.rba_stg("ensembl", "url"),
@@ -173,11 +163,11 @@
 #' @return TRUE if connected to the internet, a character string if not.
 #' @family internal_internet_connectivity
 #' @noRd
-.rba_net_handle <- function(retry_max = 1,
+.rba_net_handle <- function(retry_max = 0,
                             retry_wait = 10,
                             verbose = FALSE,
                             diagnostics = FALSE,
-                            skip_error = FALSE) {
+                            skip_error = TRUE) {
   if (isTRUE(diagnostics)) {message("Testing the internet connection.")}
   test_call <- quote(
     httr::status_code(httr::HEAD("https://www.google.com/",
@@ -546,8 +536,8 @@
 #' @family internal_api_calls
 #' @noRd
 .rba_api_call <- function(input_call,
-                          skip_error = FALSE,
-                          retry_max = 1,
+                          skip_error = TRUE,
+                          retry_max = 0,
                           retry_wait = 10,
                           verbose = TRUE,
                           diagnostics = FALSE) {
@@ -866,28 +856,28 @@
 #' @noRd
 .rba_args_cons_msg <- function(cons_i, what) {
   switch(what,
-         "no_null" = sprintf("Invalid Argument; `%s` cannot be NULL.",
+         "no_null" = sprintf("Invalid Argument: `%s` cannot be NULL.",
                              cons_i[["arg"]]),
-         "class" = sprintf("Invalid Argument; %s should be of class `%s`.\n\t(Your supplied argument is \"%s\".)",
+         "class" = sprintf("Invalid Argument: %s should be of class `%s`.\n\t(Your supplied argument is \"%s\".)",
                            cons_i[["arg"]],
                            .paste2(cons_i[["class"]], last = " or ",
                                    quote = "\""),
                            class(cons_i[["evl_arg"]])),
-         "val" = sprintf("Invalid Argument; %s should be either `%s`.\n\t(Your supplied argument is `%s`.)",
+         "val" = sprintf("Invalid Argument: %s should be either `%s`.\n\t(Your supplied argument is `%s`.)",
                          cons_i[["arg"]],
                          .paste2(cons_i[["val"]], last = " or ",
                                  quote = "\""),
                          cons_i[["evl_arg"]]),
-         "ran" = sprintf("Invalid Argument; %s should be `from %s to %s`.\n\t(Your supplied argument is `%s`.)",
+         "ran" = sprintf("Invalid Argument: %s should be `from %s to %s`.\n\t(Your supplied argument is `%s`.)",
                          cons_i[["arg"]],
                          cons_i[["ran"]][[1]],
                          cons_i[["ran"]][[2]],
                          cons_i[["evl_arg"]]),
-         "len" = sprintf("Invalid Argument; %s should be of length `%s`.\n\t(Your supplied argument's length is `%s`.)",
+         "len" = sprintf("Invalid Argument: %s should be of length `%s`.\n\t(Your supplied argument's length is `%s`.)",
                          cons_i[["arg"]],
                          cons_i[["len"]],
                          length(cons_i[["evl_arg"]])),
-         "min_len" = sprintf("Invalid Argument; %s should be of minimum length `%s`.\n\t(Your supplied argument's length is `%s`.)",
+         "min_len" = sprintf("Invalid Argument: %s should be of minimum length `%s`.\n\t(Your supplied argument's length is `%s`.)",
                              cons_i[["arg"]],
                              cons_i[["min_len"]],
                              length(cons_i[["evl_arg"]])),
@@ -906,7 +896,7 @@
          "regex" = sprintf("Invalid Argument: %s do not have a valid format.\n\t(It should match regex pattern: %s ).",
                            cons_i[["arg"]],
                            cons_i[["regex"]]),
-         stop("Internal Error; constrian message is not defiend: ",
+         stop("Internal Error: constrian message is not defiend: ",
               what, call. = TRUE)
   )
 }
@@ -1081,8 +1071,14 @@
     errors <- append(errors,
                      vapply(X = cons[cons_not_exist],
                             FUN = function(x){
-                              regmatches(x, regexpr("(?<= : (\\\n  ){1}).*(?=\\\n)",
-                                                    x, perl = TRUE))},
+                              error_message <- regmatches(x[["evl_arg"]],
+                                                  regexpr("(?<=(Error: )|(Error : )).*?(?=\n)",
+                                                          x[["evl_arg"]], perl = TRUE))
+                              return(ifelse(length(error_message) == 0,
+                                            yes = sub("^Error in.*: +\n", "", x[["evl_arg"]][[1]], perl = TRUE),
+                                            no = error_message
+                                            ))
+                              },
                             FUN.VALUE = character(1)
                      ))
     #remove from cons
@@ -1117,7 +1113,7 @@
     stop(errors, call. = diagnostics)
   } else if (length(errors) > 1) {
     error_message <- paste0("\n", seq_along(errors), "- ", errors)
-    stop(sprintf("The following `%s Errors` was raised during your supplied arguments check:",
+    stop(sprintf("Your supplied arguments contains the following `%s Errors`.",
                  length(errors)),
          error_message,
          call. = diagnostics)
@@ -1141,7 +1137,7 @@
                                   },
                                   FUN.VALUE = character(1)),
                            collapse = "")
-        cond_msg <- sprintf("The following `%s Conditional issues` were found during your supplied arguments check:%s",
+        cond_msg <- sprintf("Your supplied arguments contains the following `%s Conditional Issues`.:%s",
                             length(cond_msg),
                             cond_msg)
       }

@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE,
 library(rbioapi)
 
 ## ----prevent_vignette_errors, message=FALSE, warning=FALSE, include=FALSE-----
-rba_options(timeout = 600, skip_error = TRUE)
+rba_options(timeout = 30, skip_error = TRUE)
 
 ## ----naming_example, echo=TRUE, message=TRUE----------------------------------
 rba_string_version()

@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE,
                       dev = "png",
                       comment = "#>")
 library(rbioapi)
-rba_options(timeout = 600, skip_error = TRUE)
+rba_options(timeout = 30, skip_error = TRUE)
 
 ## ----rba_reactome_analysis----------------------------------------------------
 ## 1 We create a simple vector with our genes

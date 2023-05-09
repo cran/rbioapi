@@ -12,7 +12,7 @@
 
 <meta name="author" content="Moosa Rezwani" />
 
-<meta name="date" content="2023-05-02" />
+<meta name="date" content="2023-05-09" />
 
 <title>1: rbioapi: User-Friendly R Interface to Biologic Web Services’ API</title>
 
@@ -361,7 +361,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h1 class="title toc-ignore">1: rbioapi: User-Friendly R Interface to
 Biologic Web Services’ API</h1>
 <h4 class="author">Moosa Rezwani</h4>
-<h4 class="date">2023-05-02</h4>
+<h4 class="date">2023-05-09</h4>
 
 
 <div id="TOC">
@@ -516,11 +516,11 @@ argument:</p>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co">#&gt; 1    diagnostics         FALSE     Logical (TRUE/FALSE)</span></span>
 <span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co">#&gt; 2       dir_name       rbioapi                Character</span></span>
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt; 3       progress         FALSE     Logical (TRUE/FALSE)</span></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt; 4      retry_max             1   Numeric (0 or greater)</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt; 4      retry_max             0   Numeric (0 or greater)</span></span>
 <span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt; 5     retry_wait            10   Numeric (0 or greater)</span></span>
 <span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; 6      save_file         FALSE     Logical (TRUE/FALSE)</span></span>
 <span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; 7     skip_error          TRUE     Logical (TRUE/FALSE)</span></span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; 8        timeout           600 Numeric (0.1 or greater)</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; 8        timeout            30 Numeric (0.1 or greater)</span></span>
 <span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; 9        verbose          TRUE     Logical (TRUE/FALSE)</span></span></code></pre></div>
 <p>Now, let us consider the ways in which we can alter the settings:</p>
 <div id="changing-the-options-change-the-option-globally" class="section level2 heading3 hasAnchor" number="5.1">
@@ -619,7 +619,7 @@ paginated response. For example, if we search for nodes that contain
 <span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="co">#&gt;  $ pageInfo  :List of 3</span></span>
 <span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="co">#&gt;   ..$ resultsPerPage: int 200</span></span>
 <span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="co">#&gt;   ..$ currentPage   : int 1</span></span>
-<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="co">#&gt;   ..$ totalRecords  : int 979</span></span></code></pre></div>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="co">#&gt;   ..$ totalRecords  : int 982</span></span></code></pre></div>
 <p>As you can see, the server has returned the first page of the
 response, to retrieve the other pages, you should make separate calls
 and change the “page_number” argument within each call, or simply use
@@ -762,7 +762,7 @@ site</a></p></li>
 #&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #&gt; 
 #&gt; other attached packages:
-#&gt; [1] rbioapi_0.7.8
+#&gt; [1] rbioapi_0.7.9
 #&gt; 
 #&gt; loaded via a namespace (and not attached):
 #&gt;  [1] digest_0.6.31   R6_2.5.1        fastmap_1.1.1   xfun_0.39      

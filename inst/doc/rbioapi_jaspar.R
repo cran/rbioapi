@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE,
                       dev = "png",
                       comment = "#>")
 library(rbioapi)
-rba_options(timeout = 600, skip_error = TRUE)
+rba_options(timeout = 30, skip_error = TRUE)
 
 ## ----release------------------------------------------------------------------
 ## Call the function without any arguments to get a list of releases

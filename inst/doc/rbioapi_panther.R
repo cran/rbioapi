@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE,
                       dev = "png",
                       comment = "#>")
 library(rbioapi)
-rba_options(timeout = 600, skip_error = TRUE)
+rba_options(timeout = 30, skip_error = TRUE)
 
 ## ----rba_panther_enrich, message=TRUE-----------------------------------------
 ## 1 We get the available annotation datasets in PANTHER (we need to select one of them to submit an enrichment request)

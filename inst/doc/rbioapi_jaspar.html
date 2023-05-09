@@ -12,7 +12,7 @@
 
 <meta name="author" content="Moosa Rezwani" />
 
-<meta name="date" content="2023-05-02" />
+<meta name="date" content="2023-05-09" />
 
 <title>2.B: JASPAR &amp; rbioapi</title>
 
@@ -360,7 +360,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">2.B: JASPAR &amp; rbioapi</h1>
 <h4 class="author">Moosa Rezwani</h4>
-<h4 class="date">2023-05-02</h4>
+<h4 class="date">2023-05-09</h4>
 
 
 <div id="TOC">
@@ -556,42 +556,42 @@ as an R Object<a href="#get-matrix-and-annotations-as-an-r-object" class="anchor
 <span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="do">## other elements which correspond to annotations and details</span></span>
 <span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="fu">str</span>(pfm_matrix)</span>
 <span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">#&gt; List of 24</span></span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">#&gt;  $ base_id      : chr &quot;MA0600&quot;</span></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt;  $ collection   : chr &quot;CORE&quot;</span></span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt;  $ pubmed_ids   : chr &quot;8754849&quot;</span></span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt;  $ species      :&#39;data.frame&#39;:   1 obs. of  2 variables:</span></span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt;   ..$ tax_id: int 9606</span></span>
-<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co">#&gt;   ..$ name  : chr &quot;Homo sapiens&quot;</span></span>
-<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">#&gt;  $ sites_url    : NULL</span></span>
-<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co">#&gt;  $ pazar_tf_ids : list()</span></span>
-<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="co">#&gt;  $ tfe_ids      : list()</span></span>
-<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="co">#&gt;  $ pfm          : num [1:4, 1:16] 1381 5653 4042 2336 270 ...</span></span>
-<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="co">#&gt;   ..- attr(*, &quot;dimnames&quot;)=List of 2</span></span>
-<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="co">#&gt;   .. ..$ : chr [1:4] &quot;A&quot; &quot;C&quot; &quot;G&quot; &quot;T&quot;</span></span>
-<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="co">#&gt;   .. ..$ : NULL</span></span>
-<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a><span class="co">#&gt;  $ tffm         :List of 7</span></span>
-<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a><span class="co">#&gt;   ..$ tffm_id        : chr &quot;TFFM0576.1&quot;</span></span>
-<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a><span class="co">#&gt;   ..$ base_id        : chr &quot;TFFM0576&quot;</span></span>
-<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a><span class="co">#&gt;   ..$ tffm_url       : chr &quot;https://jaspar.genereg.net/api/v1/tffm/TFFM0576.1/&quot;</span></span>
-<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a><span class="co">#&gt;   ..$ version        : int 1</span></span>
-<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a><span class="co">#&gt;   ..$ log_p_detailed : num -6660</span></span>
-<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a><span class="co">#&gt;   ..$ experiment_name: chr &quot;CistromeDB_58298&quot;</span></span>
-<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a><span class="co">#&gt;   ..$ log_p_1st_order: num -6275</span></span>
-<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a><span class="co">#&gt;  $ remap_tf_name: chr &quot;RFX2&quot;</span></span>
-<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a><span class="co">#&gt;  $ medline      : chr &quot;8754849&quot;</span></span>
-<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a><span class="co">#&gt;  $ tfe_id       : list()</span></span>
-<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a><span class="co">#&gt;  $ versions_url : chr &quot;https://jaspar.genereg.net/api/v1/matrix/MA0600/versions&quot;</span></span>
-<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a><span class="co">#&gt;  $ name         : chr &quot;RFX2&quot;</span></span>
-<span id="cb7-33"><a href="#cb7-33" tabindex="-1"></a><span class="co">#&gt;  $ version      : int 2</span></span>
-<span id="cb7-34"><a href="#cb7-34" tabindex="-1"></a><span class="co">#&gt;  $ class        : chr &quot;Fork head/winged helix factors&quot;</span></span>
-<span id="cb7-35"><a href="#cb7-35" tabindex="-1"></a><span class="co">#&gt;  $ matrix_id    : chr &quot;MA0600.2&quot;</span></span>
-<span id="cb7-36"><a href="#cb7-36" tabindex="-1"></a><span class="co">#&gt;  $ tax_group    : chr &quot;vertebrates&quot;</span></span>
-<span id="cb7-37"><a href="#cb7-37" tabindex="-1"></a><span class="co">#&gt;  $ family       : chr &quot;RFX-related factors&quot;</span></span>
-<span id="cb7-38"><a href="#cb7-38" tabindex="-1"></a><span class="co">#&gt;  $ sequence_logo: chr &quot;https://jaspar.genereg.net/static/logos/svg/MA0600.2.svg&quot;</span></span>
-<span id="cb7-39"><a href="#cb7-39" tabindex="-1"></a><span class="co">#&gt;  $ source       : chr &quot;23332764&quot;</span></span>
-<span id="cb7-40"><a href="#cb7-40" tabindex="-1"></a><span class="co">#&gt;  $ type         : chr &quot;HT-SELEX&quot;</span></span>
-<span id="cb7-41"><a href="#cb7-41" tabindex="-1"></a><span class="co">#&gt;  $ uniprot_ids  : chr &quot;P48378&quot;</span></span>
-<span id="cb7-42"><a href="#cb7-42" tabindex="-1"></a><span class="co">#&gt;  $ pazar_tf_id  : list()</span></span></code></pre></div>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">#&gt;  $ species      :&#39;data.frame&#39;:   1 obs. of  2 variables:</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt;   ..$ name  : chr &quot;Homo sapiens&quot;</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt;   ..$ tax_id: int 9606</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt;  $ pazar_tf_id  : list()</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt;  $ remap_tf_name: chr &quot;RFX2&quot;</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co">#&gt;  $ type         : chr &quot;HT-SELEX&quot;</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">#&gt;  $ name         : chr &quot;RFX2&quot;</span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co">#&gt;  $ tffm         :List of 7</span></span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="co">#&gt;   ..$ experiment_name: chr &quot;CistromeDB_58298&quot;</span></span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="co">#&gt;   ..$ base_id        : chr &quot;TFFM0576&quot;</span></span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="co">#&gt;   ..$ log_p_1st_order: num -6275</span></span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="co">#&gt;   ..$ log_p_detailed : num -6660</span></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="co">#&gt;   ..$ tffm_id        : chr &quot;TFFM0576.1&quot;</span></span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a><span class="co">#&gt;   ..$ tffm_url       : chr &quot;https://jaspar.genereg.net/api/v1/tffm/TFFM0576.1/&quot;</span></span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a><span class="co">#&gt;   ..$ version        : int 1</span></span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a><span class="co">#&gt;  $ collection   : chr &quot;CORE&quot;</span></span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a><span class="co">#&gt;  $ pubmed_ids   : chr &quot;8754849&quot;</span></span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a><span class="co">#&gt;  $ base_id      : chr &quot;MA0600&quot;</span></span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a><span class="co">#&gt;  $ class        : chr &quot;Fork head/winged helix factors&quot;</span></span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a><span class="co">#&gt;  $ source       : chr &quot;23332764&quot;</span></span>
+<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a><span class="co">#&gt;  $ medline      : chr &quot;8754849&quot;</span></span>
+<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a><span class="co">#&gt;  $ tfe_ids      : list()</span></span>
+<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a><span class="co">#&gt;  $ versions_url : chr &quot;https://jaspar.genereg.net/api/v1/matrix/MA0600/versions&quot;</span></span>
+<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a><span class="co">#&gt;  $ uniprot_ids  : chr &quot;P48378&quot;</span></span>
+<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a><span class="co">#&gt;  $ sequence_logo: chr &quot;https://jaspar.genereg.net/static/logos/svg/MA0600.2.svg&quot;</span></span>
+<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a><span class="co">#&gt;  $ family       : chr &quot;RFX-related factors&quot;</span></span>
+<span id="cb7-33"><a href="#cb7-33" tabindex="-1"></a><span class="co">#&gt;  $ tax_group    : chr &quot;vertebrates&quot;</span></span>
+<span id="cb7-34"><a href="#cb7-34" tabindex="-1"></a><span class="co">#&gt;  $ pfm          : num [1:4, 1:16] 1381 5653 4042 2336 270 ...</span></span>
+<span id="cb7-35"><a href="#cb7-35" tabindex="-1"></a><span class="co">#&gt;   ..- attr(*, &quot;dimnames&quot;)=List of 2</span></span>
+<span id="cb7-36"><a href="#cb7-36" tabindex="-1"></a><span class="co">#&gt;   .. ..$ : chr [1:4] &quot;A&quot; &quot;C&quot; &quot;G&quot; &quot;T&quot;</span></span>
+<span id="cb7-37"><a href="#cb7-37" tabindex="-1"></a><span class="co">#&gt;   .. ..$ : NULL</span></span>
+<span id="cb7-38"><a href="#cb7-38" tabindex="-1"></a><span class="co">#&gt;  $ tfe_id       : list()</span></span>
+<span id="cb7-39"><a href="#cb7-39" tabindex="-1"></a><span class="co">#&gt;  $ sites_url    : NULL</span></span>
+<span id="cb7-40"><a href="#cb7-40" tabindex="-1"></a><span class="co">#&gt;  $ pazar_tf_ids : list()</span></span>
+<span id="cb7-41"><a href="#cb7-41" tabindex="-1"></a><span class="co">#&gt;  $ matrix_id    : chr &quot;MA0600.2&quot;</span></span>
+<span id="cb7-42"><a href="#cb7-42" tabindex="-1"></a><span class="co">#&gt;  $ version      : int 2</span></span></code></pre></div>
 </div>
 <div id="save-a-matrix-a-file-in-specific-format" class="section level4 heading4 hasAnchor" number="0.3.3.2">
 <h4 class="heading4 hasAnchor"><span class="header-section-number">0.3.3.2</span> Save a Matrix a File in
@@ -678,26 +678,26 @@ format.</p>
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>TFFM0056 <span class="ot">&lt;-</span> <span class="fu">rba_jaspar_tffm</span>(<span class="st">&quot;TFFM0056.3&quot;</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="fu">str</span>(TFFM0056)</span>
 <span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co">#&gt; List of 10</span></span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co">#&gt;  $ tffm_id        : chr &quot;TFFM0056.3&quot;</span></span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co">#&gt;  $ base_id        : chr &quot;TFFM0056&quot;</span></span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co">#&gt;  $ matrix_version : int 4</span></span>
-<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co">#&gt;  $ experiment_name: chr &quot;CistromeDB_33718&quot;</span></span>
-<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co">#&gt;  $ version        : int 3</span></span>
-<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co">#&gt;  $ detailed       :List of 5</span></span>
-<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="co">#&gt;   ..$ xml         : chr &quot;https://jaspar.genereg.net/static/TFFM/TFFM0056.3/TFFM_detailed_trained.xml&quot;</span></span>
-<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="co">#&gt;   ..$ hits        : chr &quot;https://jaspar.genereg.net/static/TFFM/TFFM0056.3/TFFM_detailed_trained.hits.svg&quot;</span></span>
-<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="co">#&gt;   ..$ summary_logo: chr &quot;https://jaspar.genereg.net/static/TFFM/TFFM0056.3/TFFM_detailed_trained_summary_logo.svg&quot;</span></span>
-<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="co">#&gt;   ..$ log_p       : num -6854</span></span>
-<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="co">#&gt;   ..$ dense_logo  : chr &quot;https://jaspar.genereg.net/static/TFFM/TFFM0056.3/TFFM_detailed_trained_dense_logo.svg&quot;</span></span>
-<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="co">#&gt;  $ matrix_base_id : chr &quot;MA0039&quot;</span></span>
-<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="co">#&gt;  $ matrix_url     : chr &quot;https://jaspar.genereg.net/api/v1/matrix/MA0039.4/&quot;</span></span>
-<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="co">#&gt;  $ first_order    :List of 5</span></span>
-<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="co">#&gt;   ..$ xml         : chr &quot;https://jaspar.genereg.net/static/TFFM/TFFM0056.3/TFFM_first_order_trained.xml&quot;</span></span>
-<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a><span class="co">#&gt;   ..$ hits        : chr &quot;https://jaspar.genereg.net/static/TFFM/TFFM0056.3/TFFM_first_order_trained.hits.svg&quot;</span></span>
-<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a><span class="co">#&gt;   ..$ summary_logo: chr &quot;https://jaspar.genereg.net/static/TFFM/TFFM0056.3/TFFM_first_order_trained_summary_logo.svg&quot;</span></span>
-<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a><span class="co">#&gt;   ..$ log_p       : num -7420</span></span>
-<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a><span class="co">#&gt;   ..$ dense_logo  : chr &quot;https://jaspar.genereg.net/static/TFFM/TFFM0056.3/TFFM_first_order_trained_dense_logo.svg&quot;</span></span>
-<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a><span class="co">#&gt;  $ matrix_id      : chr &quot;MA0039.4&quot;</span></span></code></pre></div>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co">#&gt;  $ first_order    :List of 5</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co">#&gt;   ..$ dense_logo  : chr &quot;https://jaspar.genereg.net/static/TFFM/TFFM0056.3/TFFM_first_order_trained_dense_logo.svg&quot;</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co">#&gt;   ..$ hits        : chr &quot;https://jaspar.genereg.net/static/TFFM/TFFM0056.3/TFFM_first_order_trained.hits.svg&quot;</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co">#&gt;   ..$ summary_logo: chr &quot;https://jaspar.genereg.net/static/TFFM/TFFM0056.3/TFFM_first_order_trained_summary_logo.svg&quot;</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co">#&gt;   ..$ log_p       : num -7420</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co">#&gt;   ..$ xml         : chr &quot;https://jaspar.genereg.net/static/TFFM/TFFM0056.3/TFFM_first_order_trained.xml&quot;</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="co">#&gt;  $ matrix_url     : chr &quot;https://jaspar.genereg.net/api/v1/matrix/MA0039.4/&quot;</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="co">#&gt;  $ base_id        : chr &quot;TFFM0056&quot;</span></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="co">#&gt;  $ experiment_name: chr &quot;CistromeDB_33718&quot;</span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="co">#&gt;  $ matrix_base_id : chr &quot;MA0039&quot;</span></span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="co">#&gt;  $ detailed       :List of 5</span></span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="co">#&gt;   ..$ dense_logo  : chr &quot;https://jaspar.genereg.net/static/TFFM/TFFM0056.3/TFFM_detailed_trained_dense_logo.svg&quot;</span></span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="co">#&gt;   ..$ hits        : chr &quot;https://jaspar.genereg.net/static/TFFM/TFFM0056.3/TFFM_detailed_trained.hits.svg&quot;</span></span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="co">#&gt;   ..$ summary_logo: chr &quot;https://jaspar.genereg.net/static/TFFM/TFFM0056.3/TFFM_detailed_trained_summary_logo.svg&quot;</span></span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="co">#&gt;   ..$ log_p       : num -6854</span></span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a><span class="co">#&gt;   ..$ xml         : chr &quot;https://jaspar.genereg.net/static/TFFM/TFFM0056.3/TFFM_detailed_trained.xml&quot;</span></span>
+<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a><span class="co">#&gt;  $ version        : int 3</span></span>
+<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a><span class="co">#&gt;  $ matrix_id      : chr &quot;MA0039.4&quot;</span></span>
+<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a><span class="co">#&gt;  $ matrix_version : int 4</span></span>
+<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a><span class="co">#&gt;  $ tffm_id        : chr &quot;TFFM0056.3&quot;</span></span></code></pre></div>
 <hr />
 </div>
 <div id="citations" class="section level2 heading2 hasAnchor" number="0.5">
@@ -757,7 +757,7 @@ vignette index</a></p></li>
 #&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #&gt; 
 #&gt; other attached packages:
-#&gt; [1] rbioapi_0.7.8
+#&gt; [1] rbioapi_0.7.9
 #&gt; 
 #&gt; loaded via a namespace (and not attached):
 #&gt;  [1] digest_0.6.31     R6_2.5.1          fastmap_1.1.1     xfun_0.39        

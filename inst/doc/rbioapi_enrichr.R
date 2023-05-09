@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE,
                       dev = "png",
                       comment = "#>")
 library(rbioapi)
-rba_options(timeout = 600, skip_error = TRUE)
+rba_options(timeout = 30, skip_error = TRUE)
 
 ## ----enrichr_libs-------------------------------------------------------------
 enrichr_libs <- rba_enrichr_libs()
@@ -72,7 +72,7 @@ results_msig <- rba_enrichr(gene_list = genes,
 str(results_msig_hallmark)
 
 ## ----approach_1_multi, eval=is.list(results_msig)&&is.data.frame(results_msig[[1]])----
-str(results_msig, 1)
+#  str(results_msig, 1)
 
 ## ----approach_2_libs, eval=FALSE----------------------------------------------
 #  # Get a list of available Enrichr libraries
@@ -98,13 +98,17 @@ Sys.sleep(3)
 results_crispr <- rba_enrichr_enrich(user_list_id = list_id$userListId,
                                       gene_set_library = "Table_Mining_of_CRISPR_Studies")
 
-## ----approach_2_enrichr_results, eval=exists("results_crispr")&&is.data.frame(results_crispr), echo=FALSE----
-DT::datatable(data = results_crispr,
+## ----approach_2_enrichr_results, eval=TRUE, echo=FALSE------------------------
+if (exists("results_crispr") && is.data.frame(results_crispr)) {
+  DT::datatable(data = results_crispr,
               options = list(scrollX = TRUE, 
                              paging = TRUE,
                              fixedHeader = TRUE,
                              keys = TRUE,
                              pageLength = 10))
+} else {
+  print("Vignette building failed. It is probably because the web service was down during the building.")
+}
 
 ## ----sessionInfo, echo=FALSE--------------------------------------------------
 sessionInfo()
