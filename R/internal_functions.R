@@ -61,7 +61,7 @@
                      arg[[2]],
                      name = "MiEAA",
                      url = "https://ccb-compute2.cs.uni-saarland.de",
-                     pth = "mieaa2/api/v1/",
+                     pth = "mieaa/api/v1/",
                      ptn = "^(https?://)?(www\\.)?ccb-compute2\\.cs\\.uni-saarland\\.de/mieaa2/",
                      err_ptn = "^4\\d\\d$",
                      err_prs = list("json->chr")
@@ -69,7 +69,7 @@
                    panther = switch(
                      arg[[2]],
                      name = "PANTHER",
-                     url = "http://www.pantherdb.org",
+                     url = "https://www.pantherdb.org",
                      pth = "services/oai/pantherdb/",
                      ptn = "^(https?://)?(www\\.)?pantherdb\\.org/services/",
                      err_ptn = "^4\\d\\d&",
@@ -93,7 +93,7 @@
                    string = switch(
                      arg[[2]],
                      name = "STRING",
-                     url = "https://version-11-5.string-db.org",
+                     url = "https://version-12-0.string-db.org",
                      pth = "api/",
                      ptn = "^(http.?://).*string-db\\.org/api/",
                      err_ptn = "^4\\d\\d$",

@@ -143,7 +143,7 @@ rba_mieaa_cats <- function(mirna_type, species, ...) {
 
   input_call <- .rba_httr(httr = "get",
                           url = .rba_stg("mieaa", "url"),
-                          path = sprintf("%senrichment_categories/%s/%s",
+                          path = sprintf("%senrichment_categories/%s/%s/",
                                          .rba_stg("mieaa", "pth"),
                                          species,
                                          switch(mirna_type,
@@ -270,8 +270,8 @@ rba_mieaa_convert_version <- function(mirna,
 #' Convert Between Mature and precursor miRNA Accession
 #'
 #' miRBase miRNA accession could refer to either mature or precursor miRNAs.
-#'   (see: \href{https://mirbase.org/help/nomenclature.shtml}{miRNA naming
-#'   conventions}). Use this function to mature miRNA accession to
+#'   (see: \href{https://rnajournal.cshlp.org/content/9/3/277}{A uniform system
+#'   for microRNA annotation}). Use this function to mature miRNA accession to
 #'   corresponding miRNA accessions or vice versa.
 #'
 #' @param mirna A vector of miRNA accessions to be converted.
@@ -808,11 +808,12 @@ rba_mieaa_enrich_results <- function(job_id,
 #'
 #' @examples
 #' \dontrun{
-#' rba_mieaa_enrich(test_set = c("hsa-miR-20b-5p", "hsa-miR-144-5p"),
+#' rba_mieaa_enrich(test_set = c("hsa-miR-20b-5p", "hsa-miR-144-5p",
+#'  "hsa-miR-17-5p", "hsa-miR-20a-5p"),
 #'      mirna_type = "mature",
-#'      test_type = "GSEA",
+#'      test_type = "ORA",
 #'      species = 9606,
-#'      categories = NULL)
+#'      categories = "miRPathDB_GO_Biological_process_mature")
 #' }
 #'
 #' @family "miEAA"

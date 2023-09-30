@@ -50,7 +50,7 @@ On CRAN (Stable) version: (<https://cran.r-project.org/package=rbioapi>)
 1.  [Enrichr](https://maayanlab.cloud/Enrichr/ "Enrichr") ([rbioapi vignette article](rbioapi_enrichr.html "rbioapi & Enrichr vignette article")) ^(new)^
 2.  [JASPAR](https://jaspar.genereg.net/ "JASPAR - A database of transcription factor binding profiles") ([rbioapi vignette article](rbioapi_jaspar.html "rbioapi & Enrichr vignette article")) ^(new)^
 3.  [miEAA](https://ccb-compute2.cs.uni-saarland.de/mieaa2 "miRNA Enrichment Analysis and Annotation Tool (miEAA)") ([rbioapi vignette article](rbioapi_mieaa.html "rbioapi & miEAA vignette article"))
-4.  [PANTHER](http://www.pantherdb.org "Protein Analysis THrough Evolutionary Relationships (PANTHER)") ([rbioapi vignette article](rbioapi_panther.html "rbioapi & PANTHER vignette article"))
+4.  [PANTHER](https://www.pantherdb.org "Protein Analysis THrough Evolutionary Relationships (PANTHER)") ([rbioapi vignette article](rbioapi_panther.html "rbioapi & PANTHER vignette article"))
 5.  [Reactome](https://reactome.org/) ([rbioapi vignette article](rbioapi_reactome.html "rbioapi & Reactome vignette article"))
 6.  [STRING](https://string-db.org/ "STRING: Protein-Protein Interaction Networks Functional Enrichment Analysis") ([rbioapi vignette article](rbioapi_string.html "rbioapi & STRING vignette article"))
 7.  [UniProt](https://www.uniprot.org "Universal Protein Resource (UniProt)") ([rbioapi vignette article](rbioapi_uniprot.html "rbioapi & UniProt vignette article"))
@@ -206,7 +206,7 @@ As you can see, what we have done was:
 
 # How and what to cite? {#how-to-cite .heading2}
 
-rbioapi is an interface between you and other databases and services. Thus, if you have used rbioapi in published research, kindly **in addition to citing rbioapi, [*make sure to fully and properly cite the databases/services you have used*]{.underline}**. Suggested citations have been added in the functions' manuals, under the "references" section; Nevertheless, it is the user's responsibility to check for proper citations and to properly cite the database/services that they have used.
+rbioapi is an interface between you and other databases and services. Thus, if you have used rbioapi in published research, **in addition to kindly citing rbioapi, [*make sure to fully and properly cite the databases/services you have used*]{.underline}**. Suggested citations have been added in the functions' manuals, under the "references" section; Nevertheless, it is the user's responsibility to check for proper citations and to properly cite the database/services that they have used.
 
 ## How to cite rbioapi {#how-to-cite-rbioapi .heading3}
 
@@ -220,7 +220,7 @@ rbioapi is an interface between you and other databases and services. Thus, if y
 
 -   [How to cite miEAA](rbioapi_mieaa.html#citations "How to cite miEAA"). (See on [miEAA website](https://ccb-compute2.cs.uni-saarland.de/mieaa2))
 
--   [How to cite PANTHER](rbioapi_panther.html#citations "How to cite PANTHER"). (See on [PANTHER website](http://www.pantherdb.org/publications.jsp#HowToCitePANTHER))
+-   [How to cite PANTHER](rbioapi_panther.html#citations "How to cite PANTHER"). (See on [PANTHER website](https://www.pantherdb.org/publications.jsp#HowToCitePANTHER))
 
 -   [How to cite Reactome](rbioapi_reactome.html#citations "How to cite Reactome"). (See on [Reactome website](https://reactome.org/cite))
 
@@ -231,6 +231,8 @@ rbioapi is an interface between you and other databases and services. Thus, if y
 ------------------------------------------------------------------------
 
 # Code of conduct {#code-of-conduct .heading2}
+
+This package, rbioapi, is an unofficial interface implementation and is not associated, endorsed, or officially connected in any way with the original databases and web services. The creators and maintainers of rbioapi are independent entities and have no official relationship with those databases and web services.
 
 When using rbioapi, remember that you are querying data from web services; So please be considerate. Never flood a server with requests, if you need to download *unreasonably* large volumes of data, directly downloading the databases supplied in those services may be a better alternative. If you see yourself being rate-limited from any server (HTTP **429 Too Many Requests** response status code), know that you are sending more requests than what the server interprets as normal behavior, so please seek other methods or use `Sys.sleep()` between your requests.
 
@@ -256,8 +258,7 @@ We are also adding vignette articles focusing on tasks and workflows:
 
 # Design philosophy of rbioapi {#design-philosophy .heading2}
 
-To learn more about the design philosophy and the concepts behind developing rbioapi, please read 
-[our paper in Bioinformatics](https://doi.org/10.1093/bioinformatics/btac172 "Rezwani, M., Pourfathollah, A. A., & Noorbakhsh, F. (2022). rbioapi: user-friendly R interface to biologic web services’ API. Bioinformatics, 38(10), 2952–2953. doi: 10.1093/bioinformatics/btac172").
+To learn more about the design philosophy and the concepts behind developing rbioapi, please read [our paper in Bioinformatics](https://doi.org/10.1093/bioinformatics/btac172 "Rezwani, M., Pourfathollah, A. A., & Noorbakhsh, F. (2022). rbioapi: user-friendly R interface to biologic web services’ API. Bioinformatics, 38(10), 2952–2953. doi: 10.1093/bioinformatics/btac172").
 
 ------------------------------------------------------------------------
 

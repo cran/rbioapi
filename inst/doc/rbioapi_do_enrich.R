@@ -1,4 +1,4 @@
-## ---- include = FALSE, setup, echo=FALSE, results="hide"----------------------
+## ----include = FALSE, setup, echo=FALSE, results="hide"-----------------------
 knitr::opts_chunk$set(echo = TRUE,
                       eval = TRUE,
                       message = FALSE,

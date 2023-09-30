@@ -37,8 +37,7 @@ mieaa_kegg <- rba_mieaa_enrich(test_set = mirs,
                               mirna_type = "mature",
                               test_type = "ORA",
                               species = 9606,
-                              categories = c("miRWalk_Diseases_mature",
-                                            "miRWalk_Organs_mature")
+                              categories = "KEGG_mature"
                              )
 
 ## ----mieaa_kegg_table, echo=FALSE---------------------------------------------

@@ -15,8 +15,12 @@ rba_string_network_image(
   network_flavor = "confidence",
   network_type = "functional",
   hide_node_labels = FALSE,
+  use_query_labels = FALSE,
   hide_disconnected_nodes = FALSE,
   hide_structure_pics = FALSE,
+  flat_nodes = FALSE,
+  node_labels_center = FALSE,
+  node_labels_font_size = 12,
   ...
 )
 }
@@ -43,10 +47,11 @@ and first shell of interactors) to be added.}
 \item{add_white_nodes}{Numeric: The number of white nodes (second shell of
 interactors) to be added after colored nodes.}
 
-\item{required_score}{Numeric: A minimum of interaction score for an
-interaction to be included in the image. if not supplied, the threshold
-will be applied by STRING Based in the network. (low Confidence = 150,
-Medium Confidence = 400, High Confidence = 700, Highest confidence = 900)}
+\item{required_score}{Numeric (Between 0 to 1000): A minimum of interaction
+score for an interaction to be included in the image. if not supplied, the
+threshold will be applied by STRING Based in the network. (low Confidence
+ = 150, Medium Confidence = 400, High Confidence = 700, Highest
+ confidence = 900)}
 
 \item{network_flavor}{The style of network edges, should be one of:\itemize{
 \item "confidence": (default) Line's thickness is an indicator of the
@@ -63,13 +68,26 @@ functional associations.
 interaction or are parts of a complex.}}
 
 \item{hide_node_labels}{Logical: (Default = FALSE) Hide proteins names from
-the image?}
+the image}
+
+\item{use_query_labels}{Logical: (Default = FALSE) Use the names supplied
+with the 'ids' argument as the nodes labels instead of STRING's default
+ones.}
 
 \item{hide_disconnected_nodes}{Logical: (Default = FALSE) Hide proteins that
-are not connected to any other proteins from the image?}
+are not connected to any other proteins from the image}
 
 \item{hide_structure_pics}{Logical: (Default = FALSE) Hide protein's
-structure picture from inside the bubbles?}
+structure picture from inside the bubbles}
+
+\item{flat_nodes}{Logical: (Default = FALSE) Make the nodes design flat
+instead of the default 3D design}
+
+\item{node_labels_center}{Logical: (Default = FALSE) Position the protein
+names labels center aligned on the nodes}
+
+\item{node_labels_font_size}{Numeric (Between 5 to 50, Default = 12) Font
+size of the protein nodes labels}
 
 \item{...}{rbioapi option(s). See \code{\link{rba_options}}'s
 arguments manual for more information on available options.}
@@ -112,13 +130,13 @@ rba_string_network_image(ids = "9606.ENSP00000269305",
 }
 \references{
 \itemize{
-  \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
-  Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
-  Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
-  2021: customizable protein–protein networks, and functional
-  characterization of user-uploaded gene/measurement sets, Nucleic Acids
-  Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
-  https://doi.org/10.1093/nar/gkaa1074
+  \item Damian Szklarczyk, Rebecca Kirsch, Mikaela Koutrouli, Katerina
+   Nastou, Farrokh Mehryary, Radja Hachilif, Annika L Gable, Tao Fang,
+   Nadezhda T Doncheva, Sampo Pyysalo, Peer Bork, Lars J Jensen, Christian
+   von Mering, The STRING database in 2023: protein–protein association
+   networks and functional enrichment analyses for any sequenced genome of
+   interest, Nucleic Acids Research, Volume 51, Issue D1, 6 January 2023,
+   Pages D638–D646, https://doi.org/10.1093/nar/gkac1000
   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
   \item
   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{

@@ -16,7 +16,7 @@
 #' @param echo_query (default = FALSE) Include your input IDs as a column of the
 #'   results.
 #' @param limit (Numeric, Optional) A limit on the number of matches per input
-#'   ID.
+#'   ID. The output are sorted to have the best matches first.
 #' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
 #'   arguments manual for more information on available options.
 #'
@@ -24,13 +24,13 @@
 #'   information.
 #'
 #' @references \itemize{
-#'   \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
-#'   Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
-#'   Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
-#'   2021: customizable protein–protein networks, and functional
-#'   characterization of user-uploaded gene/measurement sets, Nucleic Acids
-#'   Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
-#'   https://doi.org/10.1093/nar/gkaa1074
+#'   \item Damian Szklarczyk, Rebecca Kirsch, Mikaela Koutrouli, Katerina
+#'    Nastou, Farrokh Mehryary, Radja Hachilif, Annika L Gable, Tao Fang,
+#'    Nadezhda T Doncheva, Sampo Pyysalo, Peer Bork, Lars J Jensen, Christian
+#'    von Mering, The STRING database in 2023: protein–protein association
+#'    networks and functional enrichment analyses for any sequenced genome of
+#'    interest, Nucleic Acids Research, Volume 51, Issue D1, 6 January 2023,
+#'    Pages D638–D646, https://doi.org/10.1093/nar/gkac1000
 #'   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
 #'   \item
 #'   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{
@@ -124,10 +124,11 @@ rba_string_map_ids <- function(ids,
 #'   and first shell of interactors) to be added.
 #' @param add_white_nodes Numeric: The number of white nodes (second shell of
 #'   interactors) to be added after colored nodes.
-#' @param required_score Numeric: A minimum of interaction score for an
-#'   interaction to be included in the image. if not supplied, the threshold
-#'   will be applied by STRING Based in the network. (low Confidence = 150,
-#'   Medium Confidence = 400, High Confidence = 700, Highest confidence = 900)
+#' @param required_score Numeric (Between 0 to 1000): A minimum of interaction
+#'   score for an interaction to be included in the image. if not supplied, the
+#'   threshold will be applied by STRING Based in the network. (low Confidence
+#'    = 150, Medium Confidence = 400, High Confidence = 700, Highest
+#'    confidence = 900)
 #' @param network_flavor The style of network edges, should be one of:\itemize{
 #'   \item "confidence": (default) Line's thickness is an indicator of the
 #'   interaction's confidence score.
@@ -141,24 +142,33 @@ rba_string_map_ids <- function(ids,
 #'   \item "physical": The edges indicate that two proteins have a physical
 #'   interaction or are parts of a complex.}
 #' @param hide_node_labels Logical: (Default = FALSE) Hide proteins names from
-#'   the image?
+#'   the image
+#' @param use_query_labels Logical: (Default = FALSE) Use the names supplied
+#'   with the 'ids' argument as the nodes labels instead of STRING's default
+#'   ones.
 #' @param hide_disconnected_nodes Logical: (Default = FALSE) Hide proteins that
-#'   are not connected to any other proteins from the image?
+#'   are not connected to any other proteins from the image
 #' @param hide_structure_pics Logical: (Default = FALSE) Hide protein's
-#'   structure picture from inside the bubbles?
+#'   structure picture from inside the bubbles
+#' @param flat_nodes Logical: (Default = FALSE) Make the nodes design flat
+#'   instead of the default 3D design
+#' @param node_labels_center Logical: (Default = FALSE) Position the protein
+#'   names labels center aligned on the nodes
+#' @param node_labels_font_size Numeric (Between 5 to 50, Default = 12) Font
+#'   size of the protein nodes labels
 #' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
 #'   arguments manual for more information on available options.
 #'
 #' @return A network images which can be PNG or SVG depending on the inputs.
 #'
 #' @references \itemize{
-#'   \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
-#'   Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
-#'   Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
-#'   2021: customizable protein–protein networks, and functional
-#'   characterization of user-uploaded gene/measurement sets, Nucleic Acids
-#'   Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
-#'   https://doi.org/10.1093/nar/gkaa1074
+#'   \item Damian Szklarczyk, Rebecca Kirsch, Mikaela Koutrouli, Katerina
+#'    Nastou, Farrokh Mehryary, Radja Hachilif, Annika L Gable, Tao Fang,
+#'    Nadezhda T Doncheva, Sampo Pyysalo, Peer Bork, Lars J Jensen, Christian
+#'    von Mering, The STRING database in 2023: protein–protein association
+#'    networks and functional enrichment analyses for any sequenced genome of
+#'    interest, Nucleic Acids Research, Volume 51, Issue D1, 6 January 2023,
+#'    Pages D638–D646, https://doi.org/10.1093/nar/gkac1000
 #'   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
 #'   \item
 #'   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{
@@ -197,8 +207,12 @@ rba_string_network_image <- function(ids,
                                      network_flavor = "confidence",
                                      network_type = "functional",
                                      hide_node_labels = FALSE,
+                                     use_query_labels = FALSE,
                                      hide_disconnected_nodes = FALSE,
                                      hide_structure_pics = FALSE,
+                                     flat_nodes = FALSE,
+                                     node_labels_center = FALSE,
+                                     node_labels_font_size = 12,
                                      ...) {
   ## Load Global Options
   .rba_ext_args(..., ignore_save = TRUE)
@@ -229,10 +243,20 @@ rba_string_network_image <- function(ids,
                              val = c("functional", "physical")),
                         list(arg = "hide_node_labels",
                              class = "logical"),
+                        list(arg = "use_query_labels",
+                             class = "logical"),
                         list(arg = "hide_disconnected_nodes",
                              class = "logical"),
                         list(arg = "hide_structure_pics",
-                             class = "logical")),
+                             class = "logical"),
+                        list(arg = "flat_nodes",
+                             class = "logical"),
+                        list(arg = "node_labels_center",
+                             class = "logical"),
+                        list(arg = "node_labels_font_size",
+                             class = "numeric",
+                             min_val = 5,
+                             max_val = 50)),
             cond = list(list(quote(length(ids) > 100 && is.null(species)),
                              sprintf("You supplied %s IDs. Please Specify the species (Homo Sapiens NCBI taxonomy ID is 9606).",
                                      length(ids)))
@@ -265,12 +289,27 @@ rba_string_network_image <- function(ids,
                           list("hide_node_labels",
                                hide_node_labels,
                                "1"),
+                          list("show_query_node_labels",
+                               use_query_labels,
+                               "1"),
                           list("hide_disconnected_nodes",
                                hide_disconnected_nodes,
                                "1"),
-                          list("hide_structure_pics",
+                          list("block_structure_pics_in_bubbles",
                                hide_structure_pics,
-                               "1"))
+                               "1"),
+                          list("flat_node_design",
+                               flat_nodes,
+                               "1"),
+                          list("flat_node_design",
+                               flat_nodes,
+                               "1"),
+                          list("center_node_labels",
+                               node_labels_center,
+                               "1"),
+                          list("custom_label_font_size",
+                               node_labels_font_size != 12,
+                               node_labels_font_size))
 
   ## make file path
   if (image_format == "svg") {
@@ -337,6 +376,9 @@ rba_string_network_image <- function(ids,
 #'   functional associations.
 #'   \item "physical": The edges indicate that two proteins have a physical
 #'   interaction or are parts of a complex.}
+#' @param use_query_labels Logical: (Default = FALSE) Use the names supplied
+#'   with the 'ids' argument as the nodes labels instead of STRING's default
+#'   ones.
 #' @param ... rbioapi option(s). See \code{\link{rba_options}}'s
 #'   arguments manual for more information on available options.
 #'
@@ -357,13 +399,13 @@ rba_string_network_image <- function(ids,
 #'   \item tscore: textmining score}
 #'
 #' @references \itemize{
-#'   \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
-#'   Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
-#'   Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
-#'   2021: customizable protein–protein networks, and functional
-#'   characterization of user-uploaded gene/measurement sets, Nucleic Acids
-#'   Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
-#'   https://doi.org/10.1093/nar/gkaa1074
+#'   \item Damian Szklarczyk, Rebecca Kirsch, Mikaela Koutrouli, Katerina
+#'    Nastou, Farrokh Mehryary, Radja Hachilif, Annika L Gable, Tao Fang,
+#'    Nadezhda T Doncheva, Sampo Pyysalo, Peer Bork, Lars J Jensen, Christian
+#'    von Mering, The STRING database in 2023: protein–protein association
+#'    networks and functional enrichment analyses for any sequenced genome of
+#'    interest, Nucleic Acids Research, Volume 51, Issue D1, 6 January 2023,
+#'    Pages D638–D646, https://doi.org/10.1093/nar/gkac1000
 #'   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
 #'   \item
 #'   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{
@@ -394,6 +436,7 @@ rba_string_interactions_network <- function(ids,
                                             required_score = NULL,
                                             add_nodes = NULL,
                                             network_type = "functional",
+                                            use_query_labels = FALSE,
                                             ...) {
   ## Load Global Options
   .rba_ext_args(...)
@@ -411,7 +454,9 @@ rba_string_interactions_network <- function(ids,
                              min_val = 0),
                         list(arg = "network_type",
                              class = "character",
-                             val = c("functional", "physical"))),
+                             val = c("functional", "physical")),
+                        list(arg = "use_query_labels",
+                             class = "logical")),
             cond = list(list(quote(length(ids) > 100 && is.null(species)),
                              sprintf("You supplied %s IDs. Please Specify the species (Homo Sapiens NCBI taxonomy ID is 9606).",
                                      length(ids)))
@@ -435,7 +480,10 @@ rba_string_interactions_network <- function(ids,
                                add_nodes),
                           list("network_type",
                                !is.null(network_type),
-                               network_type))
+                               network_type),
+                          list("show_query_node_labels",
+                               use_query_labels,
+                               "1"))
 
   ## Build Function-Specific Call
   input_call <- .rba_httr(httr = "post",
@@ -492,13 +540,13 @@ rba_string_interactions_network <- function(ids,
 #'   columns contains interactor information and interaction scores.
 #'
 #' @references \itemize{
-#'   \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
-#'   Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
-#'   Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
-#'   2021: customizable protein–protein networks, and functional
-#'   characterization of user-uploaded gene/measurement sets, Nucleic Acids
-#'   Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
-#'   https://doi.org/10.1093/nar/gkaa1074
+#'   \item Damian Szklarczyk, Rebecca Kirsch, Mikaela Koutrouli, Katerina
+#'    Nastou, Farrokh Mehryary, Radja Hachilif, Annika L Gable, Tao Fang,
+#'    Nadezhda T Doncheva, Sampo Pyysalo, Peer Bork, Lars J Jensen, Christian
+#'    von Mering, The STRING database in 2023: protein–protein association
+#'    networks and functional enrichment analyses for any sequenced genome of
+#'    interest, Nucleic Acids Research, Volume 51, Issue D1, 6 January 2023,
+#'    Pages D638–D646, https://doi.org/10.1093/nar/gkac1000
 #'   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
 #'   \item
 #'   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{
@@ -618,13 +666,13 @@ rba_string_interaction_partners <- function(ids,
 #'   similarity matrix is symmetrical.
 #'
 #' @references \itemize{
-#'   \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
-#'   Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
-#'   Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
-#'   2021: customizable protein–protein networks, and functional
-#'   characterization of user-uploaded gene/measurement sets, Nucleic Acids
-#'   Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
-#'   https://doi.org/10.1093/nar/gkaa1074
+#'   \item Damian Szklarczyk, Rebecca Kirsch, Mikaela Koutrouli, Katerina
+#'    Nastou, Farrokh Mehryary, Radja Hachilif, Annika L Gable, Tao Fang,
+#'    Nadezhda T Doncheva, Sampo Pyysalo, Peer Bork, Lars J Jensen, Christian
+#'    von Mering, The STRING database in 2023: protein–protein association
+#'    networks and functional enrichment analyses for any sequenced genome of
+#'    interest, Nucleic Acids Research, Volume 51, Issue D1, 6 January 2023,
+#'    Pages D638–D646, https://doi.org/10.1093/nar/gkac1000
 #'   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
 #'   \item
 #'   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{
@@ -717,13 +765,13 @@ rba_string_homology_intra <- function(ids,
 #'   proteins among all other (or a defined) STRING species.
 #'
 #' @references \itemize{
-#'   \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
-#'   Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
-#'   Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
-#'   2021: customizable protein–protein networks, and functional
-#'   characterization of user-uploaded gene/measurement sets, Nucleic Acids
-#'   Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
-#'   https://doi.org/10.1093/nar/gkaa1074
+#'   \item Damian Szklarczyk, Rebecca Kirsch, Mikaela Koutrouli, Katerina
+#'    Nastou, Farrokh Mehryary, Radja Hachilif, Annika L Gable, Tao Fang,
+#'    Nadezhda T Doncheva, Sampo Pyysalo, Peer Bork, Lars J Jensen, Christian
+#'    von Mering, The STRING database in 2023: protein–protein association
+#'    networks and functional enrichment analyses for any sequenced genome of
+#'    interest, Nucleic Acids Research, Volume 51, Issue D1, 6 January 2023,
+#'    Pages D638–D646, https://doi.org/10.1093/nar/gkac1000
 #'   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
 #'   \item
 #'   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{
@@ -831,13 +879,13 @@ rba_string_homology_inter <- function(ids,
 #'   number of genes, p-value, fdr and other pertinent information.
 #'
 #' @references \itemize{
-#'   \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
-#'   Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
-#'   Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
-#'   2021: customizable protein–protein networks, and functional
-#'   characterization of user-uploaded gene/measurement sets, Nucleic Acids
-#'   Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
-#'   https://doi.org/10.1093/nar/gkaa1074
+#'   \item Damian Szklarczyk, Rebecca Kirsch, Mikaela Koutrouli, Katerina
+#'    Nastou, Farrokh Mehryary, Radja Hachilif, Annika L Gable, Tao Fang,
+#'    Nadezhda T Doncheva, Sampo Pyysalo, Peer Bork, Lars J Jensen, Christian
+#'    von Mering, The STRING database in 2023: protein–protein association
+#'    networks and functional enrichment analyses for any sequenced genome of
+#'    interest, Nucleic Acids Research, Volume 51, Issue D1, 6 January 2023,
+#'    Pages D638–D646, https://doi.org/10.1093/nar/gkac1000
 #'   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
 #'   \item
 #'   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{
@@ -943,7 +991,7 @@ rba_string_enrichment <- function(ids,
 #' @param allow_pubmed logical: (default = FALSE) PubMed usually  assigns a
 #'   large number of reference publications to each protein. In order to reduce
 #'   the output size, PubMed's results will be excluded from the results,
-#'   unless stated otherwise (By setting this argument to TRUE).
+#'   unless stated otherwise by setting this argument to TRUE.
 #' @param split_df (logical, default = TRUE), If TRUE, instead of one
 #'   data frame, results from different categories will be split into
 #'   multiple data frames based on their 'category'.
@@ -955,13 +1003,13 @@ rba_string_enrichment <- function(ids,
 #'   information.
 #'
 #' @references \itemize{
-#'   \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
-#'   Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
-#'   Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
-#'   2021: customizable protein–protein networks, and functional
-#'   characterization of user-uploaded gene/measurement sets, Nucleic Acids
-#'   Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
-#'   https://doi.org/10.1093/nar/gkaa1074
+#'   \item Damian Szklarczyk, Rebecca Kirsch, Mikaela Koutrouli, Katerina
+#'    Nastou, Farrokh Mehryary, Radja Hachilif, Annika L Gable, Tao Fang,
+#'    Nadezhda T Doncheva, Sampo Pyysalo, Peer Bork, Lars J Jensen, Christian
+#'    von Mering, The STRING database in 2023: protein–protein association
+#'    networks and functional enrichment analyses for any sequenced genome of
+#'    interest, Nucleic Acids Research, Volume 51, Issue D1, 6 January 2023,
+#'    Pages D638–D646, https://doi.org/10.1093/nar/gkac1000
 #'   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
 #'   \item
 #'   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{
@@ -1064,13 +1112,13 @@ rba_string_annotations <- function(ids,
 #' @return A list with protein-protein interaction enrichment results.
 #'
 #' @references \itemize{
-#'   \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
-#'   Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
-#'   Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
-#'   2021: customizable protein–protein networks, and functional
-#'   characterization of user-uploaded gene/measurement sets, Nucleic Acids
-#'   Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
-#'   https://doi.org/10.1093/nar/gkaa1074
+#'   \item Damian Szklarczyk, Rebecca Kirsch, Mikaela Koutrouli, Katerina
+#'    Nastou, Farrokh Mehryary, Radja Hachilif, Annika L Gable, Tao Fang,
+#'    Nadezhda T Doncheva, Sampo Pyysalo, Peer Bork, Lars J Jensen, Christian
+#'    von Mering, The STRING database in 2023: protein–protein association
+#'    networks and functional enrichment analyses for any sequenced genome of
+#'    interest, Nucleic Acids Research, Volume 51, Issue D1, 6 January 2023,
+#'    Pages D638–D646, https://doi.org/10.1093/nar/gkac1000
 #'   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
 #'   \item
 #'   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{
@@ -1162,13 +1210,13 @@ rba_string_enrichment_ppi <- function(ids,
 #' @return A list with STRING version and stable address.
 #'
 #' @references \itemize{
-#'   \item Damian Szklarczyk, Annika L Gable, Katerina C Nastou, David Lyon,
-#'   Rebecca Kirsch, Sampo Pyysalo, Nadezhda T Doncheva, Marc Legeay, Tao Fang,
-#'   Peer Bork, Lars J Jensen, Christian von Mering, The STRING database in
-#'   2021: customizable protein–protein networks, and functional
-#'   characterization of user-uploaded gene/measurement sets, Nucleic Acids
-#'   Research, Volume 49, Issue D1, 8 January 2021, Pages D605–D612,
-#'   https://doi.org/10.1093/nar/gkaa1074
+#'   \item Damian Szklarczyk, Rebecca Kirsch, Mikaela Koutrouli, Katerina
+#'    Nastou, Farrokh Mehryary, Radja Hachilif, Annika L Gable, Tao Fang,
+#'    Nadezhda T Doncheva, Sampo Pyysalo, Peer Bork, Lars J Jensen, Christian
+#'    von Mering, The STRING database in 2023: protein–protein association
+#'    networks and functional enrichment analyses for any sequenced genome of
+#'    interest, Nucleic Acids Research, Volume 51, Issue D1, 6 January 2023,
+#'    Pages D638–D646, https://doi.org/10.1093/nar/gkac1000
 #'   \item \href{https://string-db.org/help/api/}{STRING API Documentation}
 #'   \item
 #'   \href{https://string-db.org/cgi/about?footer_active_subpage=references}{

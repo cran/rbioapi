@@ -12,7 +12,7 @@
 
 <meta name="author" content="Moosa Rezwani" />
 
-<meta name="date" content="2023-05-09" />
+<meta name="date" content="2023-09-30" />
 
 <title>1: rbioapi: User-Friendly R Interface to Biologic Web Services’ API</title>
 
@@ -361,7 +361,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h1 class="title toc-ignore">1: rbioapi: User-Friendly R Interface to
 Biologic Web Services’ API</h1>
 <h4 class="author">Moosa Rezwani</h4>
-<h4 class="date">2023-05-09</h4>
+<h4 class="date">2023-09-30</h4>
 
 
 <div id="TOC">
@@ -429,7 +429,7 @@ article</a>) <sup>(new)</sup></li>
 <li><a href="https://ccb-compute2.cs.uni-saarland.de/mieaa2" title="miRNA Enrichment Analysis and Annotation Tool (miEAA)">miEAA</a>
 (<a href="rbioapi_mieaa.html" title="rbioapi &amp; miEAA vignette article">rbioapi vignette
 article</a>)</li>
-<li><a href="http://www.pantherdb.org" title="Protein Analysis THrough Evolutionary Relationships (PANTHER)">PANTHER</a>
+<li><a href="https://www.pantherdb.org" title="Protein Analysis THrough Evolutionary Relationships (PANTHER)">PANTHER</a>
 (<a href="rbioapi_panther.html" title="rbioapi &amp; PANTHER vignette article">rbioapi vignette
 article</a>)</li>
 <li><a href="https://reactome.org/">Reactome</a> (<a href="rbioapi_reactome.html" title="rbioapi &amp; Reactome vignette article">rbioapi vignette
@@ -480,10 +480,10 @@ version resource.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">rba_string_version</span>()</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co">#&gt; Retrieving the STRING database version and address used by rbioapi.</span></span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt; $string_version</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;11.5&quot;</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;12.0&quot;</span></span>
 <span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt; $stable_address</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt; [1] &quot;https://version-11-5.string-db.org&quot;</span></span></code></pre></div>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt; [1] &quot;https://version-12-0.string-db.org&quot;</span></span></code></pre></div>
 <p>Thus, to this version, rbioapi function will have one of the
 following naming schema:</p>
 <ol style="list-style-type: decimal">
@@ -619,7 +619,7 @@ paginated response. For example, if we search for nodes that contain
 <span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="co">#&gt;  $ pageInfo  :List of 3</span></span>
 <span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="co">#&gt;   ..$ resultsPerPage: int 200</span></span>
 <span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="co">#&gt;   ..$ currentPage   : int 1</span></span>
-<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="co">#&gt;   ..$ totalRecords  : int 982</span></span></code></pre></div>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="co">#&gt;   ..$ totalRecords  : int 999</span></span></code></pre></div>
 <p>As you can see, the server has returned the first page of the
 response, to retrieve the other pages, you should make separate calls
 and change the “page_number” argument within each call, or simply use
@@ -652,10 +652,10 @@ this format: “pages:start:end”. For example, we supplied page_number =
 <div id="how-to-cite" class="section level1 heading2 hasAnchor" number="8">
 <h1 class="heading2 hasAnchor"><span class="header-section-number">8</span> How and what to cite?<a href="#how-to-cite" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>rbioapi is an interface between you and other databases and services.
-Thus, if you have used rbioapi in published research, kindly <strong>in
-addition to citing rbioapi, <u><em>make sure to fully and properly cite
-the databases/services you have used</em></u></strong>. Suggested
-citations have been added in the functions’ manuals, under the
+Thus, if you have used rbioapi in published research, <strong>in
+addition to kindly citing rbioapi, <u><em>make sure to fully and
+properly cite the databases/services you have used</em></u></strong>.
+Suggested citations have been added in the functions’ manuals, under the
 “references” section; Nevertheless, it is the user’s responsibility to
 check for proper citations and to properly cite the database/services
 that they have used.</p>
@@ -676,7 +676,7 @@ website</a>)</p></li>
 <li><p><a href="rbioapi_jaspar.html#citations" title="How to cite JASPAR">How to cite JASPAR</a>. (See on <a href="https://jaspar.genereg.net/faq/">JASPAR website</a>)</p></li>
 <li><p><a href="rbioapi_mieaa.html#citations" title="How to cite miEAA">How to cite miEAA</a>. (See on <a href="https://ccb-compute2.cs.uni-saarland.de/mieaa2">miEAA
 website</a>)</p></li>
-<li><p><a href="rbioapi_panther.html#citations" title="How to cite PANTHER">How to cite PANTHER</a>. (See on <a href="http://www.pantherdb.org/publications.jsp#HowToCitePANTHER">PANTHER
+<li><p><a href="rbioapi_panther.html#citations" title="How to cite PANTHER">How to cite PANTHER</a>. (See on <a href="https://www.pantherdb.org/publications.jsp#HowToCitePANTHER">PANTHER
 website</a>)</p></li>
 <li><p><a href="rbioapi_reactome.html#citations" title="How to cite Reactome">How to cite Reactome</a>. (See on <a href="https://reactome.org/cite">Reactome website</a>)</p></li>
 <li><p><a href="rbioapi_string.html#citations" title="How to cite STRING">How to cite STRING</a>. (See on <a href="https://string-db.org/cgi/about?footer_active_subpage=references">STRING
@@ -689,6 +689,11 @@ website</a>)</p></li>
 </div>
 <div id="code-of-conduct" class="section level1 heading2 hasAnchor" number="9">
 <h1 class="heading2 hasAnchor"><span class="header-section-number">9</span> Code of conduct<a href="#code-of-conduct" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This package, rbioapi, is an unofficial interface implementation and
+is not associated, endorsed, or officially connected in any way with the
+original databases and web services. The creators and maintainers of
+rbioapi are independent entities and have no official relationship with
+those databases and web services.</p>
 <p>When using rbioapi, remember that you are querying data from web
 services; So please be considerate. Never flood a server with requests,
 if you need to download <em>unreasonably</em> large volumes of data,
@@ -741,7 +746,7 @@ site</a></p></li>
 </div>
 <div id="session-info" class="section level1 heading2 hasAnchor" number="13">
 <h1 class="heading2 hasAnchor"><span class="header-section-number">13</span> Session info<a href="#session-info" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<pre><code>#&gt; R version 4.3.0 (2023-04-21 ucrt)
+<pre><code>#&gt; R version 4.3.1 (2023-06-16 ucrt)
 #&gt; Platform: x86_64-w64-mingw32/x64 (64-bit)
 #&gt; Running under: Windows 11 x64 (build 22621)
 #&gt; 
@@ -762,15 +767,15 @@ site</a></p></li>
 #&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #&gt; 
 #&gt; other attached packages:
-#&gt; [1] rbioapi_0.7.9
+#&gt; [1] rbioapi_0.8.0
 #&gt; 
 #&gt; loaded via a namespace (and not attached):
-#&gt;  [1] digest_0.6.31   R6_2.5.1        fastmap_1.1.1   xfun_0.39      
-#&gt;  [5] cachem_1.0.7    knitr_1.42      htmltools_0.5.5 rmarkdown_2.21 
-#&gt;  [9] cli_3.6.1       sass_0.4.5      jquerylib_0.1.4 compiler_4.3.0 
-#&gt; [13] httr_1.4.5      rstudioapi_0.14 tools_4.3.0     curl_5.0.0     
-#&gt; [17] evaluate_0.20   bslib_0.4.2     yaml_2.3.7      rlang_1.1.1    
-#&gt; [21] jsonlite_1.8.4</code></pre>
+#&gt;  [1] digest_0.6.33     R6_2.5.1          fastmap_1.1.1     xfun_0.40        
+#&gt;  [5] cachem_1.0.8      knitr_1.44        htmltools_0.5.5   rmarkdown_2.25   
+#&gt;  [9] cli_3.6.1         sass_0.4.7        jquerylib_0.1.4   compiler_4.3.1   
+#&gt; [13] httr_1.4.7        rstudioapi_0.15.0 tools_4.3.1       curl_5.0.2       
+#&gt; [17] evaluate_0.21     bslib_0.5.1       yaml_2.3.7        rlang_1.1.1      
+#&gt; [21] jsonlite_1.8.7</code></pre>
 </div>
 
 

@@ -72,7 +72,7 @@ results_msig <- rba_enrichr(gene_list = genes,
 str(results_msig_hallmark)
 
 ## ----approach_1_multi, eval=is.list(results_msig)&&is.data.frame(results_msig[[1]])----
-#  str(results_msig, 1)
+str(results_msig, 1)
 
 ## ----approach_2_libs, eval=FALSE----------------------------------------------
 #  # Get a list of available Enrichr libraries
