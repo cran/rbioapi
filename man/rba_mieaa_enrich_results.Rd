@@ -35,7 +35,7 @@ Note that using \code{\link{rba_mieaa_enrich}} is a more convenient way to
 }
 \section{Corresponding API Resources}{
 
- "GET https://ccb-compute2.cs.uni-saarland.de/mieaa2/api/v1/results/{job_id}"
+ "GET https://ccb-compute2.cs.uni-saarland.de/mieaa2/api/v1/results/\{job_id\}"
 }
 
 \examples{
@@ -64,8 +64,8 @@ Other "miEAA":
 \code{\link{rba_mieaa_cats}()},
 \code{\link{rba_mieaa_convert_type}()},
 \code{\link{rba_mieaa_convert_version}()},
+\code{\link{rba_mieaa_enrich}()},
 \code{\link{rba_mieaa_enrich_status}()},
-\code{\link{rba_mieaa_enrich_submit}()},
-\code{\link{rba_mieaa_enrich}()}
+\code{\link{rba_mieaa_enrich_submit}()}
 }
 \concept{"miEAA"}

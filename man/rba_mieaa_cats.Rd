@@ -37,7 +37,7 @@ For each Combination of species and miRNA type, Only a pre-defined
 }
 \section{Corresponding API Resources}{
 
- "GET  "https://ccb-compute2.cs.uni-saarland.de/mieaa2/api/v1/enrichment_categories/{species}/{mirna_type}/"
+ "GET https://ccb-compute2.cs.uni-saarland.de/mieaa2/api/v1/enrichment_categories/\{species\}/\{mirna_type\}/"
 }
 
 \examples{
@@ -65,9 +65,9 @@ rba_mieaa_cats("mature", "Homo sapiens")
 Other "miEAA": 
 \code{\link{rba_mieaa_convert_type}()},
 \code{\link{rba_mieaa_convert_version}()},
+\code{\link{rba_mieaa_enrich}()},
 \code{\link{rba_mieaa_enrich_results}()},
 \code{\link{rba_mieaa_enrich_status}()},
-\code{\link{rba_mieaa_enrich_submit}()},
-\code{\link{rba_mieaa_enrich}()}
+\code{\link{rba_mieaa_enrich_submit}()}
 }
 \concept{"miEAA"}

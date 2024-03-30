@@ -25,8 +25,8 @@ Use this function to retrieve the taxonomic lineage of your supplied
 }
 \section{Corresponding API Resources}{
 
- "GET https://ebi.ac.uk/proteins/api/lineage/{id}"
- \cr "GET https://ebi.ac.uk/proteins/api/lineage/{id}"
+ "GET https://ebi.ac.uk/proteins/api/lineage/\{id\}"
+ \cr "GET https://ebi.ac.uk/proteins/api/lineage/\{id\}"
 }
 
 \examples{
@@ -53,10 +53,10 @@ rba_uniprot_taxonomy_lineage(id = 9989)
 }
 \seealso{
 Other "UniProt - Taxonomy": 
+\code{\link{rba_uniprot_taxonomy}()},
 \code{\link{rba_uniprot_taxonomy_lca}()},
 \code{\link{rba_uniprot_taxonomy_name}()},
 \code{\link{rba_uniprot_taxonomy_path}()},
-\code{\link{rba_uniprot_taxonomy_relationship}()},
-\code{\link{rba_uniprot_taxonomy}()}
+\code{\link{rba_uniprot_taxonomy_relationship}()}
 }
 \concept{"UniProt - Taxonomy"}

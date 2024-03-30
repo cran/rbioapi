@@ -48,8 +48,8 @@ Using this function, you can search and retrieve taxonomic nodes using
 }
 \section{Corresponding API Resources}{
 
- "GET https://ebi.ac.uk/proteins/api/name/{name}"
- \cr "GET https://ebi.ac.uk/proteins/api/name/{name}/node"
+ "GET https://ebi.ac.uk/proteins/api/name/\{name\}"
+ \cr "GET https://ebi.ac.uk/proteins/api/name/\{name\}/node"
 }
 
 \examples{
@@ -81,10 +81,10 @@ rba_uniprot_taxonomy_name(name = "adenovirus", field = "scientific",
 }
 \seealso{
 Other "UniProt - Taxonomy": 
+\code{\link{rba_uniprot_taxonomy}()},
 \code{\link{rba_uniprot_taxonomy_lca}()},
 \code{\link{rba_uniprot_taxonomy_lineage}()},
 \code{\link{rba_uniprot_taxonomy_path}()},
-\code{\link{rba_uniprot_taxonomy_relationship}()},
-\code{\link{rba_uniprot_taxonomy}()}
+\code{\link{rba_uniprot_taxonomy_relationship}()}
 }
 \concept{"UniProt - Taxonomy"}

@@ -39,8 +39,8 @@ Note that this function will retrieve similarity scores of different
 }
 \section{Corresponding API Resources}{
 
- "POST https://string-db.org/api/[output-format]/homology?identifiers=
- [your_identifiers]"
+ "POST https://string-db.org/api/\{output-format\}/homology?identifiers=
+ \{your_identifiers\}"
 }
 
 \examples{
@@ -69,8 +69,8 @@ rba_string_homology_intra(ids = c("CDK1", "CDK2"), species = 9606)
 
 Other "STRING": 
 \code{\link{rba_string_annotations}()},
-\code{\link{rba_string_enrichment_ppi}()},
 \code{\link{rba_string_enrichment}()},
+\code{\link{rba_string_enrichment_ppi}()},
 \code{\link{rba_string_homology_inter}()},
 \code{\link{rba_string_interaction_partners}()},
 \code{\link{rba_string_interactions_network}()},

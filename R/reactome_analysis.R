@@ -70,20 +70,21 @@
         input <- as.data.frame(input,
                                stringsAsFactors = FALSE)
         #make sure that every column name starts with #
-        inproper_colnames <- !grepl("^#", colnames(input))
+        inproper_colnames <- !grepl("^#", colnames(input)[[1]])
         if (any(inproper_colnames)) {
-          colnames(input)[inproper_colnames] <- paste0("#",
-                                                       colnames(input)[inproper_colnames])
+          colnames(input)[[1]] <- paste0("#",
+                                         colnames(input)[[1]])
         }
-        utils::write.table(x = as.character(input),
+        utils::write.table(x = input,
                            file = temp_file,
                            sep = "\t",
+                           quote = FALSE,
                            row.names = FALSE,
                            col.names = TRUE)
         return(list(type = "file",
                     file = temp_file))
       } else if (type == "vector") {
-        writeLines(text = input,
+        writeLines(text = c("#Gene names", input),
                    con = temp_file,
                    sep = "\n")
         return(list(type = "file",
@@ -379,8 +380,8 @@ rba_reactome_analysis <- function(input,
 #'   in other formats.
 #'
 #' @section Corresponding API Resources:
-#'  "GET https://reactome.org/AnalysisService/report/{token}/{species}/
-#'  {filename}.pdf"
+#'  "GET https://reactome.org/AnalysisService/report/\{token\}/\{species\}/
+#'  \{filename\}.pdf"
 #'
 #' @param token A token associated to your previous Reactome analysis.
 #' @param species Numeric or Character: NCBI Taxonomy identifier (Human Taxonomy
@@ -489,8 +490,8 @@ rba_reactome_analysis_pdf <- function(token,
                                      "Barium Lithium",
                                      "calcium salts"))))
 
-  .msg("GET /report/{token}/{species}/{filename}.pdf",
-       "Downloads a report for a given pathway analysis result")
+  .msg("Downloading a pdf report of Reactome analysis result with token %s.",
+       token)
 
   ## Build GET API Request's query
   call_query <- .rba_query(init = list(),
@@ -547,14 +548,14 @@ rba_reactome_analysis_pdf <- function(token,
 #'   in PDF format.
 #'
 #' @section Corresponding API Resources:
-#' GET https://reactome.org/AnalysisService/download/{token}/entities/
-#' found/{resource}/{filename}.csv"
-#' GET https://reactome.org/AnalysisService//download/{token}/entities/
-#' notfound/{filename}.csv"
-#' GET https://reactome.org/AnalysisService/download/{token}/pathways/
-#' {resource}/{filename}.csv"
-#' GET https://reactome.org/AnalysisService/download/{token}/result.json"
-#' GET https://reactome.org/AnalysisService/download/{token}/result.json.gz"
+#' GET https://reactome.org/AnalysisService/download/\{token\}/entities/
+#' found/\{resource\}/\{filename\}.csv"
+#' \cr GET https://reactome.org/AnalysisService/download/\{token\}/entities/
+#' notfound/\{filename\}.csv"
+#' \cr GET https://reactome.org/AnalysisService/download/\{token\}/pathways/
+#' \{resource\}/\{filename\}.csv"
+#' \cr GET https://reactome.org/AnalysisService/download/\{token\}/result.json"
+#' \cr GET https://reactome.org/AnalysisService/download/\{token\}/result.json.gz"
 #'
 #' @param token A token associated to your previous Reactome analysis.
 #' @param request What to download? Should be one of:\itemize{
@@ -770,8 +771,7 @@ rba_reactome_analysis_import <- function(input,
                              class = "character",
                              val = c("file",
                                      "url"))))
-  .msg("POST /import/form",
-       "Imports the posted json file into the service")
+  .msg("Importing the input json file into the Reactome services.")
 
   ## Build Function-Specific Call
   # handling input
@@ -938,7 +938,7 @@ rba_reactome_analysis_mapping <- function(input,
 #'   Reactome Computationally Inferred Events} for more information.
 #'
 #' @section Corresponding API Resources:
-#'  "GET https://reactome.org/AnalysisService/species/homoSapiens/{species}"
+#'  "GET https://reactome.org/AnalysisService/species/homoSapiens/\{species\}"
 #'
 #' @param species_dbid Numeric: Reactome DbId (e.g  Mus musculus is 48892) of
 #'   the species you want to compare with Homo sapiens. See
@@ -1093,7 +1093,7 @@ rba_reactome_analysis_species <- function(species_dbid,
 #'   reactome (using \code{\link{rba_reactome_analysis_import}}) to generate
 #'   a new token.
 #' @section Corresponding API Resources:
-#'  "GET https://reactome.org/AnalysisService/token/{token}"
+#'  "GET https://reactome.org/AnalysisService/token/\{token\}"
 #'
 #' @param token A token associated to your previous Reactome analysis.
 #' @param species Numeric or Character: NCBI Taxonomy identifier (Human
@@ -1212,8 +1212,7 @@ rba_reactome_analysis_token <- function(token,
                         list(arg = "max",
                              class = "numeric")))
 
-  .msg("GET /token/{token}",
-       "Returns the result associated with the token")
+  .msg("Retrieving Reactome analysis results with token %s.", token)
 
   ## Build POST API Request's query
   call_query <- list("sortBy" = sort_by,

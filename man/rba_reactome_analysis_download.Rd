@@ -60,14 +60,14 @@ Token is associated to each Reactome analysis results and kept by Reactome
 }
 \section{Corresponding API Resources}{
 
-GET https://reactome.org/AnalysisService/download/{token}/entities/
-found/{resource}/{filename}.csv"
-GET https://reactome.org/AnalysisService//download/{token}/entities/
-notfound/{filename}.csv"
-GET https://reactome.org/AnalysisService/download/{token}/pathways/
-{resource}/{filename}.csv"
-GET https://reactome.org/AnalysisService/download/{token}/result.json"
-GET https://reactome.org/AnalysisService/download/{token}/result.json.gz"
+GET https://reactome.org/AnalysisService/download/\{token\}/entities/
+found/\{resource\}/\{filename\}.csv"
+\cr GET https://reactome.org/AnalysisService/download/\{token\}/entities/
+notfound/\{filename\}.csv"
+\cr GET https://reactome.org/AnalysisService/download/\{token\}/pathways/
+\{resource\}/\{filename\}.csv"
+\cr GET https://reactome.org/AnalysisService/download/\{token\}/result.json"
+\cr GET https://reactome.org/AnalysisService/download/\{token\}/result.json.gz"
 }
 
 \examples{
@@ -103,11 +103,11 @@ rba_reactome_analysis_download(token = "MjAyMDEwMTYwMTI3MTNfMjY1MjM",
 \code{\link{rba_reactome_analysis}}
 
 Other "Reactome Analysis Service": 
+\code{\link{rba_reactome_analysis}()},
 \code{\link{rba_reactome_analysis_import}()},
 \code{\link{rba_reactome_analysis_mapping}()},
 \code{\link{rba_reactome_analysis_pdf}()},
 \code{\link{rba_reactome_analysis_species}()},
-\code{\link{rba_reactome_analysis_token}()},
-\code{\link{rba_reactome_analysis}()}
+\code{\link{rba_reactome_analysis_token}()}
 }
 \concept{"Reactome Analysis Service"}

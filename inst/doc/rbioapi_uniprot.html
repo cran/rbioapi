@@ -12,7 +12,7 @@
 
 <meta name="author" content="Moosa Rezwani" />
 
-<meta name="date" content="2023-09-30" />
+<meta name="date" content="2024-03-30" />
 
 <title>2.G: UniProt &amp; rbioapi</title>
 
@@ -360,7 +360,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">2.G: UniProt &amp; rbioapi</h1>
 <h4 class="author">Moosa Rezwani</h4>
-<h4 class="date">2023-09-30</h4>
+<h4 class="date">2024-03-30</h4>
 
 
 <div id="TOC">
@@ -481,12 +481,12 @@ consider the following examples:</p>
 <span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="do">## As always, we use str() to inspect our object&#39;s structure</span></span>
 <span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="fu">str</span>(multi_prs1, <span class="dv">1</span>)</span>
 <span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co">#&gt; List of 6</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co">#&gt;  $ P24941:List of 14</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co">#&gt;  $ P04637:List of 14</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="co">#&gt;  $ P60953:List of 14</span></span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="co">#&gt;  $ Q02241:List of 14</span></span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co">#&gt;  $ P38398:List of 14</span></span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co">#&gt;  $ P06493:List of 14</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co">#&gt;  $ P60953:List of 14</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co">#&gt;  $ P24941:List of 14</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="co">#&gt;  $ P04637:List of 14</span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="co">#&gt;  $ P06493:List of 14</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co">#&gt;  $ Q02241:List of 14</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co">#&gt;  $ P38398:List of 14</span></span>
 <span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a></span>
 <span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="do">## 2 Or alternatively, search using Gene names, also we want to exclude isoforms and only retrieve swiss-prot entries</span></span>
 <span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>multi_prs2 <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_proteins_search</span>(<span class="at">gene =</span> <span class="fu">c</span>(<span class="st">&quot;KIF23&quot;</span>,</span>
@@ -516,17 +516,17 @@ consider the following examples:</p>
 <span id="cb3-43"><a href="#cb3-43" tabindex="-1"></a><span class="co">#&gt;  $ Q8NBR0:List of 14</span></span>
 <span id="cb3-44"><a href="#cb3-44" tabindex="-1"></a><span class="co">#&gt;  $ Q13625:List of 14</span></span>
 <span id="cb3-45"><a href="#cb3-45" tabindex="-1"></a><span class="co">#&gt;  $ Q7L0Q8:List of 14</span></span>
-<span id="cb3-46"><a href="#cb3-46" tabindex="-1"></a><span class="co">#&gt;  $ Q00587:List of 14</span></span>
-<span id="cb3-47"><a href="#cb3-47" tabindex="-1"></a><span class="co">#&gt;  $ O14613:List of 14</span></span>
+<span id="cb3-46"><a href="#cb3-46" tabindex="-1"></a><span class="co">#&gt;  $ Q9UKI2:List of 14</span></span>
+<span id="cb3-47"><a href="#cb3-47" tabindex="-1"></a><span class="co">#&gt;  $ Q6NZY7:List of 14</span></span>
 <span id="cb3-48"><a href="#cb3-48" tabindex="-1"></a><span class="co">#&gt;  $ Q5VT25:List of 14</span></span>
-<span id="cb3-49"><a href="#cb3-49" tabindex="-1"></a><span class="co">#&gt;  $ Q9UKI2:List of 14</span></span>
-<span id="cb3-50"><a href="#cb3-50" tabindex="-1"></a><span class="co">#&gt;  $ Q6NZY7:List of 14</span></span>
-<span id="cb3-51"><a href="#cb3-51" tabindex="-1"></a><span class="co">#&gt;  $ Q6DT37:List of 14</span></span>
+<span id="cb3-49"><a href="#cb3-49" tabindex="-1"></a><span class="co">#&gt;  $ Q6DT37:List of 14</span></span>
+<span id="cb3-50"><a href="#cb3-50" tabindex="-1"></a><span class="co">#&gt;  $ Q00587:List of 14</span></span>
+<span id="cb3-51"><a href="#cb3-51" tabindex="-1"></a><span class="co">#&gt;  $ O14613:List of 14</span></span>
 <span id="cb3-52"><a href="#cb3-52" tabindex="-1"></a><span class="co">#&gt;  $ Q9H3Q1:List of 14</span></span>
 <span id="cb3-53"><a href="#cb3-53" tabindex="-1"></a><span class="co">#&gt;  $ Q07960:List of 14</span></span>
-<span id="cb3-54"><a href="#cb3-54" tabindex="-1"></a><span class="co">#&gt;  $ Q9Y5S2:List of 14</span></span>
-<span id="cb3-55"><a href="#cb3-55" tabindex="-1"></a><span class="co">#&gt;  $ Q9NRR8:List of 14</span></span>
-<span id="cb3-56"><a href="#cb3-56" tabindex="-1"></a><span class="co">#&gt;  $ Q9NRR3:List of 14</span></span>
+<span id="cb3-54"><a href="#cb3-54" tabindex="-1"></a><span class="co">#&gt;  $ Q9NRR8:List of 14</span></span>
+<span id="cb3-55"><a href="#cb3-55" tabindex="-1"></a><span class="co">#&gt;  $ Q9NRR3:List of 14</span></span>
+<span id="cb3-56"><a href="#cb3-56" tabindex="-1"></a><span class="co">#&gt;  $ Q9Y5S2:List of 14</span></span>
 <span id="cb3-57"><a href="#cb3-57" tabindex="-1"></a><span class="co">#&gt;  $ P60953:List of 14</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="do">## 3 Search for every proteins with chemokines keyword</span></span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>multi_prs3 <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_proteins_search</span>(<span class="at">keyword =</span> <span class="st">&quot;chemokines&quot;</span>)</span>
@@ -736,9 +736,9 @@ vignette index</a></p></li>
 </div>
 <div id="session-info" class="section level1 heading2 hasAnchor" number="2">
 <h1 class="heading2 hasAnchor"><span class="header-section-number">2</span> Session info<a href="#session-info" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<pre><code>#&gt; R version 4.3.1 (2023-06-16 ucrt)
+<pre><code>#&gt; R version 4.3.3 (2024-02-29 ucrt)
 #&gt; Platform: x86_64-w64-mingw32/x64 (64-bit)
-#&gt; Running under: Windows 11 x64 (build 22621)
+#&gt; Running under: Windows 11 x64 (build 22631)
 #&gt; 
 #&gt; Matrix products: default
 #&gt; 
@@ -757,16 +757,17 @@ vignette index</a></p></li>
 #&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #&gt; 
 #&gt; other attached packages:
-#&gt; [1] rbioapi_0.8.0
+#&gt; [1] rbioapi_0.8.1
 #&gt; 
 #&gt; loaded via a namespace (and not attached):
-#&gt;  [1] digest_0.6.33     R6_2.5.1          fastmap_1.1.1     xfun_0.40        
-#&gt;  [5] magrittr_2.0.3    cachem_1.0.8      knitr_1.44        htmltools_0.5.5  
-#&gt;  [9] png_0.1-8         rmarkdown_2.25    DT_0.29           cli_3.6.1        
-#&gt; [13] grid_4.3.1        sass_0.4.7        jquerylib_0.1.4   compiler_4.3.1   
-#&gt; [17] httr_1.4.7        rstudioapi_0.15.0 tools_4.3.1       curl_5.0.2       
-#&gt; [21] ellipsis_0.3.2    evaluate_0.21     bslib_0.5.1       yaml_2.3.7       
-#&gt; [25] htmlwidgets_1.6.2 rlang_1.1.1       jsonlite_1.8.7    crosstalk_1.2.0</code></pre>
+#&gt;  [1] digest_0.6.35     R6_2.5.1          fastmap_1.1.1     xfun_0.43        
+#&gt;  [5] magrittr_2.0.3    cachem_1.0.8      knitr_1.45        htmltools_0.5.8  
+#&gt;  [9] png_0.1-8         rmarkdown_2.26    lifecycle_1.0.4   DT_0.32          
+#&gt; [13] cli_3.6.2         grid_4.3.3        sass_0.4.9        jquerylib_0.1.4  
+#&gt; [17] compiler_4.3.3    highr_0.10        httr_1.4.7        rstudioapi_0.16.0
+#&gt; [21] tools_4.3.3       curl_5.2.1        evaluate_0.23     bslib_0.6.2      
+#&gt; [25] yaml_2.3.8        htmlwidgets_1.6.4 rlang_1.1.3       jsonlite_1.8.8   
+#&gt; [29] crosstalk_1.2.1</code></pre>
 </div>
 
 

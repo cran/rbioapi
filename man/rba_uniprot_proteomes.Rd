@@ -35,8 +35,8 @@ UniProt collects and annotates proteomes(Protein sets expressed in an
 }
 \section{Corresponding API Resources}{
 
- "GET https://ebi.ac.uk/proteins/api/proteomes/proteins/{upid}"
- \cr "GET https://ebi.ac.uk/proteins/api/proteomes/{upid}"
+ "GET https://ebi.ac.uk/proteins/api/proteomes/proteins/\{upid\}"
+ \cr "GET https://ebi.ac.uk/proteins/api/proteomes/\{upid\}"
 }
 
 \examples{
@@ -66,8 +66,8 @@ rba_uniprot_proteomes(upid = "UP000000354", get_proteins = TRUE)
 }
 \seealso{
 Other "UniProt - Proteomes": 
-\code{\link{rba_uniprot_genecentric_search}()},
 \code{\link{rba_uniprot_genecentric}()},
+\code{\link{rba_uniprot_genecentric_search}()},
 \code{\link{rba_uniprot_proteomes_search}()}
 }
 \concept{"UniProt - Proteomes"}

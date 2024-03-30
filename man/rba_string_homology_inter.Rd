@@ -43,8 +43,8 @@ Note that this function will return the highest similarity score hits of
 }
 \section{Corresponding API Resources}{
 
- "POST https://string-db.org/api/[output-format]/homology_best?
- identifiers=[your_identifiers]"
+ "POST https://string-db.org/api/\{output-format\}/homology_best?
+ identifiers=\{your_identifiers\}"
 }
 
 \examples{
@@ -78,8 +78,8 @@ rba_string_homology_inter(ids = "ENSP00000269305", species = 9606)
 
 Other "STRING": 
 \code{\link{rba_string_annotations}()},
-\code{\link{rba_string_enrichment_ppi}()},
 \code{\link{rba_string_enrichment}()},
+\code{\link{rba_string_enrichment_ppi}()},
 \code{\link{rba_string_homology_intra}()},
 \code{\link{rba_string_interaction_partners}()},
 \code{\link{rba_string_interactions_network}()},

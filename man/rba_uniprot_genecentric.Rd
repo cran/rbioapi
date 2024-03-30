@@ -25,7 +25,7 @@ Using this function you can retrieve gene-centrics data. For more
 }
 \section{Corresponding API Resources}{
 
- "GET https://ebi.ac.uk/proteins/api/genecentric/{accession}"
+ "GET https://ebi.ac.uk/proteins/api/genecentric/\{accession\}"
 }
 
 \examples{
@@ -53,7 +53,7 @@ rba_uniprot_genecentric("P29965")
 \seealso{
 Other "UniProt - Proteomes": 
 \code{\link{rba_uniprot_genecentric_search}()},
-\code{\link{rba_uniprot_proteomes_search}()},
-\code{\link{rba_uniprot_proteomes}()}
+\code{\link{rba_uniprot_proteomes}()},
+\code{\link{rba_uniprot_proteomes_search}()}
 }
 \concept{"UniProt - Proteomes"}

@@ -43,8 +43,10 @@ For more information about how UniProt imports and calculates genomic
 }
 \section{Corresponding API Resources}{
 
- "GET https://ebi.ac.uk/proteins/api/coordinates/location/{accession}:{pPosition}"
- \cr "GET https://ebi.ac.uk/proteins/api/coordinates/location/{accession}:{pStart}-{pEnd}"
+ "GET https://ebi.ac.uk/proteins/api/coordinates/location
+ /\{accession\}:\{pPosition\}"
+ \cr "GET https://ebi.ac.uk/proteins/api/coordinates/location
+ /\{accession\}:\{pStart\}-\{pEnd\}"
 }
 
 \examples{
@@ -75,8 +77,8 @@ rba_uniprot_coordinates_sequence(accession = "P25942",
 }
 \seealso{
 Other "UniProt - Coordinates": 
+\code{\link{rba_uniprot_coordinates}()},
 \code{\link{rba_uniprot_coordinates_location}()},
-\code{\link{rba_uniprot_coordinates_search}()},
-\code{\link{rba_uniprot_coordinates}()}
+\code{\link{rba_uniprot_coordinates_search}()}
 }
 \concept{"UniProt - Coordinates"}
