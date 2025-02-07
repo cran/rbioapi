@@ -4,7 +4,13 @@
 \alias{rba_uniprot_features}
 \title{Get UniProt protein sequence features by accession}
 \usage{
-rba_uniprot_features(accession, types = NULL, categories = NULL, ...)
+rba_uniprot_features(
+  accession,
+  types = NULL,
+  categories = NULL,
+  location = NULL,
+  ...
+)
 }
 \arguments{
 \item{accession}{\href{https://www.uniprot.org/help/accession_numbers}{
@@ -25,6 +31,9 @@ Sequence annotation (Features)} categories (subsection). accepted values
 are: "MOLECULE_PROCESSING", "TOPOLOGY", "SEQUENCE_INFORMATION",
 "STRUCTURAL", "DOMAINS_AND_SITES", "PTM", "VARIANTS" and/or "MUTAGENESIS".
 You can supply up to 8 categories.}
+
+\item{location}{(character) Filter the features by the amino acid position in the sequence(s).
+Provide the range as a character string with the format "begin-end", e.g. "35-70"}
 
 \item{...}{rbioapi option(s). See \code{\link{rba_options}}'s
 arguments manual for more information on available options.}
@@ -54,9 +63,9 @@ rba_uniprot_features(accession = "Q99616", types = "DISULFID")
 }
 \references{
 \itemize{
-  \item The UniProt Consortium, UniProt: the universal protein
-  knowledgebase in 2021, Nucleic Acids Research, Volume 49, Issue D1,
-  8 January 2021, Pages D480–D489, https://doi.org/10.1093/nar/gkaa1100
+  \item The UniProt Consortium , UniProt: the Universal Protein
+  Knowledgebase in 2025, Nucleic Acids Research, 2024;, gkae1010,
+  https://doi.org/10.1093/nar/gkae1010
   \item Andrew Nightingale, Ricardo Antunes, Emanuele Alpi, Borisas
   Bursteinas, Leonardo Gonzales, Wudong Liu, Jie Luo, Guoying Qi, Edd
   Turner, Maria Martin, The Proteins API: accessing key integrated protein

@@ -20,18 +20,21 @@ vignette: >
 ---
 
 ```{r, include = FALSE, setup, echo=FALSE, results="hide"}
-knitr::opts_chunk$set(echo = TRUE,
-                      eval = TRUE,
-                      message = FALSE,
-                      warning = FALSE,
-                      collapse = TRUE,
-                      tidy = FALSE,
-                      cache = FALSE,
-                      dev = "png",
-                      comment = "#>")
+knitr::opts_chunk$set(
+  echo = TRUE,
+  eval = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  tidy = FALSE,
+  cache = FALSE,
+  dev = "png",
+  comment = "#>"
+)
 ```
 
-# What does rbioapi do? {#what-does-rbioapi-do .heading2}
+
+# What does rbioapi do? {#what-does-rbioapi-do}
 
 Currently fully supports **Enrichr**, **JASPAR**, **miEAA**, **PANTHER**, **Reactome**, **STRING**, and **UniProt**!
 
@@ -41,7 +44,7 @@ With rbioapi, you do not need to have technical knowledge about web services API
 
 ------------------------------------------------------------------------
 
-# What is Supported by rbioapi? {#what-is-supported-by-rbioapi .heading2}
+# What is Supported by rbioapi? {#what-is-supported-by-rbioapi}
 
 rbioapi is dedicated to **Biological or Medical** databases and web services. Currently, rbioapi supports and covers every API resources in the following services: (in alphabetical order):
 
@@ -59,21 +62,21 @@ Only on Github (Developmental) version: (<https://github.com/moosa-r/rbioapi/>):
 
 1.  currently none
 
-Each of the services has its dedicated vignette article. However, In this article, I will write about the general framework of rbioapi. Make sure to check the vignette article of each service to learn more about how to use them.
+Each of the services has its dedicated vignette article. In this article, I will write about the general framework of rbioapi. Make sure to check the vignette article of each service to learn more about how to use them.
 
 **Note That:** rbioapi is an ongoing project. New databases and services will be implemented periodically in order to gradually make the package as comprehensive as possible. Do you see yourself often using a certain database/service? Feel free to suggest any database/service by creating an issue on our GitHub [repository](https://github.com/moosa-r/ "rbioapi GitHub repositry"). I will appreciate any suggestions.
 
 ------------------------------------------------------------------------
 
-# How to install? {#How-to-install .heading2}
+# How to install? {#How-to-install}
 
-You can install the stable release version of [rbioapi](rbioapi.html "rbioapi: User-Friendly R Interface to Biologic Web Services' API") from [CRAN](https://cran.r-project.org/package=rbioapi "rbioapi page on CRAN (The Comprehensive R Archive Network)") with:
+You can install the [stable release version of rbioapi](https://cran.r-project.org/package=rbioapi "rbioapi: User-Friendly R Interface to Biologic Web Services' API") from [CRAN](https://cran.r-project.org/ "The Comprehensive R Archive Network") with:
 
 ```{r install_cran, eval=FALSE}
 install.packages("rbioapi")
 ```
 
-However, the CRAN version is released at most once every 1-2 months, You can install the most recent (development) version from [GitHub](https://github.com/moosa-r/rbioapi/ "rbioapi repository on GitHub") with:
+However, the CRAN version is released at longer intervals, You can install the most recent -development- version from [GitHub](https://github.com/moosa-r/rbioapi/ "rbioapi repository on GitHub") with:
 
 ```{r install_github, eval=FALSE}
 install.packages("remotes")
@@ -92,9 +95,9 @@ rba_options(timeout = 30, skip_error = TRUE)
 
 ------------------------------------------------------------------------
 
-# Naming conventions {#naming-conventions .heading2}
+# Naming conventions {#naming-conventions}
 
-To make the namespace more organized, functions has been named with the following pattern:
+To keep the namespace organized, functions names follow this pattern:
 
 ```         
 rba_[service_name]_[resource_name]
@@ -120,9 +123,9 @@ There are three exceptions: `rba_options()`, `rba_connection_test()`, and `rba_p
 
 ------------------------------------------------------------------------
 
-# Changing the options {#changing-the-options .heading2}
+# Changing the options {#changing-the-options}
 
-To provide more control, multiple options have been implemented. See the manual of `rba_options()` function for a full description of available options. In short, some of the options will govern rbioapi's connection with servers (e.g. timeout, retry) and some of the options will modify your experience with rbioapi (e.g. verbose, diagnostics, save_file). There are two ways that you may use to change any option. Also, you can get table of available rbioapi options and their current values by calling `rba_options()`without any argument:
+To give users greater control, rbioapi offers multiple configurable options. See the manual of `rba_options()` function for a full description of available options. In short, some of the options will govern rbioapi's connection with servers (e.g. timeout, retry) and some of the options will modify your experience with rbioapi (e.g. verbose, diagnostics, save_file). There are two ways that you may use to change any option. Also, you can get table of available rbioapi options and their current values by calling `rba_options()`without any argument:
 
 ```{r rba_options, echo=TRUE, message=TRUE}
 rba_options()
@@ -130,40 +133,57 @@ rba_options()
 
 Now, let us consider the ways in which we can alter the settings:
 
-## Change the option globally {#changing-the-options-change-the-option-globally .heading3}
+## Change the option globally {#changing-the-options-change-the-option-globally}
 
 Changing an option globally means that for the rest of your R session, any rbioapi function will respect the changed option. To do this, use `rba_options().` Each argument in this function corresponds to a certain option; Thus by running this function with your desired new values, you could globally alter that rbioapi option. for example:
 
 ```{r rba_options_global, eval=FALSE}
 rba_options(save_file = TRUE)
 ## From now on, the raw file of server's response will be saved to your working directory.
+
 rba_options(verbose = FALSE)
 ## From now on, the package will be quiet.
 ```
 
-## Change the option only within a function call {#changing-the-options-change-the-option-only-within-a-function-call .heading3}
+## Change the option only within a function call {#changing-the-options-change-the-option-only-within-a-function-call}
 
 You can pass additional arguments to any rbioapi function using "ellipsis" (the familiar `…` or dot dot dot!). Meaning that you can call any function with additional arguments where each is 'option = value' pair. This way, any changes in options will be confined within that particular function call. For example:
 
 ```{r rba_options_ellipsis1, eval=FALSE}
 ## Save the server's raw response file:
-x <- rba_reactome_species(only_main = TRUE, save_file = "reactome_species.json")
+x <- rba_reactome_species(
+  only_main = TRUE,
+  save_file = "reactome_species.json"
+)
+
 ## Also, in the case of connection failure, retry up to 10 times:
-x <- rba_reactome_species(only_main = TRUE,
-                         save_file = "reactome_species.json", retry_max = 10)
+x <- rba_reactome_species(
+  only_main = TRUE,
+  save_file = "reactome_species.json",
+  retry_max = 10
+)
 ```
 
 ```{r rba_options_ellipsis2, eval=FALSE, echo=TRUE, message=TRUE}
-## Run these codes in your own R session to see the difference.
+## Run these codes in your own R session to see the difference:
+
 ## show internal diagnostics boring details
-x <- rba_uniprot_proteins_crossref(db_id = "CD40", db_name = "HGNC", diagnostics = TRUE)
+x <- rba_uniprot_proteins_crossref(
+  db_id = "CD40",
+  db_name = "HGNC",
+  diagnostics = TRUE
+)
+
 ## The next function you call, will still use the default rbioapi options
-x <- rba_uniprot_proteins_crossref(db_id = "CD40", db_name = "HGNC")
+x <- rba_uniprot_proteins_crossref(
+  db_id = "CD40",
+  db_name = "HGNC"
+)
 ```
 
 ------------------------------------------------------------------------
 
-# Connection test {#connection-test .heading2}
+# Connection test {#connection-test}
 
 The second exception in functions' naming schema is `rba_connection_test()`. Run this simple function to check your connection with the supported services/databases. If you encounter errors when using rbioapi, kindly run this function to make sure that your internet connection or the servers are fine.
 
@@ -173,25 +193,35 @@ rba_connection_test(print_output = TRUE)
 
 ------------------------------------------------------------------------
 
-# Iterating over paginated results {#multi-pages .heading2}
+# Iterating over paginated results {#multi-pages}
 
 Some API resources will return paginated responses. This is particularly common in API resources which return potentially very large responses. In rbioapi, for these cases, there are arguments such as "page_number" (with default value of 1) and -if the API resource allows- "page_size". To save your time, you may use `rba_pages()`. This function will iterate over the pages you have specified.
 
 Take rba_uniprot_taxonomy_name as an example. This function allows you to search taxonomic nodes in [UniProt](https://www.uniprot.org "Universal Protein Resource (UniProt)"). The response can potentially have a huge size, so [UniProt](https://www.uniprot.org "Universal Protein Resource (UniProt)") returns a paginated response. For example, if we search for nodes that contain "adenovirus", there is a large number of hits:
 
 ```{r rba_pages1, echo=TRUE}
-adeno <- rba_uniprot_taxonomy_name(name = "adenovirus",
-                                   search_type = "contain",
-                                   page_number = 1)
+adeno <- rba_uniprot_taxonomy_name(
+  name = "adenovirus",
+  search_type = "contain",
+  page_number = 1
+)
+
 str(adeno, max.level = 2)
 ```
 
 As you can see, the server has returned the first page of the response, to retrieve the other pages, you should make separate calls and change the "page_number" argument within each call, or simply use `rba_pages()` as demonstrated below:
 
 ```{r rba_pages2, echo=TRUE}
-adeno_pages = rba_pages(quote(rba_uniprot_taxonomy_name(name = "adenovirus",
-                                   search_type = "contain",
-                                   page_number = "pages:1:3")))
+adeno_pages = rba_pages(
+  quote(
+    rba_uniprot_taxonomy_name(
+      name = "adenovirus",
+      search_type = "contain",
+      page_number = "pages:1:3"
+    )
+  )
+)
+
 ## You can inspect the structure of the response:
 str(adeno_pages, max.level = 2)
 ```
@@ -204,15 +234,15 @@ As you can see, what we have done was:
 
 ------------------------------------------------------------------------
 
-# How and what to cite? {#how-to-cite .heading2}
+# How and what to cite? {#how-to-cite}
 
-rbioapi is an interface between you and other databases and services. Thus, if you have used rbioapi in published research, **in addition to kindly citing rbioapi, [*make sure to fully and properly cite the databases/services you have used*]{.underline}**. Suggested citations have been added in the functions' manuals, under the "references" section; Nevertheless, it is the user's responsibility to check for proper citations and to properly cite the database/services that they have used.
+rbioapi is an interface between you and other databases and services. Thus, if you have used rbioapi in published research, **in addition to kindly citing rbioapi, [*ensure to fully and properly cite the databases/services you have used*]{.underline}**. Suggested citations have been added in the functions' manuals, under the "references" section; Nevertheless, it is the user's responsibility to check for proper citations and to properly cite the database/services that they have used.
 
-## How to cite rbioapi {#how-to-cite-rbioapi .heading3}
+## How to cite rbioapi {#how-to-cite-rbioapi}
 
 -   Moosa Rezwani, Ali Akbar Pourfathollah, Farshid Noorbakhsh, rbioapi: user-friendly R interface to biologic web services' API, Bioinformatics, Volume 38, Issue 10, 15 May 2022, Pages 2952--2953, <https://doi.org/10.1093/bioinformatics/btac172>
 
-## How to cite the databases and web services {#how-to-cite-services .heading3}
+## How to cite the databases and web services {#how-to-cite-services}
 
 -   [How to cite Enrichr](rbioapi_enrichr.html#citations "How to cite Enrichr"). (See on [Enrichr website](https://maayanlab.cloud/Enrichr/help#terms))
 
@@ -230,7 +260,7 @@ rbioapi is an interface between you and other databases and services. Thus, if y
 
 ------------------------------------------------------------------------
 
-# Code of conduct {#code-of-conduct .heading2}
+# Code of conduct {#code-of-conduct}
 
 This package, rbioapi, is an unofficial interface implementation and is not associated, endorsed, or officially connected in any way with the original databases and web services. The creators and maintainers of rbioapi are independent entities and have no official relationship with those databases and web services.
 
@@ -238,7 +268,7 @@ When using rbioapi, remember that you are querying data from web services; So pl
 
 ------------------------------------------------------------------------
 
-# What next? {#what-next .heading2}
+# What next? {#what-next}
 
 Each supported service has a dedicated vignette article. Make sure to check those too.
 
@@ -256,13 +286,13 @@ We are also adding vignette articles focusing on tasks and workflows:
 
 ------------------------------------------------------------------------
 
-# Design philosophy of rbioapi {#design-philosophy .heading2}
+# Design of rbioapi {#design}
 
-To learn more about the design philosophy and the concepts behind developing rbioapi, please read [our paper in Bioinformatics](https://doi.org/10.1093/bioinformatics/btac172 "Rezwani, M., Pourfathollah, A. A., & Noorbakhsh, F. (2022). rbioapi: user-friendly R interface to biologic web services’ API. Bioinformatics, 38(10), 2952–2953. doi: 10.1093/bioinformatics/btac172").
+To learn more about the design and concepts behind developing rbioapi, please read [our paper in Bioinformatics](https://doi.org/10.1093/bioinformatics/btac172 "Rezwani, M., Pourfathollah, A. A., & Noorbakhsh, F. (2022). rbioapi: user-friendly R interface to biologic web services’ API. Bioinformatics, 38(10), 2952–2953. doi: 10.1093/bioinformatics/btac172").
 
 ------------------------------------------------------------------------
 
-# Links {#links .heading2}
+# Links {#links}
 
 -   [This article in rbioapi documentation site](https://rbioapi.moosa-r.com/articles/rbioapi.html "rbioapi: User-Friendly R Interface to Biologic Web Services' API")
 
@@ -270,7 +300,7 @@ To learn more about the design philosophy and the concepts behind developing rbi
 
 ------------------------------------------------------------------------
 
-# Session info {#session-info .heading2}
+# Session info {#session-info}
 
 ```{r sessionInfo, echo=FALSE}
 sessionInfo()

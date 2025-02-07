@@ -20,22 +20,23 @@ vignette: >
 ---
 
 ```{r message=FALSE, include=FALSE, results="hide", setup, echo=FALSE}
-knitr::opts_chunk$set(echo = TRUE,
-                      eval = TRUE,
-                      message = FALSE,
-                      warning = FALSE,
-                      collapse = TRUE,
-                      tidy = FALSE,
-                      cache = FALSE,
-                      dev = "png",
-                      comment = "#>")
+knitr::opts_chunk$set(
+  echo = TRUE,
+  eval = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  tidy = FALSE,
+  cache = FALSE,
+  dev = "png",
+  comment = "#>"
+)
 library(rbioapi)
 rba_options(timeout = 30, skip_error = TRUE)
 ```
 
-------------------------------------------------------------------------
 
-## Introduction {#introduction .heading2}
+# Introduction {#introduction}
 
 Directly quoting from [Reactome](https://reactome.org/):
 
@@ -49,19 +50,26 @@ Before continuing reading this article, it is a good idea to read [Reactome Data
 
 ------------------------------------------------------------------------
 
-## Reactome analysis services {#reactome-analysis-services .heading2}
+# Reactome analysis services {#reactome-analysis-services}
 
 This section mostly revolves around `rba_reactome_analysis()` function. So, naturally, we will start with that. As explained in the function's manual, you have considerable freedom in providing the main input for this function; You can supply an R object (as a data frame, matrix, or simple vector), a URL, or a local file path. Note that the type of analysis will be decided based on whether your input is 1-dimensional or 2-dimensional. This has been explained in detail in the manual of `rba_reactome_analysis()`, see that for more information.\
 `rba_reactome_analysis()` is the API equivalent of Reactome's [analyse gene list](https://reactome.org/PathwayBrowser/#TOOL=AT) tool. You can see that the function's arguments correspond to what would you choose in the webpage's wizard.
 
 ```{r rba_reactome_analysis}
 ## 1 We create a simple vector with our genes
-genes <- c("p53", "BRCA1", "cdk2", "Q99835", "CDC42", "CDK1", "KIF23", "PLK1", "RAC2", "RACGAP1", "RHOA", "RHOB", "MSL1", "PHF21A", "INSR", "JADE2", "P2RX7", "CCDC101", "PPM1B", "ANAPC16", "CDH8", "HSPA1L", "CUL2", "ZNF302", "CUX1", "CYTH2", "SEC22C", "EIF4E3", "ROBO2", "CXXC1", "LINC01314", "ATP5F1")
+genes <- c(
+  "p53", "BRCA1", "cdk2", "Q99835", "CDC42", "CDK1", "KIF23", "PLK1", "RAC2",
+  "RACGAP1", "RHOA", "RHOB", "MSL1", "PHF21A", "INSR", "JADE2", "P2RX7",
+  "CCDC101", "PPM1B", "ANAPC16", "CDH8", "HSPA1L", "CUL2", "ZNF302", "CUX1",
+  "CYTH2", "SEC22C", "EIF4E3", "ROBO2", "CXXC1", "LINC01314", "ATP5F1"
+)
 
 ## 2 We call reactome analysis with the default parameters
-analyzed <- rba_reactome_analysis(input = genes,
-                                  projection = TRUE,
-                                  p_value = 0.01)
+analyzed <- rba_reactome_analysis(
+  input = genes,
+  projection = TRUE,
+  p_value = 0.01
+)
 
 ## 3 As always, we use str() to inspect the resutls
 str(analyzed, 1)
@@ -75,12 +83,16 @@ str(analyzed, 1)
 
 ```{r analysis_results, echo=FALSE}
 if (utils::hasName(analyzed, "pathways") && is.data.frame(analyzed$pathways)) {
-  DT::datatable(data = jsonlite::flatten(analyzed$pathways),
-              options = list(scrollX = TRUE, 
-                             paging = TRUE,
-                             fixedHeader = TRUE,
-                             keys = TRUE,
-                             pageLength = 5))
+  DT::datatable(
+    data = jsonlite::flatten(analyzed$pathways),
+    options = list(
+      scrollX = TRUE, 
+      paging = TRUE,
+      fixedHeader = TRUE,
+      keys = TRUE,
+      pageLength = 5
+    )
+  )
 } else {
   print("Vignette building failed. It is probably because the web service was down during the building.")
 }
@@ -93,12 +105,17 @@ Having the analysis's token, you can retrieve the analysis results in many forma
 
 ```{r rba_reactome_analysis_pdf/download, eval=FALSE}
 # download a full pdf report
-rba_reactome_analysis_pdf(token = analyzed$summary$token,
-                          species = 9606)
+rba_reactome_analysis_pdf(
+  token = analyzed$summary$token,
+  species = 9606
+)
+
 # download the result in compressed json.gz format
-rba_reactome_analysis_download(token = analyzed$summary$token,
-                               request = "results",
-                               save_to = "reactome_results.json")
+rba_reactome_analysis_download(
+  token = analyzed$summary$token,
+  request = "results",
+  save_to = "reactome_results.json"
+)
 ```
 
 Your token is only guaranteed to be stored for 7 days. After that, you can upload the JSON file you have downloaded using `rba_reactome_analysis_download` and get a token for that:
@@ -109,7 +126,7 @@ re_uploaded <- rba_reactome_analysis_import(input = "reactome_results.json")
 
 **Please Note:** Other services supported by rbioapi also provide Over-representation analysis tools. Please see the vignette article [Do with rbioapi: Over-Representation (Enrichment) Analysis in R](rbioapi_do_enrich.html) ([link to the documentation site](https://rbioapi.moosa-r.com/articles/rbioapi_do_enrich.html)) for an in-depth review.
 
-### See also in Functions' manuals {#analysis_see-also-in-functions-manuals .heading3}
+## See also in Functions' manuals {#analysis_see-also-in-functions-manuals}
 
 Some rbioapi Reactome analysis functions were not covered in this vignette, be sure to check their manuals:
 
@@ -121,17 +138,21 @@ Some rbioapi Reactome analysis functions were not covered in this vignette, be s
 
 ------------------------------------------------------------------------
 
-## Reactome contents services {#reactome-contents-services .heading2}
+# Reactome contents services {#reactome-contents-services}
 
 rbioapi functions that correspond to Reactome content services are those starting with rba_reactome\_\* but without "\_analysis" infix. These functions cover what you can do with objects in Reactome knowledge-base. In simpler terms, most -but not all of them- correspond to what you can find in [Reactome Pathway Browser](https://reactome.org/PathwayBrowser/ "Reactome Pathway Browser") and [search results](https://reactome.org/content/query?q=apoptosis&species=Homo+sapiens "Search results for apoptosis"). (e.g. a [pathway](https://reactome.org/content/detail/R-HSA-109581 "Apoptosis Homo sapiens"), a [reaction](https://reactome.org/content/detail/R-HSA-202939 "Caspase-mediated cleavage of E-Cadherin"), a [physical Entity](https://reactome.org/content/detail/R-HSA-350870 "Caspase-3 [cytosol]"), etc.)
 
-### Retrieve any object from Reactome knowledge-base {#retrieve-any-object-from-reactome-knowledge-base .heading3}
+## Retrieve any object from Reactome knowledge-base {#retrieve-any-object-from-reactome-knowledge-base}
 
 Using `rba_reactome_query()`, you can retrieve any object from Reactome knowledge-base. In simpler terms, what I mean by the object is roughly anything that Reactome associated an ID to it. This can range from a person's entry to proteins, reactions, pathways, species, and many more! You can explore [Reactome's data schema](https://reactome.org/content/schema/DatabaseObject "Graph Database :: Data Schema") to learn about Reactome knowledge-base objects and their organization. Here are some examples, note that you are not limited to only one ID per query. You can use a vector of inputs, the only limitation is that when you supply more than one ID, you cannot have `enhanced = TRUE`.
 
 ```{r rba_reactome_query_ex1}
 ## 1 query a pathway Entry
-pathway <- rba_reactome_query(ids = "R-HSA-109581", enhanced = TRUE)
+pathway <- rba_reactome_query(
+  ids = "R-HSA-109581",
+  enhanced = TRUE
+)
+
 ## 2 As always we use str() to inspect the output's structure
 str(pathway, 2)
 
@@ -143,7 +164,11 @@ str(pathway, 2)
 
 ```{r rba_reactome_query_ex2}
 ## 1 query a protein Entry
-protein <- rba_reactome_query(ids = 66247, enhanced = TRUE)
+protein <- rba_reactome_query(
+  ids = 66247,
+  enhanced = TRUE
+)
+
 ## 2 As always we use str() to inspect the output's structure
 str(protein, 1)
 
@@ -154,36 +179,43 @@ str(protein, 1)
 
 ```
 
-### Find Cross-Reference IDs in Reactome {#find-cross-reference-ids-in-reactome .heading3}
+## Find Cross-Reference IDs in Reactome {#find-cross-reference-ids-in-reactome}
 
 As you can see in the second example usage of we used Reactome's dbID `66247` to query CD40 protein. How did we obtain that in the first place? You can use `rba_reactome_xref` to map any cross-reference (external) IDs to Reactome IDs.
 
 ```{r rba_reactome_xref}
 ## 1 We Supply HGNC ID to find what is the corresponding database ID in Reactome
 xref_protein <- rba_reactome_xref("CD40")
+
 ## 2 As always use str() to inspect the output's structure
 str(xref_protein, 1)
 ```
 
-### Map Cross-Reference IDs to Reactome {#map-cross-reference-ids-to-reactome .heading3}
+## Map Cross-Reference IDs to Reactome {#map-cross-reference-ids-to-reactome}
 
 While we are at the cross-reference topic, here is another useful resource. Using `rba_reactome_mapping` you can find the Reactome pathways or reactions which include your external ID:
 
 ```{r xref_mapping}
 ## 1 Again, consider CD40 protein:
-xref_mapping <- rba_reactome_mapping(id = "CD40",
-                                    resource = "hgnc",
-                                    map_to = "pathways")
+xref_mapping <- rba_reactome_mapping(
+  id = "CD40",
+  resource = "hgnc",
+  map_to = "pathways"
+)
 ```
 
 ```{r xref_mapping_df, echo=FALSE}
 if (is.data.frame(xref_mapping)) {
-  DT::datatable(data = xref_mapping,
-              options = list(scrollX = TRUE, 
-                             paging = TRUE,
-                             fixedHeader = TRUE,
-                             keys = TRUE,
-                             pageLength = 10))
+  DT::datatable(
+    data = xref_mapping,
+    options = list(
+      scrollX = TRUE, 
+      paging = TRUE,
+      fixedHeader = TRUE,
+      keys = TRUE,
+      pageLength = 10
+    )
+  )
 } else {
   print("Vignette building failed. It is probably because the web service was down during the building.")
 }
@@ -191,11 +223,11 @@ if (is.data.frame(xref_mapping)) {
 
 ------------------------------------------------------------------------
 
-## See also in Functions' manuals {#see-also-in-functions-manuals .heading2}
+# See also in Functions' manuals {#see-also-in-functions-manuals}
 
 There are still more rbioapi f Reactome content functions that were not covered in this vignette. Here is a brief overview, see the functions' manual for detailed guides and examples.
 
-### Retrieve Reactome Database information {#retrieve-reactome-database-information .heading3}
+## Retrieve Reactome Database information {#retrieve-reactome-database-information}
 
 -   `rba_reactome_version()`: Return current Reactome version
 
@@ -203,7 +235,7 @@ There are still more rbioapi f Reactome content functions that were not covered 
 
 -   `rba_reactome_species()`: Retrieve a list of species annotated in Reactome.
 
-### General Mapping/Querying {#general-mapping-querying .heading3}
+## General Mapping/Querying {#general-mapping-querying}
 
 -   `rba_reactome_query()`
 
@@ -211,7 +243,7 @@ There are still more rbioapi f Reactome content functions that were not covered 
 
 -   `rba_reactome_xref()`
 
-### Things you can do with a Entities {#things-you-can-do-with-a-entities .heading3}
+## Things you can do with a Entities {#things-you-can-do-with-a-entities}
 
 -   `reactome_complex_list()`: Get a list of complexes that have your molecule in them.
 
@@ -221,7 +253,7 @@ There are still more rbioapi f Reactome content functions that were not covered 
 
 -   `rba_reactome_entity_other_forms()`
 
-### Things you can do with Events {#things-you-can-do-with-events .heading3}
+## Things you can do with Events {#things-you-can-do-with-events}
 
 -   `rba_reactome_event_ancestors()`
 
@@ -235,7 +267,7 @@ There are still more rbioapi f Reactome content functions that were not covered 
 
 -   `rba_reactome_event_hierarchy()`: Retrieve full event hierarchy of an species.
 
-### Pathways {#pathways .heading3}
+## Pathways {#pathways}
 
 -   `rba_reactome_pathways_low()`
 
@@ -243,19 +275,19 @@ There are still more rbioapi f Reactome content functions that were not covered 
 
 -   `rba_reactome_pathways_top()`
 
-### Interactors {#interactors .heading3}
+## Interactors {#interactors}
 
 -   `rba_reactome_interactors_psicquic()`
 
 -   `rba_reactome_interactors_static()`
 
-### People {#peaple .heading3}
+## People {#peaple}
 
 -   `rba_reactome_people_name()`
 
 -   `rba_reactome_people_id()`
 
-### Export diagrams and events {#export-diagrams-and-events .heading3}
+## Export diagrams and events {#export-diagrams-and-events}
 
 -   `rba_reactome_exporter_diagram()`
 
@@ -267,7 +299,7 @@ There are still more rbioapi f Reactome content functions that were not covered 
 
 ------------------------------------------------------------------------
 
-## How to Cite? {#citations .heading2}
+# How to Cite? {#citations}
 
 To cite Reactome (Please see <https://reactome.org/cite>):
 
@@ -284,7 +316,7 @@ To cite rbioapi:
 
 ------------------------------------------------------------------------
 
-# Links {#links .heading2}
+# Links {#links}
 
 -   [This article in rbioapi documentation site](https://rbioapi.moosa-r.com/articles/rbioapi_reactome.html "2.D: Reactome & rbioapi")
 
@@ -294,7 +326,7 @@ To cite rbioapi:
 
 ------------------------------------------------------------------------
 
-# Session info {#session-info .heading2}
+# Session info {#session-info}
 
 ```{r sessionInfo, echo=FALSE}
 sessionInfo()

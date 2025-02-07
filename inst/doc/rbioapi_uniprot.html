@@ -12,7 +12,7 @@
 
 <meta name="author" content="Moosa Rezwani" />
 
-<meta name="date" content="2024-03-30" />
+<meta name="date" content="2025-02-07" />
 
 <title>2.G: UniProt &amp; rbioapi</title>
 
@@ -71,7 +71,7 @@ overflow: visible;
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -82,7 +82,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
 { counter-reset: source-line 0; }
@@ -360,36 +360,42 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">2.G: UniProt &amp; rbioapi</h1>
 <h4 class="author">Moosa Rezwani</h4>
-<h4 class="date">2024-03-30</h4>
+<h4 class="date">2025-02-07</h4>
 
 
 <div id="TOC">
 <ul>
-<li><a href="#introduction" id="toc-introduction"><span class="toc-section-number">0.1</span> Introduction</a></li>
-<li><a href="#search-vs-retrieve" id="toc-search-vs-retrieve"><span class="toc-section-number">0.2</span> Search vs Retrieve</a></li>
-<li><a href="#functions-with-star-search-variant" id="toc-functions-with-star-search-variant"><span class="toc-section-number">0.3</span> Functions with
-<code>*_search</code> variant</a></li>
-<li><a href="#uniprot-functions-categories" id="toc-uniprot-functions-categories"><span class="toc-section-number">0.4</span> UniProt functions categories</a>
+<li><a href="#introduction" id="toc-introduction"><span class="toc-section-number">1</span> Introduction</a></li>
+<li><a href="#search-vs-retrieve" id="toc-search-vs-retrieve"><span class="toc-section-number">2</span> Search vs Retrieve</a></li>
+<li><a href="#functions-with-star-search-variant" id="toc-functions-with-star-search-variant"><span class="toc-section-number">3</span> Functions with <code>*_search</code>
+variant</a></li>
+<li><a href="#uniprot-functions-categories" id="toc-uniprot-functions-categories"><span class="toc-section-number">4</span> UniProt functions categories</a>
 <ul>
-<li><a href="#proteins" id="toc-proteins"><span class="toc-section-number">0.4.1</span> Proteins</a></li>
-<li><a href="#post-translational-modification-ptm" id="toc-post-translational-modification-ptm"><span class="toc-section-number">0.4.2</span> Post-Translational Modification
-(PTM)</a></li>
-<li><a href="#antigens" id="toc-antigens"><span class="toc-section-number">0.4.3</span> Antigens</a></li>
-<li><a href="#mutagenesis" id="toc-mutagenesis"><span class="toc-section-number">0.4.4</span> Mutagenesis</a></li>
-<li><a href="#proteomes" id="toc-proteomes"><span class="toc-section-number">0.4.5</span> Proteomes</a></li>
-<li><a href="#taxonomy" id="toc-taxonomy"><span class="toc-section-number">0.4.6</span> Taxonomy</a></li>
-<li><a href="#coordinates" id="toc-coordinates"><span class="toc-section-number">0.4.7</span> Coordinates</a></li>
-<li><a href="#uniparc" id="toc-uniparc"><span class="toc-section-number">0.4.8</span> UniParc</a></li>
+<li><a href="#proteins" id="toc-proteins"><span class="toc-section-number">4.1</span> Proteins</a>
+<ul>
+<li><a href="#proteins-proteins" id="toc-proteins-proteins"><span class="toc-section-number">4.1.1</span> Proteins:</a></li>
+<li><a href="#proteins-features" id="toc-proteins-features"><span class="toc-section-number">4.1.2</span> Features</a></li>
+<li><a href="#proteins-variation" id="toc-proteins-variation"><span class="toc-section-number">4.1.3</span> Variation</a></li>
+<li><a href="#antigens" id="toc-antigens"><span class="toc-section-number">4.1.4</span> Antigens</a></li>
+<li><a href="#epitopes" id="toc-epitopes"><span class="toc-section-number">4.1.5</span> Epitopes</a></li>
+<li><a href="#mutagenesis" id="toc-mutagenesis"><span class="toc-section-number">4.1.6</span> Mutagenesis</a></li>
+<li><a href="#rna-editing" id="toc-rna-editing"><span class="toc-section-number">4.1.7</span> RNA-Editing</a></li>
 </ul></li>
-<li><a href="#citations" id="toc-citations"><span class="toc-section-number">0.5</span> How to Cite?</a></li>
-<li><a href="#links" id="toc-links"><span class="toc-section-number">1</span> Links</a></li>
-<li><a href="#session-info" id="toc-session-info"><span class="toc-section-number">2</span> Session info</a></li>
+<li><a href="#proteomics" id="toc-proteomics"><span class="toc-section-number">4.2</span> Proteomics</a></li>
+<li><a href="#proteomes" id="toc-proteomes"><span class="toc-section-number">4.3</span> Proteomes</a></li>
+<li><a href="#taxonomy" id="toc-taxonomy"><span class="toc-section-number">4.4</span> Taxonomy</a></li>
+<li><a href="#coordinates" id="toc-coordinates"><span class="toc-section-number">4.5</span> Coordinates</a></li>
+<li><a href="#uniparc" id="toc-uniparc"><span class="toc-section-number">4.6</span> UniParc</a></li>
+</ul></li>
+<li><a href="#citations" id="toc-citations"><span class="toc-section-number">5</span> How to Cite?</a></li>
+<li><a href="#links" id="toc-links"><span class="toc-section-number">6</span> Links</a></li>
+<li><a href="#session-info" id="toc-session-info"><span class="toc-section-number">7</span> Session info</a></li>
 </ul>
 </div>
 
-<hr />
-<div id="introduction" class="section level2 heading2 hasAnchor" number="0.1">
-<h2 class="heading2 hasAnchor"><span class="header-section-number">0.1</span> Introduction<a href="#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction" class="section level1 hasAnchor" number="1">
+<h1 class="hasAnchor"><span class="header-section-number">1</span>
+Introduction<a href="#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Directly quoting from <a href="https://www.uniprot.org" title="Universal Protein Resource (UniProt)">UniProt</a>:</p>
 <blockquote>
 <p>The Universal Protein Resource (UniProt) is a comprehensive resource
@@ -404,8 +410,9 @@ databases.</p>
 </blockquote>
 <hr />
 </div>
-<div id="search-vs-retrieve" class="section level2 heading2 hasAnchor" number="0.2">
-<h2 class="heading2 hasAnchor"><span class="header-section-number">0.2</span> Search vs Retrieve<a href="#search-vs-retrieve" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="search-vs-retrieve" class="section level1 hasAnchor" number="2">
+<h1 class="hasAnchor"><span class="header-section-number">2</span>
+Search vs Retrieve<a href="#search-vs-retrieve" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Most of rbioapi UniProt functions have two variants. one to retrieve
 data using a proper accession, and the second one (which have a
 <code>_search</code> suffix) is to search using any combination of
@@ -428,9 +435,9 @@ following:</p>
 <span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="co">#&gt;  $ protein         :List of 4</span></span>
 <span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="co">#&gt;  $ gene            :&#39;data.frame&#39;:    1 obs. of  2 variables:</span></span>
 <span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co">#&gt;  $ comments        :&#39;data.frame&#39;:    12 obs. of  10 variables:</span></span>
-<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="co">#&gt;  $ features        :&#39;data.frame&#39;:    63 obs. of  9 variables:</span></span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="co">#&gt;  $ dbReferences    :&#39;data.frame&#39;:    134 obs. of  4 variables:</span></span>
-<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="co">#&gt;  $ keywords        :&#39;data.frame&#39;:    13 obs. of  1 variable:</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="co">#&gt;  $ features        :&#39;data.frame&#39;:    64 obs. of  9 variables:</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="co">#&gt;  $ dbReferences    :&#39;data.frame&#39;:    136 obs. of  4 variables:</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="co">#&gt;  $ keywords        :&#39;data.frame&#39;:    14 obs. of  1 variable:</span></span>
 <span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="co">#&gt;  $ references      :&#39;data.frame&#39;:    25 obs. of  3 variables:</span></span>
 <span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="co">#&gt;  $ sequence        :List of 5</span></span></code></pre></div>
 <p>This is the equivalent of the page that UniProt have on this
@@ -439,26 +446,29 @@ what if we didn’t know the UniProt accession? Or simply want to perform
 a search using certain parameters? We can use the function with
 <code>_search</code> suffix:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="do">## 1 From the available arguments, we fill only those which we think is pertinent</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>cd40_search <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_proteins_search</span>(<span class="at">protein =</span> <span class="st">&quot;CD40 ligand&quot;</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>                                          <span class="at">organism =</span> <span class="st">&quot;human&quot;</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>                                          <span class="at">reviewed =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="do">## 2 As always, we use str() to inspect our object&#39;s structure</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fu">str</span>(cd40_search, <span class="dv">2</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt; List of 1</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt;  $ P29965:List of 13</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt;   ..$ accession       : chr &quot;P29965&quot;</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt;   ..$ id              : chr &quot;CD40L_HUMAN&quot;</span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt;   ..$ proteinExistence: chr &quot;Evidence at protein level&quot;</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt;   ..$ info            :List of 4</span></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt;   ..$ organism        :List of 3</span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt;   ..$ protein         :List of 4</span></span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt;   ..$ gene            :List of 1</span></span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt;   ..$ comments        :List of 12</span></span>
-<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt;   ..$ features        :List of 63</span></span>
-<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt;   ..$ dbReferences    :List of 134</span></span>
-<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt;   ..$ keywords        :List of 13</span></span>
-<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co">#&gt;   ..$ references      :List of 25</span></span>
-<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co">#&gt;   ..$ sequence        :List of 5</span></span></code></pre></div>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>cd40_search <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_proteins_search</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="at">protein =</span> <span class="st">&quot;CD40 ligand&quot;</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  <span class="at">organism =</span> <span class="st">&quot;human&quot;</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>  <span class="at">reviewed =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>)</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="do">## 2 As always, we use str() to inspect our object&#39;s structure</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="fu">str</span>(cd40_search, <span class="dv">2</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; List of 1</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt;  $ P29965:List of 13</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt;   ..$ accession       : chr &quot;P29965&quot;</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt;   ..$ id              : chr &quot;CD40L_HUMAN&quot;</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt;   ..$ proteinExistence: chr &quot;Evidence at protein level&quot;</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt;   ..$ info            :List of 4</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt;   ..$ organism        :List of 3</span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt;   ..$ protein         :List of 4</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt;   ..$ gene            :List of 1</span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt;   ..$ comments        :List of 12</span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co">#&gt;   ..$ features        :List of 64</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co">#&gt;   ..$ dbReferences    :List of 136</span></span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="co">#&gt;   ..$ keywords        :List of 14</span></span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a><span class="co">#&gt;   ..$ references      :List of 25</span></span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a><span class="co">#&gt;   ..$ sequence        :List of 5</span></span></code></pre></div>
 <p>This is the equivalent of ‘<a href="https://www.uniprot.org/help/advanced_search" title="UniProtKB advanced search options">advanced search</a>’ in
 UniProt web portal. See function
 <code>rba_uniprot_proteins_search</code>’s manual for more information.
@@ -472,111 +482,112 @@ mass-retrieving. If you see the “argument” section in the functions’
 manuals, you would see that many arguments accept a vector of values.
 consider the following examples:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="do">## 1 As the simplest scenario, we can retrieve multiple proteins in one call</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>multi_prs1 <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_proteins_search</span>(<span class="at">accession =</span> <span class="fu">c</span>(<span class="st">&quot;P04637&quot;</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>                                                       <span class="st">&quot;P38398&quot;</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>                                                       <span class="st">&quot;P24941&quot;</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>                                                       <span class="st">&quot;P60953&quot;</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>                                                       <span class="st">&quot;P06493&quot;</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>                                                       <span class="st">&quot;Q02241&quot;</span>))</span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="do">## As always, we use str() to inspect our object&#39;s structure</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="fu">str</span>(multi_prs1, <span class="dv">1</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co">#&gt; List of 6</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co">#&gt;  $ P60953:List of 14</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co">#&gt;  $ P24941:List of 14</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="co">#&gt;  $ P04637:List of 14</span></span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="co">#&gt;  $ P06493:List of 14</span></span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co">#&gt;  $ Q02241:List of 14</span></span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co">#&gt;  $ P38398:List of 14</span></span>
-<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="do">## 2 Or alternatively, search using Gene names, also we want to exclude isoforms and only retrieve swiss-prot entries</span></span>
-<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>multi_prs2 <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_proteins_search</span>(<span class="at">gene =</span> <span class="fu">c</span>(<span class="st">&quot;KIF23&quot;</span>,</span>
-<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a>                                                  <span class="st">&quot;BRCA1&quot;</span>,</span>
-<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a>                                                  <span class="st">&quot;TP53&quot;</span>,</span>
-<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a>                                                  <span class="st">&quot;CDC42&quot;</span>),</span>
-<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a>                                         <span class="at">reviewed =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a>                                         <span class="at">taxid =</span> <span class="dv">9606</span>,</span>
-<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a>                                         <span class="at">isoform =</span> <span class="dv">0</span>)</span>
-<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a></span>
-<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="fu">str</span>(multi_prs2, <span class="dv">1</span>)</span>
-<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="co">#&gt; List of 29</span></span>
-<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="co">#&gt;  $ Q9ULZ0:List of 14</span></span>
-<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="co">#&gt;  $ Q02241:List of 14</span></span>
-<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a><span class="co">#&gt;  $ P38398:List of 14</span></span>
-<span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a><span class="co">#&gt;  $ Q12888:List of 14</span></span>
-<span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a><span class="co">#&gt;  $ P04637:List of 14</span></span>
-<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a><span class="co">#&gt;  $ Q9HCN2:List of 14</span></span>
-<span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a><span class="co">#&gt;  $ A1A5B4:List of 14</span></span>
-<span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a><span class="co">#&gt;  $ Q9Y2B4:List of 13</span></span>
-<span id="cb3-37"><a href="#cb3-37" tabindex="-1"></a><span class="co">#&gt;  $ Q8IXH6:List of 14</span></span>
-<span id="cb3-38"><a href="#cb3-38" tabindex="-1"></a><span class="co">#&gt;  $ Q53FA7:List of 14</span></span>
-<span id="cb3-39"><a href="#cb3-39" tabindex="-1"></a><span class="co">#&gt;  $ Q9NS56:List of 14</span></span>
-<span id="cb3-40"><a href="#cb3-40" tabindex="-1"></a><span class="co">#&gt;  $ Q96A56:List of 14</span></span>
-<span id="cb3-41"><a href="#cb3-41" tabindex="-1"></a><span class="co">#&gt;  $ O14683:List of 14</span></span>
-<span id="cb3-42"><a href="#cb3-42" tabindex="-1"></a><span class="co">#&gt;  $ Q96S44:List of 14</span></span>
-<span id="cb3-43"><a href="#cb3-43" tabindex="-1"></a><span class="co">#&gt;  $ Q8NBR0:List of 14</span></span>
-<span id="cb3-44"><a href="#cb3-44" tabindex="-1"></a><span class="co">#&gt;  $ Q13625:List of 14</span></span>
-<span id="cb3-45"><a href="#cb3-45" tabindex="-1"></a><span class="co">#&gt;  $ Q7L0Q8:List of 14</span></span>
-<span id="cb3-46"><a href="#cb3-46" tabindex="-1"></a><span class="co">#&gt;  $ Q9UKI2:List of 14</span></span>
-<span id="cb3-47"><a href="#cb3-47" tabindex="-1"></a><span class="co">#&gt;  $ Q6NZY7:List of 14</span></span>
-<span id="cb3-48"><a href="#cb3-48" tabindex="-1"></a><span class="co">#&gt;  $ Q5VT25:List of 14</span></span>
-<span id="cb3-49"><a href="#cb3-49" tabindex="-1"></a><span class="co">#&gt;  $ Q6DT37:List of 14</span></span>
-<span id="cb3-50"><a href="#cb3-50" tabindex="-1"></a><span class="co">#&gt;  $ Q00587:List of 14</span></span>
-<span id="cb3-51"><a href="#cb3-51" tabindex="-1"></a><span class="co">#&gt;  $ O14613:List of 14</span></span>
-<span id="cb3-52"><a href="#cb3-52" tabindex="-1"></a><span class="co">#&gt;  $ Q9H3Q1:List of 14</span></span>
-<span id="cb3-53"><a href="#cb3-53" tabindex="-1"></a><span class="co">#&gt;  $ Q07960:List of 14</span></span>
-<span id="cb3-54"><a href="#cb3-54" tabindex="-1"></a><span class="co">#&gt;  $ Q9NRR8:List of 14</span></span>
-<span id="cb3-55"><a href="#cb3-55" tabindex="-1"></a><span class="co">#&gt;  $ Q9NRR3:List of 14</span></span>
-<span id="cb3-56"><a href="#cb3-56" tabindex="-1"></a><span class="co">#&gt;  $ Q9Y5S2:List of 14</span></span>
-<span id="cb3-57"><a href="#cb3-57" tabindex="-1"></a><span class="co">#&gt;  $ P60953:List of 14</span></span></code></pre></div>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>multi_prs1 <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_proteins_search</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="at">accession =</span> <span class="fu">c</span>(<span class="st">&quot;P04637&quot;</span>, <span class="st">&quot;P38398&quot;</span>, <span class="st">&quot;P24941&quot;</span>, <span class="st">&quot;P60953&quot;</span>, <span class="st">&quot;P06493&quot;</span>, <span class="st">&quot;Q02241&quot;</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>)</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="do">## As always, we use str() to inspect our object&#39;s structure</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="fu">str</span>(multi_prs1, <span class="dv">1</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">#&gt; List of 6</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">#&gt;  $ P60953:List of 14</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co">#&gt;  $ P24941:List of 14</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co">#&gt;  $ P04637:List of 14</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co">#&gt;  $ P06493:List of 14</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co">#&gt;  $ Q02241:List of 14</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="co">#&gt;  $ P38398:List of 14</span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="do">## 2 Or alternatively, search using Gene names, also we want to exclude isoforms and only retrieve swiss-prot entries</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>multi_prs2 <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_proteins_search</span>(</span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>  <span class="at">gene =</span> <span class="fu">c</span>(<span class="st">&quot;KIF23&quot;</span>, <span class="st">&quot;BRCA1&quot;</span>, <span class="st">&quot;TP53&quot;</span>, <span class="st">&quot;CDC42&quot;</span>),</span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>  <span class="at">reviewed =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>  <span class="at">taxid =</span> <span class="dv">9606</span>,</span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a>  <span class="at">isoform =</span> <span class="dv">0</span></span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a>)</span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a><span class="fu">str</span>(multi_prs2, <span class="dv">1</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a><span class="co">#&gt; List of 29</span></span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a><span class="co">#&gt;  $ Q9ULZ0:List of 14</span></span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="co">#&gt;  $ Q02241:List of 14</span></span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="co">#&gt;  $ P38398:List of 14</span></span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="co">#&gt;  $ Q12888:List of 14</span></span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="co">#&gt;  $ Q9HCN2:List of 14</span></span>
+<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="co">#&gt;  $ P04637:List of 14</span></span>
+<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a><span class="co">#&gt;  $ Q9Y2B4:List of 13</span></span>
+<span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a><span class="co">#&gt;  $ Q8IXH6:List of 14</span></span>
+<span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a><span class="co">#&gt;  $ Q53FA7:List of 14</span></span>
+<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a><span class="co">#&gt;  $ A1A5B4:List of 14</span></span>
+<span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a><span class="co">#&gt;  $ Q9NS56:List of 14</span></span>
+<span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a><span class="co">#&gt;  $ Q96A56:List of 14</span></span>
+<span id="cb3-37"><a href="#cb3-37" tabindex="-1"></a><span class="co">#&gt;  $ O14683:List of 14</span></span>
+<span id="cb3-38"><a href="#cb3-38" tabindex="-1"></a><span class="co">#&gt;  $ Q96S44:List of 14</span></span>
+<span id="cb3-39"><a href="#cb3-39" tabindex="-1"></a><span class="co">#&gt;  $ Q8NBR0:List of 14</span></span>
+<span id="cb3-40"><a href="#cb3-40" tabindex="-1"></a><span class="co">#&gt;  $ Q13625:List of 14</span></span>
+<span id="cb3-41"><a href="#cb3-41" tabindex="-1"></a><span class="co">#&gt;  $ Q7L0Q8:List of 14</span></span>
+<span id="cb3-42"><a href="#cb3-42" tabindex="-1"></a><span class="co">#&gt;  $ Q5VT25:List of 14</span></span>
+<span id="cb3-43"><a href="#cb3-43" tabindex="-1"></a><span class="co">#&gt;  $ Q9UKI2:List of 14</span></span>
+<span id="cb3-44"><a href="#cb3-44" tabindex="-1"></a><span class="co">#&gt;  $ Q6NZY7:List of 14</span></span>
+<span id="cb3-45"><a href="#cb3-45" tabindex="-1"></a><span class="co">#&gt;  $ Q00587:List of 14</span></span>
+<span id="cb3-46"><a href="#cb3-46" tabindex="-1"></a><span class="co">#&gt;  $ O14613:List of 14</span></span>
+<span id="cb3-47"><a href="#cb3-47" tabindex="-1"></a><span class="co">#&gt;  $ Q6DT37:List of 14</span></span>
+<span id="cb3-48"><a href="#cb3-48" tabindex="-1"></a><span class="co">#&gt;  $ Q9NRR8:List of 14</span></span>
+<span id="cb3-49"><a href="#cb3-49" tabindex="-1"></a><span class="co">#&gt;  $ Q9NRR3:List of 14</span></span>
+<span id="cb3-50"><a href="#cb3-50" tabindex="-1"></a><span class="co">#&gt;  $ Q9H3Q1:List of 14</span></span>
+<span id="cb3-51"><a href="#cb3-51" tabindex="-1"></a><span class="co">#&gt;  $ Q07960:List of 14</span></span>
+<span id="cb3-52"><a href="#cb3-52" tabindex="-1"></a><span class="co">#&gt;  $ Q9Y5S2:List of 14</span></span>
+<span id="cb3-53"><a href="#cb3-53" tabindex="-1"></a><span class="co">#&gt;  $ P60953:List of 14</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="do">## 3 Search for every proteins with chemokines keyword</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>multi_prs3 <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_proteins_search</span>(<span class="at">keyword =</span> <span class="st">&quot;chemokines&quot;</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="fu">str</span>(multi_prs3, <span class="dv">1</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#&gt; List of 17</span></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">#&gt;  $ P09703:List of 15</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">#&gt;  $ P0DTM9:List of 14</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#&gt;  $ Q6SW98:List of 15</span></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">#&gt;  $ P33854:List of 14</span></span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">#&gt;  $ P0DSV7:List of 15</span></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co">#&gt;  $ P19063:List of 14</span></span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#&gt;  $ P16849:List of 15</span></span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co">#&gt;  $ P69332:List of 15</span></span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt;  $ P24766:List of 15</span></span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co">#&gt;  $ P34016:List of 14</span></span>
-<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="co">#&gt;  $ P21064:List of 14</span></span>
-<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co">#&gt;  $ P0DSV8:List of 15</span></span>
-<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="co">#&gt;  $ F5HBX1:List of 14</span></span>
-<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co">#&gt;  $ Q98314:List of 15</span></span>
-<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="co">#&gt;  $ P69333:List of 15</span></span>
-<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="co">#&gt;  $ P07562:List of 14</span></span>
-<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="co">#&gt;  $ F5HF62:List of 14</span></span></code></pre></div>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>multi_prs3 <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_proteins_search</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="at">keyword =</span> <span class="st">&quot;chemokines&quot;</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>)</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="fu">str</span>(multi_prs3, <span class="dv">1</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">#&gt; List of 17</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#&gt;  $ P09703:List of 15</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">#&gt;  $ P0DTM9:List of 14</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">#&gt;  $ Q6SW98:List of 15</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co">#&gt;  $ P33854:List of 14</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#&gt;  $ P0DSV7:List of 15</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co">#&gt;  $ P19063:List of 14</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt;  $ P16849:List of 15</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co">#&gt;  $ P69332:List of 15</span></span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="co">#&gt;  $ P24766:List of 15</span></span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co">#&gt;  $ Q98314:List of 15</span></span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="co">#&gt;  $ P69333:List of 15</span></span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co">#&gt;  $ P07562:List of 14</span></span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="co">#&gt;  $ F5HF62:List of 14</span></span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="co">#&gt;  $ P34016:List of 14</span></span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="co">#&gt;  $ P21064:List of 14</span></span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a><span class="co">#&gt;  $ P0DSV8:List of 15</span></span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="co">#&gt;  $ F5HBX1:List of 14</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="do">## 4 Search for every protein of &quot;SARS-CoV-2&quot; virus in Swiss-Prot</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>multi_prs4 <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_proteins_search</span>(<span class="at">organism =</span> <span class="st">&quot;SARS-CoV-2&quot;</span>,</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>                                         <span class="at">reviewed =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="fu">str</span>(multi_prs4, <span class="dv">1</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt; List of 17</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt;  $ P0DTD3    :List of 14</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC6    :List of 14</span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt;  $ P0DTG0    :List of 13</span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC7    :List of 14</span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC2    :List of 14</span></span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC8    :List of 14</span></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC4    :List of 14</span></span>
-<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt;  $ A0A663DJA2:List of 14</span></span>
-<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC9    :List of 14</span></span>
-<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC5    :List of 14</span></span>
-<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC3    :List of 14</span></span>
-<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="co">#&gt;  $ P0DTD8    :List of 14</span></span>
-<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co">#&gt;  $ P0DTD2    :List of 14</span></span>
-<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="co">#&gt;  $ P0DTF1    :List of 13</span></span>
-<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="co">#&gt;  $ P0DTD1    :List of 14</span></span>
-<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC1    :List of 13</span></span>
-<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a><span class="co">#&gt;  $ P0DTG1    :List of 13</span></span></code></pre></div>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>multi_prs4 <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_proteins_search</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="at">organism =</span> <span class="st">&quot;SARS-CoV-2&quot;</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="at">reviewed =</span> <span class="cn">TRUE</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>)</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="fu">str</span>(multi_prs4, <span class="dv">1</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt; List of 17</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt;  $ P0DTD3    :List of 14</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC6    :List of 14</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt;  $ P0DTG0    :List of 13</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC7    :List of 14</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC2    :List of 14</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC8    :List of 14</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC4    :List of 14</span></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co">#&gt;  $ A0A663DJA2:List of 14</span></span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC9    :List of 14</span></span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC5    :List of 14</span></span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC3    :List of 14</span></span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="co">#&gt;  $ P0DTD8    :List of 14</span></span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="co">#&gt;  $ P0DTD2    :List of 14</span></span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="co">#&gt;  $ P0DTF1    :List of 13</span></span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a><span class="co">#&gt;  $ P0DTD1    :List of 14</span></span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a><span class="co">#&gt;  $ P0DTC1    :List of 13</span></span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a><span class="co">#&gt;  $ P0DTG1    :List of 13</span></span></code></pre></div>
+<hr />
 </div>
-<div id="functions-with-star-search-variant" class="section level2 heading2 hasAnchor" number="0.3">
-<h2 class="heading2 hasAnchor"><span class="header-section-number">0.3</span> Functions with
-<code>*_search</code> variant<a href="#functions-with-star-search-variant" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="functions-with-star-search-variant" class="section level1 hasAnchor" number="3">
+<h1 class="hasAnchor"><span class="header-section-number">3</span>
+Functions with <code>*_search</code> variant<a href="#functions-with-star-search-variant" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>The search variants are not limited to the above. Here is a list of
 the function that have both a retrieve and search variants. See their
 manuals for detailed guides and examples.</p>
@@ -591,12 +602,22 @@ manuals for detailed guides and examples.</p>
 <code>rba_uniprot_proteomics_search()</code></p></li>
 <li><p><code>rba_uniprot_antigens()</code> &amp;
 <code>rba_uniprot_antigens_search()</code></p></li>
+<li><p><code>rba_uniprot_epitope()</code> &amp;
+<code>rba_uniprot_epitope_search()</code></p></li>
+<li><p><code>rba_uniprot_rna_edit()</code> &amp;
+<code>rba_uniprot_rna_edit_search()</code></p></li>
 <li><p><code>rba_uniprot_proteomes()</code> &amp;
 <code>rba_uniprot_proteomes_search()</code></p></li>
 <li><p><code>rba_uniprot_ptm()</code> &amp;
 <code>rba_uniprot_ptm_search()</code></p></li>
 <li><p><code>rba_uniprot_mutagenesis()</code> &amp;
 <code>rba_uniprot_mutagenesis_search()</code></p></li>
+<li><p><code>rba_uniprot_proteomics_hpp()</code> &amp;
+<code>rba_uniprot_proteomics_hpp_search()</code></p></li>
+<li><p><code>rba_uniprot_proteomics_non_ptm()</code> &amp;
+<code>rba_uniprot_proteomics_non_ptm_search()</code></p></li>
+<li><p><code>rba_uniprot_proteomics_ptm()</code> &amp;
+<code>rba_uniprot_proteomics_ptm_search()</code></p></li>
 <li><p><code>rba_uniprot_genecentric()</code> &amp;
 <code>rba_uniprot_genecentric_search()</code></p></li>
 <li><p><code>rba_uniprot_uniparc()</code> &amp;
@@ -604,65 +625,87 @@ manuals for detailed guides and examples.</p>
 </ol>
 <hr />
 </div>
-<div id="uniprot-functions-categories" class="section level2 heading2 hasAnchor" number="0.4">
-<h2 class="heading2 hasAnchor"><span class="header-section-number">0.4</span> UniProt functions categories<a href="#uniprot-functions-categories" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="uniprot-functions-categories" class="section level1 hasAnchor" number="4">
+<h1 class="hasAnchor"><span class="header-section-number">4</span>
+UniProt functions categories<a href="#uniprot-functions-categories" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>The UniProt API endpoints are organized into 5 group. Here are those
 categories and rbioapi functions that correspond to each one. See the
 functions’ manuals for more details.</p>
-<div id="proteins" class="section level3 heading3 hasAnchor" number="0.4.1">
-<h3 class="heading3 hasAnchor"><span class="header-section-number">0.4.1</span> Proteins<a href="#proteins" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="proteins-proteins" class="section level4 heading4 hasAnchor" number="0.4.1.1">
-<h4 class="heading4 hasAnchor"><span class="header-section-number">0.4.1.1</span> Proteins:<a href="#proteins-proteins" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="proteins" class="section level2 hasAnchor" number="4.1">
+<h2 class="hasAnchor"><span class="header-section-number">4.1</span>
+Proteins<a href="#proteins" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="proteins-proteins" class="section level3 hasAnchor" number="4.1.1">
+<h3 class="hasAnchor"><span class="header-section-number">4.1.1</span>
+Proteins:<a href="#proteins-proteins" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p><code>rba_uniprot_proteins()</code></p></li>
 <li><p><code>rba_uniprot_proteins_search()</code></p></li>
 <li><p><code>rba_uniprot_proteins_crossref()</code></p></li>
 </ul>
 </div>
-<div id="proteins-features" class="section level4 heading4 hasAnchor" number="0.4.1.2">
-<h4 class="heading4 hasAnchor"><span class="header-section-number">0.4.1.2</span> Features<a href="#proteins-features" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="proteins-features" class="section level3 hasAnchor" number="4.1.2">
+<h3 class="hasAnchor"><span class="header-section-number">4.1.2</span>
+Features<a href="#proteins-features" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p><code>rba_uniprot_features()</code></p></li>
 <li><p><code>rba_uniprot_features_search()</code></p></li>
 </ul>
 </div>
-<div id="proteins-variation" class="section level4 heading4 hasAnchor" number="0.4.1.3">
-<h4 class="heading4 hasAnchor"><span class="header-section-number">0.4.1.3</span> Variation<a href="#proteins-variation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="proteins-variation" class="section level3 hasAnchor" number="4.1.3">
+<h3 class="hasAnchor"><span class="header-section-number">4.1.3</span>
+Variation<a href="#proteins-variation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>rba_uniprot_variation()</code></p>
 <p><code>rba_uniprot_variation_search()</code></p>
 </div>
-<div id="proteins-proteomics" class="section level4 heading4 hasAnchor" number="0.4.1.4">
-<h4 class="heading4 hasAnchor"><span class="header-section-number">0.4.1.4</span> Proteomics<a href="#proteins-proteomics" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<ul>
-<li><p><code>rba_uniprot_proteomics()</code></p></li>
-<li><p><code>rba_uniprot_proteomics_search()</code></p></li>
-</ul>
-</div>
-</div>
-<div id="post-translational-modification-ptm" class="section level3 heading3 hasAnchor" number="0.4.2">
-<h3 class="heading3 hasAnchor"><span class="header-section-number">0.4.2</span> Post-Translational
-Modification (PTM)<a href="#post-translational-modification-ptm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p><code>rba_uniprot_ptm()</code></p></li>
-<li><p><code>rba_uniprot_ptm_search()</code></p></li>
-</ul>
-</div>
-<div id="antigens" class="section level3 heading3 hasAnchor" number="0.4.3">
-<h3 class="heading3 hasAnchor"><span class="header-section-number">0.4.3</span> Antigens<a href="#antigens" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="antigens" class="section level3 hasAnchor" number="4.1.4">
+<h3 class="hasAnchor"><span class="header-section-number">4.1.4</span>
+Antigens<a href="#antigens" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p><code>rba_uniprot_antigens()</code></p></li>
 <li><p><code>rba_uniprot_antigens_search()</code></p></li>
 </ul>
 </div>
-<div id="mutagenesis" class="section level3 heading3 hasAnchor" number="0.4.4">
-<h3 class="heading3 hasAnchor"><span class="header-section-number">0.4.4</span> Mutagenesis<a href="#mutagenesis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="epitopes" class="section level3 hasAnchor" number="4.1.5">
+<h3 class="hasAnchor"><span class="header-section-number">4.1.5</span>
+Epitopes<a href="#epitopes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p><code>rba_uniprot_epitope()</code></p></li>
+<li><p><code>rba_uniprot_epitope_search()</code></p></li>
+</ul>
+</div>
+<div id="mutagenesis" class="section level3 hasAnchor" number="4.1.6">
+<h3 class="hasAnchor"><span class="header-section-number">4.1.6</span>
+Mutagenesis<a href="#mutagenesis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p><code>rba_uniprot_mutagenesis()</code></p></li>
 <li><p><code>rba_uniprot_mutagenesis_search()</code></p></li>
 </ul>
 </div>
-<div id="proteomes" class="section level3 heading3 hasAnchor" number="0.4.5">
-<h3 class="heading3 hasAnchor"><span class="header-section-number">0.4.5</span> Proteomes<a href="#proteomes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="rna-editing" class="section level3 hasAnchor" number="4.1.7">
+<h3 class="hasAnchor"><span class="header-section-number">4.1.7</span>
+RNA-Editing<a href="#rna-editing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p><code>rba_uniprot_rna_edit()</code></p></li>
+<li><p><code>rba_uniprot_rna_edit_search()</code></p></li>
+</ul>
+</div>
+</div>
+<div id="proteomics" class="section level2 hasAnchor" number="4.2">
+<h2 class="hasAnchor"><span class="header-section-number">4.2</span>
+Proteomics<a href="#proteomics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p><code>rba_uniprot_proteomics_species()</code></p></li>
+<li><p><code>rba_uniprot_proteomics_hpp()</code></p></li>
+<li><p><code>rba_uniprot_proteomics_hpp_search()</code></p></li>
+<li><p><code>rba_uniprot_proteomics_non_ptm()</code></p></li>
+<li><p><code>rba_uniprot_proteomics_non_ptm_search()</code></p></li>
+<li><p><code>rba_uniprot_proteomics_ptm()</code></p></li>
+<li><p><code>rba_uniprot_proteomics_ptm_search()</code></p></li>
+</ul>
+</div>
+<div id="proteomes" class="section level2 hasAnchor" number="4.3">
+<h2 class="hasAnchor"><span class="header-section-number">4.3</span>
+Proteomes<a href="#proteomes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p><code>rba_uniprot_proteomes()</code></p></li>
 <li><p><code>rba_uniprot_proteomes_search()</code></p></li>
@@ -670,8 +713,9 @@ Modification (PTM)<a href="#post-translational-modification-ptm" class="anchor-s
 <li><p><code>rba_uniprot_genecentric_search()</code></p></li>
 </ul>
 </div>
-<div id="taxonomy" class="section level3 heading3 hasAnchor" number="0.4.6">
-<h3 class="heading3 hasAnchor"><span class="header-section-number">0.4.6</span> Taxonomy<a href="#taxonomy" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="taxonomy" class="section level2 hasAnchor" number="4.4">
+<h2 class="hasAnchor"><span class="header-section-number">4.4</span>
+Taxonomy<a href="#taxonomy" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p><code>rba_uniprot_taxonomy()</code></p></li>
 <li><p><code>rba_uniprot_taxonomy_lca()</code></p></li>
@@ -681,17 +725,20 @@ Modification (PTM)<a href="#post-translational-modification-ptm" class="anchor-s
 <li><p><code>rba_uniprot_taxonomy_relationship()</code></p></li>
 </ul>
 </div>
-<div id="coordinates" class="section level3 heading3 hasAnchor" number="0.4.7">
-<h3 class="heading3 hasAnchor"><span class="header-section-number">0.4.7</span> Coordinates<a href="#coordinates" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="coordinates" class="section level2 hasAnchor" number="4.5">
+<h2 class="hasAnchor"><span class="header-section-number">4.5</span>
+Coordinates<a href="#coordinates" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p><code>rba_uniprot_coordinates()</code></p></li>
 <li><p><code>rba_uniprot_coordinates_search()</code></p></li>
 <li><p><code>rba_uniprot_coordinates_location()</code></p></li>
 <li><p><code>rba_uniprot_coordinates_sequence()</code></p></li>
+<li><p><code>rba_uniprot_genome_coordinates_sequence()</code></p></li>
 </ul>
 </div>
-<div id="uniparc" class="section level3 heading3 hasAnchor" number="0.4.8">
-<h3 class="heading3 hasAnchor"><span class="header-section-number">0.4.8</span> UniParc<a href="#uniparc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="uniparc" class="section level2 hasAnchor" number="4.6">
+<h2 class="hasAnchor"><span class="header-section-number">4.6</span>
+UniParc<a href="#uniparc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p><code>rba_uniprot_uniparc()</code></p></li>
 <li><p><code>rba_uniprot_uniparc_search()</code></p></li>
@@ -701,13 +748,14 @@ Modification (PTM)<a href="#post-translational-modification-ptm" class="anchor-s
 <hr />
 </div>
 </div>
-<div id="citations" class="section level2 heading2 hasAnchor" number="0.5">
-<h2 class="heading2 hasAnchor"><span class="header-section-number">0.5</span> How to Cite?<a href="#citations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="citations" class="section level1 hasAnchor" number="5">
+<h1 class="hasAnchor"><span class="header-section-number">5</span> How
+to Cite?<a href="#citations" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>To cite UniProt (Please see <a href="https://www.uniprot.org/help/publications" class="uri">https://www.uniprot.org/help/publications</a>):</p>
 <ul>
-<li>The UniProt Consortium, UniProt: the universal protein knowledgebase
-in 2021, <em>Nucleic Acids Research</em>, Volume 49, Issue D1, 8 January
-2021, Pages D480–D489, <a href="https://doi.org/10.1093/nar/gkaa1100" class="uri">https://doi.org/10.1093/nar/gkaa1100</a></li>
+<li>The UniProt Consortium , UniProt: the Universal Protein
+Knowledgebase in 2025, <em>Nucleic Acids Research</em>, 2024;, gkae1010,
+<a href="https://doi.org/10.1093/nar/gkae1010" class="uri">https://doi.org/10.1093/nar/gkae1010</a></li>
 <li>Andrew Nightingale, Ricardo Antunes, Emanuele Alpi, Borisas
 Bursteinas, Leonardo Gonzales, Wudong Liu, Jie Luo, Guoying Qi, Edd
 Turner, Maria Martin, The Proteins API: accessing key integrated protein
@@ -722,8 +770,9 @@ Volume 38, Issue 10, 15 May 2022, Pages 2952–2953, <a href="https://doi.org/10
 </ul>
 <hr />
 </div>
-<div id="links" class="section level1 heading2 hasAnchor" number="1">
-<h1 class="heading2 hasAnchor"><span class="header-section-number">1</span> Links<a href="#links" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="links" class="section level1 hasAnchor" number="6">
+<h1 class="hasAnchor"><span class="header-section-number">6</span>
+Links<a href="#links" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <ul>
 <li><p><a href="https://rbioapi.moosa-r.com/articles/rbioapi_uniprot.html" title="2.F: UniProt &amp; rbioapi">This article in rbioapi
 documentation site</a></p></li>
@@ -734,11 +783,12 @@ vignette index</a></p></li>
 </ul>
 <hr />
 </div>
-<div id="session-info" class="section level1 heading2 hasAnchor" number="2">
-<h1 class="heading2 hasAnchor"><span class="header-section-number">2</span> Session info<a href="#session-info" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<pre><code>#&gt; R version 4.3.3 (2024-02-29 ucrt)
-#&gt; Platform: x86_64-w64-mingw32/x64 (64-bit)
-#&gt; Running under: Windows 11 x64 (build 22631)
+<div id="session-info" class="section level1 hasAnchor" number="7">
+<h1 class="hasAnchor"><span class="header-section-number">7</span>
+Session info<a href="#session-info" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<pre><code>#&gt; R version 4.4.2 (2024-10-31 ucrt)
+#&gt; Platform: x86_64-w64-mingw32/x64
+#&gt; Running under: Windows 11 x64 (build 26100)
 #&gt; 
 #&gt; Matrix products: default
 #&gt; 
@@ -757,17 +807,16 @@ vignette index</a></p></li>
 #&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #&gt; 
 #&gt; other attached packages:
-#&gt; [1] rbioapi_0.8.1
+#&gt; [1] rbioapi_0.8.2
 #&gt; 
 #&gt; loaded via a namespace (and not attached):
-#&gt;  [1] digest_0.6.35     R6_2.5.1          fastmap_1.1.1     xfun_0.43        
-#&gt;  [5] magrittr_2.0.3    cachem_1.0.8      knitr_1.45        htmltools_0.5.8  
-#&gt;  [9] png_0.1-8         rmarkdown_2.26    lifecycle_1.0.4   DT_0.32          
-#&gt; [13] cli_3.6.2         grid_4.3.3        sass_0.4.9        jquerylib_0.1.4  
-#&gt; [17] compiler_4.3.3    highr_0.10        httr_1.4.7        rstudioapi_0.16.0
-#&gt; [21] tools_4.3.3       curl_5.2.1        evaluate_0.23     bslib_0.6.2      
-#&gt; [25] yaml_2.3.8        htmlwidgets_1.6.4 rlang_1.1.3       jsonlite_1.8.8   
-#&gt; [29] crosstalk_1.2.1</code></pre>
+#&gt;  [1] digest_0.6.37     R6_2.5.1          fastmap_1.2.0     xfun_0.50        
+#&gt;  [5] magrittr_2.0.3    cachem_1.1.0      knitr_1.49        htmltools_0.5.8.1
+#&gt;  [9] png_0.1-8         rmarkdown_2.29    lifecycle_1.0.4   DT_0.33          
+#&gt; [13] cli_3.6.3         grid_4.4.2        sass_0.4.9        jquerylib_0.1.4  
+#&gt; [17] compiler_4.4.2    httr_1.4.7        rstudioapi_0.17.1 tools_4.4.2      
+#&gt; [21] curl_6.1.0        evaluate_1.0.3    bslib_0.8.0       yaml_2.3.10      
+#&gt; [25] htmlwidgets_1.6.4 rlang_1.1.4       jsonlite_1.8.9    crosstalk_1.2.1</code></pre>
 </div>
 
 

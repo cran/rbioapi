@@ -12,7 +12,7 @@
 
 <meta name="author" content="Moosa Rezwani" />
 
-<meta name="date" content="2024-03-30" />
+<meta name="date" content="2025-02-07" />
 
 <title>1: rbioapi: User-Friendly R Interface to Biologic Web Services’ API</title>
 
@@ -71,7 +71,7 @@ overflow: visible;
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -82,7 +82,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
 { counter-reset: source-line 0; }
@@ -361,7 +361,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h1 class="title toc-ignore">1: rbioapi: User-Friendly R Interface to
 Biologic Web Services’ API</h1>
 <h4 class="author">Moosa Rezwani</h4>
-<h4 class="date">2024-03-30</h4>
+<h4 class="date">2025-02-07</h4>
 
 
 <div id="TOC">
@@ -389,15 +389,15 @@ services</a></li>
 </ul></li>
 <li><a href="#code-of-conduct" id="toc-code-of-conduct"><span class="toc-section-number">9</span> Code of conduct</a></li>
 <li><a href="#what-next" id="toc-what-next"><span class="toc-section-number">10</span> What next?</a></li>
-<li><a href="#design-philosophy" id="toc-design-philosophy"><span class="toc-section-number">11</span> Design philosophy of
-rbioapi</a></li>
+<li><a href="#design" id="toc-design"><span class="toc-section-number">11</span> Design of rbioapi</a></li>
 <li><a href="#links" id="toc-links"><span class="toc-section-number">12</span> Links</a></li>
 <li><a href="#session-info" id="toc-session-info"><span class="toc-section-number">13</span> Session info</a></li>
 </ul>
 </div>
 
-<div id="what-does-rbioapi-do" class="section level1 heading2 hasAnchor" number="1">
-<h1 class="heading2 hasAnchor"><span class="header-section-number">1</span> What does rbioapi do?<a href="#what-does-rbioapi-do" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="what-does-rbioapi-do" class="section level1 hasAnchor" number="1">
+<h1 class="hasAnchor"><span class="header-section-number">1</span> What
+does rbioapi do?<a href="#what-does-rbioapi-do" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Currently fully supports <strong>Enrichr</strong>,
 <strong>JASPAR</strong>, <strong>miEAA</strong>,
 <strong>PANTHER</strong>, <strong>Reactome</strong>,
@@ -414,8 +414,9 @@ will be added periodically. Feel free to <a href="https://github.com/moosa-r/rbi
 databases or services you often use.</p>
 <hr />
 </div>
-<div id="what-is-supported-by-rbioapi" class="section level1 heading2 hasAnchor" number="2">
-<h1 class="heading2 hasAnchor"><span class="header-section-number">2</span> What is Supported by rbioapi?<a href="#what-is-supported-by-rbioapi" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="what-is-supported-by-rbioapi" class="section level1 hasAnchor" number="2">
+<h1 class="hasAnchor"><span class="header-section-number">2</span> What
+is Supported by rbioapi?<a href="#what-is-supported-by-rbioapi" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>rbioapi is dedicated to <strong>Biological or Medical</strong>
 databases and web services. Currently, rbioapi supports and covers every
 API resources in the following services: (in alphabetical order):</p>
@@ -444,10 +445,10 @@ article</a>)</li>
 <ol style="list-style-type: decimal">
 <li>currently none</li>
 </ol>
-<p>Each of the services has its dedicated vignette article. However, In
-this article, I will write about the general framework of rbioapi. Make
-sure to check the vignette article of each service to learn more about
-how to use them.</p>
+<p>Each of the services has its dedicated vignette article. In this
+article, I will write about the general framework of rbioapi. Make sure
+to check the vignette article of each service to learn more about how to
+use them.</p>
 <p><strong>Note That:</strong> rbioapi is an ongoing project. New
 databases and services will be implemented periodically in order to
 gradually make the package as comprehensive as possible. Do you see
@@ -456,24 +457,25 @@ any database/service by creating an issue on our GitHub <a href="https://github.
 suggestions.</p>
 <hr />
 </div>
-<div id="How-to-install" class="section level1 heading2 hasAnchor" number="3">
-<h1 class="heading2 hasAnchor"><span class="header-section-number">3</span> How to install?<a href="#How-to-install" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>You can install the stable release version of <a href="rbioapi.html" title="rbioapi: User-Friendly R Interface to Biologic Web Services&#39; API">rbioapi</a>
-from <a href="https://cran.r-project.org/package=rbioapi" title="rbioapi page on CRAN (The Comprehensive R Archive Network)">CRAN</a>
-with:</p>
+<div id="How-to-install" class="section level1 hasAnchor" number="3">
+<h1 class="hasAnchor"><span class="header-section-number">3</span> How
+to install?<a href="#How-to-install" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>You can install the <a href="https://cran.r-project.org/package=rbioapi" title="rbioapi: User-Friendly R Interface to Biologic Web Services&#39; API">stable
+release version of rbioapi</a> from <a href="https://cran.r-project.org/" title="The Comprehensive R Archive Network">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rbioapi&quot;</span>)</span></code></pre></div>
-<p>However, the CRAN version is released at most once every 1-2 months,
-You can install the most recent (development) version from <a href="https://github.com/moosa-r/rbioapi/" title="rbioapi repository on GitHub">GitHub</a> with:</p>
+<p>However, the CRAN version is released at longer intervals, You can
+install the most recent -development- version from <a href="https://github.com/moosa-r/rbioapi/" title="rbioapi repository on GitHub">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;moosa-r/rbioapi&quot;</span>)</span></code></pre></div>
 <p>Now, we can load the package:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(rbioapi)</span></code></pre></div>
 <hr />
 </div>
-<div id="naming-conventions" class="section level1 heading2 hasAnchor" number="4">
-<h1 class="heading2 hasAnchor"><span class="header-section-number">4</span> Naming conventions<a href="#naming-conventions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>To make the namespace more organized, functions has been named with
-the following pattern:</p>
+<div id="naming-conventions" class="section level1 hasAnchor" number="4">
+<h1 class="hasAnchor"><span class="header-section-number">4</span>
+Naming conventions<a href="#naming-conventions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>To keep the namespace organized, functions names follow this
+pattern:</p>
 <pre><code>rba_[service_name]_[resource_name]</code></pre>
 <p>For example, <code>rba_string_version()</code> will call <a href="https://string-db.org/" title="STRING: Protein-Protein Interaction Networks Functional Enrichment Analysis">STRING</a>’s
 version resource.</p>
@@ -500,17 +502,18 @@ following naming schema:</p>
 are helper functions. More on that later.</p>
 <hr />
 </div>
-<div id="changing-the-options" class="section level1 heading2 hasAnchor" number="5">
-<h1 class="heading2 hasAnchor"><span class="header-section-number">5</span> Changing the options<a href="#changing-the-options" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>To provide more control, multiple options have been implemented. See
-the manual of <code>rba_options()</code> function for a full description
-of available options. In short, some of the options will govern
-rbioapi’s connection with servers (e.g. timeout, retry) and some of the
-options will modify your experience with rbioapi (e.g. verbose,
-diagnostics, save_file). There are two ways that you may use to change
-any option. Also, you can get table of available rbioapi options and
-their current values by calling <code>rba_options()</code>without any
-argument:</p>
+<div id="changing-the-options" class="section level1 hasAnchor" number="5">
+<h1 class="hasAnchor"><span class="header-section-number">5</span>
+Changing the options<a href="#changing-the-options" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>To give users greater control, rbioapi offers multiple configurable
+options. See the manual of <code>rba_options()</code> function for a
+full description of available options. In short, some of the options
+will govern rbioapi’s connection with servers (e.g. timeout, retry) and
+some of the options will modify your experience with rbioapi
+(e.g. verbose, diagnostics, save_file). There are two ways that you may
+use to change any option. Also, you can get table of available rbioapi
+options and their current values by calling
+<code>rba_options()</code>without any argument:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">rba_options</span>()</span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="co">#&gt;   rbioapi_option current_value            allowed_value</span></span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co">#&gt; 1    diagnostics         FALSE     Logical (TRUE/FALSE)</span></span>
@@ -523,8 +526,9 @@ argument:</p>
 <span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; 8        timeout            30 Numeric (0.1 or greater)</span></span>
 <span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; 9        verbose          TRUE     Logical (TRUE/FALSE)</span></span></code></pre></div>
 <p>Now, let us consider the ways in which we can alter the settings:</p>
-<div id="changing-the-options-change-the-option-globally" class="section level2 heading3 hasAnchor" number="5.1">
-<h2 class="heading3 hasAnchor"><span class="header-section-number">5.1</span> Change the option globally<a href="#changing-the-options-change-the-option-globally" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="changing-the-options-change-the-option-globally" class="section level2 hasAnchor" number="5.1">
+<h2 class="hasAnchor"><span class="header-section-number">5.1</span>
+Change the option globally<a href="#changing-the-options-change-the-option-globally" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Changing an option globally means that for the rest of your R
 session, any rbioapi function will respect the changed option. To do
 this, use <code>rba_options().</code> Each argument in this function
@@ -533,32 +537,50 @@ desired new values, you could globally alter that rbioapi option. for
 example:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">rba_options</span>(<span class="at">save_file =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="do">## From now on, the raw file of server&#39;s response will be saved to your working directory.</span></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">rba_options</span>(<span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="do">## From now on, the package will be quiet.</span></span></code></pre></div>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="fu">rba_options</span>(<span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="do">## From now on, the package will be quiet.</span></span></code></pre></div>
 </div>
-<div id="changing-the-options-change-the-option-only-within-a-function-call" class="section level2 heading3 hasAnchor" number="5.2">
-<h2 class="heading3 hasAnchor"><span class="header-section-number">5.2</span> Change the option only within a
-function call<a href="#changing-the-options-change-the-option-only-within-a-function-call" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="changing-the-options-change-the-option-only-within-a-function-call" class="section level2 hasAnchor" number="5.2">
+<h2 class="hasAnchor"><span class="header-section-number">5.2</span>
+Change the option only within a function call<a href="#changing-the-options-change-the-option-only-within-a-function-call" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You can pass additional arguments to any rbioapi function using
 “ellipsis” (the familiar <code>…</code> or dot dot dot!). Meaning that
 you can call any function with additional arguments where each is
 ‘option = value’ pair. This way, any changes in options will be confined
 within that particular function call. For example:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="do">## Save the server&#39;s raw response file:</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rba_reactome_species</span>(<span class="at">only_main =</span> <span class="cn">TRUE</span>, <span class="at">save_file =</span> <span class="st">&quot;reactome_species.json&quot;</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="do">## Also, in the case of connection failure, retry up to 10 times:</span></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rba_reactome_species</span>(<span class="at">only_main =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>                         <span class="at">save_file =</span> <span class="st">&quot;reactome_species.json&quot;</span>, <span class="at">retry_max =</span> <span class="dv">10</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="do">## Run these codes in your own R session to see the difference.</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="do">## show internal diagnostics boring details</span></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_proteins_crossref</span>(<span class="at">db_id =</span> <span class="st">&quot;CD40&quot;</span>, <span class="at">db_name =</span> <span class="st">&quot;HGNC&quot;</span>, <span class="at">diagnostics =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="do">## The next function you call, will still use the default rbioapi options</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_proteins_crossref</span>(<span class="at">db_id =</span> <span class="st">&quot;CD40&quot;</span>, <span class="at">db_name =</span> <span class="st">&quot;HGNC&quot;</span>)</span></code></pre></div>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rba_reactome_species</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="at">only_main =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  <span class="at">save_file =</span> <span class="st">&quot;reactome_species.json&quot;</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>)</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="do">## Also, in the case of connection failure, retry up to 10 times:</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rba_reactome_species</span>(</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>  <span class="at">only_main =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>  <span class="at">save_file =</span> <span class="st">&quot;reactome_species.json&quot;</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>  <span class="at">retry_max =</span> <span class="dv">10</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="do">## Run these codes in your own R session to see the difference:</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="do">## show internal diagnostics boring details</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_proteins_crossref</span>(</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  <span class="at">db_id =</span> <span class="st">&quot;CD40&quot;</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>  <span class="at">db_name =</span> <span class="st">&quot;HGNC&quot;</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>  <span class="at">diagnostics =</span> <span class="cn">TRUE</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>)</span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="do">## The next function you call, will still use the default rbioapi options</span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_proteins_crossref</span>(</span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>  <span class="at">db_id =</span> <span class="st">&quot;CD40&quot;</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a>  <span class="at">db_name =</span> <span class="st">&quot;HGNC&quot;</span></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a>)</span></code></pre></div>
 <hr />
 </div>
 </div>
-<div id="connection-test" class="section level1 heading2 hasAnchor" number="6">
-<h1 class="heading2 hasAnchor"><span class="header-section-number">6</span> Connection test<a href="#connection-test" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="connection-test" class="section level1 hasAnchor" number="6">
+<h1 class="hasAnchor"><span class="header-section-number">6</span>
+Connection test<a href="#connection-test" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>The second exception in functions’ naming schema is
 <code>rba_connection_test()</code>. Run this simple function to check
 your connection with the supported services/databases. If you encounter
@@ -588,9 +610,9 @@ your internet connection or the servers are fine.</p>
 <span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a><span class="co">#&gt; +++ The server is responding.</span></span></code></pre></div>
 <hr />
 </div>
-<div id="multi-pages" class="section level1 heading2 hasAnchor" number="7">
-<h1 class="heading2 hasAnchor"><span class="header-section-number">7</span> Iterating over paginated
-results<a href="#multi-pages" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="multi-pages" class="section level1 hasAnchor" number="7">
+<h1 class="hasAnchor"><span class="header-section-number">7</span>
+Iterating over paginated results<a href="#multi-pages" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Some API resources will return paginated responses. This is
 particularly common in API resources which return potentially very large
 responses. In rbioapi, for these cases, there are arguments such as
@@ -602,43 +624,53 @@ you to search taxonomic nodes in <a href="https://www.uniprot.org" title="Univer
 can potentially have a huge size, so <a href="https://www.uniprot.org" title="Universal Protein Resource (UniProt)">UniProt</a> returns a
 paginated response. For example, if we search for nodes that contain
 “adenovirus”, there is a large number of hits:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>adeno <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_taxonomy_name</span>(<span class="at">name =</span> <span class="st">&quot;adenovirus&quot;</span>,</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>                                   <span class="at">search_type =</span> <span class="st">&quot;contain&quot;</span>,</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>                                   <span class="at">page_number =</span> <span class="dv">1</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="fu">str</span>(adeno, <span class="at">max.level =</span> <span class="dv">2</span>)</span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co">#&gt; List of 2</span></span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co">#&gt;  $ taxonomies:&#39;data.frame&#39;:  200 obs. of  8 variables:</span></span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co">#&gt;   ..$ taxonomyId    : int [1:200] 10509 10510 10511 10512 10513 10514 10515 10519 10521 10522 ...</span></span>
-<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co">#&gt;   ..$ mnemonic      : chr [1:200] &quot;9ADEN&quot; &quot;ADEB3&quot; &quot;ADEB7&quot; &quot;9ADEN&quot; ...</span></span>
-<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co">#&gt;   ..$ scientificName: chr [1:200] &quot;Mastadenovirus&quot; &quot;Bovine adenovirus B serotype 3&quot; &quot;Bovine adenovirus 7&quot; &quot;Canine adenovirus 1&quot; ...</span></span>
-<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co">#&gt;   ..$ rank          : chr [1:200] &quot;genus&quot; &quot;no rank&quot; &quot;no rank&quot; &quot;no rank&quot; ...</span></span>
-<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="co">#&gt;   ..$ superregnum   : chr [1:200] &quot;V&quot; &quot;V&quot; &quot;V&quot; &quot;V&quot; ...</span></span>
-<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="co">#&gt;   ..$ hidden        : logi [1:200] FALSE TRUE TRUE TRUE TRUE TRUE ...</span></span>
-<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="co">#&gt;   ..$ commonName    : chr [1:200] NA &quot;BAdV-3&quot; &quot;BAdV-7&quot; NA ...</span></span>
-<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="co">#&gt;   ..$ synonym       : chr [1:200] NA &quot;Mastadenovirus bos3&quot; NA NA ...</span></span>
-<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="co">#&gt;  $ pageInfo  :List of 3</span></span>
-<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="co">#&gt;   ..$ resultsPerPage: int 200</span></span>
-<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="co">#&gt;   ..$ currentPage   : int 1</span></span>
-<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="co">#&gt;   ..$ totalRecords  : int 1044</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>adeno <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_taxonomy_name</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>  <span class="at">name =</span> <span class="st">&quot;adenovirus&quot;</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>  <span class="at">search_type =</span> <span class="st">&quot;contain&quot;</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>  <span class="at">page_number =</span> <span class="dv">1</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>)</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="fu">str</span>(adeno, <span class="at">max.level =</span> <span class="dv">2</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co">#&gt; List of 2</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co">#&gt;  $ taxonomies:&#39;data.frame&#39;:  200 obs. of  8 variables:</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co">#&gt;   ..$ taxonomyId    : int [1:200] 10509 10510 10511 10512 10513 10514 10515 10519 10521 10522 ...</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="co">#&gt;   ..$ mnemonic      : chr [1:200] &quot;9ADEN&quot; &quot;ADEB3&quot; &quot;ADEB7&quot; &quot;9ADEN&quot; ...</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="co">#&gt;   ..$ scientificName: chr [1:200] &quot;Mastadenovirus&quot; &quot;Bovine adenovirus B serotype 3&quot; &quot;Bovine adenovirus 7&quot; &quot;Canine adenovirus 1&quot; ...</span></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="co">#&gt;   ..$ rank          : chr [1:200] &quot;genus&quot; &quot;serotype&quot; &quot;serotype&quot; &quot;serotype&quot; ...</span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="co">#&gt;   ..$ superregnum   : chr [1:200] &quot;V&quot; &quot;V&quot; &quot;V&quot; &quot;V&quot; ...</span></span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="co">#&gt;   ..$ hidden        : logi [1:200] FALSE TRUE TRUE TRUE TRUE TRUE ...</span></span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="co">#&gt;   ..$ commonName    : chr [1:200] NA &quot;BAdV-3&quot; &quot;BAdV-7&quot; NA ...</span></span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="co">#&gt;   ..$ synonym       : chr [1:200] NA &quot;Mastadenovirus bos3&quot; NA NA ...</span></span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="co">#&gt;  $ pageInfo  :List of 3</span></span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="co">#&gt;   ..$ resultsPerPage: int 200</span></span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a><span class="co">#&gt;   ..$ currentPage   : int 1</span></span>
+<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a><span class="co">#&gt;   ..$ totalRecords  : int 1103</span></span></code></pre></div>
 <p>As you can see, the server has returned the first page of the
 response, to retrieve the other pages, you should make separate calls
 and change the “page_number” argument within each call, or simply use
 <code>rba_pages()</code> as demonstrated below:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>adeno_pages <span class="ot">=</span> <span class="fu">rba_pages</span>(<span class="fu">quote</span>(<span class="fu">rba_uniprot_taxonomy_name</span>(<span class="at">name =</span> <span class="st">&quot;adenovirus&quot;</span>,</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>                                   <span class="at">search_type =</span> <span class="st">&quot;contain&quot;</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>                                   <span class="at">page_number =</span> <span class="st">&quot;pages:1:3&quot;</span>)))</span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="do">## You can inspect the structure of the response:</span></span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="fu">str</span>(adeno_pages, <span class="at">max.level =</span> <span class="dv">2</span>)</span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="co">#&gt; List of 3</span></span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="co">#&gt;  $ page_1:List of 2</span></span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="co">#&gt;   ..$ taxonomies:&#39;data.frame&#39;:   200 obs. of  8 variables:</span></span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="co">#&gt;   ..$ pageInfo  :List of 3</span></span>
-<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="co">#&gt;  $ page_2:List of 2</span></span>
-<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="co">#&gt;   ..$ taxonomies:&#39;data.frame&#39;:   200 obs. of  8 variables:</span></span>
-<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="co">#&gt;   ..$ pageInfo  :List of 3</span></span>
-<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="co">#&gt;  $ page_3:List of 2</span></span>
-<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="co">#&gt;   ..$ taxonomies:&#39;data.frame&#39;:   200 obs. of  8 variables:</span></span>
-<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a><span class="co">#&gt;   ..$ pageInfo  :List of 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>adeno_pages <span class="ot">=</span> <span class="fu">rba_pages</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>  <span class="fu">quote</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>    <span class="fu">rba_uniprot_taxonomy_name</span>(</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>      <span class="at">name =</span> <span class="st">&quot;adenovirus&quot;</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>      <span class="at">search_type =</span> <span class="st">&quot;contain&quot;</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>      <span class="at">page_number =</span> <span class="st">&quot;pages:1:3&quot;</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>    )</span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>  )</span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>)</span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="do">## You can inspect the structure of the response:</span></span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="fu">str</span>(adeno_pages, <span class="at">max.level =</span> <span class="dv">2</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="co">#&gt; List of 3</span></span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="co">#&gt;  $ page_1:List of 2</span></span>
+<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a><span class="co">#&gt;   ..$ taxonomies:&#39;data.frame&#39;:   200 obs. of  8 variables:</span></span>
+<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a><span class="co">#&gt;   ..$ pageInfo  :List of 3</span></span>
+<span id="cb12-17"><a href="#cb12-17" tabindex="-1"></a><span class="co">#&gt;  $ page_2:List of 2</span></span>
+<span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a><span class="co">#&gt;   ..$ taxonomies:&#39;data.frame&#39;:   200 obs. of  8 variables:</span></span>
+<span id="cb12-19"><a href="#cb12-19" tabindex="-1"></a><span class="co">#&gt;   ..$ pageInfo  :List of 3</span></span>
+<span id="cb12-20"><a href="#cb12-20" tabindex="-1"></a><span class="co">#&gt;  $ page_3:List of 2</span></span>
+<span id="cb12-21"><a href="#cb12-21" tabindex="-1"></a><span class="co">#&gt;   ..$ taxonomies:&#39;data.frame&#39;:   200 obs. of  6 variables:</span></span>
+<span id="cb12-22"><a href="#cb12-22" tabindex="-1"></a><span class="co">#&gt;   ..$ pageInfo  :List of 3</span></span></code></pre></div>
 <p>As you can see, what we have done was:</p>
 <ol style="list-style-type: decimal">
 <li><p>Wrap the function call in <code>qoute()</code> and enter that as
@@ -649,27 +681,29 @@ this format: “pages:start:end”. For example, we supplied page_number =
 </ol>
 <hr />
 </div>
-<div id="how-to-cite" class="section level1 heading2 hasAnchor" number="8">
-<h1 class="heading2 hasAnchor"><span class="header-section-number">8</span> How and what to cite?<a href="#how-to-cite" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="how-to-cite" class="section level1 hasAnchor" number="8">
+<h1 class="hasAnchor"><span class="header-section-number">8</span> How
+and what to cite?<a href="#how-to-cite" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>rbioapi is an interface between you and other databases and services.
 Thus, if you have used rbioapi in published research, <strong>in
-addition to kindly citing rbioapi, <u><em>make sure to fully and
-properly cite the databases/services you have used</em></u></strong>.
-Suggested citations have been added in the functions’ manuals, under the
+addition to kindly citing rbioapi, <u><em>ensure to fully and properly
+cite the databases/services you have used</em></u></strong>. Suggested
+citations have been added in the functions’ manuals, under the
 “references” section; Nevertheless, it is the user’s responsibility to
 check for proper citations and to properly cite the database/services
 that they have used.</p>
-<div id="how-to-cite-rbioapi" class="section level2 heading3 hasAnchor" number="8.1">
-<h2 class="heading3 hasAnchor"><span class="header-section-number">8.1</span> How to cite rbioapi<a href="#how-to-cite-rbioapi" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="how-to-cite-rbioapi" class="section level2 hasAnchor" number="8.1">
+<h2 class="hasAnchor"><span class="header-section-number">8.1</span> How
+to cite rbioapi<a href="#how-to-cite-rbioapi" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Moosa Rezwani, Ali Akbar Pourfathollah, Farshid Noorbakhsh, rbioapi:
 user-friendly R interface to biologic web services’ API, Bioinformatics,
 Volume 38, Issue 10, 15 May 2022, Pages 2952–2953, <a href="https://doi.org/10.1093/bioinformatics/btac172" class="uri">https://doi.org/10.1093/bioinformatics/btac172</a></li>
 </ul>
 </div>
-<div id="how-to-cite-services" class="section level2 heading3 hasAnchor" number="8.2">
-<h2 class="heading3 hasAnchor"><span class="header-section-number">8.2</span> How to cite the databases and
-web services<a href="#how-to-cite-services" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="how-to-cite-services" class="section level2 hasAnchor" number="8.2">
+<h2 class="hasAnchor"><span class="header-section-number">8.2</span> How
+to cite the databases and web services<a href="#how-to-cite-services" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p><a href="rbioapi_enrichr.html#citations" title="How to cite Enrichr">How to cite Enrichr</a>. (See on <a href="https://maayanlab.cloud/Enrichr/help#terms">Enrichr
 website</a>)</p></li>
@@ -687,8 +721,9 @@ website</a>)</p></li>
 <hr />
 </div>
 </div>
-<div id="code-of-conduct" class="section level1 heading2 hasAnchor" number="9">
-<h1 class="heading2 hasAnchor"><span class="header-section-number">9</span> Code of conduct<a href="#code-of-conduct" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="code-of-conduct" class="section level1 hasAnchor" number="9">
+<h1 class="hasAnchor"><span class="header-section-number">9</span> Code
+of conduct<a href="#code-of-conduct" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This package, rbioapi, is an unofficial interface implementation and
 is not associated, endorsed, or officially connected in any way with the
 original databases and web services. The creators and maintainers of
@@ -705,8 +740,9 @@ interprets as normal behavior, so please seek other methods or use
 <code>Sys.sleep()</code> between your requests.</p>
 <hr />
 </div>
-<div id="what-next" class="section level1 heading2 hasAnchor" number="10">
-<h1 class="heading2 hasAnchor"><span class="header-section-number">10</span> What next?<a href="#what-next" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="what-next" class="section level1 hasAnchor" number="10">
+<h1 class="hasAnchor"><span class="header-section-number">10</span> What
+next?<a href="#what-next" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Each supported service has a dedicated vignette article. Make sure to
 check those too.</p>
 <ol style="list-style-type: decimal">
@@ -727,15 +763,17 @@ with rbioapi: Enrichment (Over-Representation) Analysis in R</a>
 </ol>
 <hr />
 </div>
-<div id="design-philosophy" class="section level1 heading2 hasAnchor" number="11">
-<h1 class="heading2 hasAnchor"><span class="header-section-number">11</span> Design philosophy of rbioapi<a href="#design-philosophy" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>To learn more about the design philosophy and the concepts behind
-developing rbioapi, please read <a href="https://doi.org/10.1093/bioinformatics/btac172" title="Rezwani, M., Pourfathollah, A. A., &amp; Noorbakhsh, F. (2022). rbioapi: user-friendly R interface to biologic web services’ API. Bioinformatics, 38(10), 2952–2953. doi: 10.1093/bioinformatics/btac172">our
+<div id="design" class="section level1 hasAnchor" number="11">
+<h1 class="hasAnchor"><span class="header-section-number">11</span>
+Design of rbioapi<a href="#design" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>To learn more about the design and concepts behind developing
+rbioapi, please read <a href="https://doi.org/10.1093/bioinformatics/btac172" title="Rezwani, M., Pourfathollah, A. A., &amp; Noorbakhsh, F. (2022). rbioapi: user-friendly R interface to biologic web services’ API. Bioinformatics, 38(10), 2952–2953. doi: 10.1093/bioinformatics/btac172">our
 paper in Bioinformatics</a>.</p>
 <hr />
 </div>
-<div id="links" class="section level1 heading2 hasAnchor" number="12">
-<h1 class="heading2 hasAnchor"><span class="header-section-number">12</span> Links<a href="#links" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="links" class="section level1 hasAnchor" number="12">
+<h1 class="hasAnchor"><span class="header-section-number">12</span>
+Links<a href="#links" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <ul>
 <li><p><a href="https://rbioapi.moosa-r.com/articles/rbioapi.html" title="rbioapi: User-Friendly R Interface to Biologic Web Services&#39; API">This
 article in rbioapi documentation site</a></p></li>
@@ -744,11 +782,12 @@ site</a></p></li>
 </ul>
 <hr />
 </div>
-<div id="session-info" class="section level1 heading2 hasAnchor" number="13">
-<h1 class="heading2 hasAnchor"><span class="header-section-number">13</span> Session info<a href="#session-info" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<pre><code>#&gt; R version 4.3.3 (2024-02-29 ucrt)
-#&gt; Platform: x86_64-w64-mingw32/x64 (64-bit)
-#&gt; Running under: Windows 11 x64 (build 22631)
+<div id="session-info" class="section level1 hasAnchor" number="13">
+<h1 class="hasAnchor"><span class="header-section-number">13</span>
+Session info<a href="#session-info" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<pre><code>#&gt; R version 4.4.2 (2024-10-31 ucrt)
+#&gt; Platform: x86_64-w64-mingw32/x64
+#&gt; Running under: Windows 11 x64 (build 26100)
 #&gt; 
 #&gt; Matrix products: default
 #&gt; 
@@ -767,15 +806,15 @@ site</a></p></li>
 #&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #&gt; 
 #&gt; other attached packages:
-#&gt; [1] rbioapi_0.8.1
+#&gt; [1] rbioapi_0.8.2
 #&gt; 
 #&gt; loaded via a namespace (and not attached):
-#&gt;  [1] digest_0.6.35     R6_2.5.1          fastmap_1.1.1     xfun_0.43        
-#&gt;  [5] cachem_1.0.8      knitr_1.45        htmltools_0.5.8   rmarkdown_2.26   
-#&gt;  [9] lifecycle_1.0.4   cli_3.6.2         sass_0.4.9        jquerylib_0.1.4  
-#&gt; [13] compiler_4.3.3    httr_1.4.7        rstudioapi_0.16.0 tools_4.3.3      
-#&gt; [17] curl_5.2.1        evaluate_0.23     bslib_0.6.2       yaml_2.3.8       
-#&gt; [21] rlang_1.1.3       jsonlite_1.8.8</code></pre>
+#&gt;  [1] digest_0.6.37     R6_2.5.1          fastmap_1.2.0     xfun_0.50        
+#&gt;  [5] cachem_1.1.0      knitr_1.49        htmltools_0.5.8.1 rmarkdown_2.29   
+#&gt;  [9] lifecycle_1.0.4   cli_3.6.3         sass_0.4.9        jquerylib_0.1.4  
+#&gt; [13] compiler_4.4.2    httr_1.4.7        rstudioapi_0.17.1 tools_4.4.2      
+#&gt; [17] curl_6.1.0        evaluate_1.0.3    bslib_0.8.0       yaml_2.3.10      
+#&gt; [21] rlang_1.1.4       jsonlite_1.8.9</code></pre>
 </div>
 
 

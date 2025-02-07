@@ -14,7 +14,9 @@ rba_string_enrichment(
 }
 \arguments{
 \item{ids}{Your protein ID(s). It is strongly recommended to supply
-STRING IDs. See \code{\link{rba_string_map_ids}} for more information.}
+STRING IDs. See \code{\link{rba_string_map_ids}} for more information.
+Note that if only one id is supplied, STRING expands the network by 10
+proteins.}
 
 \item{species}{Numeric: NCBI Taxonomy identifier; Human Taxonomy ID is 9606.
 (Recommended, but optional if your input is less than 100 IDs.)}
@@ -42,6 +44,8 @@ STRING cross-reference the proteins with several databases (see "Details"
   background or universe protein set), you can use this function to
   perform enrichment test and retrieve a list of enriched terms in each
   database, among with pertinent information for each term.
+  Use \code{\link{rba_string_enrichment_image}} to retrieve the analysis
+  results as a plot.
 }
 \details{
 STRING currently maps to and retrieve enrichment results based on Gene
@@ -80,10 +84,14 @@ rba_string_enrichment(ids = c("TP53", "TNF", "EGFR"), species = 9606)
   }
 }
 \seealso{
-\code{\link{rba_string_map_ids}, \link{rba_string_annotations}}
+\code{\link{rba_string_map_ids},
+  \link{rba_string_annotations},
+  \link{rba_string_enrichment_image}
+  }
 
 Other "STRING": 
 \code{\link{rba_string_annotations}()},
+\code{\link{rba_string_enrichment_image}()},
 \code{\link{rba_string_enrichment_ppi}()},
 \code{\link{rba_string_homology_inter}()},
 \code{\link{rba_string_homology_intra}()},
@@ -92,5 +100,13 @@ Other "STRING":
 \code{\link{rba_string_map_ids}()},
 \code{\link{rba_string_network_image}()},
 \code{\link{rba_string_version}()}
+
+Other "Enrichment/Over-representation": 
+\code{\link{rba_enrichr}()},
+\code{\link{rba_mieaa_enrich}()},
+\code{\link{rba_panther_enrich}()},
+\code{\link{rba_reactome_analysis}()},
+\code{\link{rba_string_enrichment_image}()}
 }
+\concept{"Enrichment/Over-representation"}
 \concept{"STRING"}

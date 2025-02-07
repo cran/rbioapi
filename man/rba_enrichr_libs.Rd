@@ -4,16 +4,16 @@
 \alias{rba_enrichr_libs}
 \title{Retrieve a List of available libraries from Enrichr}
 \usage{
-rba_enrichr_libs(store_in_options = FALSE, organism = "human", ...)
+rba_enrichr_libs(organism = "human", store_in_options = TRUE, ...)
 }
 \arguments{
-\item{store_in_options}{logical: (default = TRUE) Should a list of available
-Enrichr libraries be saved as a global option?}
-
 \item{organism}{(default = "human") Which model organism version of Enrichr
 to use? Available options are: "human", (H. sapiens & M. musculus),
 "fly" (D. melanogaster), "yeast" (S. cerevisiae), "worm" (C. elegans)
 and "fish" (D. rerio).}
+
+\item{store_in_options}{logical: (default = TRUE) Should a list of available
+Enrichr libraries be saved as a global option?}
 
 \item{...}{rbioapi option(s). See \code{\link{rba_options}}'s
 arguments manual for more information on available options.}
@@ -23,20 +23,22 @@ A data frame with the names of available library in Enrichr and their
   statistics.
 }
 \description{
-This function will retrieve a list of available libraries in Enrichr with
-  their statistics. And by default, will save those names as a global option
-  ("rba_enrichr_libs") to be available for other Enrichr functions that
-  internally require the names of Enrichr libraries.
+This function retrieves a list of libraries available in Enrichr along with
+  their associated statistics. Each library represents a collection of gene sets
+  that can be used for enrichment analysis.
 }
 \details{
-You should call this function once per R session with the argument
-  'store_in_options = TRUE' before using \code{\link{rba_enrichr_enrich}}
-  or \code{\link{rba_enrichr}}.
-  \cr Nevertheless, rbioapi will do this for you in the background at the
-  first time you call any function which requires this.
- \cr Note that using \code{\link{rba_enrichr}} is a more convenient way to
-   automatically perform this and other required function calls to enrich
-   your input gene-set.
+By default, this function will save the library names as a global option
+  ("rba_enrichr_libs") for other Enrichr functions that internally require
+  the names of Enrichr libraries. You should call this function once per
+  R session with the argument 'store_in_options = TRUE' before
+  using \code{\link{rba_enrichr_enrich}} or \code{\link{rba_enrichr}}.
+  However, if you do not explicitly call it, rbioapi will automatically
+  execute this function in the background the when it is needed.
+
+Please note that \code{\link{rba_enrichr}} provides a one-step and
+  more convenient way to automatically handle this and other required
+  function calls needed to perform gene set enrichment analysis with Enrichr.
 }
 \section{Corresponding API Resources}{
 
@@ -77,6 +79,7 @@ rba_enrichr_libs()
 
 Other "Enrichr": 
 \code{\link{rba_enrichr}()},
+\code{\link{rba_enrichr_add_background}()},
 \code{\link{rba_enrichr_add_list}()},
 \code{\link{rba_enrichr_enrich}()},
 \code{\link{rba_enrichr_gene_map}()},

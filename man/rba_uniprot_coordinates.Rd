@@ -52,9 +52,9 @@ rba_uniprot_coordinates(db_type = "HGNC", db_id = "CD40")
 }
 \references{
 \itemize{
-  \item The UniProt Consortium, UniProt: the universal protein
-  knowledgebase in 2021, Nucleic Acids Research, Volume 49, Issue D1,
-  8 January 2021, Pages D480–D489, https://doi.org/10.1093/nar/gkaa1100
+  \item The UniProt Consortium , UniProt: the Universal Protein
+  Knowledgebase in 2025, Nucleic Acids Research, 2024;, gkae1010,
+  https://doi.org/10.1093/nar/gkae1010
   \item Andrew Nightingale, Ricardo Antunes, Emanuele Alpi, Borisas
   Bursteinas, Leonardo Gonzales, Wudong Liu, Jie Luo, Guoying Qi, Edd
   Turner, Maria Martin, The Proteins API: accessing key integrated protein
@@ -69,7 +69,8 @@ rba_uniprot_coordinates(db_type = "HGNC", db_id = "CD40")
 \seealso{
 Other "UniProt - Coordinates": 
 \code{\link{rba_uniprot_coordinates_location}()},
-\code{\link{rba_uniprot_coordinates_search}()},
-\code{\link{rba_uniprot_coordinates_sequence}()}
+\code{\link{rba_uniprot_coordinates_location_genome}()},
+\code{\link{rba_uniprot_coordinates_location_protein}()},
+\code{\link{rba_uniprot_coordinates_search}()}
 }
 \concept{"UniProt - Coordinates"}

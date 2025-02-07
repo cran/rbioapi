@@ -1,7 +1,7 @@
 Type: Package
 Package: rbioapi
 Title: User-Friendly R Interface to Biologic Web Services' API
-Version: 0.8.1
+Version: 0.8.2
 Authors@R: 
     person(given = "Moosa",
            family = "Rezwani",
@@ -25,10 +25,10 @@ Suggests: DT, knitr, png, rmarkdown, testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 Encoding: UTF-8
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 NeedsCompilation: no
-Packaged: 2024-03-30 01:12:01 UTC; moosa
+Packaged: 2025-02-07 21:50:26 UTC; moosa
 Author: Moosa Rezwani [aut, cre] (<https://orcid.org/0000-0001-6325-4444>)
 Maintainer: Moosa Rezwani <moosa.rezwani@gmail.com>
 Repository: CRAN
-Date/Publication: 2024-03-30 04:50:03 UTC
+Date/Publication: 2025-02-07 23:00:02 UTC
