@@ -12,7 +12,7 @@
 
 <meta name="author" content="Moosa Rezwani" />
 
-<meta name="date" content="2025-02-07" />
+<meta name="date" content="2025-07-02" />
 
 <title>2.G: UniProt &amp; rbioapi</title>
 
@@ -360,7 +360,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">2.G: UniProt &amp; rbioapi</h1>
 <h4 class="author">Moosa Rezwani</h4>
-<h4 class="date">2025-02-07</h4>
+<h4 class="date">2025-07-02</h4>
 
 
 <div id="TOC">
@@ -436,7 +436,7 @@ following:</p>
 <span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="co">#&gt;  $ gene            :&#39;data.frame&#39;:    1 obs. of  2 variables:</span></span>
 <span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co">#&gt;  $ comments        :&#39;data.frame&#39;:    12 obs. of  10 variables:</span></span>
 <span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="co">#&gt;  $ features        :&#39;data.frame&#39;:    64 obs. of  9 variables:</span></span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="co">#&gt;  $ dbReferences    :&#39;data.frame&#39;:    136 obs. of  4 variables:</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="co">#&gt;  $ dbReferences    :&#39;data.frame&#39;:    138 obs. of  4 variables:</span></span>
 <span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="co">#&gt;  $ keywords        :&#39;data.frame&#39;:    14 obs. of  1 variable:</span></span>
 <span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="co">#&gt;  $ references      :&#39;data.frame&#39;:    25 obs. of  3 variables:</span></span>
 <span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="co">#&gt;  $ sequence        :List of 5</span></span></code></pre></div>
@@ -465,7 +465,7 @@ a search using certain parameters? We can use the function with
 <span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt;   ..$ gene            :List of 1</span></span>
 <span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt;   ..$ comments        :List of 12</span></span>
 <span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co">#&gt;   ..$ features        :List of 64</span></span>
-<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co">#&gt;   ..$ dbReferences    :List of 136</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co">#&gt;   ..$ dbReferences    :List of 138</span></span>
 <span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="co">#&gt;   ..$ keywords        :List of 14</span></span>
 <span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a><span class="co">#&gt;   ..$ references      :List of 25</span></span>
 <span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a><span class="co">#&gt;   ..$ sequence        :List of 5</span></span></code></pre></div>
@@ -510,11 +510,11 @@ consider the following examples:</p>
 <span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="co">#&gt;  $ P38398:List of 14</span></span>
 <span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="co">#&gt;  $ Q12888:List of 14</span></span>
 <span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="co">#&gt;  $ Q9HCN2:List of 14</span></span>
-<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="co">#&gt;  $ P04637:List of 14</span></span>
+<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="co">#&gt;  $ A1A5B4:List of 14</span></span>
 <span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a><span class="co">#&gt;  $ Q9Y2B4:List of 13</span></span>
 <span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a><span class="co">#&gt;  $ Q8IXH6:List of 14</span></span>
 <span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a><span class="co">#&gt;  $ Q53FA7:List of 14</span></span>
-<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a><span class="co">#&gt;  $ A1A5B4:List of 14</span></span>
+<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a><span class="co">#&gt;  $ P04637:List of 14</span></span>
 <span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a><span class="co">#&gt;  $ Q9NS56:List of 14</span></span>
 <span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a><span class="co">#&gt;  $ Q96A56:List of 14</span></span>
 <span id="cb3-37"><a href="#cb3-37" tabindex="-1"></a><span class="co">#&gt;  $ O14683:List of 14</span></span>
@@ -522,17 +522,17 @@ consider the following examples:</p>
 <span id="cb3-39"><a href="#cb3-39" tabindex="-1"></a><span class="co">#&gt;  $ Q8NBR0:List of 14</span></span>
 <span id="cb3-40"><a href="#cb3-40" tabindex="-1"></a><span class="co">#&gt;  $ Q13625:List of 14</span></span>
 <span id="cb3-41"><a href="#cb3-41" tabindex="-1"></a><span class="co">#&gt;  $ Q7L0Q8:List of 14</span></span>
-<span id="cb3-42"><a href="#cb3-42" tabindex="-1"></a><span class="co">#&gt;  $ Q5VT25:List of 14</span></span>
-<span id="cb3-43"><a href="#cb3-43" tabindex="-1"></a><span class="co">#&gt;  $ Q9UKI2:List of 14</span></span>
-<span id="cb3-44"><a href="#cb3-44" tabindex="-1"></a><span class="co">#&gt;  $ Q6NZY7:List of 14</span></span>
-<span id="cb3-45"><a href="#cb3-45" tabindex="-1"></a><span class="co">#&gt;  $ Q00587:List of 14</span></span>
-<span id="cb3-46"><a href="#cb3-46" tabindex="-1"></a><span class="co">#&gt;  $ O14613:List of 14</span></span>
-<span id="cb3-47"><a href="#cb3-47" tabindex="-1"></a><span class="co">#&gt;  $ Q6DT37:List of 14</span></span>
-<span id="cb3-48"><a href="#cb3-48" tabindex="-1"></a><span class="co">#&gt;  $ Q9NRR8:List of 14</span></span>
-<span id="cb3-49"><a href="#cb3-49" tabindex="-1"></a><span class="co">#&gt;  $ Q9NRR3:List of 14</span></span>
-<span id="cb3-50"><a href="#cb3-50" tabindex="-1"></a><span class="co">#&gt;  $ Q9H3Q1:List of 14</span></span>
-<span id="cb3-51"><a href="#cb3-51" tabindex="-1"></a><span class="co">#&gt;  $ Q07960:List of 14</span></span>
-<span id="cb3-52"><a href="#cb3-52" tabindex="-1"></a><span class="co">#&gt;  $ Q9Y5S2:List of 14</span></span>
+<span id="cb3-42"><a href="#cb3-42" tabindex="-1"></a><span class="co">#&gt;  $ Q00587:List of 14</span></span>
+<span id="cb3-43"><a href="#cb3-43" tabindex="-1"></a><span class="co">#&gt;  $ O14613:List of 14</span></span>
+<span id="cb3-44"><a href="#cb3-44" tabindex="-1"></a><span class="co">#&gt;  $ Q5VT25:List of 14</span></span>
+<span id="cb3-45"><a href="#cb3-45" tabindex="-1"></a><span class="co">#&gt;  $ Q6DT37:List of 14</span></span>
+<span id="cb3-46"><a href="#cb3-46" tabindex="-1"></a><span class="co">#&gt;  $ Q9UKI2:List of 14</span></span>
+<span id="cb3-47"><a href="#cb3-47" tabindex="-1"></a><span class="co">#&gt;  $ Q6NZY7:List of 14</span></span>
+<span id="cb3-48"><a href="#cb3-48" tabindex="-1"></a><span class="co">#&gt;  $ Q9Y5S2:List of 14</span></span>
+<span id="cb3-49"><a href="#cb3-49" tabindex="-1"></a><span class="co">#&gt;  $ Q9NRR8:List of 14</span></span>
+<span id="cb3-50"><a href="#cb3-50" tabindex="-1"></a><span class="co">#&gt;  $ Q9NRR3:List of 14</span></span>
+<span id="cb3-51"><a href="#cb3-51" tabindex="-1"></a><span class="co">#&gt;  $ Q9H3Q1:List of 14</span></span>
+<span id="cb3-52"><a href="#cb3-52" tabindex="-1"></a><span class="co">#&gt;  $ Q07960:List of 14</span></span>
 <span id="cb3-53"><a href="#cb3-53" tabindex="-1"></a><span class="co">#&gt;  $ P60953:List of 14</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="do">## 3 Search for every proteins with chemokines keyword</span></span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>multi_prs3 <span class="ot">&lt;-</span> <span class="fu">rba_uniprot_proteins_search</span>(</span>
@@ -544,10 +544,10 @@ consider the following examples:</p>
 <span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#&gt;  $ P09703:List of 15</span></span>
 <span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">#&gt;  $ P0DTM9:List of 14</span></span>
 <span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">#&gt;  $ Q6SW98:List of 15</span></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co">#&gt;  $ P33854:List of 14</span></span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#&gt;  $ P0DSV7:List of 15</span></span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co">#&gt;  $ P19063:List of 14</span></span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt;  $ P16849:List of 15</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co">#&gt;  $ P19063:List of 14</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#&gt;  $ P16849:List of 15</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co">#&gt;  $ P33854:List of 14</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt;  $ P0DSV7:List of 15</span></span>
 <span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co">#&gt;  $ P69332:List of 15</span></span>
 <span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="co">#&gt;  $ P24766:List of 15</span></span>
 <span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co">#&gt;  $ Q98314:List of 15</span></span>
@@ -786,12 +786,12 @@ vignette index</a></p></li>
 <div id="session-info" class="section level1 hasAnchor" number="7">
 <h1 class="hasAnchor"><span class="header-section-number">7</span>
 Session info<a href="#session-info" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<pre><code>#&gt; R version 4.4.2 (2024-10-31 ucrt)
+<pre><code>#&gt; R version 4.5.1 (2025-06-13 ucrt)
 #&gt; Platform: x86_64-w64-mingw32/x64
 #&gt; Running under: Windows 11 x64 (build 26100)
 #&gt; 
 #&gt; Matrix products: default
-#&gt; 
+#&gt;   LAPACK version 3.12.1
 #&gt; 
 #&gt; locale:
 #&gt; [1] LC_COLLATE=C                          
@@ -807,16 +807,16 @@ Session info<a href="#session-info" class="anchor-section" aria-label="Anchor li
 #&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #&gt; 
 #&gt; other attached packages:
-#&gt; [1] rbioapi_0.8.2
+#&gt; [1] rbioapi_0.8.3
 #&gt; 
 #&gt; loaded via a namespace (and not attached):
-#&gt;  [1] digest_0.6.37     R6_2.5.1          fastmap_1.2.0     xfun_0.50        
-#&gt;  [5] magrittr_2.0.3    cachem_1.1.0      knitr_1.49        htmltools_0.5.8.1
+#&gt;  [1] digest_0.6.37     R6_2.6.1          fastmap_1.2.0     xfun_0.52        
+#&gt;  [5] magrittr_2.0.3    cachem_1.1.0      knitr_1.50        htmltools_0.5.8.1
 #&gt;  [9] png_0.1-8         rmarkdown_2.29    lifecycle_1.0.4   DT_0.33          
-#&gt; [13] cli_3.6.3         grid_4.4.2        sass_0.4.9        jquerylib_0.1.4  
-#&gt; [17] compiler_4.4.2    httr_1.4.7        rstudioapi_0.17.1 tools_4.4.2      
-#&gt; [21] curl_6.1.0        evaluate_1.0.3    bslib_0.8.0       yaml_2.3.10      
-#&gt; [25] htmlwidgets_1.6.4 rlang_1.1.4       jsonlite_1.8.9    crosstalk_1.2.1</code></pre>
+#&gt; [13] cli_3.6.5         grid_4.5.1        sass_0.4.10       jquerylib_0.1.4  
+#&gt; [17] compiler_4.5.1    httr_1.4.7        rstudioapi_0.17.1 tools_4.5.1      
+#&gt; [21] curl_6.4.0        evaluate_1.0.4    bslib_0.9.0       yaml_2.3.10      
+#&gt; [25] htmlwidgets_1.6.4 rlang_1.1.6       jsonlite_2.0.0    crosstalk_1.2.1</code></pre>
 </div>
 
 
